@@ -1,0 +1,139 @@
+body {
+  @include body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include heading-font;
+}
+
+.btn-xl {
+  text-transform: uppercase;
+  padding: 1.5rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+.bg-black {
+  background-color: $black !important;
+}
+
+.rounded-pill {
+  border-radius: 5rem;
+}
+.card-header{
+	background-color: #73a17c !important;
+}
+.card-title{
+  color: $primary !important;
+}
+.has-error{
+  color: #cc0000 !important;
+}
+.twitter{
+  font-size: 18px;
+  display: inline-block;
+  background: $primary;
+  color: #ffffff !important;
+  line-height: 1;
+  padding: 8px 0;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.facebook{
+  font-size: 18px;
+  display: inline-block;
+  background: $primary;
+  color: #ffffff !important;
+  line-height: 1;
+  padding: 8px 0;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.instagram{
+  font-size: 18px;
+  display: inline-block;
+  background: $primary;
+  color: #ffffff !important;
+  line-height: 1;
+  padding: 8px 0;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.footerlinks{
+  text-decoration: none;
+  color: #ffffff !important;
+}
+.pad-left{
+  padding-left: 1rem !important;
+  padding-bottom: 1px !important;
+}
+.pcategory{
+  margin-bottom: 1px !important;
+}
+.categorieslink{
+  text-decoration: none;
+  color: $primary !important;
+}
+.footertitle{
+ color: #ffffff !important; 
+}
+.example-slide {
+  align-items: center;
+  background-color: #fff;
+  color: #999;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  min-height: 10rem;
+  width: 100%;
+}
+.topbar-logo{
+  width: 50px;
+  height: 50px;
+}
+.example-drag label.btn {
+  margin-bottom: 0;
+  margin-right: 1rem;
+}
+.example-drag .drop-active {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  z-index: 9999;
+  opacity: .6;
+  text-align: center;
+  background: #000;
+}
+.example-drag .drop-active h3 {
+  margin: -.5em 0 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: #fff;
+  padding: 0;
+}
+.cursor{
+  cursor: pointer;
+}

@@ -1,0 +1,91 @@
+<template>
+  <div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <img :src="logoImages" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand" >INDEX LADDER</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div v-if="logg > 0" class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a :href="homeUrl" class="nav-link"><i class="fas fa-bell"></i></a>
+          </li>
+          <li class="nav-item">
+            <a :href="homeUrl" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+          </li>                  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+               <i class="fas fa-user-circle"></i> {{ user }}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" :href="profileUrl"><i class="fas fa-user-cog"></i> Profile</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-tools"></i> Settings</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-shopping-bag"></i> My shopping</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-store-alt"></i> My sales</a>
+              <a class="dropdown-item" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            </div>
+          </li>                              
+        </ul>
+      </div>
+      <div v-else class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a :href="registrationUrl" class="nav-link"><i class="fas fa-user-plus"></i> Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a :href="loginUrl" class="nav-link"><i class="fas fa-sign-in-alt"></i> Log In</a>
+          </li>       
+        </ul>
+      </div>      
+    </div>
+  </nav>
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container-fluid">
+        <h1 class="masthead-heading mb-0">THE TRADING PLATFORM – LOW RISK BARTER AND TRADE</h1>
+        <h2 class="masthead-subheading mb-0">A trading platform for your essential/non-essentials goods (new, used) commodities,
+skills and services at low risk </h2>
+        <a :href="homeUrl + '/gallery'" class="btn btn-primary btn-xl rounded-pill mt-5">See More</a>
+      </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>	
+  </div> 
+</template>
+
+
+<script>
+    export default {
+      data() {
+        return {
+         loginUrl: '',
+         logoutUrl: '',
+         registrationUrl: '',
+         homeUrl: '',
+         profileUrl: '',
+         logg: '',
+         user: '',
+         urlImages:'',
+         logoImages:''
+       }
+    },      
+    props: ['welcomeEndpoint'],
+        mounted() {
+            var str=this.welcomeEndpoint.split('|');
+            localStorage.setItem('URLroot',str[0]);
+            if(str[1].length>0) this.logg=1;
+            this.user = str[1];
+            this.homeUrl = str[0];
+            this.loginUrl = str[0] + '/login-user';
+            this.logoutUrl = str[0] + '/logout';
+            this.registrationUrl = str[0] + '/registration';
+            this.profileUrl= str[0] + '/profile';  
+            this.logoImages= str[0] + '/images/logo.png';
+        }
+    }
+</script>
