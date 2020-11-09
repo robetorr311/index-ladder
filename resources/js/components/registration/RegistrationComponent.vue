@@ -1,6 +1,10 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container"> 
+    <div class="container">
+        <span  v-if="CheckEmailExist.success==='Success'" class="alert alert-danger">
+          <strong>Fail!! This Email Already Exist!!! </strong>
+        </span>
+        <span  v-else></span>          
         <div id="formregistration">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -69,12 +73,12 @@
                             </ValidationProvider>
                         </div>
                         <div class="col-md-5">
-                            <ValidationProvider name="email" rules="required" v-slot="{ errors }">
+                            <ValidationProvider name="email" rules="required"  v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                               </div>
-                              <input v-model="email" type="text" class="form-control" name="email" placeholder="Email">
+                              <input v-model="email" type="text" class="form-control" name="email" @change="VerifyIfExist" placeholder="Email">
                               <span class="has-error">{{ errors[0] }}</span>
                             </div>
                             </ValidationProvider>
@@ -92,13 +96,12 @@
                               <span class="has-error">{{ errors[0] }}</span>
                               </div>
                         </ValidationProvider>
-                        </div>                                                
+                        </div>
                       </div>
                       <div class="row justify-content-center">
                           <div class="col-md-10">
                             <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
-                          </div>
-                                                                    
+                         </div>
                       </div>
                     </form>
                     </div>
@@ -153,13 +156,25 @@ export default {
       phone: '',
       email: '',
       address: '',
-      show : false }
+      show : false,
+      CheckEmailExist:'',
+      valuesEmail: '' }
     },
     methods: {
+        VerifyIfExist(){
+          var em=this.email;
+          axios.get(localStorage['URLroot'] + '/registration/CheckEmailExist/' + em).then(response => (this.CheckEmailExist = response.data)); 
+        },
+        SendSMS(){
+          axios.get(localStorage['URLroot'] + '/registration/SendSMS/This is a test message/+584125066130');
+        },
         onSubmit() {
             var em=this.email;
-            var value = localStorage['URLroot'];
-            axios.post( value + '/registration/addnew',
+            if(this.CheckEmailExist.success=='Success'){
+              console.log('Fail in validation rule');
+            }
+            else {
+              axios.post( localStorage['URLroot'] + '/registration/addnew',
                   {
                      csrfToken: myToken.csrfToken,
                      firstname: this.firstname,
@@ -170,17 +185,19 @@ export default {
                      email: this.email,
                      address: this.address
                   }
-            ).then(function (response) {
+              ).then(function (response) {
                 localStorage.setItem( 'message', 'success|Thank you. In order to complete the registration, please click on the verification link sent to '+ em +'|1' );
                 location.href = response.data.redirect;              
-            })
-            .catch((error) => {
-              console.log('FAILURE!!');
-              this.$showValidationErrors(error.response.data);
-            });            
+              })
+              .catch((error) => {
+                console.log('FAILURE!!');
+                this.$showValidationErrors(error.response.data);
+              });            
+            }
         },
     },
     mounted() {
+          axios.get(localStorage['URLroot'] + '/registration/CheckEmailExist/test@test.com').then(response => (this.CheckEmailExist = response.data)); 
     }     
 }
 </script>

@@ -38,6 +38,8 @@
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                              <span class="input-group-text" v-if="PhoneVerified.success==='Fail'"><a :href="UrlVerify" target="blank"><i class="far fa-check-circle"></i> Unverified</a></span>
+                              <span class="input-group-text" v-else><i class="fas fa-check-circle"></i> Verified</span>
                           </div>
                               <input v-model="phone" type="text" class="form-control" name="phone" :disabled="disabled" placeholder="Phone Number">
                               <span class="has-error">{{ errors[0] }}</span>
@@ -49,10 +51,13 @@
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                              <span class="input-group-text"><i class="fas fa-check-circle"></i> Verified</span>
                               </div>
                               <input v-model="email" type="text" class="form-control" name="email" :disabled="disabledEmail" placeholder="Email">
                               <span class="has-error">{{ errors[0] }}</span>
-                            </div>
+                            </div> <!--<i class="fas fa-check-circle"></i>  
+                                       <i class="far fa-check-circle"></i>
+                                     -->
                             </ValidationProvider>
                         </div>
                       </div>
@@ -181,7 +186,9 @@ export default {
       idregister:'',
       UrlPic: this.UrlPicture,
       UrlLic: this.UrlLicense,
-      UrlCar: this.UrlCard              
+      UrlCar: this.UrlCard,
+      UrlVerify: localStorage['URLroot'] + '/profile/SendVerifySMS',
+      PhoneVerified: ''              
       }
     },
     props: [
@@ -220,6 +227,7 @@ export default {
         },      
     },
     mounted() {
+            axios.get(localStorage['URLroot'] + '/profile/PhoneVerifyed').then(response => (this.PhoneVerified = response.data));
             this.values= JSON.parse(this.registrationValues, function (key, value) {
               return value;
             });

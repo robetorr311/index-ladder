@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -127,16 +128,6 @@ class RegistrationController extends Controller
         return view('welcome',['welcomeEndpoint' => $welcomeEndpoint, 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]); 
     }    
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -169,6 +160,7 @@ class RegistrationController extends Controller
           $usr= User::create([
             'name' => $request->firstname. ' ' . $request->lastname,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'role_id' => 2,
             'remember_token'=> $request->csrfToken
@@ -187,50 +179,27 @@ class RegistrationController extends Controller
           return ['redirect' => route('home')];
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\registration  $registration
-     * @return \Illuminate\Http\Response
-     */
-    public function show(registration $registration)
-    {
-        //
+    public function CheckEmailExist($email){
+      $success="";
+      $usr=User::where('email', $email)->first();
+      if(!empty($usr->email)){
+        $success='Success';
+      }
+      else {
+        $success='Fail';
+      }
+      return response()->json(['success' => $success]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\registration  $registration
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(registration $registration)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\registration  $registration
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, registration $registration)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\registration  $registration
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(registration $registration)
-    {
-        //
-    } 
+    public function SendSMS($message,$recipients){
+        $account_sid = config('services.twilio')['account_sid'];
+        $auth_token = config('services.twilio')['auth_token'];
+        $phone = '+12058909484';
+        $twilio = new Client($account_sid, $auth_token);
+        $twilio->messages->create($recipients, [
+            'from' => $phone,
+            'body' => $message
+        ] );
+    }     
     public function verify($token,$email)
     {
       $reg=Registration::where('token', $token)->where('email', $email)->first();
