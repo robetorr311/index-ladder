@@ -93,9 +93,9 @@ export default {
     },
     methods: {
         onSubmit() {
-            var value = localStorage['URLroot'];
-            var login = value + '/login-user'
-            axios.post( value + '/authenticate' ,
+            var login = localStorage['URLroot'] + '/login-user';
+            var twostep = localStorage['URLroot'] + '/twosteplogin/' + this.username;
+            axios.post( localStorage['URLroot'] + '/authenticate' ,
                   {
                      csrfToken: myToken.csrfToken,
                      email: this.username,
@@ -107,8 +107,13 @@ export default {
                   location.href = response.data.redirect;
                 }
                 else{
-                  localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
-                  location.href = response.data.redirect;                   
+                  if (response.data.redirect===twostep) {
+                    location.href = response.data.redirect;
+                  }
+                  else {
+                    localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
+                    location.href = response.data.redirect;
+                  }                   
                 }        
             })
             .catch((error) => {

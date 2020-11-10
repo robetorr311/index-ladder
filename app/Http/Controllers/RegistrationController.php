@@ -52,6 +52,26 @@ class RegistrationController extends Controller
         $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
         return view('registration.login', ['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in]);
     }
+    public function twosteplogin($email){
+      $usr= User::where('email', $email)->first();
+      $usernameEnd="";
+      $recipients=$usr->phone;
+      $verification_code = rand(100000,999999);
+      $usr->verification_code=$verification_code;
+      $usr->save();
+      $account_sid = config('services.twilio')['account_sid'];
+      $auth_token = config('services.twilio')['auth_token'];
+      $phone = '+12058909484';
+      $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
+      $twilio = new Client($account_sid, $auth_token);
+      $twilio->messages->create($recipients, [
+            'from' => $phone,
+            'body' => $message
+        ] );
+        $logged_in=0;
+        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
+        return view('registration.twostep', ['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in,'emailValue' => $email]);
+    }    
     public function welcome(){
         if (Auth::check()) {
           $id = Auth::id();

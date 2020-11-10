@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 class LoginController extends Controller
 {
@@ -49,18 +50,37 @@ class LoginController extends Controller
                return ['redirect' => route('login-user')];
             }
             else{
-              Auth::login($usr);
+              if(!$usr->twostep_enabled){
+                Auth::login($usr);
+              }
+              else {
+                return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
+              }
+              
             }
         }
         if (Auth::check()) {
-            return ['redirect' => route('home')];
+          return ['redirect' => route('home')];
         }
         else {
-            return ['redirect' => route('login-user')];
+          return ['redirect' => route('login-user')];
         }
     }
+    public function twostep(Request $request){
+      $usr= User::where('email', $request->email)->first();
+      $generated_code=$usr->verification_code;
+      $entered_code=$request->code;
+      if($generated_code==$entered_code){
+        Auth::login($usr);
+        return ['redirect' => route('home')];
+      }
+      else {
+        return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
+      }
+    }    
     public function logout(){
         Auth::logout();
         return redirect()->route('welcome');
     }
+
 }

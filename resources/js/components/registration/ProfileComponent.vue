@@ -55,9 +55,7 @@
                               </div>
                               <input v-model="email" type="text" class="form-control" name="email" :disabled="disabledEmail" placeholder="Email">
                               <span class="has-error">{{ errors[0] }}</span>
-                            </div> <!--<i class="fas fa-check-circle"></i>  
-                                       <i class="far fa-check-circle"></i>
-                                     -->
+                            </div>
                             </ValidationProvider>
                         </div>
                       </div>
@@ -75,6 +73,34 @@
                         </ValidationProvider>
                         </div>                                                
                       </div>
+                      <div class="row justify-content-center" v-if="PhoneVerified.success==='Success'">
+                          <div class="col-md-10" v-if="IsTwoStepEnaled.success==='Fail'">
+                            <button type="button" @click.stop.prevent="EnableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Enable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
+                          </div>
+                          <div class="col-md-10" v-else>
+                            <button type="button" @click.stop.prevent="DisableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Disable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
+                          </div>                          
+                      </div>
+                      <div class="row justify-content-center" v-if="ActiveTS">
+                          <div class="col-md-10">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" v-model="code" name="code" placeholder="Code">
+                              <div class="input-group-append">
+                                <button class="btn btn-secondary" @click.stop.prevent="ActiveTwoStep"><i class="fas fa-shield-alt"></i> Enable</button>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row justify-content-center" v-if="DisableTS">
+                          <div class="col-md-10">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" v-model="code" name="code" placeholder="Code">
+                              <div class="input-group-append">
+                                <button class="btn btn-secondary" @click.stop.prevent="DeactivateTwoStep"><i class="fas fa-shield-alt"></i> Disable</button>
+                              </div>
+                            </div>
+                          </div>
+                      </div>                                             
                       <div class="row justify-content-center">
                           <div class="col-md-10">
                             <button type="button" @click="EditRegister" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name="">Edit</button>
@@ -188,7 +214,14 @@ export default {
       UrlLic: this.UrlLicense,
       UrlCar: this.UrlCard,
       UrlVerify: localStorage['URLroot'] + '/profile/SendVerifySMS',
-      PhoneVerified: ''              
+      PhoneVerified: '',
+      ActiveTS: false,
+      code: '',
+      CodeSentMessage: '',
+      CodeSent:'',
+      ChkCode: '',
+      IsTwoStepEnaled:'',
+      DisableTS: false
       }
     },
     props: [
@@ -203,6 +236,22 @@ export default {
            this.showedit=false;
            this.showsave=true; 
         },
+        EnableTwoStep(){
+          axios.get(localStorage['URLroot'] + '/profile/SendCode').then(response => (this.CodeSent = response.data));
+          this.CodeSentMessage=' The 6 digit code has been sent...';
+          setTimeout(() => {
+            this.CodeSentMessage='';
+          },6000);           
+          this.ActiveTS=true;
+        },
+        DisableTwoStep(){
+          axios.get(localStorage['URLroot'] + '/profile/SendCode').then(response => (this.CodeSent = response.data));
+          this.CodeSentMessage=' The 6 digit code has been sent...';
+          setTimeout(() => {
+            this.CodeSentMessage='';
+          },6000);           
+          this.DisableTS=true;
+        },        
         Update() {
             var em=this.email;
             var value = localStorage['URLroot'];
@@ -224,10 +273,29 @@ export default {
               console.log('FAILURE!!');
               this.$showValidationErrors(error.response.data);
             });            
-        },      
+        },
+        ActiveTwoStep(){
+          axios.post( localStorage['URLroot'] + '/profile/EnableTwoStep/',
+            {
+              csrfToken: myToken.csrfToken,
+              code: this.code
+            }
+          ).then(response => (this.ChkCode = response.data));
+          location.reload();
+        },
+        DeactivateTwoStep(){
+          axios.post( localStorage['URLroot'] + '/profile/DeactivateTwoStep/',
+            {
+              csrfToken: myToken.csrfToken,
+              code: this.code
+            }
+          ).then(response => (this.ChkCode = response.data));
+          location.reload();
+        },              
     },
     mounted() {
             axios.get(localStorage['URLroot'] + '/profile/PhoneVerifyed').then(response => (this.PhoneVerified = response.data));
+            axios.get(localStorage['URLroot'] + '/profile/IsTwoStepEnaled').then(response => (this.IsTwoStepEnaled = response.data));            
             this.values= JSON.parse(this.registrationValues, function (key, value) {
               return value;
             });

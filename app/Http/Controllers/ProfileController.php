@@ -99,6 +99,74 @@ class ProfileController extends Controller
         $success="Fail";
       }
       return response()->json(['success' => $success]);  
+    }
+    public function EnableTwoStep(Request $request)
+    {
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $generated_code=$usr->verification_code;
+      $entered_code=$request->code;
+      $success="";
+      if($generated_code==$entered_code){
+        $success="Success";
+        $usr->twostep_enabled=true;
+        $usr->save();
+      }
+      else {
+        $success="Fail";
+      }
+      return response()->json(['success' => $success]);  
+    }
+    public function DeactivateTwoStep(Request $request){
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $generated_code=$usr->verification_code;
+      $entered_code=$request->code;
+      $success="";
+      if($generated_code==$entered_code){
+        $success="Success";
+        $usr->twostep_enabled=false;
+        $usr->save();
+      }
+      else {
+        $success="Fail";
+      }
+      return response()->json(['success' => $success]);        
+    }    
+    public function SendCode(){
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $recipients=$usr->phone;
+      $verification_code = rand(100000,999999);
+      $usr->verification_code=$verification_code;
+      $usr->save();
+      $account_sid = config('services.twilio')['account_sid'];
+      $auth_token = config('services.twilio')['auth_token'];
+      $phone = '+12058909484';
+      $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
+      $twilio = new Client($account_sid, $auth_token);
+      $twilio->messages->create($recipients, [
+            'from' => $phone,
+            'body' => $message
+        ] );
+      $success="Success";
+      return response()->json(['success' => $success]);
+    }
+    public function IsTwoStepEnaled(){
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $twostep_enabled=$usr->twostep_enabled;
+      $success="";
+      if($twostep_enabled){
+        $success="Success";
+      }
+      else {
+        $success="Fail";
+      }
+      return response()->json(['success' => $success]);        
     } 
     public function PhoneVerifyed()
     {
