@@ -37,7 +37,6 @@ class LoginController extends Controller
      *
      * @return void
      */
-// app/Http/Controllers/Auth/LoginController.php
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -60,7 +59,7 @@ class LoginController extends Controller
             }
         }
         if (Auth::check()) {
-          return ['redirect' => route('home')];
+          return ['redirect' => route('welcome')];
         }
         else {
           return ['redirect' => route('login-user')];
@@ -72,7 +71,7 @@ class LoginController extends Controller
       $entered_code=$request->code;
       if($generated_code==$entered_code){
         Auth::login($usr);
-        return ['redirect' => route('home')];
+        return ['redirect' => route('welcome')];
       }
       else {
         return ['redirect' =>route('twosteplogin', ['email' => $request->email])];

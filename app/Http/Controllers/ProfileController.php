@@ -31,6 +31,7 @@ class ProfileController extends Controller
       $URLPicture='none';
       $URLCard='none';
       $URLLicense='none';
+      $URLAvatar='none';
         if (Auth::check()) {
           $id = Auth::id();
           $usr= User::where('id', $id)->first();
@@ -41,16 +42,17 @@ class ProfileController extends Controller
           $pic=Ident_image::where('user_id', $id)->where('ident_type', 1)->first();
           $lic=Ident_image::where('user_id', $id)->where('ident_type', 2)->first();
           $car=Ident_image::where('user_id', $id)->where('ident_type', 3)->first();
+          $ava=Ident_image::where('user_id', $id)->where('ident_type', 4)->first();
           if(!empty($pic)){ $URLPicture=$pic->image_url; } else { $URLPicture='none'; }
           if(!empty($lic)){ $URLLicense=$lic->image_url; } else { $URLLicense='none'; }
           if(!empty($car)){ $URLCard=$car->image_url; } else { $URLCard='none'; }
+          if(!empty($ava)){ $URLAvatar=$ava->image_url; } else { $URLAvatar='none'; }
         }
         else {
           $usernameEnd='';
           $logged_in=false;
         }
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd;
-        return view('profile.profile',['welcomeEndpoint' => $welcomeEndpoint, 'URLPicture' => $URLPicture, 'URLLicense' => $URLLicense, 'URLCard' => $URLCard, 'registrationValues' => $values]);
+        return view('profile.profile',['URLPicture' => $URLPicture, 'URLLicense' => $URLLicense, 'URLCard' => $URLCard, 'URLAvatar' => $URLAvatar,'registrationValues' => $values]);
     }
     public function update(Request $request)
     {
@@ -60,6 +62,8 @@ class ProfileController extends Controller
       $logged_in=true;
       $data=['firstname' => $request->firstname ,'lastname'=> $request->lastname ,'phone'=> $request->phone ,'address' => $request->address ];
       Registration::where('user_id', $id)->update($data);
+      $usr->phone=$request->phone;
+      $usr->save();
       return ['redirect' => route('profile')];      
     } 
     public function SendVerifySMS(){
@@ -79,8 +83,7 @@ class ProfileController extends Controller
             'from' => $phone,
             'body' => $message
         ] );
-      $welcomeEndpoint = route('welcome').'|'.$usernameEnd;
-      return view('profile.phone_verification',['welcomeEndpoint' => $welcomeEndpoint]);      
+      return view('profile.phone_verification');      
     }
     public function SixDigits(Request $request)
     {

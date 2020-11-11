@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
        DB::table('ident_types')->insert(['id' => 1, 'name' => 'Picture', 'created_at' => Carbon::now()]);
        DB::table('ident_types')->insert(['id' => 2, 'name' => 'License', 'created_at' => Carbon::now()]);
        DB::table('ident_types')->insert(['id' => 3, 'name' => 'ID Card', 'created_at' => Carbon::now()]);
-       DB::table('status_trades')->insert(['id' => 1,'name' => 'published', 'created_at' => Carbon::now()]);      
+       DB::table('ident_types')->insert(['id' => 4, 'name' => 'Avatar', 'created_at' => Carbon::now()]);       
+       DB::table('status_trades')->insert(['id' => 1,'name' => 'published', 'created_at' => Carbon::now()]);
        DB::table('status_trades')->insert(['id' => 2,'name' => 'acepted', 'created_at' => Carbon::now()]);      
        DB::table('status_trades')->insert(['id' => 3,'name' => 'payed', 'created_at' => Carbon::now()]);      
        DB::table('status_trades')->insert(['id' => 4,'name' => 'delivered', 'created_at' => Carbon::now()]);

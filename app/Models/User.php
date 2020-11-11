@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'role_id',
         'remember_token',
-        'phone'
+        'phone',
+        'twostep_enabled'
     ];
 
     /**

@@ -34,8 +34,8 @@ class RegistrationController extends Controller
           $usernameEnd='';
           $logged_in=0;
         }
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd; 
-        return view('registration.registration',  ['welcomeEndpoint' => $welcomeEndpoint]);
+         
+        return view('registration.registration');
     }
     public function login()
     {
@@ -50,7 +50,7 @@ class RegistrationController extends Controller
           $logged_in=0;
         }
         $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
-        return view('registration.login', ['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in]);
+        return view('registration.login');
     }
     public function twosteplogin($email){
       $usr= User::where('email', $email)->first();
@@ -59,7 +59,7 @@ class RegistrationController extends Controller
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
-      $account_sid = config('services.twilio')['account_sid'];
+      /*$account_sid = config('services.twilio')['account_sid'];
       $auth_token = config('services.twilio')['auth_token'];
       $phone = '+12058909484';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
@@ -67,10 +67,10 @@ class RegistrationController extends Controller
       $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );
+        ] );*/
         $logged_in=0;
         $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
-        return view('registration.twostep', ['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in,'emailValue' => $email]);
+        return view('registration.twostep', ['emailValue' => $email]);
     }    
     public function welcome(){
         if (Auth::check()) {
@@ -144,8 +144,7 @@ class RegistrationController extends Controller
           if(!empty($se)){ $serv=json_encode($se); } else { $serv="";  } 
           if(!empty($sk)){ $ski=json_encode($sk); } else { $ski="";  } 
           if(!empty($pr)){ $pro=json_encode($pr); } else { $pro="";  } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
-        return view('welcome',['welcomeEndpoint' => $welcomeEndpoint, 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]); 
+        return view('welcome',[ 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]); 
     }    
     /**
      * Store a newly created resource in storage.
@@ -242,8 +241,8 @@ class RegistrationController extends Controller
           $usernameEnd='';
           $logged_in=0;
         }
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd;
-        return view('content.privacy',['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in]);        
+        
+        return view('content.privacy');        
     }    
     public function how()
     {
@@ -257,7 +256,18 @@ class RegistrationController extends Controller
           $usernameEnd='';
           $logged_in=0;
         }
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd;
-        return view('content.how',['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in]);        
+      
+        return view('content.how');        
+    }
+    public function getUserName(){
+      $username="";
+      $loggedin=0;
+      if (Auth::check()) {
+        $id = Auth::id();
+        $usr= User::where('id', $id)->first();
+        $username=$usr->name;
+        $loggedin=1;
+      }
+      return response()->json(['name' => $username, 'logg' => $loggedin]);
     }           
 }

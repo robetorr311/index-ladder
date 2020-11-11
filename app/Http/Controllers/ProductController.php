@@ -25,6 +25,19 @@ class ProductController extends Controller
     {
         //
     }
+    public function addnew(){
+        if (Auth::check()) {
+          $iduser = Auth::id();
+          $usr= User::where('id', $iduser)->first();
+          $usernameEnd=$usr->name;
+          $logged_in=1;
+          $welcomeEndpoint = route('welcome').'|'.$usernameEnd; 
+          return view('products.addnew',['welcomeEndpoint' => $welcomeEndpoint]);
+        }
+        else {
+          return redirect()->route('login-user');
+        }        
+    }    
     public function viewproduct($id){
         if (Auth::check()) {
           $iduser = Auth::id();
@@ -101,8 +114,7 @@ class ProductController extends Controller
         }
         if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
         if(!empty($messages)){ $mess=json_encode($messages); } else { $mess='json_encode($messages)'; } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
-        return view('products.product',['welcomeEndpoint' => $welcomeEndpoint,'LoggedValue' => $logged_in, 'ProductValue' => $prod, 'LoadedMessages' => $mess]);
+        return view('products.product',['ProductValue' => $prod, 'LoadedMessages' => $mess]);
     }
     public function gallery(){
         if (Auth::check()) {
@@ -153,9 +165,8 @@ class ProductController extends Controller
         }
         if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
         if(!empty($messages)){ $mess=json_encode($messages); } else { $mess='json_encode($messages)'; } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
         $CountLogged=$logged_in;
-        return view('products.gallery',['welcomeEndpoint' => $welcomeEndpoint,'LoggedValue' => $logged_in, 'GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
+        return view('products.gallery',['GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
     }
     public function FindByCategory($search){
         if (Auth::check()) {
@@ -213,9 +224,8 @@ class ProductController extends Controller
         $count=0;
         if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
         if(!empty($messages)){ $mess=json_encode($messages); } else { $mess='json_encode($messages)'; } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
         $CountLogged=$logged_in.'|'.$count;
-        return view('products.gallery',['welcomeEndpoint' => $welcomeEndpoint,'LoggedValue' => $logged_in, 'GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
+        return view('products.gallery',['GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
     }
     public function FindByName($search){
         if (Auth::check()) {
@@ -271,9 +281,8 @@ class ProductController extends Controller
         $count=0;
         if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
         if(!empty($messages)){ $mess=json_encode($messages); } else { $mess='json_encode($messages)'; } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
         $CountLogged=$logged_in.'|'.$count;
-        return view('products.gallery',['welcomeEndpoint' => $welcomeEndpoint,'LoggedValue' => $logged_in, 'GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
+        return view('products.gallery',['GalleryValues' => $prod, 'CountLogged' => $CountLogged]);
     }    
     public function FindByC($search){
         return ['redirect' => route('FindByCategory',['search' => $search])];

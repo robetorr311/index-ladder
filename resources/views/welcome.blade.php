@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
         <script>
+        localStorage.setItem('URLroot','<?php echo route('welcome'); ?>');
+        console.log(localStorage['URLroot']);
         // rename myToken as you like
         window.myToken =  <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -28,7 +30,7 @@
     <body>
     <div id="app">
       @include('partials.flash_messages')
-      <header-component welcome-endpoint="{{ $welcomeEndpoint }}"></header-component>
+      <header-component></header-component>
       <message-component></message-component>
       <section>
         <slide-component></slide-component> 

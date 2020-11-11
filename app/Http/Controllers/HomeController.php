@@ -101,7 +101,6 @@ class HomeController extends Controller
           if(!empty($se)){ $serv=json_encode($se); } else { $serv="";  } 
           if(!empty($sk)){ $ski=json_encode($sk); } else { $ski="";  } 
           if(!empty($pr)){ $pro=json_encode($pr); } else { $pro="";  } 
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;
-        return view('home',['welcomeEndpoint' => $welcomeEndpoint, 'logged_in' => $logged_in, 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);        
+        return view('home',['ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);        
     }           
 }

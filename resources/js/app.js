@@ -9,7 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.events = new Vue();
 
-import VueCarousel from '@chenfengyuan/vue-carousel';
 const VueUploadComponent = require('vue-upload-component');
 Vue.component('file-upload', VueUploadComponent);
 //import * as VeeValidate from 'vee-validate';
@@ -26,7 +25,6 @@ Vue.component('file-upload', VueUploadComponent);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.component(VueCarousel.name, VueCarousel);
 Vue.component('footer-component', require('./components/dashboards/FooterComponent.vue').default);
 Vue.component('header-component', require('./components/dashboards/HeaderComponent.vue').default);
 Vue.component('message-component', require('./components/dashboards/MessageComponent.vue').default);
@@ -44,7 +42,9 @@ Vue.component('twostep-component', require('./components/registration/TwoStepCom
 Vue.component('picture-component', require('./components/PictureComponent.vue').default);
 Vue.component('card-component', require('./components/CardComponent.vue').default);
 Vue.component('license-component', require('./components/LicenseComponent.vue').default);
+Vue.component('avatar-component', require('./components/AvatarComponent.vue').default);
 Vue.component('product-component', require('./components/products/ProductComponent.vue').default);
+Vue.component('addnewproduct-component', require('./components/products/AddNewProductComponent.vue').default);
 Vue.component('gallery-component', require('./components/products/GalleryComponent.vue').default);
 Vue.component('categories-component', require('./components/products/CategoriesComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);

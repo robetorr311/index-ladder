@@ -100,7 +100,17 @@
                               </div>
                             </div>
                           </div>
-                      </div>                                             
+                      </div>
+                      <div class="row justify-content-center">
+                          <div class="col-md-10">
+                            <div class="input-group" >
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                              </div>
+                              <avatar-component :url-avatar="UrlAva"></avatar-component>
+                            </div>
+                          </div>
+                      </div>                                                                   
                       <div class="row justify-content-center">
                           <div class="col-md-10">
                             <button type="button" @click="EditRegister" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name="">Edit</button>
@@ -162,6 +172,7 @@ import * as rules from 'vee-validate/dist/rules';
 import PictureComponent from "../PictureComponent.vue";
 import CardComponent from "../CardComponent.vue";
 import LicenseComponent from "../LicenseComponent.vue";
+import AvatarComponent from "../AvatarComponent.vue";
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule]);
 });
@@ -190,7 +201,8 @@ export default {
     ValidationProvider,
     PictureComponent,
     CardComponent,
-    LicenseComponent },
+    LicenseComponent,
+    AvatarComponent },
   data() {
     return {
       firstname: '',
@@ -213,6 +225,7 @@ export default {
       UrlPic: this.UrlPicture,
       UrlLic: this.UrlLicense,
       UrlCar: this.UrlCard,
+      UrlAva: this.UrlAvatar,
       UrlVerify: localStorage['URLroot'] + '/profile/SendVerifySMS',
       PhoneVerified: '',
       ActiveTS: false,
@@ -228,7 +241,8 @@ export default {
             'registrationValues',
             'UrlPicture',
             'UrlLicense',
-            'UrlCard'
+            'UrlCard',
+            'UrlAvatar',
           ],
     methods: {
         EditRegister(){
@@ -275,7 +289,7 @@ export default {
             });            
         },
         ActiveTwoStep(){
-          axios.post( localStorage['URLroot'] + '/profile/EnableTwoStep/',
+          axios.post( localStorage['URLroot'] + '/profile/EnableTwoStep',
             {
               csrfToken: myToken.csrfToken,
               code: this.code
@@ -284,7 +298,7 @@ export default {
           location.reload();
         },
         DeactivateTwoStep(){
-          axios.post( localStorage['URLroot'] + '/profile/DeactivateTwoStep/',
+          axios.post( localStorage['URLroot'] + '/profile/DeactivateTwoStep',
             {
               csrfToken: myToken.csrfToken,
               code: this.code

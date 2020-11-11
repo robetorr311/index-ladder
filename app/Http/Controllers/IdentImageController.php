@@ -93,4 +93,42 @@ class IdentImageController extends Controller
                 ]);
       $img->save();
     }
+    public function avatar(Request $request)
+    {
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $logged_in=true;
+      $regis= Registration::where('user_id', $id)->first();
+      $values=json_encode($regis);
+      $upload_path = public_path('uploads/avatars');
+      $URL= route('welcome').'/uploads/avatars' ;
+      $file_name = $request->file->getClientOriginalName();
+      $file_type = $request->file->getClientOriginalExtension();
+      $file_size = $request->file->getClientOriginalExtension();
+      $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
+      $request->file->move($upload_path, $generated_new_name);
+      $img = Ident_image::create([
+                'image_url' => $URL. '/' . $generated_new_name ,
+                'name' => $generated_new_name,
+                'type' => $file_type,
+                'size' => $file_type,
+                'user_id' => $id,
+                'ident_type' => 4 
+                ]);
+      $img->save();
+    }
+    public function haveavatar(){
+      $values='';
+      $URLAvatar='none';
+        if (Auth::check()) {
+          $id = Auth::id();
+          $ava=Ident_image::where('user_id', $id)->where('ident_type', 4)->first();
+          if(!empty($ava)){ $URLAvatar=$ava->image_url; } else { $URLAvatar='none'; }
+        }
+        else{
+          $URLAvatar='none';
+        }
+      return response()->json(['URLAvatar' => $URLAvatar]);     
+    }
 }

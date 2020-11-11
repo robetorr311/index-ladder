@@ -6,6 +6,7 @@
     registration-values="{{ $registrationValues }}" 
     url-picture="{{ $URLPicture }}"
     url-card="{{ $URLCard }}"
-    url-license="{{ $URLLicense }}"    >
+    url-license="{{ $URLLicense }}"
+    url-avatar="{{ $URLAvatar }}"    >
     </profile-component>
 @endsection
