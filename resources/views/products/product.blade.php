@@ -2,6 +2,6 @@
 
 @section('content')
     <message-component></message-component>
-    <product-component product-value="{{ $ProductValue }}" logged-value="{{ $LoggedValue }}" message-value="{{ $LoadedMessages }}" >
+    <product-component product-value="{{ $ProductValue }}" >
     </product-component>
 @endsection

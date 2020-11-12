@@ -24,6 +24,7 @@
               <span v-else class="dropdown-item"><img :src="HaveAvatar.URLAvatar" class="rounded-circle" width="50px" height="50px"></span>
               <a class="dropdown-item" :href="profileUrl"><i class="fas fa-user-cog"></i> Profile</a>
               <a class="dropdown-item" :href="newitemUrl"><i class="fas fa-boxes"></i> Add New Item</a>
+              <a class="dropdown-item" :href="favoritesURL"><i class="fas fa-heart"></i> My Favorites</a>              
               <a class="dropdown-item" :href="homeUrl"><i class="fas fa-shopping-bag"></i> My shopping</a>
               <a class="dropdown-item" :href="homeUrl"><i class="fas fa-store-alt"></i> My sales</a>
               <a class="dropdown-item" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
@@ -70,6 +71,7 @@ skills and services at low risk</h2>
          registrationUrl: '',
          homeUrl: '',
          profileUrl: '',
+         favoritesURL:'',
          logg: '',
          user: null,
          Getuser: '',
@@ -80,11 +82,7 @@ skills and services at low risk</h2>
          getHomeURL: ''
        }
     },      
-    //props: ['welcomeEndpoint'],
         methods : {
-          setUrl(){
-            
-          }
         },
         mounted() {
             axios.get( localStorage['URLroot'] + '/getUserName').then(response => (this.Getuser = response.data));
@@ -95,6 +93,7 @@ skills and services at low risk</h2>
             this.profileUrl=  localStorage['URLroot'] + '/profile';  
             this.logoImages= localStorage['URLroot'] + '/images/logo.png';
             this.newitemUrl= localStorage['URLroot']+ '/product/addnew';
+            this.favoritesURL= localStorage['URLroot']+ '/favorites';
             axios.get(localStorage['URLroot'] + '/images/haveavatar').then(response => (this.HaveAvatar = response.data));
         }
     }

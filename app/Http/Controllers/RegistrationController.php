@@ -49,7 +49,6 @@ class RegistrationController extends Controller
           $usernameEnd='';
           $logged_in=0;
         }
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
         return view('registration.login');
     }
     public function twosteplogin($email){
@@ -69,7 +68,6 @@ class RegistrationController extends Controller
             'body' => $message
         ] );*/
         $logged_in=0;
-        $welcomeEndpoint = route('welcome').'|'.$usernameEnd . '|'.$logged_in;        
         return view('registration.twostep', ['emailValue' => $email]);
     }    
     public function welcome(){

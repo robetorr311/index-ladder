@@ -43,9 +43,11 @@ Vue.component('picture-component', require('./components/PictureComponent.vue').
 Vue.component('card-component', require('./components/CardComponent.vue').default);
 Vue.component('license-component', require('./components/LicenseComponent.vue').default);
 Vue.component('avatar-component', require('./components/AvatarComponent.vue').default);
-Vue.component('product-component', require('./components/products/ProductComponent.vue').default);
+Vue.component('avatar-component', require('./components/AvatarComponent.vue').default);
+Vue.component('upload-component', require('./components/UploadComponent.vue').default);
 Vue.component('addnewproduct-component', require('./components/products/AddNewProductComponent.vue').default);
 Vue.component('gallery-component', require('./components/products/GalleryComponent.vue').default);
+Vue.component('favorites-component', require('./components/products/FavoritesComponent.vue').default);
 Vue.component('categories-component', require('./components/products/CategoriesComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**

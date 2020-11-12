@@ -36,13 +36,13 @@
         <slide-component></slide-component> 
       </section>
       <section>
-        <products-component products-values=" {{ $ProductsValues }} "></products-component>
+        <products-component></products-component>
       </section> 
       <section>
-        <skills-component skills-values=" {{ $SkillValues }} " ></skills-component>
+        <skills-component></skills-component>
       </section> 
       <section>
-        <services-component services-values=" {{ $ServiceValues }} " ></services-component>
+        <services-component></services-component>
       </section>     
       <footer-component></footer-component> 
    </div>

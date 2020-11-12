@@ -35,13 +35,28 @@ Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::c
 Route::post('/profile/DeactivateTwoStep', [App\Http\Controllers\ProfileController::class, 'DeactivateTwoStep'])->name('DeactivateTwoStep');
 Route::get('/twosteplogin/{email}', [App\Http\Controllers\RegistrationController::class,'twosteplogin'])->name('twosteplogin');
 Route::post('/login/twostep', [App\Http\Controllers\Auth\LoginController::class,'twostep'])->name('twostep');
+
+//Products
+Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->name('product.like');
+Route::get('/GetLike/{id}', [App\Http\Controllers\ProductController::class, 'GetLike'])->name('product.GetLike');
+Route::get('/GetUploaded', [App\Http\Controllers\ProductController::class, 'GetUploaded'])->name('product.GetUploaded');
+Route::post('/upload/product', [App\Http\Controllers\ProductController::class, 'upload'])->name('product.upload');
 Route::get('/product/addnew', [App\Http\Controllers\ProductController::class, 'addnew'])->name('product.addnew');
 Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
 Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductController::class, 'FindByCategory'])->name('FindByCategory');
 Route::get('/product/findbyname/{search}', [App\Http\Controllers\ProductController::class, 'FindByName'])->name('FindByName');
 Route::get('/product/findbyc/{search}', [App\Http\Controllers\ProductController::class, 'FindByC'])->name('FindByC');
 Route::get('/product/findbyn/{search}', [App\Http\Controllers\ProductController::class, 'FindByN'])->name('FindByN');
+Route::get('/topfourServ', [App\Http\Controllers\ProductController::class, 'topfourServ'])->name('topfourServ');
+Route::get('/topfourSki', [App\Http\Controllers\ProductController::class, 'topfourSki'])->name('topfourSki');
+Route::get('/topfourPro', [App\Http\Controllers\ProductController::class, 'topfourPro'])->name('topfourPro');
+Route::get('/favorites', [App\Http\Controllers\ProductController::class, 'favorites'])->name('favorites');
+Route::get('/GetFavorites', [App\Http\Controllers\ProductController::class, 'GetFavorites'])->name('GetFavorites');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('gallery');
+Route::get('/categories/getchilds/{parent}', [App\Http\Controllers\CategoryController::class, 'getchilds'])->name('getchilds');
+Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
+Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetTypes'])->name('GetTypes');
+//Content
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact-us');
 Route::post('/contact-us/submit', [App\Http\Controllers\HomeController::class, 'contactUsSubmit'])->name('contact-us.submit');
@@ -52,10 +67,9 @@ Route::get('/legal', [App\Http\Controllers\RegistrationController::class, 'how']
 Route::get('/privacy', [App\Http\Controllers\RegistrationController::class, 'privacy'])->name('privacy');
 Route::get('/news', [App\Http\Controllers\RegistrationController::class, 'how'])->name('news');
 Route::get('/faq', [App\Http\Controllers\RegistrationController::class, 'how'])->name('faq');
-Route::get('/categories/getchilds/{parent}', [App\Http\Controllers\CategoryController::class, 'getchilds'])->name('getchilds');
-Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
 Route::get('/blog', [App\Http\Controllers\RegistrationController::class, 'how'])->name('blog');
 Route::get('/forums', [App\Http\Controllers\RegistrationController::class, 'how'])->name('forums');
+//Pictures
 Route::post('/upload/picture', [App\Http\Controllers\IdentImageController::class, 'picture'])->name('picture');
 Route::post('/upload/license', [App\Http\Controllers\IdentImageController::class, 'license'])->name('license');
 Route::post('/upload/card', [App\Http\Controllers\IdentImageController::class, 'card'])->name('card');

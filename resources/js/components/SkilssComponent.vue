@@ -6,7 +6,7 @@
         </div>
       </div>      
       <div class="row align-items-center">
-        <div class="col-lg-3"  v-for="skill in skills">
+        <div class="col-lg-3"  v-for="skill in GetSki">
           <div class="p-5">      
             <div class="card">
               <a :href="Urlproduct + skill.id"><img :src="skill.image_url" class="img-fluid mx-auto d-block"></a>
@@ -31,12 +31,13 @@
     export default {
       data() {
         return {
-         skills: JSON.parse(this.SkillsValues),
-         Urlproduct: localStorage['URLroot'] + '/product/'
+         Urlproduct: localStorage['URLroot'] + '/product/',
+         GetSki: ''
        }
     },
-    props: [ 'SkillsValues' ],
-    mounted() {   
-        }
+    props: [],
+    mounted() {
+      axios.get(localStorage['URLroot'] + '/topfourSki').then(response => (this.GetSki = response.data));
+    }
     }
 </script>

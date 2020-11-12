@@ -2,11 +2,11 @@
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-lg-12">
-          <h2> Last Products</h2>
+          <h2> Last Products </h2>
         </div>
       </div>      
       <div class="row align-items-center">
-        <div class="col-lg-3"  v-for="product in products">
+        <div class="col-lg-3"  v-for="product in GetProduct">
           <div class="p-5">      
             <div class="card">
               <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
@@ -31,12 +31,13 @@
     export default {
       data() {
         return {
-         products: JSON.parse(this.ProductsValues),
-         Urlproduct: localStorage['URLroot'] + '/product/'
+         Urlproduct: localStorage['URLroot'] + '/product/',
+         GetProduct: null
        }
     },
-    props: [ 'ProductsValues' ],
-    mounted() {    
+    props: [],
+    mounted() {
+          axios.get(localStorage['URLroot'] + '/topfourPro').then(response => (this.GetProduct = response.data));
         }
     }
 </script>

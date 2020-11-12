@@ -23,14 +23,18 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col">
-                    <p class="text-left">
-                      <i class="far fa-heart cursor" v-if="like" @click="likeItem"></i>
+                    <p class="text-left" v-if="Getuser.logg>0">
+                      <i class="far fa-heart cursor" v-if="Getlike.success==='Fail'" @click="likeItem"></i>
                       <i class="fas fa-heart" v-else></i>
                     </p>
+                    <p class="text-left" v-else>
+                      <i class="far fa-heart cursor" v-if="like" @click="likeItem"></i>
+                      <i class="fas fa-heart" v-else></i>
+                    </p>                    
                   </div>
                   <div class="col">
                     <p class="text-right">
-                      <i class="fas fa-shopping-cart cursor" v-if="logged" @click="addtoCart"></i>
+                      <i class="fas fa-shopping-cart cursor" v-if="Getuser.logg>0" @click="addtoCart"></i>
                     </p>
                   </div>
                 </div>
@@ -50,7 +54,7 @@
             </div>
           </div>
       </div>
-      <div class="row justify-content-center" v-if="logged">
+      <div class="row justify-content-center" v-if="Getuser.logg>0">
           <div class="col-md-10">
             <div class="card">
             <div class="card-header">Messages / Questions about Item </div>
@@ -99,6 +103,7 @@ export default {
   },
   data() {
     return {
+          product_id: '',
           category_id: '',
           name: '',
           description: '',
@@ -118,16 +123,23 @@ export default {
           HomeUrl: localStorage['URLroot'],
           logged: false,
           like: true,
-          mymessages: ''
+          mymessages: '',
+          Getuser: '',
+          Getlike: ''
       }
     },
     props: [
             'ProductValue',
-            'LoggedValue',
-            'LoadedMessages'
           ],
     methods: {
         likeItem(){
+          axios.post( localStorage['URLroot'] + '/like',
+            {
+              csrfToken: myToken.csrfToken,
+              product_id: this.product_id
+            }
+          ).then(response => (this.ChkCode = response.data));
+          axios.get( localStorage['URLroot'] + '/GetLike/'+ this.product_id).then(response => (this.Getlike = response.data));
           this.like=false;
         },
         addtoCart(){
@@ -162,9 +174,11 @@ export default {
         },      
     },
     mounted() {
+            axios.get( localStorage['URLroot'] + '/getUserName').then(response => (this.Getuser = response.data));
             this.values= JSON.parse(this.ProductValue, function (key, value) {
               return value;
             });
+            this.product_id=this.values.id;
             this.category_id=this.values.category_id;
             this.name=this.values.name;
             this.description=this.values.description;
@@ -180,11 +194,7 @@ export default {
             this.email=this.values.email;
             this.phone=this.values.phone;
             this.category=this.values.category;
-            if(this.LoggedValue>0){
-              this.logged=true;
-            }
-            //JSON.parse(this.LoadedMessages);
-            console.log(this.LoadedMessages)
+            axios.get( localStorage['URLroot'] + '/GetLike/'+ this.product_id).then(response => (this.Getlike = response.data));
     }     
 }
 </script>

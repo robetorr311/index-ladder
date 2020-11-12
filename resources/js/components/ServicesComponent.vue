@@ -6,7 +6,7 @@
         </div>
       </div>      
       <div class="row align-items-center">
-        <div class="col-lg-3"  v-for="service in services">
+        <div class="col-lg-3"  v-for="service in GetServ">
           <div class="p-5">      
             <div class="card">
               <a :href="Urlproduct + service.id"><img :src="service.image_url" class="img-fluid mx-auto d-block"></a>
@@ -31,12 +31,13 @@
     export default {
       data() {
         return {
-         services: JSON.parse(this.ServicesValues),
-         Urlproduct: localStorage['URLroot'] + '/product/'
+         Urlproduct: localStorage['URLroot'] + '/product/',
+         GetServ: ''
        }
     },
-    props: [ 'ServicesValues' ],
-    mounted() {      
-        }
+    props: [],
+    mounted() {
+      axios.get(localStorage['URLroot'] + '/topfourServ').then(response => (this.GetServ = response.data));
     }
+  }
 </script>
