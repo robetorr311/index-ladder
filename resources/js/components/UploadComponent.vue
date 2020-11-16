@@ -2,27 +2,31 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-10">
-
         <div class="text-center">
-            <h4>Please Upload the Picture </h4><br>
+            <h4>Please Upload the Images For Item </h4><br>
             <div style="max-width: 500px; margin: 0 auto;">
                 <div v-if="success !== ''" class="alert alert-success" role="alert">
                     {{success}}
                 </div>
+                <ValidationObserver v-slot="{ invalid }">
                 <form @submit="submitForm" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" name="picture" class="custom-file-input" id="inputFileUpload"
-                                   v-on:change="onFileChange">
-                            <label class="custom-file-label" for="inputFileUpload">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                            <input type="submit" class="btn btn-primary" value="Upload">
-                        </div>
-                    </div>
+                  <ValidationProvider rules="ext:jpg,png" ref="picture" v-slot="{ errors, validate }">
+                    <div class="file-field">
+                      <div class="btn btn-primary"><i class="fas fa-paperclip" aria-hidden="true"></i>
+                        <input type="file" name="picture" id="inputFileUpload" @input="onFileChange" @change="validate" style="display:none">
+                        <label for="inputFileUpload">Choose Your File Please</label>
+                      </div>
+                      </div>
+                      <span class="has-error">{{ errors[0] }}</span>
+                      <p class="categorieslink">{{picture}}</p>
+                            <button type="submit" class="btn btn-primary" :disabled="invalid"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Upload</button>
+                    
+                  </ValidationProvider>
                     <br>
-                    <p class="text-danger font-weight-bold">{{picture}}</p>
+                    
+
                 </form>
+              </ValidationObserver>
             </div>
         </div>
         </div>
@@ -42,7 +46,7 @@
                 <tr v-for="item in GetUploaded" >
                   <td><img :src="item.image_url" width="100px" ></td>
                   <td>{{ item.name }}</td>
-                  <td></td>
+                  <td><span class="categorieslink"><i class="fas fa-trash-alt" @click="delete_image(item.id)"></i></span></td>
                 </tr>
               </tbody>
             </table>
@@ -53,7 +57,19 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
+import { extend } from 'vee-validate';
+import { ext, image, required } from 'vee-validate/dist/rules';
+import * as rules from 'vee-validate/dist/rules';
+extend('ext', {
+  message: 'Only .jpg and .png files allowed'
+});
     export default {
+        components: {
+          ValidationObserver,
+          ValidationProvider,
+        },      
         data() {
             return {
                 picture: '',
@@ -61,19 +77,35 @@
                 file: '',
                 success: '',
                 none: 1,
-                GetUploaded:''
+                GetUploaded:'',
+                IsDeleted: ''
             };
         },
         props: [
             'Urlpicture'
-          ],        
+          ],
           methods: {
+            validateField (field) {
+              const provider = this.$refs[field];
+              console.log(provider);
+              return provider.validate();
+            },
             GetPictures(){
               axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.GetUploaded = response.data));
             },
             onFileChange(e) {
                 this.picture = "Selected File: " + e.target.files[0].name;
                 this.file = e.target.files[0];
+            },
+            delete_image(id){
+              console.log(id);
+              axios.post( localStorage['URLroot'] + '/imagedelete' ,
+              {
+                csrfToken: myToken.csrfToken,
+                image_id: id
+              }
+              ).then(response => (this.IsDeleted = response.data));
+              this.GetPictures();
             },
             submitForm(e) {
                 e.preventDefault();
@@ -93,6 +125,7 @@
                     .then(function (response) {
                         currentObj.success = 'Uploaded';
                         currentObj.picture = "";
+                        this.GetPictures();
                     })
                     .catch(function (error) {
                         currentObj.output = error;
@@ -101,6 +134,7 @@
             }
         },
         mounted() {
+            this.GetPictures();
         }         
 
     }

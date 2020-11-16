@@ -38,9 +38,11 @@ Route::post('/login/twostep', [App\Http\Controllers\Auth\LoginController::class,
 
 //Products
 Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->name('product.like');
+Route::post('/imagedelete', [App\Http\Controllers\ProductController::class, 'imagedelete'])->name('imagedelete');
 Route::get('/GetLike/{id}', [App\Http\Controllers\ProductController::class, 'GetLike'])->name('product.GetLike');
 Route::get('/GetUploaded', [App\Http\Controllers\ProductController::class, 'GetUploaded'])->name('product.GetUploaded');
 Route::post('/upload/product', [App\Http\Controllers\ProductController::class, 'upload'])->name('product.upload');
+Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
 Route::get('/product/addnew', [App\Http\Controllers\ProductController::class, 'addnew'])->name('product.addnew');
 Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
 Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductController::class, 'FindByCategory'])->name('FindByCategory');

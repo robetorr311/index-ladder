@@ -26,6 +26,31 @@ class ProductController extends Controller
     {
         //
     }
+    public function store(Request $request){
+       $iduser = Auth::id();     
+       $product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
+          'name' => $request->name,
+          'description' => $request->description,
+          'image_id' => 0,
+          'type_id' => $request->type_id,
+          'category_id' => $request->category_id]);
+       $tradde_number=rand(100000,999999).$iduser.$product_id;
+       $tradd =Tradde::create(['sell_id' => $iduser,
+          'product_id' => $product_id,
+          'tradde_number' => $tradde_number,
+          'title' => $request->name,
+          'item_description' => $request->description,
+          'status' => 1,
+          'amount' => $request->amount,
+          'category_id' => $request->category_id]);
+       $tradd->save(); 
+       $token=$request->csrfToken;
+       $images = Product_image::where('token',$token)->update(['product_id' => $product_id]);
+       $img = Product_image::where('product_id',$product_id)->update(['token' => null]);
+       $image_id=Product_image::where('product_id',$product_id)->first();
+       $prod=Product::where('id',$product_id)->update(['image_id'=>$image_id->id]);
+       return response()->json(['success'=>'Success']); 
+    }
     public function addnew(){
         if (Auth::check()) {
           $iduser = Auth::id();
@@ -469,5 +494,9 @@ class ProductController extends Controller
       $token=csrf_token();  
       $images = DB::table('product_images')->where('token','=', $token)->get();
       return response()->json($images);
+    }
+    public function imagedelete(Request $request){
+      $deletedimg = Product_image::where('id',$request->image_id)->delete();
+      return response()->json(['success'=>'Success']);           
     }    
 }

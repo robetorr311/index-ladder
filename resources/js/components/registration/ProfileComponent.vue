@@ -113,8 +113,10 @@
                       </div>                                                                   
                       <div class="row justify-content-center">
                           <div class="col-md-10">
+                            <div class="text-center">
                             <button type="button" @click="EditRegister" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name="">Edit</button>
                             <button type="button" @click="Update" v-show="showsave" class="btn btn-secondary rounded-pill mt-5" name="">Save</button>
+                          </div>
                           </div>
                       </div>
                     </form>

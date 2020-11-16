@@ -154,6 +154,25 @@ h6 {
   cursor: pointer;
 }
 
+.file-uploader {
+  background-color: #054712;
+  border-color: #054712;
+  color: #fff;
+  width: 300px;
+  height: 50px;
+}
+
+.file-uploader:active,
+.file-uploader:focus,
+.file-uploader:hover {
+  background-color: #021706 !important;
+  border-color: #021706 !important;
+}
+
+.file-uploader:focus {
+  box-shadow: 0 0 0 0.2rem rgba(5, 71, 18, 0.5);
+}
+
 .navbar-custom {
   padding-top: 1rem;
   padding-bottom: 1rem;

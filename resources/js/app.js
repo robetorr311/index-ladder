@@ -45,6 +45,7 @@ Vue.component('license-component', require('./components/LicenseComponent.vue').
 Vue.component('avatar-component', require('./components/AvatarComponent.vue').default);
 Vue.component('avatar-component', require('./components/AvatarComponent.vue').default);
 Vue.component('upload-component', require('./components/UploadComponent.vue').default);
+Vue.component('product-component', require('./components/products/ProductComponent.vue').default);
 Vue.component('addnewproduct-component', require('./components/products/AddNewProductComponent.vue').default);
 Vue.component('gallery-component', require('./components/products/GalleryComponent.vue').default);
 Vue.component('favorites-component', require('./components/products/FavoritesComponent.vue').default);

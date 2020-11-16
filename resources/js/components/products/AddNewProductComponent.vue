@@ -1,5 +1,8 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
+    <div class="alert alert-success" v-if="success">
+      <strong>Success!</strong> The item has been added
+    </div>
     <div class="container"> 
       <div class="row justify-content-center">
         <div class="col-md-10">
@@ -21,7 +24,7 @@
                 </div>  
                 <div class="row justify-content-center">
                   <div class="col">
-                      <ValidationProvider name="amount" rules="required" v-slot="{ errors }">
+                      <ValidationProvider name="amount" rules="required|double" v-slot="{ errors }">
                       <div class="input-group" >
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -106,6 +109,9 @@
                 </div>
               </div>
               <div class="card-footer">
+                <div class="text-center">
+                  <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="SaveItem" :disabled="invalid">Save Item</button>
+                </div>
               </div>
           </div>
         </div>
@@ -119,7 +125,7 @@
 import { ValidationObserver } from 'vee-validate';
 import { ValidationProvider } from 'vee-validate';
 import { extend } from 'vee-validate';
-import { confirmed, required, email } from 'vee-validate/dist/rules';
+import { confirmed, double, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
 import UploadComponent from "../UploadComponent.vue";
 Object.keys(rules).forEach(rule => {
@@ -165,11 +171,32 @@ export default {
         product: '',
         file: '',
         success: '',
-        none: 1        
+        none: 1,
+        IsSaved:'',
+        success: false,
       }
     },
     props: [],
     methods: {
+      SaveItem(){
+        axios.post( localStorage['URLroot'] + '/product/store' ,
+        {
+          csrfToken: myToken.csrfToken,
+          name: this.itemname,
+          amount: this.amount,
+          description: this.description,
+          type_id: this.type,
+          category_id: this.subcategory
+        }
+        ).then(response => (this.IsSaved = response.data));
+        this.showSuccess();
+      },
+      showSuccess(){
+          this.success=true;
+          setTimeout(() => {
+            location.reload();
+          },6000);        
+      },
       GetCat(){
         console.log(this.type);
         var parent='';
@@ -177,7 +204,7 @@ export default {
           parent=1329;
         }
         else if (this.type==2){
-          parent=257;
+          parent=1330;
         }
         else{
           parent=1331;
