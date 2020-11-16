@@ -82,7 +82,7 @@ extend('ext', {
             };
         },
         props: [
-            'Urlpicture'
+            'productValue'
           ],
           methods: {
             validateField (field) {
@@ -131,10 +131,19 @@ extend('ext', {
                         currentObj.output = error;
                     });
                 this.GetPictures();
+            },
+            GetEditPictures(){
+              axios.get(localStorage['URLroot'] + '/GetEditPictures/' + this.productValue ).then(response => (this.GetUploaded = response.data));
             }
         },
         mounted() {
+          if(this.productValue>0){
+            this.GetEditPictures();
+          }
+          else {
             this.GetPictures();
+          }
+          console.log(this.productValue + 'Upload');
         }         
 
     }

@@ -50,6 +50,8 @@ Vue.component('addnewproduct-component', require('./components/products/AddNewPr
 Vue.component('gallery-component', require('./components/products/GalleryComponent.vue').default);
 Vue.component('favorites-component', require('./components/products/FavoritesComponent.vue').default);
 Vue.component('categories-component', require('./components/products/CategoriesComponent.vue').default);
+Vue.component('sales-component', require('./components/products/SalesComponent.vue').default);
+Vue.component('editproduct-component', require('./components/products/EditProductComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

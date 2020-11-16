@@ -62,6 +62,43 @@ class ProductController extends Controller
         else {
           return redirect()->route('login-user');
         }        
+    }
+    public function edit($id){
+      if (Auth::check()) {
+        return view('products.edit',['productValue' => $id]);
+      }
+      else {
+          return redirect()->route('login-user');
+      }       
+    }
+    public function GetItem($id){
+      $iduser = Auth::id();
+      $usr= User::where('id', $iduser)->first();
+      $product = DB::table('products')
+        ->join('traddes', 'traddes.product_id', '=', 'products.id')
+        ->join('product_images', 'products.image_id', '=', 'product_images.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+        ->join('registrations','traddes.sell_id','=','registrations.user_id')
+        ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'traddes.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.sell_id as sell_id',
+                 'traddes.buy_id as buy_id',
+                 'traddes.status as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+        ->where('products.id','=',$id)->first();
+        return response()->json($product);
     }    
     public function viewproduct($id){
         if (Auth::check()) {
@@ -445,6 +482,39 @@ class ProductController extends Controller
           return redirect()->route('login-user');
         } 
     }
+    public function sales(){
+        if (Auth::check()) {
+          $iduser = Auth::id();
+          if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
+          return view('products.sales');
+        }
+        else {
+          return redirect()->route('login-user');
+        } 
+    }
+    public function GetSales(){
+          $iduser = Auth::id();
+          $product = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')      
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'traddes.amount as amount',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.sell_id as sell_id',
+                     'traddes.buy_id as buy_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url',
+                     'categories.name as category')
+            ->where('traddes.sell_id', '=',$iduser)
+            ->paginate(15);
+          return response()->json($product);
+    }        
     public function GetFavorites(){
           $iduser = Auth::id();
           $product = DB::table('products')
@@ -495,6 +565,12 @@ class ProductController extends Controller
       $images = DB::table('product_images')->where('token','=', $token)->get();
       return response()->json($images);
     }
+    public function GetEditPictures($id){
+      $token=csrf_token();
+      $img=Product_image::where('product_id',$id)->update(['token' => $token]);
+      $images = DB::table('product_images')->where('token','=', $token)->get();
+      return response()->json($images);      
+    }    
     public function imagedelete(Request $request){
       $deletedimg = Product_image::where('id',$request->image_id)->delete();
       return response()->json(['success'=>'Success']);           

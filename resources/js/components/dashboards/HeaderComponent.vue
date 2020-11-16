@@ -26,7 +26,7 @@
               <a class="dropdown-item" :href="newitemUrl"><i class="fas fa-boxes"></i> Add New Item</a>
               <a class="dropdown-item" :href="favoritesURL"><i class="fas fa-heart"></i> My Favorites</a>              
               <a class="dropdown-item" :href="homeUrl"><i class="fas fa-shopping-bag"></i> My shopping</a>
-              <a class="dropdown-item" :href="homeUrl"><i class="fas fa-store-alt"></i> My sales</a>
+              <a class="dropdown-item" :href="salesURL"><i class="fas fa-store-alt"></i> My sales</a>
               <a class="dropdown-item" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </div>
           </li>
@@ -72,6 +72,7 @@ skills and services at low risk</h2>
          homeUrl: '',
          profileUrl: '',
          favoritesURL:'',
+         salesURL: '',
          logg: '',
          user: null,
          Getuser: '',
@@ -94,6 +95,7 @@ skills and services at low risk</h2>
             this.logoImages= localStorage['URLroot'] + '/images/logo.png';
             this.newitemUrl= localStorage['URLroot']+ '/product/addnew';
             this.favoritesURL= localStorage['URLroot']+ '/favorites';
+            this.salesURL= localStorage['URLroot']+ '/sales';
             axios.get(localStorage['URLroot'] + '/images/haveavatar').then(response => (this.HaveAvatar = response.data));
         }
     }

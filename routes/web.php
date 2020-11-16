@@ -41,9 +41,12 @@ Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->n
 Route::post('/imagedelete', [App\Http\Controllers\ProductController::class, 'imagedelete'])->name('imagedelete');
 Route::get('/GetLike/{id}', [App\Http\Controllers\ProductController::class, 'GetLike'])->name('product.GetLike');
 Route::get('/GetUploaded', [App\Http\Controllers\ProductController::class, 'GetUploaded'])->name('product.GetUploaded');
+Route::get('/GetEditPictures/{id}', [App\Http\Controllers\ProductController::class, 'GetEditPictures'])->name('product.GetEditPictures');
 Route::post('/upload/product', [App\Http\Controllers\ProductController::class, 'upload'])->name('product.upload');
 Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
 Route::get('/product/addnew', [App\Http\Controllers\ProductController::class, 'addnew'])->name('product.addnew');
+Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+Route::get('/GetItem/{id}', [App\Http\Controllers\ProductController::class, 'GetItem'])->name('GetItem');
 Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
 Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductController::class, 'FindByCategory'])->name('FindByCategory');
 Route::get('/product/findbyname/{search}', [App\Http\Controllers\ProductController::class, 'FindByName'])->name('FindByName');
@@ -53,9 +56,12 @@ Route::get('/topfourServ', [App\Http\Controllers\ProductController::class, 'topf
 Route::get('/topfourSki', [App\Http\Controllers\ProductController::class, 'topfourSki'])->name('topfourSki');
 Route::get('/topfourPro', [App\Http\Controllers\ProductController::class, 'topfourPro'])->name('topfourPro');
 Route::get('/favorites', [App\Http\Controllers\ProductController::class, 'favorites'])->name('favorites');
+Route::get('/sales', [App\Http\Controllers\ProductController::class, 'sales'])->name('sales');
+Route::get('/GetSales', [App\Http\Controllers\ProductController::class, 'GetSales'])->name('GetSales');
 Route::get('/GetFavorites', [App\Http\Controllers\ProductController::class, 'GetFavorites'])->name('GetFavorites');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('gallery');
 Route::get('/categories/getchilds/{parent}', [App\Http\Controllers\CategoryController::class, 'getchilds'])->name('getchilds');
+Route::get('/categories/getparent/{categoryid}', [App\Http\Controllers\CategoryController::class, 'getparent'])->name('getparent');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
 Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetTypes'])->name('GetTypes');
 //Content
