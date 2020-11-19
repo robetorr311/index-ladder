@@ -19,10 +19,9 @@
             </ul>
         </div>
     @endif
-    <login-component 
-            registration-endpoint="{{ $registrationEndpoint }}"
-            login-endpoint="{{ $loginEndpoint }}" 
-            welcome-endpoint="{{ $welcomeEndpoint }}" 
-            auth-endpoint=" {{ $authEndPoint }} ">
+  <section>
+      <slide-component></slide-component> 
+  </section>    
+    <login-component >
     </login-component>
 @endsection

@@ -34,11 +34,11 @@ class HomeController extends Controller
           $id = Auth::id();
           $usr= User::where('id', $id)->first();
           $usernameEnd=$usr->name;
-          $logged_in=true;
+          $logged_in=1;
         }
         else {
           $usernameEnd='';
-          $logged_in=false;
+          $logged_in=0;
         }
         $se = DB::table('products')
             ->join('traddes', 'traddes.product_id', '=', 'products.id')
@@ -101,6 +101,6 @@ class HomeController extends Controller
           if(!empty($se)){ $serv=json_encode($se); } else { $serv="";  } 
           if(!empty($sk)){ $ski=json_encode($sk); } else { $ski="";  } 
           if(!empty($pr)){ $pro=json_encode($pr); } else { $pro="";  } 
-        return view('home',['ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);        
+        return view('welcome',[ 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);         
     }           
 }

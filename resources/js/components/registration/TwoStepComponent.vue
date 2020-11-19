@@ -79,7 +79,7 @@ export default {
         onSubmit() {
           var login = localStorage['URLroot'] + '/login-user';
           var twostep = localStorage['URLroot'] + '/twosteplogin/' + this.email;          
-          axios.post( localStorage['URLroot'] + '/login/twostep/' ,
+          axios.post( localStorage['URLroot'] + '/login/twostep' ,
             {
               csrfToken: myToken.csrfToken,
               code: this.code,

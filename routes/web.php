@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[App\Http\Controllers\RegistrationController::class, 'welcome'])->name('welcome');
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
 Route::get('/getUserName',[App\Http\Controllers\RegistrationController::class, 'getUserName'])->name('getUserName');
 Auth::routes();
 Route::get('/login-user', [App\Http\Controllers\RegistrationController::class, 'login'])->name('login-user');

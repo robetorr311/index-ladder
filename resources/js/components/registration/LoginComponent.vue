@@ -4,13 +4,19 @@
         <message-component></message-component>
         <div id="formregistration">
         <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="card-header">Login Form </div>
+            <div class="col-md-4">
+              <div class="card noborder">
+                <img :src="URLImagelogo" width="350px" height="350px">
+              </div>
+              <p></p>
+            </div>
+            <div class="col-md-8">
+                <div class="card noborder">
                     <div class="card-body">
+                      <div class="text-center"><h2 class="card-title">Log in </h2></div>
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">
-                          <div class="col-md-5">
+                          <div class="col-md-8">
                             <ValidationProvider name="username" rules="email" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -23,7 +29,7 @@
                         </div>                  
                       </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-5">
+                        <div class="col-md-8">
                             <ValidationProvider name="password" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -34,16 +40,23 @@
                             </div>
                             </ValidationProvider>
                         </div>                    
-                      </div>                                               
+                      </div>
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
+                          <div class="col-md-7">
                             <div class="text-center">
                               <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
                             </div>
                           </div>
-                                                                    
                       </div>
                     </form>
+                      <div class="row justify-content-center paddtop">
+                        <div class="col-md-4">
+                          <a :href="UrlHome"><i class="fas fa-key"></i> Forgot your Password?</a>
+                        </div> 
+                        <div class="col-md-4">
+                          <a :href="UrlRegistration"><i class="fas fa-user-alt"></i> Do you want become a trader?</a>
+                        </div>
+                      </div>                    
                     </div>
                 </div>
             </div>
@@ -91,6 +104,10 @@ export default {
     return {
       username: '',
       password: '',
+      URLImagelogo: localStorage['URLroot'] + '/images/index-ladder-named-logo.png',
+      UrlRecover: localStorage['URLroot'] + '/recover',
+      UrlRegistration: localStorage['URLroot'] + '/registration',
+      UrlHome: localStorage['URLroot'],
      }
     },
     methods: {

@@ -32,6 +32,9 @@ h6 {
 .card-title{
   color: $primary !important;
 }
+.color-title{
+  color: $primary !important;
+}
 .has-error{
   color: #cc0000 !important;
 }
@@ -152,4 +155,10 @@ h6 {
   &:focus {
     box-shadow: 0 0 0 0.2rem fade-out($primary, 0.5);
   }  
+}
+.noborder{
+  border:none !important;
+}
+.paddtop{
+  padding-top: 1rem !important;
 }
