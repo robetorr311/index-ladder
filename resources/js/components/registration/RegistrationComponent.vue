@@ -20,8 +20,8 @@
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
                               <input v-model="firstname" type="text" class="form-control" name="firstname" placeholder="Name">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                            <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
                         <div class="col-md-5">
@@ -31,8 +31,8 @@
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
                               <input v-model="lastname" type="text" class="form-control" name="lastname" placeholder="Lastname">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>                        
                       </div>
@@ -44,8 +44,8 @@
                               <span class="input-group-text"><i class="fas fa fa-key"></i></span>
                           </div>
                               <input v-model="password" type="password" class="form-control" name="password" placeholder="Password">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
                         <div class="col-md-5">
@@ -55,8 +55,8 @@
                               <span class="input-group-text"><i class="fas fa fa-key"></i></span>
                           </div>
                               <input v-model="repassword" type="password" class="form-control" name="repassword" placeholder="Re type password">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>                        
                       </div>                                               
@@ -68,8 +68,8 @@
                               <span class="input-group-text"><i class="fas fa-phone"></i></span>
                           </div>
                               <input v-model="phone" type="text" class="form-control" name="phone" placeholder="Phone Number">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
                         <div class="col-md-5">
@@ -79,8 +79,8 @@
                               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                               </div>
                               <input v-model="email" type="text" class="form-control" name="email" @change="VerifyIfExist" placeholder="Email">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
                       </div>
@@ -93,8 +93,8 @@
                           </div>
                               <textarea v-model="address" class="form-control" name="address" placeholder="Address">
                               </textarea>
-                              <span class="has-error">{{ errors[0] }}</span>
                               </div>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
                         </ValidationProvider>
                         </div>
                       </div>

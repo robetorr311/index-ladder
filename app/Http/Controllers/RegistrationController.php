@@ -54,7 +54,7 @@ class RegistrationController extends Controller
     public function twosteplogin($email){
       $usr= User::where('email', $email)->first();
       $usernameEnd="";
-      /*$recipients=$usr->phone;
+      $recipients=$usr->phone;
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
@@ -66,7 +66,7 @@ class RegistrationController extends Controller
       $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );*/
+        ] );
         $logged_in=0;
         return view('registration.twostep', ['emailValue' => $email]);
     }    
@@ -194,5 +194,41 @@ class RegistrationController extends Controller
         $loggedin=1;
       }
       return response()->json(['name' => $username, 'logg' => $loggedin]);
-    }           
+    }
+    public function faq()
+    {    
+        return view('content.faq');        
+    }
+    public function recover(){
+      return view('registration.recover'); 
+    }
+    public function SendRecoverPassEmail($email){
+      $usr= User::where('email', $email)->first();
+      if(!empty($usr)){
+        $data= array('name' => $usr->name, 
+                     'email' => $usr->email, 
+                     'token' => $usr->token, 
+                     'link'=> route('ChangePassEmail',[ 'email' => $email ]));         
+        Mail::send('mails.recover',$data,function($message) use ($data){
+          $message->to($data['email'],$data['name'])->subject('Confirm your email to revover password');
+        });         
+        $success="Success";
+      }
+      else {
+        $success="Fail";
+      }      
+      return response()->json(['success' => $success]); 
+    }
+    public function ChangePassEmail($email){
+      return view('registration.change',['emailValue' => $email]); 
+    }
+    public function changepassword(Request $request){
+      $usr= User::where('email', $request->email)->first();
+      if(!empty($usr)){
+        $usr->password=Hash::make($request->password);
+        $usr->save();
+        return ['redirect' => route('login-user')];
+      }
+
+    }
 }

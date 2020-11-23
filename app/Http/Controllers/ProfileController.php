@@ -137,7 +137,7 @@ class ProfileController extends Controller
         $success="Fail";
       }
       return response()->json(['success' => $success]);        
-    }    
+    }
     public function SendCode(){
       $id = Auth::id();
       $usr= User::where('id', $id)->first();

@@ -53,6 +53,10 @@ Vue.component('categories-component', require('./components/products/CategoriesC
 Vue.component('sales-component', require('./components/products/SalesComponent.vue').default);
 Vue.component('editproduct-component', require('./components/products/EditProductComponent.vue').default);
 Vue.component('what-component', require('./components/dashboards/WhatComponent.vue').default);
+Vue.component('faq-component', require('./components/dashboards/FaqComponent.vue').default);
+Vue.component('recover-component', require('./components/registration/EmailComponent.vue').default);
+Vue.component('change-component', require('./components/registration/ChangepassComponent.vue').default);
+
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

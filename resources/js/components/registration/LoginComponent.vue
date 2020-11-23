@@ -1,48 +1,40 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container">
-        <message-component></message-component>
+    <div class="container-fluid">
         <div id="formregistration">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="card noborder">
-                <img :src="URLImagelogo" width="350px" height="350px">
-              </div>
-              <p></p>
-            </div>
-            <div class="col-md-8">
+      <div class="row align-items-center">
+        <div class="col-lg-8 order-lg-2">
+          <div class="p-5">
                 <div class="card noborder">
                     <div class="card-body">
                       <div class="text-center"><h2 class="card-title">Log in </h2></div>
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">
-                          <div class="col-md-8">
+                          <div class="col-lg-8">
                             <ValidationProvider name="username" rules="email" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
                               <input v-model="username" type="text" class="form-control" name="username" placeholder="Email">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
-                            </ValidationProvider>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>                            </ValidationProvider>
                         </div>                  
                       </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-lg-8">
                             <ValidationProvider name="password" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa fa-key"></i></span>
                           </div>
                               <input v-model="password" type="password" class="form-control" name="password" placeholder="Password">
-                              <span class="has-error">{{ errors[0] }}</span>
                             </div>
                             </ValidationProvider>
                         </div>                    
                       </div>
                       <div class="row justify-content-center">
-                          <div class="col-md-7">
+                          <div class="col-lg-8">
                             <div class="text-center">
                               <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
                             </div>
@@ -51,16 +43,31 @@
                     </form>
                       <div class="row justify-content-center paddtop">
                         <div class="col-md-4">
-                          <a :href="UrlHome"><i class="fas fa-key"></i> Forgot your Password?</a>
+                          <a :href="UrlRecover"><i class="fas fa-key"></i> Forgot your Password?</a>
                         </div> 
                         <div class="col-md-4">
                           <a :href="UrlRegistration"><i class="fas fa-user-alt"></i> Do you want become a trader?</a>
                         </div>
                       </div>                    
                     </div>
-                </div>
-            </div>
+                </div>            
+          </div>
         </div>
+        <div class="col-lg-4 order-lg-1">
+          <div class="p-5 title-landing"><span class="title_landing_i">
+            <p>Exchange, Sell, Trade & Resource Sharing Platform</p> 
+            <p>Connect with Billions</p>
+            <p>Create Your Market</p>
+            <p>Share your knowledge, experiences, tips, professional services.</p></span>
+            <p align="right">INDEX LADDER</p>
+          </div>
+        </div>
+      </div> 
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <img :src="URLImagelogo" class="mx-auto d-block">
+        </div>
+      </div>
     </div>
     </div>
     </ValidationObserver>  	

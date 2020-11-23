@@ -1,5 +1,5 @@
 body {
-  font-family: "Arial";
+  font-family: "Lato";
 }
 
 h1,
@@ -8,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Arial";
+  font-family: "Lato";
   font-weight: 800 !important;
 }
 
@@ -34,10 +34,24 @@ h6 {
 
 .card-title {
   color: #054712 !important;
+  font-family: Lato;
 }
 
 .color-title {
   color: #054712 !important;
+  font-family: Lato;
+}
+
+.title-landing {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  color: #054712 !important;
+  font-family: Lato;
+}
+
+.title_landing_i {
+  font-style: italic;
 }
 
 .has-error {

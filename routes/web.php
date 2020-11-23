@@ -33,7 +33,11 @@ Route::get('/profile/SendCode', [App\Http\Controllers\ProfileController::class, 
 Route::get('/profile/IsTwoStepEnaled', [App\Http\Controllers\ProfileController::class, 'IsTwoStepEnaled'])->name('IsTwoStepEnaled');
 Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::class, 'EnableTwoStep'])->name('EnableTwoStep');
 Route::post('/profile/DeactivateTwoStep', [App\Http\Controllers\ProfileController::class, 'DeactivateTwoStep'])->name('DeactivateTwoStep');
+Route::get('/recover', [App\Http\Controllers\RegistrationController::class, 'recover'])->name('recover');
+Route::get('/profile/SendRecoverPassEmail/{email}', [App\Http\Controllers\RegistrationController::class, 'SendRecoverPassEmail'])->name('SendRecoverPassEmail');
+Route::get('/setpassword/{email}', [App\Http\Controllers\RegistrationController::class, 'ChangePassEmail'])->name('ChangePassEmail');
 Route::get('/twosteplogin/{email}', [App\Http\Controllers\RegistrationController::class,'twosteplogin'])->name('twosteplogin');
+Route::post('/changepassword', [App\Http\Controllers\RegistrationController::class,'changepassword'])->name('changepassword');
 Route::post('/login/twostep', [App\Http\Controllers\Auth\LoginController::class,'twostep'])->name('twostep');
 
 //Products
@@ -74,7 +78,7 @@ Route::get('/how', [App\Http\Controllers\RegistrationController::class, 'how'])-
 Route::get('/legal', [App\Http\Controllers\RegistrationController::class, 'how'])->name('legal');
 Route::get('/privacy', [App\Http\Controllers\RegistrationController::class, 'privacy'])->name('privacy');
 Route::get('/news', [App\Http\Controllers\RegistrationController::class, 'how'])->name('news');
-Route::get('/faq', [App\Http\Controllers\RegistrationController::class, 'how'])->name('faq');
+Route::get('/faq', [App\Http\Controllers\RegistrationController::class, 'faq'])->name('faq');
 Route::get('/blog', [App\Http\Controllers\RegistrationController::class, 'how'])->name('blog');
 Route::get('/forums', [App\Http\Controllers\RegistrationController::class, 'how'])->name('forums');
 //Pictures

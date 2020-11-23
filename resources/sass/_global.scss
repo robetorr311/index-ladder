@@ -31,9 +31,21 @@ h6 {
 }
 .card-title{
   color: $primary !important;
+  font-family: Lato; 
 }
 .color-title{
   color: $primary !important;
+  font-family: Lato; 
+}
+.title-landing{
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  color: $primary !important;
+  font-family: Lato;  
+}
+.title_landing_i{
+  font-style: italic;  
 }
 .has-error{
   color: #cc0000 !important;
