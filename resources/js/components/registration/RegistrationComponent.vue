@@ -7,13 +7,13 @@
         <span  v-else></span>          
         <div id="formregistration">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Registration Form </div>
+                    <div class="card-header sign_up_header text-center">Sign Up</div>
                     <div class="card-body">
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">
-                          <div class="col-md-5">
+                          <div class="col-md-6">
                             <ValidationProvider name="firstname" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -24,7 +24,7 @@
                             <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <ValidationProvider name="lastname" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -37,7 +37,7 @@
                         </div>                        
                       </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <ValidationProvider name="password" rules="confirmed:confirmation|required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -48,7 +48,7 @@
                               <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <ValidationProvider name="repassword" rules="required" vid="confirmation" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -61,18 +61,7 @@
                         </div>                        
                       </div>                                               
                       <div class="row justify-content-center">
-                        <div class="col-md-5">
-                            <ValidationProvider name="phone" rules="required" v-slot="{ errors }">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                          </div>
-                              <input v-model="phone" type="text" class="form-control" name="phone" placeholder="Phone Number">
-                            </div>
-                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
-                            </ValidationProvider>
-                        </div>
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                             <ValidationProvider name="email" rules="required"  v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -85,21 +74,7 @@
                         </div>
                       </div>
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
-                            <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                          </div>
-                              <textarea v-model="address" class="form-control" name="address" placeholder="Address">
-                              </textarea>
-                              </div>
-                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
-                        </ValidationProvider>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center">
-                          <div class="col-md-10">
+                          <div class="col-md-12">
                             <div class="text-center">
                             <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
                           </div>
@@ -155,9 +130,7 @@ export default {
       lastname: '',
       password: '',
       repassword: '',
-      phone: '',
       email: '',
-      address: '',
       show : false,
       CheckEmailExist:'',
       valuesEmail: '' }
@@ -183,9 +156,7 @@ export default {
                      lastname: this.lastname,
                      password: this.password,
                      repassword: this.repassword,
-                     phone: this.phone,
-                     email: this.email,
-                     address: this.address
+                     email: this.email
                   }
               ).then(function (response) {
                 localStorage.setItem( 'message', 'success|Thank you. In order to complete the registration, please click on the verification link sent to '+ em +'|1' );

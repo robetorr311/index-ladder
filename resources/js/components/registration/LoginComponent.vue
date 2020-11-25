@@ -4,9 +4,9 @@
         <div id="formregistration">
       <div class="row align-items-center">
         <div class="col-lg-8 order-lg-2">
-          <div class="p-5">
+          <div class="">
               <div class="card-deck">
-                <div class="card noborder">
+                <div class="card noborder login">
                     <div class="card-body">
                       <div class="text-center"><h2 class="title_card">Log in </h2></div>
                       <form @submit.prevent="onSubmit">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="col-lg-4 order-lg-1">
-          <div class="p-5 title-landing"><span class="title_landing_i">
+          <div class="p-5 title-landing border-landing"><span class="title_landing_i">
             <p>Exchange, Sell, Trade & Resource Sharing Platform</p> 
             <p>Connect with Billions</p>
             <p>Create Your Market</p>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div> 
-      <div class="row align-items-center">
+      <div class="row align-items-center padding-logo">
         <div class="col-lg-12">
           <img :src="URLImagelogo" class="img-fluid mx-auto d-block" width="400px">
         </div>

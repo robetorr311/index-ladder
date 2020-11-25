@@ -30,6 +30,12 @@ h6 {
 .rounded-pill {
   border-radius: 5rem;
 }
+.padding-logo{
+  padding-top: 50px;
+}
+.card{
+  border: 0.5px solid #003ed8 !important;
+}
 .card-header{
   background-color: lighten($third, 40%) !important;
   color: darken($third, 20%) !important;
@@ -41,16 +47,6 @@ h6 {
 .color-title{
   color: $third !important;
   font-family: Lato; 
-}
-.title-landing{
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-  color: $third !important;
-  font-family: Lato;  
-}
-.title_landing_i{
-  font-style: italic;  
 }
 .has-error{
   color: #cc0000 !important;
@@ -182,4 +178,45 @@ h6 {
 }
 .paddtop{
   padding-top: 1rem !important;
+}
+.text-logo{
+  text-decoration: none;
+  color: $gray-500 !important;
+}
+.title-landing{
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  color: $third !important;
+  font-family: Lato;  
+}
+.title_landing_i{
+  font-style: italic;  
+}
+.border-landing{
+  border: solid 1px #1b4274 !important;
+  border-radius: 5%;
+}
+.border_landing_trade{
+  border: solid 1px #1b4274 !important;
+  height: 300px;
+}
+.border_landing_money{
+  border: solid 1px #1b4274 !important;
+  height: 200px;  
+}
+.landing_trade_text{
+  padding-top: 10%;
+}
+.landing_money_text{
+  padding-top: 5%;
+}
+.login{
+  height: 450px;
+}
+.sign_up_header{
+  background-image: linear-gradient(to right, #003ed8 , #462469);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $white !important;  
 }

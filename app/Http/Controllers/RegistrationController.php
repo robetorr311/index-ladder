@@ -82,9 +82,7 @@ class RegistrationController extends Controller
         $validator = Validator::make($request->all(), [
           'firstname' => 'required|string|max:200',
           'lastname' => 'required|string|max:200',
-          'phone' => 'required|string|max:30',
-          'email' => 'required|string|email|max:30',
-          'address' => 'required|string|max:500'
+          'email' => 'required|string|email|max:30'
         ]);
         if ($validator->fails()) {
             $validator->errors()->add('field', 'Something is wrong with this field!');
@@ -95,16 +93,13 @@ class RegistrationController extends Controller
                     'firstname' => $request->firstname,
                     'lastname' => $request->lastname,
                     'password' => Hash::make($request->password),
-                    'phone' => $request->phone,
                     'email' => $request->email,
-                    'address' => $request->address,
                     'token' => $request->csrfToken
                 ]);
           $regis->save();
           $usr= User::create([
             'name' => $request->firstname. ' ' . $request->lastname,
             'email' => $request->email,
-            'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'role_id' => 2,
             'remember_token'=> $request->csrfToken

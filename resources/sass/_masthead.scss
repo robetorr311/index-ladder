@@ -3,11 +3,13 @@ header.masthead {
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background-image: url('images/headertop.png');
+  background-image: linear-gradient(to right, #003ed8 , #462469);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
+  border-bottom-left-radius: 300px 40px;
+  border-bottom-right-radius: 300px 40px;  
 }
 
 @media (min-width: 992px) {

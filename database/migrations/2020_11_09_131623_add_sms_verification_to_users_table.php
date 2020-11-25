@@ -14,7 +14,7 @@ class AddSmsVerificationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('verification_code')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
         });

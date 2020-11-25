@@ -1,9 +1,10 @@
 <template>
   <div>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top"> -->
+    <nav class="navbar navbar-marketing navbar-expand-lg bg-transparent navbar-light fixed-top">
     <div class="container-fluid">
-      <img :src="logoImages" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand" >INDEX LADDER</a>
+      <img :src="URLImagelogo" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand text-logo" > INDEX LADDER</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -50,7 +51,7 @@
         <h1 class="masthead-heading mb-0">THE TRADING PLATFORM – LOW RISK BARTER AND TRADE</h1>
         <h2 class="masthead-subheading mb-0">A trading platform for your essential/non-essentials goods (new, used) commodities,
 skills and services at low risk</h2>
-        <div v-if="Getuser.logg>0"><a :href="homeUrl + '/gallery'" class="btn btn-primary btn-xl rounded-pill mt-5">See More</a></div>
+        <div v-if="Getuser.logg>0"><a :href="homeUrl + '/gallery'" class="btn btn-secondary btn-xl rounded-pill mt-5">See More</a></div>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -80,7 +81,8 @@ skills and services at low risk</h2>
          logoImages:'',
          HaveAvatar: '',
          newitemUrl: '',
-         getHomeURL: ''
+         getHomeURL: '',
+         URLImagelogo: localStorage['URLroot'] + '/images/index-ladder-named-logo.png',
        }
     },      
         methods : {
