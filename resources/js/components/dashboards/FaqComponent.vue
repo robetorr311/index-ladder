@@ -2,7 +2,7 @@
 	    <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-12 text-center">        
-          <div class="card noborder text-center">
+          <div class="card text-center">
             <img :src="URLImagelogo" class="mx-auto d-block" width="350px" height="350px">
           </div> 
         </div>

@@ -20,28 +20,33 @@ h6 {
 }
 
 .bg-black {
-  background-color: $black !important;
+  /* background-color: $black !important; */
+  background-color: darken($third, 20%) !important;
 }
-
+.title_card{
+  text-decoration: none;
+  color: $white !important;
+}
 .rounded-pill {
   border-radius: 5rem;
 }
 .card-header{
-	background-color: #73a17c !important;
+  background-color: lighten($third, 40%) !important;
+  color: darken($third, 20%) !important;
 }
 .card-title{
-  color: $primary !important;
+  color: $third !important;
   font-family: Lato; 
 }
 .color-title{
-  color: $primary !important;
+  color: $third !important;
   font-family: Lato; 
 }
 .title-landing{
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
-  color: $primary !important;
+  color: $third !important;
   font-family: Lato;  
 }
 .title_landing_i{
@@ -53,8 +58,8 @@ h6 {
 .twitter{
   font-size: 18px;
   display: inline-block;
-  background: $primary;
-  color: #ffffff !important;
+  background-color: lighten($third, 40%) !important;
+  color: darken($third, 20%) !important;
   line-height: 1;
   padding: 8px 0;
   border-radius: 50%;
@@ -66,8 +71,8 @@ h6 {
 .facebook{
   font-size: 18px;
   display: inline-block;
-  background: $primary;
-  color: #ffffff !important;
+  background-color: lighten($third, 40%) !important;
+  color: darken($third, 20%) !important;
   line-height: 1;
   padding: 8px 0;
   border-radius: 50%;
@@ -79,8 +84,8 @@ h6 {
 .instagram{
   font-size: 18px;
   display: inline-block;
-  background: $primary;
-  color: #ffffff !important;
+  background-color: lighten($third, 40%) !important;
+  color: darken($third, 20%) !important;
   line-height: 1;
   padding: 8px 0;
   border-radius: 50%;
@@ -168,8 +173,12 @@ h6 {
     box-shadow: 0 0 0 0.2rem fade-out($primary, 0.5);
   }  
 }
+.light_background{
+  background-color: lighten($third, 50%) !important;
+}
 .noborder{
   border:none !important;
+  background-color: darken($third, 10%) !important;
 }
 .paddtop{
   padding-top: 1rem !important;

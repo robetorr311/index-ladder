@@ -1,13 +1,14 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container-fluid">
+    <div class="container">
         <div id="formregistration">
       <div class="row align-items-center">
         <div class="col-lg-8 order-lg-2">
           <div class="p-5">
+              <div class="card-deck">
                 <div class="card noborder">
                     <div class="card-body">
-                      <div class="text-center"><h2 class="card-title">Log in </h2></div>
+                      <div class="text-center"><h2 class="title_card">Log in </h2></div>
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">
                           <div class="col-lg-8">
@@ -43,14 +44,15 @@
                     </form>
                       <div class="row justify-content-center paddtop">
                         <div class="col-md-4">
-                          <a :href="UrlRecover"><i class="fas fa-key"></i> Forgot your Password?</a>
+                          <a :href="UrlRecover" class="title_card"><i class="fas fa-key"></i> Forgot your Password?</a>
                         </div> 
                         <div class="col-md-4">
-                          <a :href="UrlRegistration"><i class="fas fa-user-alt"></i> Do you want become a trader?</a>
+                          <a :href="UrlRegistration" class="title_card"><i class="fas fa-user-alt"></i> Do you want become a trader?</a>
                         </div>
                       </div>                    
                     </div>
-                </div>            
+                </div>
+              </div>
           </div>
         </div>
         <div class="col-lg-4 order-lg-1">
@@ -65,7 +67,7 @@
       </div> 
       <div class="row align-items-center">
         <div class="col-lg-12">
-          <img :src="URLImagelogo" class="mx-auto d-block">
+          <img :src="URLImagelogo" class="img-fluid mx-auto d-block" width="400px">
         </div>
       </div>
     </div>
