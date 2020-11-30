@@ -33,6 +33,7 @@
         "vee-validate": "^3.0.0",
         "vue-image-upload-resize": "^2.3.0",
         "vue-resource": "^1.5.1",
+        "vue-tel-input": "^4.4.2",
         "vue-upload-component": "^2.8.20"
     }
 }

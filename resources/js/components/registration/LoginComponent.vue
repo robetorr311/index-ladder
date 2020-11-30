@@ -122,6 +122,7 @@ export default {
     methods: {
         onSubmit() {
             var login = localStorage['URLroot'] + '/login-user';
+            var setnumber = localStorage['URLroot'] + '/setnumber';
             var twostep = localStorage['URLroot'] + '/twosteplogin/' + this.username;
             axios.post( localStorage['URLroot'] + '/authenticate' ,
                   {
@@ -130,19 +131,22 @@ export default {
                      password: this.password,
                   }
             ).then(function (response) {
-                if(response.data.redirect===login){
-                  localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
-                  location.href = response.data.redirect;
-                }
-                else{
-                  if (response.data.redirect===twostep) {
+                var red=response.data.redirect;
+                switch (red) {
+                  case login:
+                    localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
                     location.href = response.data.redirect;
-                  }
-                  else {
+                    break;
+                  case setnumber:
+                    location.href = response.data.redirect;
+                    break;
+                  case twostep:
+                    location.href = response.data.redirect;
+                    break;
+                  case localStorage['URLroot']:
                     localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
                     location.href = response.data.redirect;
-                  }                   
-                }        
+                }
             })
             .catch((error) => {
               console.log('FAILURE!!');

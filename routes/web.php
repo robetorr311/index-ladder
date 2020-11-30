@@ -24,6 +24,7 @@ Route::get('/registration', [App\Http\Controllers\RegistrationController::class,
 Route::get('/registration/{token}/{email}/verify', [App\Http\Controllers\RegistrationController::class, 'verify'])->name('verify');
 Route::post('/registration/addnew', [App\Http\Controllers\RegistrationController::class, 'store'])->name('registration.addnew');
 Route::post('/registration/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('registration.update');
+Route::post('/registration/phonenumber', [App\Http\Controllers\RegistrationController::class, 'phonenumber'])->name('registration.phonenumber');
 Route::get('/registration/CheckEmailExist/{email}', [App\Http\Controllers\RegistrationController::class, 'CheckEmailExist'])->name('CheckEmailExist');
 Route::get('/registration/SendSMS/{message}/{recipients}', [App\Http\Controllers\RegistrationController::class, 'SendSMS'])->name('SendSMS');
 Route::get('/profile/SendVerifySMS', [App\Http\Controllers\ProfileController::class, 'SendVerifySMS'])->name('SendVerifySMS');
@@ -39,7 +40,8 @@ Route::get('/setpassword/{email}', [App\Http\Controllers\RegistrationController:
 Route::get('/twosteplogin/{email}', [App\Http\Controllers\RegistrationController::class,'twosteplogin'])->name('twosteplogin');
 Route::post('/changepassword', [App\Http\Controllers\RegistrationController::class,'changepassword'])->name('changepassword');
 Route::post('/login/twostep', [App\Http\Controllers\Auth\LoginController::class,'twostep'])->name('twostep');
-
+Route::get('/setnumber', [App\Http\Controllers\RegistrationController::class,'setnumber'])->name('setnumber');
+Route::get('/verify_phone', [App\Http\Controllers\RegistrationController::class,'verify_phone'])->name('verify_phone');
 //Products
 Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->name('product.like');
 Route::post('/imagedelete', [App\Http\Controllers\ProductController::class, 'imagedelete'])->name('imagedelete');

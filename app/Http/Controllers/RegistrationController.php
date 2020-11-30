@@ -224,6 +224,45 @@ class RegistrationController extends Controller
         $usr->save();
         return ['redirect' => route('login-user')];
       }
-
+    }
+    public function setnumber(){
+        if (Auth::check()) {
+          $iduser = Auth::id();
+          $usr= User::where('id', $iduser)->first();
+          if(!empty($usr->phone)){
+            return redirect()->route('welcome');
+          }
+          else {
+            return view('profile.phone_number');
+          }
+        }
+        else {
+          return redirect()->route('login-user');
+        }        
+    }
+    public function phonenumber(Request $request){
+      $iduser = Auth::id();
+      $usr= User::where('id', $iduser)->first();
+      $usr->phone=$request->phone;
+      $usr->save();
+      $usernameEnd="";
+      $recipients=$request->phone;
+      $verification_code = rand(100000,999999);
+      $usr->verification_code=$verification_code;
+      $usr->save();
+      /*$account_sid = config('services.twilio')['account_sid'];
+      $auth_token = config('services.twilio')['auth_token'];
+      $phone = '+12058909484';
+      $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
+      $twilio = new Client($account_sid, $auth_token);
+      $twilio->messages->create($recipients, [
+            'from' => $phone,
+            'body' => $message
+        ] );*/
+        $logged_in=0;
+        return response()->json(['success'=>'Success']);
+    }
+    public function verify_phone(){
+      return view('profile.verify_number');
     }
 }

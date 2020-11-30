@@ -22,7 +22,6 @@ Vue.component('file-upload', VueUploadComponent);
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('footer-component', require('./components/dashboards/FooterComponent.vue').default);
@@ -56,7 +55,8 @@ Vue.component('what-component', require('./components/dashboards/WhatComponent.v
 Vue.component('faq-component', require('./components/dashboards/FaqComponent.vue').default);
 Vue.component('recover-component', require('./components/registration/EmailComponent.vue').default);
 Vue.component('change-component', require('./components/registration/ChangepassComponent.vue').default);
-
+Vue.component('phone-component', require('./components/PhoneComponent.vue').default);
+Vue.component('verification-component', require('./components/VerifyphoneComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

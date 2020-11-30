@@ -1,11 +1,15 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container">
-        <span  v-if="CheckEmailExist.success==='Success'" class="alert alert-danger">
-          <strong>Fail!! This Email Already Exist!!! </strong>
-        </span>
-        <span  v-else></span>          
+    <div class="container">                
         <div id="formregistration">
+        <div class="row justify-content-center">
+            <div class="col-md-12">      
+              <span  v-if="CheckEmailExist.success==='Success'" class="alert alert-danger">
+                <strong>Fail!! This Email Already Exist!!! </strong>
+              </span>
+              <span  v-else></span>
+            </div>
+        </div>           
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">

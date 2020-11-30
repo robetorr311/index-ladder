@@ -33,7 +33,7 @@
           this.show=str[2];
           setTimeout(() => {
             this.hide()
-          },6000);           
+          },6000);
       }
     }    
 }

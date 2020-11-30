@@ -49,21 +49,24 @@ class LoginController extends Controller
                return ['redirect' => route('login-user')];
             }
             else{
-              if(!$usr->twostep_enabled){
-                Auth::login($usr);
+              Auth::login($usr);
+              if (empty($usr->phone)){
+                return ['redirect' => route('setnumber')];
+              }
+              elseif (!$usr->twostep_enabled) {
+                return ['redirect' => route('welcome')];                
               }
               else {
                 return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
-              }
-              
+              }     
             }
         }
-        if (Auth::check()) {
+        /*if (Auth::check()) {
           return ['redirect' => route('welcome')];
         }
         else {
           return ['redirect' => route('login-user')];
-        }
+        }*/
     }
     public function twostep(Request $request){
       $usr= User::where('email', $request->email)->first();
