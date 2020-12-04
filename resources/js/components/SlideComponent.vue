@@ -1,11 +1,4 @@
 <template>
-    <!--<div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col-lg-12">
-          <carousel :data="data1" direction="right"></carousel> 
-        </div>     
-      </div>
-    </div>-->
 <div id="catalog" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->

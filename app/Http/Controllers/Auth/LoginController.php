@@ -49,11 +49,12 @@ class LoginController extends Controller
                return ['redirect' => route('login-user')];
             }
             else{
-              Auth::login($usr);
               if (empty($usr->phone)){
+                Auth::login($usr);
                 return ['redirect' => route('setnumber')];
               }
               elseif (!$usr->twostep_enabled) {
+                Auth::login($usr);
                 return ['redirect' => route('welcome')];                
               }
               else {

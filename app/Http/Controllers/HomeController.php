@@ -102,5 +102,9 @@ class HomeController extends Controller
           if(!empty($sk)){ $ski=json_encode($sk); } else { $ski="";  } 
           if(!empty($pr)){ $pro=json_encode($pr); } else { $pro="";  } 
         return view('welcome',[ 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);         
-    }           
+    }
+    function dashboard(){
+        return view('content.dashboard');
+    }
+    
 }

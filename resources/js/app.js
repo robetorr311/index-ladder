@@ -35,7 +35,7 @@ Vue.component('how-component', require('./components/dashboards/HowComponent.vue
 Vue.component('privacy-component', require('./components/dashboards/PrivacyComponent.vue').default);
 Vue.component('registration-component', require('./components/registration/RegistrationComponent.vue').default);
 Vue.component('login-component', require('./components/registration/LoginComponent.vue').default);
-Vue.component('profile-component', require('./components/registration/ProfileComponent.vue').default);
+Vue.component('profile-component', require('./components/profile/ProfileComponent.vue').default);
 Vue.component('smscode-component', require('./components/registration/SmsCodeComponent.vue').default);
 Vue.component('twostep-component', require('./components/registration/TwoStepComponent.vue').default);
 Vue.component('picture-component', require('./components/PictureComponent.vue').default);
@@ -48,7 +48,7 @@ Vue.component('product-component', require('./components/products/ProductCompone
 Vue.component('addnewproduct-component', require('./components/products/AddNewProductComponent.vue').default);
 Vue.component('gallery-component', require('./components/products/GalleryComponent.vue').default);
 Vue.component('favorites-component', require('./components/products/FavoritesComponent.vue').default);
-Vue.component('categories-component', require('./components/products/CategoriesComponent.vue').default);
+Vue.component('categories-component', require('./components/categories/CategoriesComponent.vue').default);
 Vue.component('sales-component', require('./components/products/SalesComponent.vue').default);
 Vue.component('editproduct-component', require('./components/products/EditProductComponent.vue').default);
 Vue.component('what-component', require('./components/dashboards/WhatComponent.vue').default);
@@ -57,6 +57,11 @@ Vue.component('recover-component', require('./components/registration/EmailCompo
 Vue.component('change-component', require('./components/registration/ChangepassComponent.vue').default);
 Vue.component('phone-component', require('./components/PhoneComponent.vue').default);
 Vue.component('verification-component', require('./components/VerifyphoneComponent.vue').default);
+Vue.component('dashboard-component', require('./components/dashboards/DashboardComponent.vue').default);
+Vue.component('choosecat-component', require('./components/categories/ChooseComponent.vue').default);
+Vue.component('userinfo-component', require('./components/profile/InfoComponent.vue').default);
+Vue.component('slidefav-component', require('./components/products/SliderfavComponent.vue').default);
+Vue.component('tradetable-component', require('./components/products/TradetableComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

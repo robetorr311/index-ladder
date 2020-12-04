@@ -58,7 +58,7 @@ class RegistrationController extends Controller
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
-      $account_sid = config('services.twilio')['account_sid'];
+      /*$account_sid = config('services.twilio')['account_sid'];
       $auth_token = config('services.twilio')['auth_token'];
       $phone = '+12058909484';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
@@ -66,7 +66,7 @@ class RegistrationController extends Controller
       $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );
+        ] );*/
         $logged_in=0;
         return view('registration.twostep', ['emailValue' => $email]);
     }    

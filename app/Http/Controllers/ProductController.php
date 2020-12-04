@@ -18,10 +18,15 @@ use Carbon\Carbon;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
@@ -535,8 +540,7 @@ class ProductController extends Controller
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
-            ->where('like_products.user_id', '=',$iduser)
-            ->paginate(15);
+            ->where('like_products.user_id', '=',$iduser)->get();
           return response()->json($product);
     }
     public function upload(Request $request){

@@ -23,6 +23,9 @@ h6 {
   /* background-color: $black !important; */
   background-color: darken($third, 20%) !important;
 }
+.col{
+  padding-bottom: 10px !important;
+}
 .title_card{
   text-decoration: none;
   color: $white !important;

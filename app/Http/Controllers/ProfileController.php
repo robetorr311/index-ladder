@@ -97,6 +97,9 @@ class ProfileController extends Controller
         $success="Success";
         $usr->phone_verified_at=Carbon::now();
         $usr->save();
+        $regis= Registration::where('user_id', $id)->first();
+        $regis->phone=$usr->phone;
+        $regis->save();
       }
       else {
         $success="Fail";
@@ -176,7 +179,7 @@ class ProfileController extends Controller
       $id = Auth::id();
       $usr= User::where('id', $id)->first();
       $phone_verified_at=$usr->phone_verified_at;
-      $success="";
+      $success="";     
       if(!empty($phone_verified_at)){
         $success="Success";
       }
@@ -184,5 +187,20 @@ class ProfileController extends Controller
         $success="Fail";
       }
       return response()->json(['success' => $success]);  
-    }        
+    }
+    public function GetUserInfo(){
+      $id = Auth::id();
+      $user = DB::table('users')->where('id','=',$id)->first(); 
+      return response()->json($user);
+    }
+    public function GetUserAvatar(){
+      $id = Auth::id();
+      $image = DB::table('ident_images')->where('user_id','=',$id)->where('ident_type','=',4)->first(); 
+      return response()->json($image);
+    }
+    public function GetUserAddress(){
+      $id = Auth::id();
+      $user = DB::table('registrations')->where('user_id','=',$id)->first(); 
+      return response()->json($user);
+    }         
 }

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import CategoriesComponent from "../products/CategoriesComponent.vue";
+import CategoriesComponent from "../categories/CategoriesComponent.vue";
   export default {
     components: {
       CategoriesComponent

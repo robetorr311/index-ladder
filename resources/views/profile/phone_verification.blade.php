@@ -4,4 +4,5 @@
     <message-component></message-component>
     <smscode-component>
     </smscode-component>
+    <what-component></what-component>
 @endsection
