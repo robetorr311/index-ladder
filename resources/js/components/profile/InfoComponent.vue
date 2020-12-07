@@ -1,11 +1,13 @@
 <template>
   <div class="card">
     <div class="card-header"><h5 class="card-title"><i class="fas fa-info-circle"></i> My Profile</h5></div>    
-    <img class="card-img-top" :src="GetAvatar.image_url">  
     <div class="card-body">
-      <h4 class="card-title">{{ GetUserValues.name }}</h4>
-      <p class="card-text">{{ GetUserValues.email }}</p>
-      <p class="card-text">{{ GetUserValues.phone }}</p>
+      <img :src="GetAvatar.image_url"  class="img-fluid mx-auto d-block rounded-circle" width="100px">
+      <div class="text-center">
+        <h4 class="card-title">{{ GetUserValues.name }}</h4>
+        <p class="card-text">{{ GetUserValues.email }}</p>
+        <p class="card-text">{{ GetUserValues.phone }}</p>
+      </div>
       <p class="card-text">{{ GetAddress.address }}</p>
     </div>
   </div>

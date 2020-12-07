@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Ident_image;
 class RegistrationController extends Controller
 {
     /**
@@ -146,6 +147,19 @@ class RegistrationController extends Controller
         $usr= User::where('email', $email)->first();
         $usr->email_verified_at=Carbon::now();
         $usr->save();
+        $URL= route('welcome').'/images/UserDefaultAvatar.png' ;
+        $file_name = 'UserDefaultAvatar.png';
+        $file_type = 'png';
+        $file_size = '9999';
+        $img = Ident_image::create([
+                'image_url' => $URL ,
+                'name' => $file_name,
+                'type' => $file_type,
+                'size' => $file_size,
+                'user_id' => $usr->id,
+                'ident_type' => 4 
+                ]);
+        $img->save();
         return redirect()->route('login-user')->with('message', 'Thank you. Now you can login in Index Ladder Site');
       }
     }

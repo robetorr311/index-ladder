@@ -69,6 +69,7 @@ Route::get('/favorites', [App\Http\Controllers\ProductController::class, 'favori
 Route::get('/sales', [App\Http\Controllers\ProductController::class, 'sales'])->name('sales');
 Route::get('/GetSales', [App\Http\Controllers\ProductController::class, 'GetSales'])->name('GetSales');
 Route::get('/GetFavorites', [App\Http\Controllers\ProductController::class, 'GetFavorites'])->name('GetFavorites');
+Route::get('/GetUsersFavorites', [App\Http\Controllers\ProductController::class, 'GetUsersFavorites'])->name('GetUsersFavorites');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('gallery');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
 Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetTypes'])->name('GetTypes');
@@ -81,6 +82,7 @@ Route::get('/categories/getparent/{categoryid}', [App\Http\Controllers\CategoryC
 Route::get('/categories/getlikes', [App\Http\Controllers\CategoryController::class, 'getlikes'])->name('categories.getlikes');
 Route::get('/categories/getusers', [App\Http\Controllers\CategoryController::class, 'getusers'])->name('categories.getusers');
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
+Route::get('/GetUsersCategory', [App\Http\Controllers\CategoryController::class, 'GetUsersCategory'])->name('GetUsersCategory');
 //Content
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact-us');

@@ -9,15 +9,6 @@
       </section>
       <section>
         <slide-component></slide-component> 
-      </section>
-      <section>
-        <products-component></products-component>
-      </section> 
-      <section>
-        <skills-component></skills-component>
-      </section> 
-      <section>
-        <services-component></services-component>
-      </section>         
+      </section>      
       <what-component></what-component>
 @endsection

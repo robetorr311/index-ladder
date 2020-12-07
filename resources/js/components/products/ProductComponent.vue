@@ -47,7 +47,7 @@
             <div class="card">
             <div class="card-header"><div class="row"><div class="col"><p class="text-left">About Seller</p></div><div class="col"><p class="text-right"><a :href="HomeUrl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></a></p></div></div></div>
             <div class="card-body">
-                <p class="card-text">Name: {{ firstname }}, {{ lastname }} </p>
+                <p class="card-text">Name: {{ username }} </p>
                 <p class="card-text">Email: {{ email }} </p>
                 <p class="card-text">Phone: {{ phone }} </p>
             </div>
@@ -114,8 +114,7 @@ export default {
           buy_id: '',
           status: '',
           image_url: '',
-          firstname: '',
-          lastname: '',
+          username: '',
           email: '',
           phone: '',
           category: '',
@@ -150,28 +149,6 @@ export default {
            this.showedit=false;
            this.showsave=true; 
         },
-        Update() {
-            var em=this.email;
-            var value = localStorage['URLroot'];
-            axios.post( value + '/registration/update',
-                  {
-                     id: this.idregister,
-                     csrfToken: myToken.csrfToken,
-                     firstname: this.firstname,
-                     lastname: this.lastname,
-                     phone: this.phone,
-                     email: this.email,
-                     address: this.address
-                  }
-            ).then(function (response) {
-                localStorage.setItem( 'message', 'success|Thank you. Your values has been updated|1' );
-                location.href = response.data.redirect;              
-            })
-            .catch((error) => {
-              console.log('FAILURE!!');
-              this.$showValidationErrors(error.response.data);
-            });            
-        },      
     },
     mounted() {
             axios.get( localStorage['URLroot'] + '/getUserName').then(response => (this.Getuser = response.data));
@@ -189,8 +166,7 @@ export default {
             this.buy_id=this.values.buy_id;
             this.status=this.values.status;
             this.image_url=this.values.image_url;
-            this.firstname=this.values.firstname;
-            this.lastname=this.values.lastname;
+            this.username=this.values.username;
             this.email=this.values.email;
             this.phone=this.values.phone;
             this.category=this.values.category;

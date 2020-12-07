@@ -123,6 +123,7 @@ export default {
         onSubmit() {
             var login = localStorage['URLroot'] + '/login-user';
             var setnumber = localStorage['URLroot'] + '/setnumber';
+            var dashboard = localStorage['URLroot'] + '/dashboard';
             var twostep = localStorage['URLroot'] + '/twosteplogin/' + this.username;
             axios.post( localStorage['URLroot'] + '/authenticate' ,
                   {
@@ -143,7 +144,7 @@ export default {
                   case twostep:
                     location.href = response.data.redirect;
                     break;
-                  case localStorage['URLroot']:
+                  case dashboard:
                     localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
                     location.href = response.data.redirect;
                 }

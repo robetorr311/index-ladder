@@ -79,7 +79,7 @@ export default {
         onSubmit() {
           var login = localStorage['URLroot'] + '/login-user';
           var twostep = localStorage['URLroot'] + '/twosteplogin/' + this.emailValue;
-          
+          var dashboard = localStorage['URLroot'] + '/dashboard';
           axios.post( localStorage['URLroot'] + '/login/twostep' ,
             {
               csrfToken: myToken.csrfToken,
@@ -87,7 +87,20 @@ export default {
               email: this.emailValue
             }
           ).then(function (response) {
-             if(response.data.redirect===login){
+            var red=response.data.redirect;
+              switch (red) {
+                case login:
+                  localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
+                  location.href = response.data.redirect;
+                  break;
+                case twostep:
+                  location.href = response.data.redirect;
+                  break;
+                case dashboard:
+                  localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
+                  location.href = response.data.redirect;
+              }            
+             /*if(response.data.redirect===login){
               localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
               location.href = response.data.redirect;
              }
@@ -99,7 +112,7 @@ export default {
                   localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
                   location.href = response.data.redirect;
                 }                   
-              }        
+              } */       
             })
             .catch((error) => {
               console.log('FAILURE!!');

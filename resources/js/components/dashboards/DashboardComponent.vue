@@ -3,7 +3,7 @@
       <div class="row align-items-center">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col">
+            <div class="col-md-3">
               <div class="row">
                 <div class="col">
                   <userinfo-component></userinfo-component>
@@ -28,25 +28,15 @@
             <div class="col"> 
               <tradetable-component></tradetable-component>
             </div>
-            <div class="col">
+            <div class="col-md-3">
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-users"></i> Users followed by you</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Component here....</p>
-                    </div>
-                  </div>
+                  <getusers-component></getusers-component>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-users"></i> Recomended to follow</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Component here....</p>
-                    </div>
-                  </div>
+                  <favusers-component></favusers-component>
                 </div>
               </div>
               <div class="row">
@@ -68,12 +58,16 @@
 <script>
     import InfoComponent from "../profile/InfoComponent.vue";
     import SliderfavComponent from "../products/SliderfavComponent.vue";
-    import TradetableComponent from "../products/TradetableComponent.vue";    
+    import TradetableComponent from "../products/TradetableComponent.vue";
+    import GetusersComponent from "../categories/GetusersComponent.vue";
+    import FavusersComponent from "../products/FavusersComponent.vue";
     export default {
       components: {
         InfoComponent,
         SliderfavComponent,
         TradetableComponent,
+        GetusersComponent,
+        FavusersComponent,
       },
       mounted() {
         }

@@ -85,7 +85,7 @@ export default {
             showSuccess(response){
               console.log(response.success);
               if(response.success=='Success'){
-                location.href = localStorage['URLroot'];
+                location.href = localStorage['URLroot'] + '/dashboard';
               }
             },
             submitForm() {

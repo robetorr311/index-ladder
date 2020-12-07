@@ -55,7 +55,7 @@ class LoginController extends Controller
               }
               elseif (!$usr->twostep_enabled) {
                 Auth::login($usr);
-                return ['redirect' => route('welcome')];                
+                return ['redirect' => route('dashboard')];                
               }
               else {
                 return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
@@ -75,7 +75,7 @@ class LoginController extends Controller
       $entered_code=$request->code;
       if($generated_code==$entered_code){
         Auth::login($usr);
-        return ['redirect' => route('welcome')];
+        return ['redirect' => route('dashboard')];
       }
       else {
         return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
@@ -83,7 +83,7 @@ class LoginController extends Controller
     }    
     public function logout(){
         Auth::logout();
-        return redirect()->route('welcome');
+        return redirect()->route('login-user');
     }
 
 }

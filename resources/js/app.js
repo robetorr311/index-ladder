@@ -62,6 +62,8 @@ Vue.component('choosecat-component', require('./components/categories/ChooseComp
 Vue.component('userinfo-component', require('./components/profile/InfoComponent.vue').default);
 Vue.component('slidefav-component', require('./components/products/SliderfavComponent.vue').default);
 Vue.component('tradetable-component', require('./components/products/TradetableComponent.vue').default);
+Vue.component('getusers-component', require('./components/categories/GetusersComponent.vue').default);
+Vue.component('favusers-component', require('./components/products/FavusersComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

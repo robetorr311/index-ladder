@@ -84,7 +84,7 @@ class ProductController extends Controller
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.sell_id','=','registrations.user_id')
+        ->join('users','traddes.sell_id','=','users.id')
         ->select('products.id as id',
                  'products.category_id as category_id',
                  'products.name as name',
@@ -97,16 +97,14 @@ class ProductController extends Controller
                  'traddes.buy_id as buy_id',
                  'traddes.status as status',
                  'product_images.image_url as image_url',
-                 'registrations.firstname as firstname',
-                 'registrations.lastname as lastname',
-                 'registrations.email as email',
-                 'registrations.phone as phone',
+                 'users.name as username',
+                 'users.email as email',
+                 'users.phone as phone',
                  'categories.name as category')
         ->where('products.id','=',$id)->first();
         return response()->json($product);
     }    
     public function viewproduct($id){
-        if (Auth::check()) {
           $iduser = Auth::id();
           $usr= User::where('id', $iduser)->first();
           $usernameEnd=$usr->name;
@@ -116,7 +114,7 @@ class ProductController extends Controller
             ->join('product_images', 'products.image_id', '=', 'product_images.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->join('registrations','traddes.sell_id','=','registrations.user_id')
+            ->join('users','traddes.sell_id','=','users.id')
             ->select('products.id as id',
                      'products.category_id as category_id',
                      'products.name as name',
@@ -129,56 +127,24 @@ class ProductController extends Controller
                      'traddes.buy_id as buy_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
-                     'registrations.firstname as firstname',
-                     'registrations.lastname as lastname',
-                     'registrations.email as email',
-                     'registrations.phone as phone',
+                     'users.name as username',
+                     'users.email as email',
+                     'users.phone as phone',
                      'categories.name as category')
             ->where('products.id','=',$id)->first();
           $messages= DB::table('messages')
             ->join('traddes','messages.tradde_id','=','traddes.id')
-            ->join('registrations','messages.user_id','=','registrations.id')
+            ->join('users','messages.user_id','=','users.id')
             ->select('messages.id as id',
                      'messages.tradde_id as tradde_id',
                      'messages.message as message',
                      'messages.views as views',
                      'messages.parent_id as parent_id',
                      'traddes.sell_id as sell_id',
-                     'registrations.firstname as firstname',
-                     'registrations.lastname as lastname',
-                     'registrations.email as email',
-                     'registrations.phone as phone')            
+                     'users.name as username',
+                     'users.email as email',
+                     'users.phone as phone')            
             ->where('traddes.sell_id','=',$iduser)->orderby('messages.id','asc')->get();
-        }
-        else {
-          $usernameEnd='';
-          $logged_in=0;
-          $messages=[];
-          $count=0;
-          $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->join('registrations','traddes.sell_id','=','registrations.user_id')
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'traddes.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'registrations.firstname as firstname',
-                     'registrations.lastname as lastname',
-                     'registrations.email as email',
-                     'registrations.phone as phone',
-                     'categories.name as category')
-            ->where('products.id','=',$id)->first();
-        }
         if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
         if(!empty($messages)){ $mess=json_encode($messages); } else { $mess='json_encode($messages)'; } 
         return view('products.product',['ProductValue' => $prod, 'LoadedMessages' => $mess]);
@@ -578,5 +544,32 @@ class ProductController extends Controller
     public function imagedelete(Request $request){
       $deletedimg = Product_image::where('id',$request->image_id)->delete();
       return response()->json(['success'=>'Success']);           
+    }
+    public function GetUsersFavorites(){
+      $iduser = Auth::id();
+      $arraycat=[];
+      $users=[];      
+      $iduser = Auth::id();
+      $categories = DB::table('like_products')
+                ->join('products', 'like_products.product_id', '=', 'products.id')
+                ->join('traddes', 'traddes.product_id', '=', 'products.id')      
+                ->select('products.category_id')
+                ->where('like_products.user_id','=',$iduser)
+                ->groupByRaw('products.category_id')
+                ->get();
+      if(!empty($categories)){
+        foreach ($categories as $catkey) {
+          $arraycat[]=$catkey->category_id;
+        }
+        $users = DB::table('users')
+          ->join('products', 'products.user_id', '=', 'users.id')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id') 
+          ->select('users.id as id', 'users.name as username','ident_images.image_url as image_url')
+          ->join('ident_images', 'ident_images.user_id', '=', 'users.id')
+          ->whereIn('products.category_id', $arraycat)->where('ident_images.ident_type','=',4)->get();
+          //->groupby('users.id', 'users.name','ident_images.image_url')->get();
+      }
+
+      return response()->json($users);      
     }    
 }
