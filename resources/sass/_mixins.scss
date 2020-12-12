@@ -1,9 +1,17 @@
 @mixin heading-font {
-  font-family: 'Lato';
+  font-family: 'FuturaPTW02-Book';
   font-weight: 800 !important;
 }
 
 @mixin body-font {
-  font-family: 'Lato';
+  font-family: 'FuturaPTW02-Book';
   color: darken($third, 20%) !important;
+}
+@font-face {font-family: "FuturaPTW02-Book";
+    src: url("../font/0fac23294cabd9471f8ca7816bf12eae.eot"); /* IE9*/
+    src: url("../font/0fac23294cabd9471f8ca7816bf12eae.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../font/0fac23294cabd9471f8ca7816bf12eae.woff2") format("woff2"), /* chrome firefox */
+    url("../font/0fac23294cabd9471f8ca7816bf12eae.woff") format("woff"), /* chrome firefox */
+    url("../font/0fac23294cabd9471f8ca7816bf12eae.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../font/0fac23294cabd9471f8ca7816bf12eae.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
 }

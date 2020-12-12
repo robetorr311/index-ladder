@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "FuturaPTW02-Book";
+  src: url(/fonts/0fac23294cabd9471f8ca7816bf12eae.eot?e2970ee8e6854ef72642ae9612d12e43);
+  /* IE9*/
+  src: url(/fonts/0fac23294cabd9471f8ca7816bf12eae.eot?e2970ee8e6854ef72642ae9612d12e43) format("embedded-opentype"), url(/fonts/0fac23294cabd9471f8ca7816bf12eae.woff2?397c150f044860dace926b2a547842bb) format("woff2"), url(/fonts/0fac23294cabd9471f8ca7816bf12eae.woff?a835cd1cb6ecb364df7f0f1d90789ead) format("woff"), url(/fonts/0fac23294cabd9471f8ca7816bf12eae.ttf?0fac23294cabd9471f8ca7816bf12eae) format("truetype"), url(/fonts/0fac23294cabd9471f8ca7816bf12eae.svg?273731ece6fabd5c3a384de6c7d1aacc) format("svg");
+  /* iOS 4.1- */
+}
+
 body {
-  font-family: "Lato";
+  font-family: "FuturaPTW02-Book";
   color: #081321 !important;
 }
 
@@ -9,7 +17,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato";
+  font-family: "FuturaPTW02-Book";
   font-weight: 800 !important;
 }
 
@@ -54,23 +62,23 @@ h6 {
 
 .card-text {
   color: #1b4274 !important;
-  font-family: Lato;
+  font-family: FuturaPTW02-Book;
 }
 
 .card-title {
   color: #1b4274 !important;
-  font-family: Lato;
+  font-family: FuturaPTW02-Book;
 }
 
 .product-name {
   font-weight: 700;
   color: #1b4274 !important;
-  font-family: Lato;
+  font-family: FuturaPTW02-Book;
 }
 
 .color-title {
   color: #1b4274 !important;
-  font-family: Lato;
+  font-family: FuturaPTW02-Book;
 }
 
 .has-error {
@@ -234,7 +242,7 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.1rem;
   color: #1b4274 !important;
-  font-family: Lato;
+  font-family: FuturaPTW02-Book;
 }
 
 .title_landing_i {
