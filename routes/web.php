@@ -35,6 +35,7 @@ Route::post('/login/twostep', [App\Http\Controllers\Auth\LoginController::class,
 Route::get('/setnumber', [App\Http\Controllers\RegistrationController::class,'setnumber'])->name('setnumber');
 Route::get('/verify_phone', [App\Http\Controllers\RegistrationController::class,'verify_phone'])->name('verify_phone');
 //Profile
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/profile/SendVerifySMS', [App\Http\Controllers\ProfileController::class, 'SendVerifySMS'])->name('SendVerifySMS');
 Route::post('/profile/verifySMS/SixDigits', [App\Http\Controllers\ProfileController::class, 'SixDigits'])->name('SixDigits');
 Route::get('/profile/PhoneVerifyed', [App\Http\Controllers\ProfileController::class, 'PhoneVerifyed'])->name('PhoneVerifyed');
@@ -46,6 +47,9 @@ Route::post('/registration/update', [App\Http\Controllers\ProfileController::cla
 Route::get('/profile/GetUserInfo', [App\Http\Controllers\ProfileController::class, 'GetUserInfo'])->name('GetUserInfo');
 Route::get('/profile/GetUserAvatar', [App\Http\Controllers\ProfileController::class, 'GetUserAvatar'])->name('GetUserAvatar');
 Route::get('/profile/GetUserAddress', [App\Http\Controllers\ProfileController::class, 'GetUserAddress'])->name('GetUserAddress');
+Route::get('/profile/UrlIdent/{type}', [App\Http\Controllers\ProfileController::class, 'UrlIdent'])->name('UrlIdent');
+Route::get('/profile/registrationValues', [App\Http\Controllers\ProfileController::class, 'registrationValues'])->name('registrationValues');
+Route::get('/user/show/{id}', [App\Http\Controllers\ProfileController::class, 'UserShow'])->name('UserShow');
 //Products
 Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->name('product.like');
 Route::post('/imagedelete', [App\Http\Controllers\ProductController::class, 'imagedelete'])->name('imagedelete');
@@ -57,7 +61,9 @@ Route::post('/product/store', [App\Http\Controllers\ProductController::class, 's
 Route::get('/product/addnew', [App\Http\Controllers\ProductController::class, 'addnew'])->name('product.addnew');
 Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
 Route::get('/GetItem/{id}', [App\Http\Controllers\ProductController::class, 'GetItem'])->name('GetItem');
-Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
+Route::get('/product/view/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
+Route::get('/getproduct/{id}', [App\Http\Controllers\ProductController::class, 'getproduct'])->name('getproduct');
+Route::get('/getmessages/{id}', [App\Http\Controllers\ProductController::class, 'getmessages'])->name('getmessages');
 Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductController::class, 'FindByCategory'])->name('FindByCategory');
 Route::get('/product/findbyname/{search}', [App\Http\Controllers\ProductController::class, 'FindByName'])->name('FindByName');
 Route::get('/product/findbyc/{search}', [App\Http\Controllers\ProductController::class, 'FindByC'])->name('FindByC');
@@ -70,11 +76,18 @@ Route::get('/sales', [App\Http\Controllers\ProductController::class, 'sales'])->
 Route::get('/GetSales', [App\Http\Controllers\ProductController::class, 'GetSales'])->name('GetSales');
 Route::get('/GetFavorites', [App\Http\Controllers\ProductController::class, 'GetFavorites'])->name('GetFavorites');
 Route::get('/GetUsersFavorites', [App\Http\Controllers\ProductController::class, 'GetUsersFavorites'])->name('GetUsersFavorites');
+Route::get('/products/matchusers', [App\Http\Controllers\ProductController::class, 'matchusers'])->name('products.matchusers');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('gallery');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
 Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetTypes'])->name('GetTypes');
 //Trades
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
+Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
+Route::get('/GetTrader/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrader'])->name('GetTrader');
+Route::get('/GetTraderAvatar/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderAvatar'])->name('GetTraderAvatar');
+Route::get('/GetTraderTrades/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderTrades'])->name('GetTraderTrades');
+Route::get('/mytrades/all', [App\Http\Controllers\TraddeController::class, 'GetAllMyTrades'])->name('GetAllMyTrades');
+Route::get('/trades/all', [App\Http\Controllers\TraddeController::class, 'GetAllTrades'])->name('GetAllTrades');
 //Categories
 Route::get('/categories/choose', [App\Http\Controllers\CategoryController::class, 'choose_categories'])->name('categories.choose');
 Route::get('/categories/getchilds/{parent}', [App\Http\Controllers\CategoryController::class, 'getchilds'])->name('getchilds');
@@ -83,11 +96,11 @@ Route::get('/categories/getlikes', [App\Http\Controllers\CategoryController::cla
 Route::get('/categories/getusers', [App\Http\Controllers\CategoryController::class, 'getusers'])->name('categories.getusers');
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::get('/GetUsersCategory', [App\Http\Controllers\CategoryController::class, 'GetUsersCategory'])->name('GetUsersCategory');
+Route::get('/categories/matchusers', [App\Http\Controllers\CategoryController::class, 'matchusers'])->name('categories.matchusers');
 //Content
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact-us');
 Route::post('/contact-us/submit', [App\Http\Controllers\HomeController::class, 'contactUsSubmit'])->name('contact-us.submit');
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/faq', [App\Http\Controllers\RegistrationController::class, 'faq'])->name('faq');
 Route::get('/how', [App\Http\Controllers\RegistrationController::class, 'how'])->name('how');
 Route::get('/legal', [App\Http\Controllers\RegistrationController::class, 'how'])->name('legal');
@@ -101,6 +114,7 @@ Route::post('/upload/picture', [App\Http\Controllers\IdentImageController::class
 Route::post('/upload/license', [App\Http\Controllers\IdentImageController::class, 'license'])->name('license');
 Route::post('/upload/card', [App\Http\Controllers\IdentImageController::class, 'card'])->name('card');
 Route::post('/upload/avatar', [App\Http\Controllers\IdentImageController::class, 'avatar'])->name('avatar');
+Route::post('/change/avatar', [App\Http\Controllers\IdentImageController::class, 'changeavatar'])->name('changeavatar');
 Route::get('/images/haveavatar', [App\Http\Controllers\IdentImageController::class, 'haveavatar'])->name('haveavatar');
 //Dashboard
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');

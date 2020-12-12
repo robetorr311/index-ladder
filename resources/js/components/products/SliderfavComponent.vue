@@ -5,10 +5,10 @@
       <div id="catalog" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-              <img :src="ImageActive" width="100%">
+              <a :href="Urlproduct + IdItem"><img :src="ImageActive" width="100%"></a>
             </div>
             <div class="carousel-item" v-for="product in GetValues">
-                <img :src="product.image_url" width="100%">
+                <a :href="Urlproduct + product.id"><img :src="product.image_url" width="100%"></a>
             </div>
         </div>
         <a class="carousel-control-prev" href="#catalog" data-slide="prev">
@@ -29,6 +29,7 @@
                 GetValues:'',
                 IdItem:'',
                 ImageActive:'',
+                Urlproduct: localStorage['URLroot'] + '/product/view/',
             };
         },
         methods: {

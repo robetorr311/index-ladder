@@ -61,9 +61,14 @@ Vue.component('dashboard-component', require('./components/dashboards/DashboardC
 Vue.component('choosecat-component', require('./components/categories/ChooseComponent.vue').default);
 Vue.component('userinfo-component', require('./components/profile/InfoComponent.vue').default);
 Vue.component('slidefav-component', require('./components/products/SliderfavComponent.vue').default);
-Vue.component('tradetable-component', require('./components/products/TradetableComponent.vue').default);
+Vue.component('tradetable-component', require('./components/trades/TradetableComponent.vue').default);
 Vue.component('getusers-component', require('./components/categories/GetusersComponent.vue').default);
 Vue.component('favusers-component', require('./components/products/FavusersComponent.vue').default);
+Vue.component('matchusersc-component', require('./components/categories/MatchuserscComponent.vue').default);
+Vue.component('matchusersp-component', require('./components/products/MatchuserspComponent.vue').default);
+Vue.component('mytrades-component', require('./components/trades/AllmytradesComponent.vue').default);
+Vue.component('alltrades-component', require('./components/trades/AlltradesComponent.vue').default);
+Vue.component('profiletrader-component', require('./components/trades/TraderprofileComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

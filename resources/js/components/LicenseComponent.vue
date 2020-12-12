@@ -26,7 +26,7 @@
       </div>
       <div v-else>  
         <div class="text-center">
-           <img :src="UrlLicense" width="300px">
+           <h4>Driver License Uploaded</h4>
         </div>
       </div>      
     </div>

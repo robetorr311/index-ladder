@@ -80,6 +80,7 @@ class CategoryController extends Controller
                 ->select('products.category_id')
                 ->where('traddes.sell_id','=',$iduser)
                 ->orWhere('traddes.buy_id','=',$iduser)
+                ->orWhere('products.user_id','=',$iduser)
                 ->groupByRaw('products.category_id')
                 ->get();
       if(!empty($categories)){
@@ -91,10 +92,34 @@ class CategoryController extends Controller
           ->join('traddes', 'traddes.product_id', '=', 'products.id') 
           ->select('users.id as id', 'users.name as username','ident_images.image_url as image_url')
           ->join('ident_images', 'ident_images.user_id', '=', 'users.id')
-          ->whereIn('products.category_id', $arraycat)->where('ident_images.ident_type','=',4)->get();
-          //->groupby('users.id', 'users.name','ident_images.image_url')->get();
+          ->whereIn('products.category_id', $arraycat)->where('ident_images.ident_type','=',4)->whereNotIn('users.id', [$iduser])
+          ->groupby('users.id', 'users.name','ident_images.image_url')->limit(10)->get();
       }
-
       return response()->json($users);
     }
+    public function matchusers(){
+      $arraycat=[];
+      $users=[];      
+      $iduser = Auth::id();
+      $categories = DB::table('products')
+                ->join('traddes', 'traddes.product_id', '=', 'products.id')      
+                ->select('products.category_id')
+                ->where('traddes.sell_id','=',$iduser)
+                ->orWhere('traddes.buy_id','=',$iduser)
+                ->groupByRaw('products.category_id')
+                ->get();
+      if(!empty($categories)){
+        foreach ($categories as $catkey) {
+          $arraycat[]=$catkey->category_id;
+        }
+        $users = DB::table('users')
+          ->join('products', 'products.user_id', '=', 'users.id')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id') 
+          ->select('users.id as id','users.email as email','users.name as username','users.phone as phone','ident_images.image_url as image_url')
+          ->join('ident_images', 'ident_images.user_id', '=', 'users.id')
+          ->whereIn('products.category_id', $arraycat)->where('ident_images.ident_type','=',4)->whereNotIn('users.id', [$iduser])
+          ->groupby('users.id', 'users.name','users.email','users.phone','ident_images.image_url')->paginate(10);
+      }
+      return view('categories.matchusers',['UserValues' => json_encode($users)]);
+    }    
 }

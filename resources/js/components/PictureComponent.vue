@@ -26,7 +26,7 @@
       </div>
       <div v-else>  
         <div class="text-center">
-           <img :src="UrlPicture" width="300px">
+           <h4>Picture Uploaded</h4>
         </div>
       </div>         
     </div>

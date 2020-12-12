@@ -1,7 +1,15 @@
 <template>
-  <div class="list-group">
-	<h4><span class="categorieslink"> Choose your favorites categories and click in button to view</span></h4>
+  <div class="row">
+  <div class="col">
+  <div class="row">
+	<div class="col">
+  <h5><span class="categorieslink"> Choose your favorites categories and click in button to view</span></h5>
     <button type="button" class="btn-secondary" @click="SearchByIDCat"><i class="fas fa-search"></i> Search</button>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col over">
+  <div class="list-group">  
     <p class="pcategory"><span data-target="#products_categories" class="categorieslink" data-toggle="collapse"><i class="fas fa-plus-square" v-if="ClickOnProp===false" @click="ChangeBoxProp"></i><i class="fas fa-minus-square" v-else @click="ChangeBoxProp"></i> Products</span></p>
     <div id="products_categories" class="collapse">
       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1332" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1332===false" @click="ChangeBox1332"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1332"></i> Womens</span></p>
@@ -221,7 +229,11 @@
         </div>
       </div>
     </div>       
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </template>
 <script>
   export default {

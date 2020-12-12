@@ -118,6 +118,23 @@ class IdentImageController extends Controller
                 ]);
       $img->save();
     }
+    public function changeavatar(Request $request)
+    {
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $logged_in=true;
+      $upload_path = public_path('uploads/avatars');
+      $URL= route('welcome').'/uploads/avatars' ;
+      $file_name = $request->file->getClientOriginalName();
+      $file_type = $request->file->getClientOriginalExtension();
+      $file_size = $request->file->getClientOriginalExtension();
+      $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
+      $request->file->move($upload_path, $generated_new_name);
+      $img = Ident_image::where('user_id', $id)->where('ident_type', 4)->first();
+      $img->image_url= $URL. '/' . $generated_new_name;
+      $img->save();
+    }    
     public function haveavatar(){
       $values='';
       $URLAvatar='none';

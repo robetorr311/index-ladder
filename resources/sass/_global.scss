@@ -43,9 +43,18 @@ h6 {
   background-color: lighten($third, 40%) !important;
   color: darken($third, 20%) !important;
 }
+.card-text{
+  color: $third !important;
+  font-family: Lato;
+}
 .card-title{
   color: $third !important;
   font-family: Lato; 
+}
+.product-name {
+  font-weight: 700;
+  color: $third !important;
+  font-family: Lato;   
 }
 .color-title{
   color: $third !important;
@@ -154,6 +163,7 @@ h6 {
   padding: 0;
 }
 .cursor{
+  text-decoration: none;
   cursor: pointer;
 }
 .file-uploader{
@@ -222,4 +232,9 @@ h6 {
   font-size: 1.3rem;
   font-weight: 700;
   color: $white !important;  
+}
+.over{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 700px;
 }

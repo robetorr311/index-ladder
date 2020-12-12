@@ -4,11 +4,11 @@
     <div class="card-body">
       <img :src="GetAvatar.image_url"  class="img-fluid mx-auto d-block rounded-circle" width="100px">
       <div class="text-center">
-        <h4 class="card-title">{{ GetUserValues.name }}</h4>
+        <h6 class="product-name">{{ GetUserValues.name }}</h6>
         <p class="card-text">{{ GetUserValues.email }}</p>
         <p class="card-text">{{ GetUserValues.phone }}</p>
+        <p class="card-text">{{ GetAddress.address }}</p>
       </div>
-      <p class="card-text">{{ GetAddress.address }}</p>
     </div>
   </div>
 </template>
@@ -29,7 +29,6 @@
             axios.get(localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.GetUserValues=response.data));
             axios.get(localStorage['URLroot'] + '/profile/GetUserAvatar').then(response => (this.GetAvatar=response.data));
             axios.get(localStorage['URLroot'] + '/profile/GetUserAddress').then(response => (this.GetAddress=response.data));
-           console.log('Info Component successfully mounted.')
         },        
     }
 </script>

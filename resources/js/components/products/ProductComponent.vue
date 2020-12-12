@@ -1,10 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container"> 
-      <div class="row justify-content-center">
-        <div class="col-md-10">
           <div class="card">
-            <div class="card-header">About Item</div>
+            <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Trade Info</h5></div>
               <img :src="image_url" class="img-fluid mx-auto d-block">
               <div class="card-body">
                 <h4 class="card-title">
@@ -18,7 +15,7 @@
                   </div>
                 </h4>
                 <p class="card-text">{{ category }} </p>
-                <p class="card-text">{{ description }} </p>             
+                <p class="card-text">{{ description }} </p>
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -40,32 +37,22 @@
                 </div>
               </div>
           </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-          <div class="col-md-10">
             <div class="card">
-            <div class="card-header"><div class="row"><div class="col"><p class="text-left">About Seller</p></div><div class="col"><p class="text-right"><a :href="HomeUrl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></a></p></div></div></div>
+            <div class="card-header"><div class="row"><div class="col"><p class="text-left"><h5 class="card-title"><i class="fas fa-user-tag"></i> About Tradder</h5></p></div><div class="col"><p class="text-right"><a :href="HomeUrl"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></a></p></div></div></div>
             <div class="card-body">
                 <p class="card-text">Name: {{ username }} </p>
                 <p class="card-text">Email: {{ email }} </p>
                 <p class="card-text">Phone: {{ phone }} </p>
             </div>
             </div>
-          </div>
-      </div>
-      <div class="row justify-content-center" v-if="Getuser.logg>0">
-          <div class="col-md-10">
             <div class="card">
-            <div class="card-header">Messages / Questions about Item </div>
+            <div class="card-header"><h5 class="card-title"><i class="fas fa-comments"></i> Messages / Questions about Trade</h5> </div>
             <div class="card-body">
                 <p class="card-text">input text area here...</p>
                 <p class="card-text">list of messages here...</p>
             </div>
             </div>
           </div>
-      </div>      
-    </div>
   </ValidationObserver>   
 </template>
 <script>
@@ -138,7 +125,7 @@ export default {
               product_id: this.product_id
             }
           ).then(response => (this.ChkCode = response.data));
-          axios.get( localStorage['URLroot'] + '/GetLike/'+ this.product_id).then(response => (this.Getlike = response.data));
+          axios.get( localStorage['URLroot'] + '/GetLike/' + this.ProductValue).then(response => (this.Getlike = response.data));
           this.like=false;
         },
         addtoCart(){
@@ -149,28 +136,29 @@ export default {
            this.showedit=false;
            this.showsave=true; 
         },
+        GetValues(response){
+            this.product_id=response.id;
+            this.category_id=response.category_id;
+            this.name=response.name;
+            this.description=response.description;
+            this.type_id=response.type_id;
+            this.amount=response.amount;
+            this.tradde_number=response.tradde_number;
+            this.sell_id=response.sell_id;
+            this.buy_id=response.buy_id;
+            this.status=response.status;
+            this.image_url=response.image_url;
+            this.username=response.username;
+            this.email=response.email;
+            this.phone=response.phone;
+            this.category=response.category;
+        },
     },
     mounted() {
             axios.get( localStorage['URLroot'] + '/getUserName').then(response => (this.Getuser = response.data));
-            this.values= JSON.parse(this.ProductValue, function (key, value) {
-              return value;
-            });
-            this.product_id=this.values.id;
-            this.category_id=this.values.category_id;
-            this.name=this.values.name;
-            this.description=this.values.description;
-            this.type_id=this.values.type_id;
-            this.amount=this.values.amount;
-            this.tradde_number=this.values.tradde_number;
-            this.sell_id=this.values.sell_id;
-            this.buy_id=this.values.buy_id;
-            this.status=this.values.status;
-            this.image_url=this.values.image_url;
-            this.username=this.values.username;
-            this.email=this.values.email;
-            this.phone=this.values.phone;
-            this.category=this.values.category;
-            axios.get( localStorage['URLroot'] + '/GetLike/'+ this.product_id).then(response => (this.Getlike = response.data));
+            axios.get( localStorage['URLroot'] + '/getproduct/' + this.ProductValue).then(response => (this.GetValues(response.data)));
+            axios.get( localStorage['URLroot'] + '/getmessages/' + this.ProductValue).then(response => (this.mymessages = response.data));            
+            axios.get( localStorage['URLroot'] + '/GetLike/'+ this.ProductValue).then(response => (this.Getlike = response.data));
     }     
 }
 </script>

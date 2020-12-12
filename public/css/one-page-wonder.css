@@ -1,5 +1,6 @@
 body {
   font-family: "Lato";
+  color: #081321 !important;
 }
 
 h1,
@@ -51,7 +52,18 @@ h6 {
   color: #081321 !important;
 }
 
+.card-text {
+  color: #1b4274 !important;
+  font-family: Lato;
+}
+
 .card-title {
+  color: #1b4274 !important;
+  font-family: Lato;
+}
+
+.product-name {
+  font-weight: 700;
   color: #1b4274 !important;
   font-family: Lato;
 }
@@ -176,6 +188,7 @@ h6 {
 }
 
 .cursor {
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -260,6 +273,12 @@ h6 {
   font-size: 1.3rem;
   font-weight: 700;
   color: #fff !important;
+}
+
+.over {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 700px;
 }
 
 .navbar-custom {

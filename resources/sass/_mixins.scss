@@ -5,4 +5,5 @@
 
 @mixin body-font {
   font-family: 'Lato';
+  color: darken($third, 20%) !important;
 }

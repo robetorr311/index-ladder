@@ -3,9 +3,6 @@
     <div class="alert alert-success" v-if="success">
       <strong>Success!</strong> The item has been updated
     </div>
-    <div class="container"> 
-      <div class="row justify-content-center">
-        <div class="col-md-10">
           <div class="card">
             <div class="card-header">Add New Item</div>
               <div class="card-body">
@@ -114,11 +111,6 @@
                 </div>
               </div>
           </div>
-        </div>
-      </div>
-
-     
-    </div>
   </ValidationObserver>   
 </template>
 <script>
@@ -234,14 +226,13 @@ export default {
       }, 
       GetSubCat(){
         axios.get( localStorage['URLroot'] + '/categories/getchilds/' + this.category).then(response => (this.GetSubCategories = response.data));
-      },         
+      },
     },
     mounted() {
       this.ItemId=this.productValue;
       axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.GetItem=response.data));
       axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.setValues(response.data)));
       axios.get( localStorage['URLroot'] + '/GetTypes').then(response => (this.GetTypes = response.data));
-      console.log(this.productValue + 'AddNewProductComponent Mounted');
     }     
 }
 </script>

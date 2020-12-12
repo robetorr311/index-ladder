@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Registration;
 use App\Models\Ident_image;
+use Illuminate\Support\Facades\Route;
 class HomeController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::check()) {
+/*        if (Auth::check()) {
           $id = Auth::id();
           $usr= User::where('id', $id)->first();
           $usernameEnd=$usr->name;
@@ -101,10 +102,12 @@ class HomeController extends Controller
           if(!empty($se)){ $serv=json_encode($se); } else { $serv="";  } 
           if(!empty($sk)){ $ski=json_encode($sk); } else { $ski="";  } 
           if(!empty($pr)){ $pro=json_encode($pr); } else { $pro="";  } 
-        return view('welcome',[ 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]);         
+        return view('welcome',[ 'ProductsValues' => $pro, 'ServiceValues' => $serv, 'SkillValues' => $ski]); */
+      return redirect()->route('dashboard');              
     }
     function dashboard(){
-        return view('content.dashboard');
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
     
 }

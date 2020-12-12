@@ -3,11 +3,8 @@
     <div class="alert alert-success" v-if="success">
       <strong>Success!</strong> The item has been added
     </div>
-    <div class="container"> 
-      <div class="row justify-content-center">
-        <div class="col-md-10">
           <div class="card">
-            <div class="card-header">Add New Item</div>
+            <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Publish a Trade</h5></div>
               <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col">
@@ -114,11 +111,6 @@
                 </div>
               </div>
           </div>
-        </div>
-      </div>
-
-     
-    </div>
   </ValidationObserver>   
 </template>
 <script>
@@ -194,7 +186,7 @@ export default {
       showSuccess(){
           this.success=true;
           setTimeout(() => {
-            location.reload();
+            location.href = localStorage['URLroot'] + '/dashboard';
           },6000);        
       },
       GetCat(){
@@ -218,7 +210,6 @@ export default {
     },
     mounted() {
       axios.get( localStorage['URLroot'] + '/GetTypes').then(response => (this.GetTypes = response.data));
-            console.log('AddNewProductComponent Mounted')
     }     
 }
 </script>

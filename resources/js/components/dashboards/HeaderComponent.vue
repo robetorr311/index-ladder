@@ -20,13 +20,10 @@
             <a :href="homeUrl" class="nav-link"><span class="color_head2"><i class="fas fa-shopping-cart"></i> Cart </span></a>
           </li>
           <li class="nav-item">
-            <a :href="newitemUrl" class="nav-link"><span class="color_head2"><i class="fas fa-boxes"></i> Publish a Trade </span></a>
+            <a :href="newitemUrl" class="nav-link"><span class="color_head2"><i class="fas fa-handshake"></i> Publish a Trade </span></a>
           </li>
           <li class="nav-item">
             <a :href="favoritesURL" class="nav-link"><span class="color_head2"><i class="fas fa-heart"></i> Your Favorites</span></a>
-          </li>
-          <li class="nav-item">
-            <a :href="salesURL" class="nav-link"><span class="color_head2"><i class="fas fa-shopping-bag"></i> Your Trades</span></a>
           </li>
           <li class="nav-item">
             <a :href="profileUrl" class="nav-link"><span class="color_head2"><i class="fas fa-user-cog"></i> Your Profile </span></a>

@@ -26,7 +26,7 @@
       </div>
       <div v-else>  
         <div class="text-center">
-           <img :src="UrlCard" width="300px">
+           <h4>ID Card Uploaded</h4>
         </div>
       </div> 
     </div>

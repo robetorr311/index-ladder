@@ -27,32 +27,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-      $values='';
-      $URLPicture='none';
-      $URLCard='none';
-      $URLLicense='none';
-      $URLAvatar='none';
-        if (Auth::check()) {
-          $id = Auth::id();
-          $usr= User::where('id', $id)->first();
-          $usernameEnd=$usr->name;
-          $logged_in=true;
-          $regis= Registration::where('user_id', $id)->first();
-          $values=json_encode($regis);
-          $pic=Ident_image::where('user_id', $id)->where('ident_type', 1)->first();
-          $lic=Ident_image::where('user_id', $id)->where('ident_type', 2)->first();
-          $car=Ident_image::where('user_id', $id)->where('ident_type', 3)->first();
-          $ava=Ident_image::where('user_id', $id)->where('ident_type', 4)->first();
-          if(!empty($pic)){ $URLPicture=$pic->image_url; } else { $URLPicture='none'; }
-          if(!empty($lic)){ $URLLicense=$lic->image_url; } else { $URLLicense='none'; }
-          if(!empty($car)){ $URLCard=$car->image_url; } else { $URLCard='none'; }
-          if(!empty($ava)){ $URLAvatar=$ava->image_url; } else { $URLAvatar='none'; }
-        }
-        else {
-          $usernameEnd='';
-          $logged_in=false;
-        }
-        return view('profile.profile',['URLPicture' => $URLPicture, 'URLLicense' => $URLLicense, 'URLCard' => $URLCard, 'URLAvatar' => $URLAvatar,'registrationValues' => $values]);
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
     public function update(Request $request)
     {
@@ -65,7 +41,12 @@ class ProfileController extends Controller
       $usr->phone=$request->phone;
       $usr->save();
       return ['redirect' => route('profile')];      
-    } 
+    }
+    public function UserShow($id){
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+
+    }  
     public function SendVerifySMS(){
       $id = Auth::id();
       $usr= User::where('id', $id)->first();
@@ -202,5 +183,18 @@ class ProfileController extends Controller
       $id = Auth::id();
       $user = DB::table('registrations')->where('user_id','=',$id)->first(); 
       return response()->json($user);
-    }         
+    }
+    public function UrlIdent($type){
+      $id = Auth::id();
+      $pic=Ident_image::where('user_id', $id)->where('ident_type', $type)->first();
+      return response()->json($pic);
+    }
+    public function registrationValues(){
+      $id = Auth::id();
+      $usr= User::where('id', $id)->first();
+      $usernameEnd=$usr->name;
+      $logged_in=true;
+      $regis= Registration::where('user_id', $id)->first();
+      return response()->json($regis);
+    }
 }

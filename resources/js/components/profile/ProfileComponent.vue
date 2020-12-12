@@ -1,15 +1,11 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container"> 
-        <div id="formregistration">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Your Registration Info </div>
+                    <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Profile Form</h5></div>
                     <div class="card-body">
                       <form>
                       <div class="row justify-content-center">
-                          <div class="col-md-5">
+                          <div class="col">
                             <ValidationProvider name="firstname" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -20,7 +16,7 @@
                             </div>
                             </ValidationProvider>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col">
                             <ValidationProvider name="lastname" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -31,9 +27,9 @@
                             </div>
                             </ValidationProvider>
                         </div>                        
-                      </div>                                          
+                      </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-5">
+                        <div class="col">
                             <ValidationProvider name="phone" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -46,7 +42,9 @@
                             </div>
                             </ValidationProvider>
                         </div>
-                        <div class="col-md-5">
+                      </div>
+                      <div class="row justify-content-center">
+                        <div class="col">
                             <ValidationProvider name="email" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -60,7 +58,7 @@
                         </div>
                       </div>
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
+                          <div class="col">
                             <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
@@ -73,16 +71,28 @@
                         </ValidationProvider>
                         </div>                                                
                       </div>
-                      <div class="row justify-content-center" v-if="PhoneVerified.success==='Success'">
-                          <div class="col-md-10" v-if="IsTwoStepEnaled.success==='Fail'">
-                            <button type="button" @click.stop.prevent="EnableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Enable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
+                      <div class="row justify-content-center">
+                          <div class="col">
+                            <div class="text-center">
+                            <button type="button" @click="EditRegister" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name="">Edit</button>
+                            <button type="button" @click="Update" v-show="showsave" class="btn btn-secondary rounded-pill mt-5" name="">Save</button>
                           </div>
-                          <div class="col-md-10" v-else>
+                          </div>
+                      </div>
+                      <div class="row justify-content-center" v-if="PhoneVerified.success==='Success'">
+                          <div class="col" v-if="IsTwoStepEnaled.success==='Fail'">
+                            <div class="text-center">
+                            <button type="button" @click.stop.prevent="EnableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Enable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
+                            </div>
+                          </div>
+                          <div class="col" v-else>
+                            <div class="text-center">
                             <button type="button" @click.stop.prevent="DisableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Disable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
+                            </div>
                           </div>                          
                       </div>
                       <div class="row justify-content-center" v-if="ActiveTS">
-                          <div class="col-md-10">
+                          <div class="col">
                             <div class="input-group mb-3">
                               <input type="text" class="form-control" v-model="code" name="code" placeholder="Code">
                               <div class="input-group-append">
@@ -90,9 +100,9 @@
                               </div>
                             </div>
                           </div>
-                      </div>
+                      </div>                        
                       <div class="row justify-content-center" v-if="DisableTS">
-                          <div class="col-md-10">
+                          <div class="col">
                             <div class="input-group mb-3">
                               <input type="text" class="form-control" v-model="code" name="code" placeholder="Code">
                               <div class="input-group-append">
@@ -102,67 +112,35 @@
                           </div>
                       </div>
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                              </div>
+                          <div class="col">
                               <avatar-component :url-avatar="UrlAva"></avatar-component>
-                            </div>
                           </div>
                       </div>                                                                   
-                      <div class="row justify-content-center">
-                          <div class="col-md-10">
-                            <div class="text-center">
-                            <button type="button" @click="EditRegister" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name="">Edit</button>
-                            <button type="button" @click="Update" v-show="showsave" class="btn btn-secondary rounded-pill mt-5" name="">Save</button>
-                          </div>
-                          </div>
-                      </div>
                     </form>
                     </div>
                   </div>
                   <div class="card">
-                  <div class="card-header">Upload Your Documents </div>                    
+                  <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Documents Section</h5></div>                    
                     <div class="card-body">
                       <form>
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                              </div>
+                          <div class="col">
                               <picture-component :url-picture="UrlPic"></picture-component>
-                            </div>
                           </div>
                       </div>
                       <div class="row justify-content-center">
-                        <div class="col-md-10">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                              </div>
+                        <div class="col">
                               <card-component :url-card="UrlCar"></card-component>
-                            </div>
                         </div>                        
                       </div>                                           
                       <div class="row justify-content-center">
-                          <div class="col-md-10">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                              </div>
+                          <div class="col">
                               <license-component :url-license="UrlLic"></license-component>
-                            </div>
-                        </div>                                                
+                          </div>                                                
                       </div>
                     </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </div>
     </ValidationObserver>   
 </template>
 <script>
@@ -224,10 +202,10 @@ export default {
       hasImage: false,
       image: null,
       idregister:'',
-      UrlPic: this.UrlPicture,
-      UrlLic: this.UrlLicense,
-      UrlCar: this.UrlCard,
-      UrlAva: this.UrlAvatar,
+      UrlPic: '',
+      UrlLic: '',
+      UrlCar: '',
+      UrlAva: '',
       UrlVerify: localStorage['URLroot'] + '/profile/SendVerifySMS',
       PhoneVerified: '',
       ActiveTS: false,
@@ -239,14 +217,28 @@ export default {
       DisableTS: false
       }
     },
-    props: [
-            'registrationValues',
-            'UrlPicture',
-            'UrlLicense',
-            'UrlCard',
-            'UrlAvatar',
-          ],
+    props: [ ],
     methods: {
+        registrationValues(response){
+          this.idregister= response.id;
+          this.firstname= response.firstname;
+          this.lastname= response.lastname;
+          this.phone= response.phone;
+          this.email= response.email;
+          this.address= response.address;
+        },
+        UrlPicture(response){
+          this.UrlPic=response.image_url;
+        },
+        UrlLicense(response){
+          this.UrlLic= response.image_url;;
+        },
+        UrlCard(response){
+          this.UrlCar= response.image_url;;
+        },
+        UrlAvatar(response){
+          this.UrlAva= response.image_url;;
+        },
         EditRegister(){
            this.disabled=false;
            this.showedit=false;
@@ -283,7 +275,7 @@ export default {
                   }
             ).then(function (response) {
                 localStorage.setItem( 'message', 'success|Thank you. Your values has been updated|1' );
-                location.href = response.data.redirect;              
+                location.reload();
             })
             .catch((error) => {
               console.log('FAILURE!!');
@@ -311,16 +303,12 @@ export default {
     },
     mounted() {
             axios.get(localStorage['URLroot'] + '/profile/PhoneVerifyed').then(response => (this.PhoneVerified = response.data));
-            axios.get(localStorage['URLroot'] + '/profile/IsTwoStepEnaled').then(response => (this.IsTwoStepEnaled = response.data));            
-            this.values= JSON.parse(this.registrationValues, function (key, value) {
-              return value;
-            });
-            this.idregister= this.values.id;
-            this.firstname= this.values.firstname;
-            this.lastname= this.values.lastname;
-            this.phone= this.values.phone;
-            this.email= this.values.email;
-            this.address= this.values.address;
+            axios.get(localStorage['URLroot'] + '/profile/IsTwoStepEnaled').then(response => (this.IsTwoStepEnaled = response.data));
+            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/1').then(response => (this.UrlPicture(response.data)));
+            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/2').then(response => (this.UrlLicense(response.data)));
+            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/3').then(response => (this.UrlCard(response.data)));
+            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/4').then(response => (this.UrlAvatar(response.data)));
+            axios.get(localStorage['URLroot'] + '/profile/registrationValues').then(response => (this.registrationValues(response.data)));            
     }     
 }
 </script>

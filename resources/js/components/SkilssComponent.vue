@@ -15,7 +15,8 @@
                   <a :href="Urlproduct + skill.id">{{ skill.name }}</a>
                 </h4>
                 <h5>$ {{ skill.amount }}</h5>
-                <p class="card-text">{{ skill.description }}</p>
+                <p class="card-text" v-if="skill.description.length>82">{{ skill.description.substring(0, 82) }} ... <a :href="Urlproduct + skill.id">See More</a></p>
+                <p class="card-text" v-else>{{ skill.description }}</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

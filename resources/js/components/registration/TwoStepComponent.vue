@@ -100,19 +100,6 @@ export default {
                   localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
                   location.href = response.data.redirect;
               }            
-             /*if(response.data.redirect===login){
-              localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
-              location.href = response.data.redirect;
-             }
-             else{
-                if (response.data.redirect===twostep) {
-                  location.href = response.data.redirect;
-                }
-                else{
-                  localStorage.setItem( 'message', 'success|Welcome to the Index Ladder!!!|1' );
-                  location.href = response.data.redirect;
-                }                   
-              } */       
             })
             .catch((error) => {
               console.log('FAILURE!!');
@@ -121,7 +108,6 @@ export default {
         },
     },
     mounted() {
-    console.log(this.emailValue);    
     }    
 }
 </script>

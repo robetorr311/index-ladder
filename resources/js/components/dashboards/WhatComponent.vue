@@ -3,7 +3,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid" width="400px" :src="'../images/trade-1311577_1920.jpg'"> 
+            <img class="img-fluid" width="400px" :src="UrlRoot +'/images/trade-1311577_1920.jpg'"> 
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
@@ -18,7 +18,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <img class="img-fluid" width="400px" :src="'../images/currency-1680786_1280.png'">
+            <img class="img-fluid" width="400px" :src="UrlRoot + '/images/currency-1680786_1280.png'">
           </div>
         </div>
         <div class="col-lg-6 order-lg-2">
@@ -37,8 +37,13 @@
     </div>
 </template>
 <script>
-    export default {
-        mounted() {
-        }
+export default {
+  data() {
+    return {
+      UrlRoot: localStorage['URLroot']
     }
+  },
+  mounted() {
+  }
+}
 </script>
