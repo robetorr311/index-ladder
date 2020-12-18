@@ -59,7 +59,7 @@
                       </div>
                       <div class="row justify-content-center">
                           <div class="col">
-                            <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                            <ValidationProvider name="address" rules="required|max:249" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-id-card"></i></span>
@@ -69,7 +69,7 @@
                               <span class="has-error">{{ errors[0] }}</span>
                               </div>
                         </ValidationProvider>
-                        </div>                                                
+                        </div>
                       </div>
                       <div class="row justify-content-center">
                           <div class="col">
@@ -125,17 +125,17 @@
                       <form>
                       <div class="row justify-content-center">
                           <div class="col">
-                              <picture-component :url-picture="UrlPic"></picture-component>
+                              <picture-component></picture-component>
                           </div>
                       </div>
                       <div class="row justify-content-center">
                         <div class="col">
-                              <card-component :url-card="UrlCar"></card-component>
+                              <card-component></card-component>
                         </div>                        
                       </div>                                           
                       <div class="row justify-content-center">
                           <div class="col">
-                              <license-component :url-license="UrlLic"></license-component>
+                              <license-component></license-component>
                           </div>                                                
                       </div>
                     </form>
@@ -202,9 +202,6 @@ export default {
       hasImage: false,
       image: null,
       idregister:'',
-      UrlPic: '',
-      UrlLic: '',
-      UrlCar: '',
       UrlAva: '',
       UrlVerify: localStorage['URLroot'] + '/profile/SendVerifySMS',
       PhoneVerified: '',
@@ -227,17 +224,8 @@ export default {
           this.email= response.email;
           this.address= response.address;
         },
-        UrlPicture(response){
-          this.UrlPic=response.image_url;
-        },
-        UrlLicense(response){
-          this.UrlLic= response.image_url;;
-        },
-        UrlCard(response){
-          this.UrlCar= response.image_url;;
-        },
         UrlAvatar(response){
-          this.UrlAva= response.image_url;;
+          this.UrlAva= response.image_url;
         },
         EditRegister(){
            this.disabled=false;
@@ -304,9 +292,6 @@ export default {
     mounted() {
             axios.get(localStorage['URLroot'] + '/profile/PhoneVerifyed').then(response => (this.PhoneVerified = response.data));
             axios.get(localStorage['URLroot'] + '/profile/IsTwoStepEnaled').then(response => (this.IsTwoStepEnaled = response.data));
-            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/1').then(response => (this.UrlPicture(response.data)));
-            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/2').then(response => (this.UrlLicense(response.data)));
-            axios.get(localStorage['URLroot'] + '/profile/UrlIdent/3').then(response => (this.UrlCard(response.data)));
             axios.get(localStorage['URLroot'] + '/profile/UrlIdent/4').then(response => (this.UrlAvatar(response.data)));
             axios.get(localStorage['URLroot'] + '/profile/registrationValues').then(response => (this.registrationValues(response.data)));            
     }     

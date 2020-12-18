@@ -78,8 +78,8 @@ class CategoryController extends Controller
       $categories = DB::table('products')
                 ->join('traddes', 'traddes.product_id', '=', 'products.id')      
                 ->select('products.category_id')
-                ->where('traddes.sell_id','=',$iduser)
-                ->orWhere('traddes.buy_id','=',$iduser)
+                ->where('traddes.host_user_id','=',$iduser)
+                ->orWhere('traddes.target_user_id','=',$iduser)
                 ->orWhere('products.user_id','=',$iduser)
                 ->groupByRaw('products.category_id')
                 ->get();
@@ -104,8 +104,8 @@ class CategoryController extends Controller
       $categories = DB::table('products')
                 ->join('traddes', 'traddes.product_id', '=', 'products.id')      
                 ->select('products.category_id')
-                ->where('traddes.sell_id','=',$iduser)
-                ->orWhere('traddes.buy_id','=',$iduser)
+                ->where('traddes.host_user_id','=',$iduser)
+                ->orWhere('traddes.target_user_id','=',$iduser)
                 ->groupByRaw('products.category_id')
                 ->get();
       if(!empty($categories)){
@@ -121,5 +121,25 @@ class CategoryController extends Controller
           ->groupby('users.id', 'users.name','users.email','users.phone','ident_images.image_url')->paginate(10);
       }
       return view('categories.matchusers',['UserValues' => json_encode($users)]);
-    }    
+    }
+    public function search($search){
+      $iduser = Auth::id();
+      $arraysearch=explode(" ", $search);
+      $count=count($arraysearch);
+      $categories=array();
+      $parent_ids=[1332,1333,1334,1335,1336,1337,1338,1339,1340,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+      if(count($arraysearch)>=1){
+        for ($i = 0; $i < $count; $i++) {
+          if(strlen($arraysearch[$i])>=3){
+            $cat= DB::table('categories')->where('name', 'like', '%'.$arraysearch[$i].'%')->whereNotIn('id', $parent_ids)->get();
+            if(!empty($cat)){
+              foreach ($cat as $key) {
+                $categories[]=array('id'=>$key->id,'name'=>$key->name);
+              }
+            }
+          }
+        }
+      }
+      return response()->json($categories);
+    }         
 }

@@ -69,6 +69,7 @@ Vue.component('matchusersp-component', require('./components/products/Matchusers
 Vue.component('mytrades-component', require('./components/trades/AllmytradesComponent.vue').default);
 Vue.component('alltrades-component', require('./components/trades/AlltradesComponent.vue').default);
 Vue.component('profiletrader-component', require('./components/trades/TraderprofileComponent.vue').default);
+Vue.component('messages-component', require('./components/trades/MessageComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

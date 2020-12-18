@@ -20,7 +20,6 @@ h6 {
 }
 
 .bg-black {
-  /* background-color: $black !important; */
   background-color: darken($third, 20%) !important;
 }
 .col{
@@ -42,6 +41,15 @@ h6 {
 .card-header{
   background-color: lighten($third, 40%) !important;
   color: darken($third, 20%) !important;
+}
+.category-choices{
+  color: darken($third, 20%) !important;
+  font-family: FuturaPTW02-Book;
+  &:active,
+  &:focus,
+  &:hover {
+    color: $third !important;
+  }   
 }
 .card-text{
   color: $third !important;
@@ -236,5 +244,8 @@ h6 {
 .over{
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 700px;
+  height: 70px;
+}
+.have-notificatons{
+  color: #a60000;
 }

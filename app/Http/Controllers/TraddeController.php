@@ -40,17 +40,17 @@ class TraddeController extends Controller
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.sell_id','=','registrations.user_id')
+        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
         ->select('products.id as id',
                  'products.category_id as category_id',
                  'products.name as name',
                  'products.description as description',
                  'products.type_id as type_id',
                  'traddes.id as tradde_id',
-                 'traddes.amount as amount',
+                 'products.amount as amount',
                  'traddes.tradde_number as tradde_number',
-                 'traddes.sell_id as sell_id',
-                 'traddes.buy_id as buy_id',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
                  'traddes.status as status',
                  'product_images.image_url as image_url',
                  'registrations.firstname as firstname',
@@ -58,7 +58,7 @@ class TraddeController extends Controller
                  'registrations.email as email',
                  'registrations.phone as phone',
                  'categories.name as category')
-        ->where('traddes.sell_id','=',$iduser)->orWhere('traddes.buy_id','=',$iduser)->limit(15)->get();
+        ->where('traddes.host_user_id','=',$iduser)->orWhere('traddes.target_user_id','=',$iduser)->limit(15)->get();
         return response()->json($product);
     }
     public function GetAllMyTrades()
@@ -70,17 +70,17 @@ class TraddeController extends Controller
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.sell_id','=','registrations.user_id')
+        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
         ->select('products.id as id',
                  'products.category_id as category_id',
                  'products.name as name',
                  'products.description as description',
                  'products.type_id as type_id',
                  'traddes.id as tradde_id',
-                 'traddes.amount as amount',
+                 'products.amount as amount',
                  'traddes.tradde_number as tradde_number',
-                 'traddes.sell_id as sell_id',
-                 'traddes.buy_id as buy_id',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
                  'traddes.status as status',
                  'product_images.image_url as image_url',
                  'registrations.firstname as firstname',
@@ -88,7 +88,7 @@ class TraddeController extends Controller
                  'registrations.email as email',
                  'registrations.phone as phone',
                  'categories.name as category')
-        ->where('traddes.sell_id','=',$iduser)->orWhere('traddes.buy_id','=',$iduser)->paginate(15);
+        ->where('traddes.host_user_id','=',$iduser)->orWhere('traddes.target_user_id','=',$iduser)->paginate(15);
         return view('trades.allmytrades',['TradeValues' => json_encode($product)]);
     }
     public function GetAllTrades()
@@ -105,10 +105,10 @@ class TraddeController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')->paginate(6);
@@ -130,17 +130,17 @@ class TraddeController extends Controller
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.sell_id','=','registrations.user_id')
+        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
         ->select('products.id as id',
                  'products.category_id as category_id',
                  'products.name as name',
                  'products.description as description',
                  'products.type_id as type_id',
                  'traddes.id as tradde_id',
-                 'traddes.amount as amount',
+                 'products.amount as amount',
                  'traddes.tradde_number as tradde_number',
-                 'traddes.sell_id as sell_id',
-                 'traddes.buy_id as buy_id',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
                  'traddes.status as status',
                  'product_images.image_url as image_url',
                  'registrations.firstname as firstname',
@@ -148,7 +148,15 @@ class TraddeController extends Controller
                  'registrations.email as email',
                  'registrations.phone as phone',
                  'categories.name as category')
-        ->where('traddes.sell_id','=',$id)->orWhere('traddes.buy_id','=',$id)->limit(15)->get();
+        ->where('traddes.host_user_id','=',$id)->orWhere('traddes.target_user_id','=',$id)->limit(15)->get();
         return response()->json($product);
-    }     
+    }
+    public function GetOffer(){
+      $types = DB::table('type_offers')->get();
+      return response()->json($types);
+    }
+    public function GetTime(){
+      $types = DB::table('time_services')->get();
+      return response()->json($types);
+    }
 }

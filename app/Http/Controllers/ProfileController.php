@@ -187,6 +187,9 @@ class ProfileController extends Controller
     public function UrlIdent($type){
       $id = Auth::id();
       $pic=Ident_image::where('user_id', $id)->where('ident_type', $type)->first();
+      if(empty($pic)){
+        $pic=["id"=>0,"image_url"=>"none","name"=>"none","type"=>"none","size"=>"none","user_id"=>0,"ident_type"=>"0","created_at"=>"none","updated_at"=>"none"];
+      }
       return response()->json($pic);
     }
     public function registrationValues(){

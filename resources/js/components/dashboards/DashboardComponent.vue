@@ -1,9 +1,7 @@
 <template>
 	    <div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col-lg-12">
           <div class="row">
-            <div class="col-sm-2">
+            <div class="col-lg-2">
               <div class="row">
                 <div class="col">
                   <userinfo-component></userinfo-component>
@@ -70,7 +68,7 @@
                 <tradetable-component></tradetable-component>
               </div>              
             </div>
-            <div class="col-sm-2">
+            <div class="col-lg-2">
               <div class="row">
                 <div class="col">
                   <getusers-component></getusers-component>
@@ -103,8 +101,6 @@
               </div>                            
             </div>
           </div>          
-        </div>
-      </div>
     </div>
 </template>
 <script>

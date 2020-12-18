@@ -32,29 +32,30 @@ class ProductController extends Controller
         //
     }
     public function store(Request $request){
-       $iduser = Auth::id();     
-       $product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
-          'name' => $request->name,
-          'description' => $request->description,
-          'image_id' => 0,
-          'type_id' => $request->type_id,
-          'category_id' => $request->category_id]);
-       $tradde_number=rand(100000,999999).$iduser.$product_id;
-       $tradd =Tradde::create(['sell_id' => $iduser,
-          'product_id' => $product_id,
-          'tradde_number' => $tradde_number,
-          'title' => $request->name,
-          'item_description' => $request->description,
-          'status' => 1,
-          'amount' => $request->amount,
-          'category_id' => $request->category_id]);
-       $tradd->save(); 
-       $token=$request->csrfToken;
-       $images = Product_image::where('token',$token)->update(['product_id' => $product_id]);
-       $img = Product_image::where('product_id',$product_id)->update(['token' => null]);
-       $image_id=Product_image::where('product_id',$product_id)->first();
-       $prod=Product::where('id',$product_id)->update(['image_id'=>$image_id->id]);
-       return response()->json(['success'=>'Success']); 
+      $iduser = Auth::id();
+      $token=csrf_token();
+      $itemname=$request->itemname;
+      $amount=$request->amount;
+      $description=$request->description;
+      $type=$request->type;
+      $category=$request->category;
+      $product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
+        'name' => $itemname,
+        'description' => $description,
+        'image_id' => 0,
+        'type_id' => $type,
+        'category_id' => $category,
+        'amount' => $amount]);
+      $images = Product_image::where('token',$token)->update(['product_id' => $product_id,'token' => $product_id]);
+      $image = DB::table('product_images')->where('product_id','=',$product_id)->first();
+      $prod=Product::where('id',$product_id)->update(['image_id'=>$image->id]);
+      $tradde_number=rand(100000,999999).$iduser.$product_id;
+      $tradde_id = DB::table('traddes')->insertGetId(['host_user_id' => $iduser,
+        'product_id' => $product_id,
+        'tradde_number' => $tradde_number,
+        'status' => 1,'category_id'=>$category]);
+      $prod=Product::where('id',$product_id)->update(['tradde_id'=>$tradde_id]);
+      return response()->json(['success'=>'Success']);
     }
     public function addnew(){
       $TradeValues="";
@@ -72,17 +73,17 @@ class ProductController extends Controller
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
         ->join('categories', 'products.category_id', '=', 'categories.id')
         ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('users','traddes.sell_id','=','users.id')
+        ->join('users','traddes.host_user_id','=','users.id')
         ->select('products.id as id',
                  'products.category_id as category_id',
                  'products.name as name',
                  'products.description as description',
                  'products.type_id as type_id',
                  'traddes.id as tradde_id',
-                 'traddes.amount as amount',
+                 'products.amount as amount',
                  'traddes.tradde_number as tradde_number',
-                 'traddes.sell_id as sell_id',
-                 'traddes.buy_id as buy_id',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
                  'traddes.status as status',
                  'product_images.image_url as image_url',
                  'users.name as username',
@@ -103,17 +104,17 @@ class ProductController extends Controller
             ->join('product_images', 'products.image_id', '=', 'product_images.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->join('users','traddes.sell_id','=','users.id')
+            ->join('users','traddes.host_user_id','=','users.id')
             ->select('products.id as id',
                      'products.category_id as category_id',
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
                      'traddes.id as tradde_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'users.name as username',
@@ -133,11 +134,11 @@ class ProductController extends Controller
                  'messages.message as message',
                  'messages.views as views',
                  'messages.parent_id as parent_id',
-                 'traddes.sell_id as sell_id',
+                 'traddes.host_user_id as host_user_id',
                  'users.name as username',
                  'users.email as email',
                  'users.phone as phone')
-            ->where('traddes.sell_id','=',$iduser)->where('traddes.product_id','=',$id)->orderby('messages.id','asc')->get();
+            ->where('traddes.host_user_id','=',$iduser)->where('traddes.product_id','=',$id)->orderby('messages.id','asc')->get();
        return response()->json($messages);
     }
     public function gallery(){
@@ -157,10 +158,10 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'traddes.id as tradde_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')->paginate(15);
@@ -179,10 +180,10 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')->paginate(15);        
@@ -209,10 +210,10 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'traddes.id as tradde_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
@@ -236,10 +237,10 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'traddes.id as tradde_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
@@ -264,10 +265,10 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',1)
@@ -286,10 +287,10 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',2)
@@ -308,10 +309,10 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',3)
@@ -366,10 +367,10 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
@@ -400,14 +401,14 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
-            ->where('traddes.sell_id', '=',$iduser)
+            ->where('traddes.host_user_id', '=',$iduser)
             ->paginate(15);
           return response()->json($product);
     }        
@@ -424,51 +425,15 @@ class ProductController extends Controller
                      'products.name as name',
                      'products.description as description',
                      'products.type_id as type_id',
-                     'traddes.amount as amount',
+                     'products.amount as amount',
                      'traddes.tradde_number as tradde_number',
-                     'traddes.sell_id as sell_id',
-                     'traddes.buy_id as buy_id',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category')
             ->where('like_products.user_id', '=',$iduser)->get();
           return response()->json($product);
-    }
-    public function upload(Request $request){
-      $iduser = Auth::id();
-      $upload_path = public_path('uploads/products');
-      $URL= route('welcome').'/uploads/products' ;
-      $file_name = $request->file->getClientOriginalName();
-      $file_type = $request->file->getClientOriginalExtension();
-      $file_size = $request->file->getClientOriginalExtension();
-      $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension(); 
-      $request->file->move($upload_path, $generated_new_name);
-      $token=csrf_token();
-      $img = Product_image::create([
-                'image_url' => $URL. '/' . $generated_new_name ,
-                'name' => $generated_new_name,
-                'type' => $file_type,
-                'size' => $file_type,
-                'user_id' => $iduser,
-                'token' => $token 
-                ]);
-      $img->save();
-      return response()->json(['token'=>$token]);           
-    }
-    public function GetUploaded(){
-      $token=csrf_token();  
-      $images = DB::table('product_images')->where('token','=', $token)->get();
-      return response()->json($images);
-    }
-    public function GetEditPictures($id){
-      $token=csrf_token();
-      $img=Product_image::where('product_id',$id)->update(['token' => $token]);
-      $images = DB::table('product_images')->where('token','=', $token)->get();
-      return response()->json($images);      
-    }    
-    public function imagedelete(Request $request){
-      $deletedimg = Product_image::where('id',$request->image_id)->delete();
-      return response()->json(['success'=>'Success']);           
     }
     public function GetUsersFavorites(){
       $iduser = Auth::id();

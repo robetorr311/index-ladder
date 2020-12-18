@@ -45,13 +45,7 @@
                 <p class="card-text">Phone: {{ phone }} </p>
             </div>
             </div>
-            <div class="card">
-            <div class="card-header"><h5 class="card-title"><i class="fas fa-comments"></i> Messages / Questions about Trade</h5> </div>
-            <div class="card-body">
-                <p class="card-text">input text area here...</p>
-                <p class="card-text">list of messages here...</p>
-            </div>
-            </div>
+            <messages-component :product-value="ProductValue"></messages-component>
           </div>
   </ValidationObserver>   
 </template>
@@ -109,7 +103,6 @@ export default {
           HomeUrl: localStorage['URLroot'],
           logged: false,
           like: true,
-          mymessages: '',
           Getuser: '',
           Getlike: ''
       }
@@ -157,8 +150,13 @@ export default {
     mounted() {
             axios.get( localStorage['URLroot'] + '/getUserName').then(response => (this.Getuser = response.data));
             axios.get( localStorage['URLroot'] + '/getproduct/' + this.ProductValue).then(response => (this.GetValues(response.data)));
-            axios.get( localStorage['URLroot'] + '/getmessages/' + this.ProductValue).then(response => (this.mymessages = response.data));            
             axios.get( localStorage['URLroot'] + '/GetLike/'+ this.ProductValue).then(response => (this.Getlike = response.data));
+            axios.post( localStorage['URLroot'] + '/notifications/SetView',
+            {
+              csrfToken: myToken.csrfToken,
+              product_id: this.ProductValue
+            }
+          ).then(response => (console.log(response.data)));
     }     
 }
 </script>

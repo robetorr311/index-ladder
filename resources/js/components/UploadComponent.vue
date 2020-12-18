@@ -10,7 +10,7 @@
                 </div>
                 <ValidationObserver v-slot="{ invalid }">
                 <form @submit="submitForm" enctype="multipart/form-data">
-                  <ValidationProvider rules="ext:jpg,png" ref="picture" v-slot="{ errors, validate }">
+                    <ValidationProvider rules="ext:jpg,png" ref="picture" v-slot="{ errors, validate }">
                     <div class="file-field">
                       <div class="btn btn-primary"><i class="fas fa-paperclip" aria-hidden="true"></i>
                         <input type="file" name="picture" id="inputFileUpload" @input="onFileChange" @change="validate" style="display:none">
@@ -20,11 +20,8 @@
                       <span class="has-error">{{ errors[0] }}</span>
                       <p class="categorieslink">{{picture}}</p>
                             <button type="submit" class="btn btn-primary" :disabled="invalid"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Upload</button>
-                    
-                  </ValidationProvider>
+                    </ValidationProvider>
                     <br>
-                    
-
                 </form>
               </ValidationObserver>
             </div>
@@ -78,11 +75,12 @@ extend('ext', {
                 success: '',
                 none: 1,
                 GetUploaded:'',
-                IsDeleted: ''
+                IsDeleted: '',
+                type: this.typeValue,
             };
         },
         props: [
-            'productValue'
+            'productValue',
           ],
           methods: {
             validateField (field) {
@@ -90,8 +88,11 @@ extend('ext', {
               console.log(provider);
               return provider.validate();
             },
+            SetUploaded(){
+              axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.GetUploaded=response.data));
+            },
             GetPictures(){
-              axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.GetUploaded = response.data));
+              axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.SetUploaded()));
             },
             onFileChange(e) {
                 this.picture = "Selected File: " + e.target.files[0].name;
@@ -116,16 +117,14 @@ extend('ext', {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                     }
                 }
-
-                // form data
                 let formData = new FormData();
                 formData.append('file', this.file);
+                formData.append('type', this.typeValue);
                 var value = localStorage['URLroot'];
                 axios.post(value + '/upload/product', formData, config)
                     .then(function (response) {
                         currentObj.success = 'Uploaded';
                         currentObj.picture = "";
-                        this.GetPictures();
                     })
                     .catch(function (error) {
                         currentObj.output = error;
@@ -143,7 +142,6 @@ extend('ext', {
           else {
             this.GetPictures();
           }
-          console.log(this.productValue + 'Upload');
         }         
 
     }

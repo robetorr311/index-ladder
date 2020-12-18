@@ -1,6 +1,6 @@
 <template>
     <div class="container" style="margin-top: 50px;">
-      <div v-if="none>0">  
+      <div v-if="UrlL==='none'">  
         <div class="text-center">
             <h4>Please Upload the Driver License </h4><br>
             <div style="max-width: 500px; margin: 0 auto;">
@@ -42,13 +42,16 @@
                 license: '',
                 file: '',
                 success: '',
-                none: 1
+                none: 1,
+                UrlL:'',
             };
         },
         props: [
-            'UrlLicense'
           ],        
           methods: {
+            UrlLic(response){
+              this.UrlL= response.image_url;
+            },            
             onFileChange(e) {
                 //console.log(e.target.files[0]);
                 this.license = "Selected File: " + e.target.files[0].name;
@@ -77,15 +80,11 @@
                     .catch(function (error) {
                         currentObj.output = error;
                     });
+                    location.reload();
             }
         },
         mounted() {
-            if(this.UrlLicense=='none'){
-              this.none=1;
-            }
-            else{
-                this.none=0;
-            }
+          axios.get(localStorage['URLroot'] + '/profile/UrlIdent/2').then(response => (this.UrlLic(response.data)));
         }         
 
     }

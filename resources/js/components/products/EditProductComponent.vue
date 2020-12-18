@@ -34,7 +34,7 @@
                 </div> 
                 <div class="row justify-content-center">
                     <div class="col">
-                      <ValidationProvider name="description" rules="required" v-slot="{ errors }">
+                      <ValidationProvider name="description" rules="required|max:249" v-slot="{ errors }">
                       <div class="input-group" >
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-tags"></i></span>

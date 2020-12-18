@@ -28,7 +28,7 @@
         <div class="text-center" v-if="editAvatar">
             <h4>Please Upload the New Avatar Picture </h4><br>
             <div style="max-width: 500px; margin: 0 auto;">
-                <div v-if="updated !== ''" class="alert alert-success" role="alert">
+                <div v-if="success !== ''" class="alert alert-success" role="alert">
                     {{success}}
                 </div>
                 <form @submit="UpdateForm" enctype="multipart/form-data">

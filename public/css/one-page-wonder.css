@@ -30,7 +30,6 @@ h6 {
 }
 
 .bg-black {
-  /* background-color: $black !important; */
   background-color: #081321 !important;
 }
 
@@ -58,6 +57,17 @@ h6 {
 .card-header {
   background-color: #7ba7e0 !important;
   color: #081321 !important;
+}
+
+.category-choices {
+  color: #081321 !important;
+  font-family: FuturaPTW02-Book;
+}
+
+.category-choices:active,
+.category-choices:focus,
+.category-choices:hover {
+  color: #1b4274 !important;
 }
 
 .card-text {
@@ -286,7 +296,11 @@ h6 {
 .over {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 700px;
+  height: 70px;
+}
+
+.have-notificatons {
+  color: #a60000;
 }
 
 .navbar-custom {
@@ -316,8 +330,8 @@ h6 {
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: 15px;
-  padding-bottom: 5rem;
+  padding-top: 25px;
+  padding-bottom: 3rem;
   background-image: linear-gradient(to right, #003ed8, #462469);
   background-repeat: no-repeat;
   background-position: center center;
@@ -346,10 +360,27 @@ header.masthead2 {
   color: #555b61 !important;
 }
 
+.color_head3 {
+  color: #081321 !important;
+}
+
+.color_head3:active,
+.color_head3:focus,
+.color_head3:hover {
+  color: #1b4274 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobil {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: 15px;
-    padding-bottom: 7rem;
+    padding-top: 25px;
+    padding-bottom: 3rem;
   }
 
   header.masthead .masthead-content .masthead-heading {

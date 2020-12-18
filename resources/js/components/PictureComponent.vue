@@ -1,6 +1,6 @@
 <template>
     <div class="container" style="margin-top: 50px;">
-      <div v-if="none>0">
+      <div v-if="UrlP==='none'">
         <div class="text-center">
             <h4>Please Upload Your Selfie</h4><br>
             <div style="max-width: 500px; margin: 0 auto;">
@@ -42,13 +42,16 @@
                 picture: '',
                 file: '',
                 success: '',
-                none:1
+                none:1,
+                UrlP:'',
             };
         },
         props: [
-            'UrlPicture'
           ],
           methods: {
+            UrlPict(response){
+              this.UrlP= response.image_url;
+            },            
             onFileChange(e) {
                 //console.log(e.target.files[0]);
                 this.picture = "Selected File: " + e.target.files[0].name;
@@ -77,15 +80,11 @@
                     .catch(function (error) {
                         currentObj.output = error;
                     });
+                    location.reload();
             }
         },
         mounted(){
-            if(this.UrlPicture=='none'){
-              this.none=1;
-            }
-            else{
-                this.none=0;
-            }                
+          axios.get(localStorage['URLroot'] + '/profile/UrlIdent/1').then(response => (this.UrlPict(response.data)));                
         }
     }
 </script>
