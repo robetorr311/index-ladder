@@ -81,32 +81,36 @@ extend('ext', {
         },
         props: [
             'productValue',
+            'typeValue',
+            'editValue'
           ],
           methods: {
+            GetFilesUp(response){
+              this.GetUploaded=response;
+            },
             validateField (field) {
               const provider = this.$refs[field];
-              console.log(provider);
               return provider.validate();
             },
-            SetUploaded(){
-              axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.GetUploaded=response.data));
+            SetUploaded(resp){
+              axios.get(localStorage['URLroot'] + '/GetUploaded/' + this.typeValue).then(response => (this.GetFilesUp(response.data)));
             },
             GetPictures(){
-              axios.get(localStorage['URLroot'] + '/GetUploaded').then(response => (this.SetUploaded()));
+              axios.get(localStorage['URLroot'] + '/GetUploaded/'+ this.typeValue).then(response => (this.SetUploaded(response.data)));
             },
             onFileChange(e) {
                 this.picture = "Selected File: " + e.target.files[0].name;
                 this.file = e.target.files[0];
             },
             delete_image(id){
-              console.log(id);
               axios.post( localStorage['URLroot'] + '/imagedelete' ,
               {
                 csrfToken: myToken.csrfToken,
-                image_id: id
+                image_id: id,
+                type: 1
               }
-              ).then(response => (this.IsDeleted = response.data));
-              this.GetPictures();
+              ).then(response => (this.GetUploaded = response.data));
+              //this.GetPictures();
             },
             submitForm(e) {
                 e.preventDefault();
@@ -125,18 +129,19 @@ extend('ext', {
                     .then(function (response) {
                         currentObj.success = 'Uploaded';
                         currentObj.picture = "";
+                        currentObj.GetUploaded=response.data;
                     })
                     .catch(function (error) {
                         currentObj.output = error;
                     });
-                this.GetPictures();
+                //this.GetPictures();
             },
             GetEditPictures(){
-              axios.get(localStorage['URLroot'] + '/GetEditPictures/' + this.productValue ).then(response => (this.GetUploaded = response.data));
+              axios.get(localStorage['URLroot'] + '/GetEditPictures/' + this.productValue + '/'+ this.typeValue ).then(response => (this.GetUploaded = response.data));
             }
         },
         mounted() {
-          if(this.productValue>0){
+          if(this.editValue>0){
             this.GetEditPictures();
           }
           else {

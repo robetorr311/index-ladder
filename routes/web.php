@@ -52,14 +52,15 @@ Route::get('/profile/registrationValues', [App\Http\Controllers\ProfileControlle
 Route::get('/user/show/{id}', [App\Http\Controllers\ProfileController::class, 'UserShow'])->name('UserShow');
 //Products
 Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+Route::post('/product/update', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
 Route::post('/like', [App\Http\Controllers\ProductController::class, 'like'])->name('product.like');
-Route::post('/imagedelete', [App\Http\Controllers\ProductController::class, 'imagedelete'])->name('imagedelete');
 Route::get('/GetLike/{id}', [App\Http\Controllers\ProductController::class, 'GetLike'])->name('product.GetLike');
 Route::get('/product/addnew', [App\Http\Controllers\ProductController::class, 'addnew'])->name('product.addnew');
 Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
 Route::get('/GetItem/{id}', [App\Http\Controllers\ProductController::class, 'GetItem'])->name('GetItem');
 Route::get('/product/view/{id}', [App\Http\Controllers\ProductController::class, 'viewproduct'])->name('view-product');
 Route::get('/getproduct/{id}', [App\Http\Controllers\ProductController::class, 'getproduct'])->name('getproduct');
+Route::get('/getexchproduct/{id}', [App\Http\Controllers\ProductController::class, 'getexchproduct'])->name('getexchproduct');
 Route::get('/getmessages/{id}', [App\Http\Controllers\ProductController::class, 'getmessages'])->name('getmessages');
 Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductController::class, 'FindByCategory'])->name('FindByCategory');
 Route::get('/product/findbyname/{search}', [App\Http\Controllers\ProductController::class, 'FindByName'])->name('FindByName');
@@ -86,6 +87,7 @@ Route::post('/notifications/SetView', [App\Http\Controllers\MessageController::c
 Route::get('/GetMessages/{product}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
+Route::get('/GetTrade/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrade'])->name('GetTrade');
 Route::get('/GetTrader/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrader'])->name('GetTrader');
 Route::get('/GetTraderAvatar/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderAvatar'])->name('GetTraderAvatar');
 Route::get('/GetTraderTrades/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderTrades'])->name('GetTraderTrades');
@@ -123,7 +125,9 @@ Route::post('/upload/card', [App\Http\Controllers\IdentImageController::class, '
 Route::post('/upload/avatar', [App\Http\Controllers\IdentImageController::class, 'avatar'])->name('avatar');
 Route::post('/change/avatar', [App\Http\Controllers\IdentImageController::class, 'changeavatar'])->name('changeavatar');
 Route::get('/images/haveavatar', [App\Http\Controllers\IdentImageController::class, 'haveavatar'])->name('haveavatar');
-Route::get('/GetUploaded', [App\Http\Controllers\ProductImageController::class, 'GetUploaded'])->name('GetUploaded');
-Route::get('/GetEditPictures/{id}', [App\Http\Controllers\ProductImageController::class, 'GetEditPictures'])->name('GetEditPictures');
+Route::get('/GetUploaded/{type}', [App\Http\Controllers\ProductImageController::class, 'GetUploaded'])->name('GetUploaded');
+Route::get('/GetEditPictures/{id}/{type}', [App\Http\Controllers\ProductImageController::class, 'GetEditPictures'])->name('GetEditPictures');
+Route::get('/IsUploaded/{type}', [App\Http\Controllers\ProductImageController::class, 'IsUploaded'])->name('IsUploaded');
+Route::post('/imagedelete', [App\Http\Controllers\ProductImageController::class, 'imagedelete'])->name('imagedelete');
 //Dashboard
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');

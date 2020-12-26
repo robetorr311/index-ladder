@@ -1,107 +1,152 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
     <div class="alert alert-success" v-if="success">
-      <strong>Success!</strong> The item has been updated
+      <strong>Success!</strong> The item has been added
     </div>
           <div class="card">
-            <div class="card-header">Add New Item</div>
+            <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Publish a Trade</h5></div>
               <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="col">
-                      <ValidationProvider name="itemname" rules="required" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                    </div>
-                        <input v-model="itemname" type="text" class="form-control" name="itemname" placeholder="Name">
-                        <span class="has-error">{{ errors[0] }}</span>
+                <div class="card">
+                  <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> You Offer</h5></div>
+                  <div class="card-body">
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <ValidationProvider name="itemname" rules="required|max:249" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input v-model="itemname" type="text" class="form-control" name="itemname" @keydown="onInputChange" placeholder="Name">
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
                       </div>
-                      </ValidationProvider>
-                  </div>
-                </div>  
-                <div class="row justify-content-center">
-                  <div class="col">
-                      <ValidationProvider name="amount" rules="required|double" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                     </div>
-                        <input v-model="amount" type="text" class="form-control" name="amount" placeholder="Amount">
-                        <span class="has-error">{{ errors[0] }}</span>
-                      </div>
-                      </ValidationProvider>
-                  </div>
-                </div> 
-                <div class="row justify-content-center">
-                    <div class="col">
-                      <ValidationProvider name="description" rules="required|max:249" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tags"></i></span>
-                    </div>
-                        <textarea v-model="description" type="text" class="form-control" name="description" placeholder="Description"></textarea>
-                        <span class="has-error">{{ errors[0] }}</span>
-                      </div>
-                      </ValidationProvider>
-                  </div>
-                </div>  
-                <div class="row justify-content-center">
-                    <div class="col">
-                      <ValidationProvider name="type" rules="required" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                    </div>
-                        <select v-model="type" class="form-control" name="type" @change="GetCat">
-                          <option value="" >Choose Type Item</option>
-                          <option v-for="option in GetTypes" v-bind:value="option.id">
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <ValidationProvider name="category" rules="required" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <select v-model="category" class="form-control" name="category" @change="choose()">
+                          <option value="" >Choose One Category</option>
+                          <option v-for="option in CategoryData" v-bind:value="option.id">
                              {{ option.name }}
                           </option>
-                        </select>
-                        <span class="has-error">{{ errors[0] }}</span>
+                            </select>
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
                       </div>
+                    </div>                    
+                    <div class="row justify-content-center" v-if="type==='1331'">
+                    <div class="col">
+                      <ValidationProvider name="amount" rules="double" v-slot="{ errors }">
+                        <div class="input-group" >
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                          </div>
+                          <input v-model="amount" type="text" class="form-control" name="amount" @change="SetDecimal()" placeholder="Amount">
+                          <span class="has-error">{{ errors[0] }}</span>
+                        </div>
                       </ValidationProvider>
-                  </div>
-                </div>  
-                <div class="row justify-content-center">
-                  <div class="col">
-                      <ValidationProvider name="category" rules="required" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
                     </div>
-                        <select v-model="category" class="form-control" name="category" @change="GetSubCat">
-                          <option value="" >Choose Category Item</option>
-                          <option v-for="option in GetCategories" v-bind:value="option.id">
-                             {{ option.name }}
-                          </option>
-                        </select>
-                        <span class="has-error">{{ errors[0] }}</span>
-                      </div>
-                      </ValidationProvider>
-                  </div>
-                </div>  
-                <div class="row justify-content-center">
-                  <div class="col">
-                      <ValidationProvider name="subcategory" rules="required" v-slot="{ errors }">
-                      <div class="input-group" >
-                        <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
                     </div>
-                        <select v-model="subcategory" class="form-control" name="subcategory">
-                          <option value="" >Choose Sub Category Item</option>
-                          <option v-for="option in GetSubCategories" v-bind:value="option.id">
-                             {{ option.name }}
-                          </option>
-                        </select>
-                        <span class="has-error">{{ errors[0] }}</span>
+                    <div class="row justify-content-center">
+                        <div class="col">
+                          <ValidationProvider name="description" rules="required|max:249" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                            </div>
+                            <textarea v-model="description" type="text" class="form-control" name="description" placeholder="Description"></textarea>
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                          </ValidationProvider>
+                        </div>
+                    </div>  
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <upload-component :product-value="productValue" :type-value="1" :edit-value="1"></upload-component>
+                        <ValidationProvider name="upload1" rules="required" v-slot="{ errors }">
+                          <input v-model="upload1" type="hidden" class="form-control" name="upload1">
+                          <span class="has-error">{{ errors[0] }}</span>
+                        </ValidationProvider>                         
                       </div>
-                      </ValidationProvider>
+                    </div>
                   </div>
                 </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <upload-component :product-value="productValue"></upload-component>
+
+                <div class="card">
+                  <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> To be Exchange By</h5></div>
+                  <div class="card-body">
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <ValidationProvider name="exchangeitemname" rules="required|max:249" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <input v-model="exchangeitemname" type="text" class="form-control" name="exchangeitemname" @keydown="onInputExcChange" placeholder="Name">
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <ValidationProvider name="exchangecategory" rules="required" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                            </div>
+                            <select v-model="exchangecategory" class="form-control" name="exchangecategory" @change="Exchchoose()">
+                          <option value="" >Choose One Category</option>
+                          <option v-for="option in ExchCategoryData" v-bind:value="option.id">
+                             {{ option.name }}
+                          </option>
+                            </select>
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                    </div>                    
+                    <div class="row justify-content-center" v-if="exchtype==='1331'">
+                    <div class="col">
+                      <ValidationProvider name="exchangeamount" rules="double" v-slot="{ errors }">
+                        <div class="input-group" >
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                          </div>
+                          <input v-model="exchangeamount" type="text" class="form-control" name="exchangeamount" @change="SetExchDecimal()" placeholder="Amount">
+                          <span class="has-error">{{ errors[0] }}</span>
+                        </div>
+                      </ValidationProvider>
+                    </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col">
+                          <ValidationProvider name="exchangedescription" rules="required|max:249" v-slot="{ errors }">
+                          <div class="input-group" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                            </div>
+                            <textarea v-model="exchangedescription" type="text" class="form-control" name="exchangedescription" placeholder="Description"></textarea>
+                            <span class="has-error">{{ errors[0] }}</span>
+                          </div>
+                          </ValidationProvider>
+                        </div>
+                    </div>  
+                    <div class="row justify-content-center">
+                      <div class="col">
+                        <excimage-component :product-value="productValue" :type-value="2" :edit-value="1"></excimage-component>
+                        <ValidationProvider name="upload2" rules="required" v-slot="{ errors }">
+                          <input v-model="upload2" type="hidden" class="form-control" name="upload2">
+                          <span class="has-error">{{ errors[0] }}</span>
+                        </ValidationProvider> 
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -111,7 +156,7 @@
                 </div>
               </div>
           </div>
-  </ValidationObserver>   
+  </ValidationObserver>     
 </template>
 <script>
 import { ValidationObserver } from 'vee-validate';
@@ -120,6 +165,7 @@ import { extend } from 'vee-validate';
 import { confirmed, double, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
 import UploadComponent from "../UploadComponent.vue";
+import ExcimageComponent from "../ExcimageComponent.vue";
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule]);
 });
@@ -147,28 +193,46 @@ export default {
     ValidationObserver,
     ValidationProvider,
     UploadComponent,
+    ExcimageComponent,
   },
   data() {
     return {
-        ItemId: this.productValue,
-        itemname: '',
+        itemname:'',
         amount: '',
         description: '',
         category: '',
+        exchangeitemname:'',
+        exchangeamount: '',
+        exchangedescription: '',
+        exchangecategory: '',        
         subcategory: '',
+        exchange_id:'',
+        tradde_id:'',
         type: '',
+        exchtype:'',
+        offer: '',
+        time:'',
         product_images:[],
+        GetOffer:'',
+        GetTime:'',
         GetTypes:'',
-        GetItem: '',
         GetCategories:'',
-        GetParentSubc:'',
         GetSubCategories:'',
+        GetECategories:'',
+        GetESubCategories:'',        
         product: '',
         file: '',
         success: '',
         none: 1,
         IsSaved:'',
         success: false,
+        show_amount: false,
+        show_e_amount: false,
+        CategoryData:'',
+        ExchCategoryData:'',
+        exchcategory_id:'',
+        upload1:'',
+        upload2:'', 
       }
     },
     props: [
@@ -179,12 +243,19 @@ export default {
         axios.post( localStorage['URLroot'] + '/product/update' ,
         {
           csrfToken: myToken.csrfToken,
-          id: this.productValue,
-          name: this.itemname,
+          product_id: this.productValue,
+          tradde_id: this.tradde_id,
+          exchange_id: this.exchange_id,
+          itemname:this.itemname,
           amount: this.amount,
+          type: this.type,
           description: this.description,
-          type_id: this.type,
-          category_id: this.subcategory
+          category: this.category,
+          exchangeitemname:this.exchangeitemname,
+          exchangeamount: this.exchangeamount,
+          exchangetype: this.exchtype,
+          exchangedescription: this.exchangedescription,
+          exchangecategory: this.exchangecategory 
         }
         ).then(response => (this.IsSaved = response.data));
         this.showSuccess();
@@ -192,17 +263,31 @@ export default {
       showSuccess(){
           this.success=true;
           setTimeout(() => {
-            location.reload();
+            location.href = localStorage['URLroot'] + '/dashboard';
           },6000);        
+      },
+      GetExchangeValues(response){
+          this.exchproduct_id=response.id;
+          this.exchangeitemname=response.name;
+          this.exchangedescription=response.description;
+          this.exchtype=response.type_id;
+          this.exchangeamount=response.amount;
+          this.exchangecategory=response.ex_category_id;
+          axios.get( localStorage['URLroot'] + '/categories/search/' + this.exchangeitemname).then(response => (this.ExchCategoryData = response.data));
+      },
+      GetEx(response){
+        this.exchange_id=response.exchange_id;
+        axios.get( localStorage['URLroot'] + '/getexchproduct/' + response.exchange_id).then(response => (this.GetExchangeValues(response.data)));
       },
       setValues(data){
         this.itemname=data.name;
         this.amount=data.amount;
         this.description=data.description;
         this.type=data.type_id;
-        this.GetCat();
-        this.GetThisSubCat(data.category_id);
-        this.subcategory=data.category_id;
+        this.category=data.category_id;
+        this.tradde_id=data.tradde_id;
+        axios.get( localStorage['URLroot'] + '/categories/search/' + this.itemname).then(response => (this.CategoryData = response.data));
+        axios.get( localStorage['URLroot'] + '/GetTrade/' + data.tradde_id).then(response => (this.GetEx(response.data)));
       },
       GetCat(){
         var parent='';
@@ -217,22 +302,72 @@ export default {
         }
         axios.get( localStorage['URLroot'] + '/categories/getchilds/' + parent).then(response => (this.GetCategories = response.data));
       },
-      GetThisSubCat(categoryid){
-        axios.get( localStorage['URLroot'] + '/categories/getparent/' + categoryid).then(response => (this.getParentSubCat(response.data)));
-      }, 
-      getParentSubCat(data){
-        this.category=data.id;
-        this.GetSubCat();
-      }, 
-      GetSubCat(){
-        axios.get( localStorage['URLroot'] + '/categories/getchilds/' + this.category).then(response => (this.GetSubCategories = response.data));
+      SetDecimal(){
+        let am = this.amount;
+        let index=am.indexOf(".");
+        if(index<0){
+          am=am + '.00';
+        }
+        this.amount=am;
       },
+      SetExchDecimal(){
+        let am = this.exchangeamount;
+        let index=am.indexOf(".");
+        if(index<0){
+          am=am + '.00';
+        }
+        this.exchangeamount=am;
+      },      
+      getType(response){
+        axios.get( localStorage['URLroot'] + '/categories/getparent/' + response.id).then(response => (this.type = response.data.id));
+      },
+      getExchType(response){
+        axios.get( localStorage['URLroot'] + '/categories/getparent/' + response.id).then(response => (this.exchtype = response.data.id));
+      },
+      choose() {
+        axios.get( localStorage['URLroot'] + '/categories/getparent/' + this.category).then(response => (this.getType(response.data)));
+      },
+      Exchchoose(){
+        axios.get( localStorage['URLroot'] + '/categories/getparent/' + this.exchangecategory).then(response => (this.getExchType(response.data)));
+      },
+      onInputExcChange(){
+        if(this.exchangeitemname.length>2) {
+          axios.get( localStorage['URLroot'] + '/categories/search/' + this.exchangeitemname).then(response => (this.ExchCategoryData = response.data));
+        }
+      },      
+      onInputChange() {
+        if(this.itemname.length>2) {
+          axios.get( localStorage['URLroot'] + '/categories/search/' + this.itemname).then(response => (this.CategoryData = response.data));
+        }
+      },
+      IsUploaded(response){
+        if(response.count>0){
+          this.upload1=response.count;
+        }
+        else{
+          this.upload1='';
+        }
+      },
+      IsEUploaded(response){
+        if(response.count>0){
+          this.upload2=response.count;
+        }
+        else{
+          this.upload2='';
+        }
+      },
+      startInterval() {
+        setInterval(() => {
+          axios.get(localStorage['URLroot'] + '/IsUploaded/' + 1).then(response => (this.IsUploaded(response.data)));
+          axios.get(localStorage['URLroot'] + '/IsUploaded/' + 2).then(response => (this.IsEUploaded(response.data)));
+        }, 2000)
+      },      
     },
     mounted() {
-      this.ItemId=this.productValue;
       axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.GetItem=response.data));
       axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.setValues(response.data)));
       axios.get( localStorage['URLroot'] + '/GetTypes').then(response => (this.GetTypes = response.data));
+      this.startInterval();
     }     
 }
 </script>

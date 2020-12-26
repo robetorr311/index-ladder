@@ -31,6 +31,10 @@ class TraddeController extends Controller
     {
         //
     }
+    public function GetTrade($id){
+        $trade = DB::table('traddes')->where('id','=',$id)->first();
+        return response()->json($trade);
+    }
     public function GetTrades()
     {
       $iduser = Auth::id();

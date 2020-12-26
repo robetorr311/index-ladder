@@ -36,25 +36,91 @@ class ProductController extends Controller
       $token=csrf_token();
       $itemname=$request->itemname;
       $amount=$request->amount;
-      $description=$request->description;
       $type=$request->type;
+      $description=$request->description; 
       $category=$request->category;
-      $product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
+      $exchangeitemname=$request->exchangeitemname;
+      $exchangeamount=$request->exchangeamount;
+      $exchangetype=$request->exchangetype;
+      $exchangedescription=$request->exchangedescription;
+      $exchangecategory=$request->exchangecategory;
+      $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->first();
+      $exch_images = DB::table('product_images')->where('token',$token)->where('trade_type',2)->first();
+      $offer_product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
         'name' => $itemname,
         'description' => $description,
         'image_id' => 0,
         'type_id' => $type,
         'category_id' => $category,
         'amount' => $amount]);
-      $images = Product_image::where('token',$token)->update(['product_id' => $product_id,'token' => $product_id]);
-      $image = DB::table('product_images')->where('product_id','=',$product_id)->first();
-      $prod=Product::where('id',$product_id)->update(['image_id'=>$image->id]);
-      $tradde_number=rand(100000,999999).$iduser.$product_id;
+      $exchange_product_id = DB::table('products')->insertGetId(['user_id' => $iduser,
+        'name' => $exchangeitemname,
+        'description' => $exchangedescription,
+        'image_id' => 0,
+        'type_id' => $exchangetype,
+        'category_id' => $exchangecategory,
+        'amount' => $exchangeamount]);
+      $tradde_number=rand(100000,999999).$iduser.$offer_product_id.$exchange_product_id;
       $tradde_id = DB::table('traddes')->insertGetId(['host_user_id' => $iduser,
-        'product_id' => $product_id,
+        'product_id' => $offer_product_id,
+        'exchange_id' => $exchange_product_id,
         'tradde_number' => $tradde_number,
-        'status' => 1,'category_id'=>$category]);
-      $prod=Product::where('id',$product_id)->update(['tradde_id'=>$tradde_id]);
+        'status' => 1,
+        'category_id'=>$category,
+        'ex_category_id'=>$exchangecategory
+      ]);
+      $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->update(['product_id' => $offer_product_id,'tradde_id'=>$tradde_id, 'token' => $offer_product_id]);
+      $exch_images = DB::table('product_images')->where('token', $token)->where('trade_type',2)->update(['product_id' => $exchange_product_id,'tradde_id'=>$tradde_id, 'token' => $exchange_product_id]);
+      $offimage = DB::table('product_images')->where('product_id','=',$offer_product_id)->first();
+      $offprod=DB::table('products')->where('id',$offer_product_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$offimage->id]);
+      $excimage = DB::table('product_images')->where('product_id','=',$exchange_product_id)->first();
+      $excprod=DB::table('products')->where('id',$exchange_product_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$excimage->id]);
+      return response()->json(['success'=>'Success']);
+    }
+    public function update(Request $request){
+      $iduser = Auth::id();
+      $token=csrf_token();
+      $tradde_id=$request->tradde_id;
+      $product_id=$request->product_id;
+      $exchange_id=$request->exchange_id;
+      $itemname=$request->itemname;
+      $amount=$request->amount;
+      $type=$request->type;
+      $description=$request->description; 
+      $category=$request->category;
+      $exchangeitemname=$request->exchangeitemname;
+      $exchangeamount=$request->exchangeamount;
+      $exchangetype=$request->exchangetype;
+      $exchangedescription=$request->exchangedescription;
+      $exchangecategory=$request->exchangecategory;
+      $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->first();
+      $exch_images = DB::table('product_images')->where('token',$token)->where('trade_type',2)->first();      
+      $offer_product = DB::table('products')->where('id',$product_id)->update(['user_id' => $iduser,
+        'name' => $itemname,
+        'description' => $description,
+        'image_id' => $offer_images->id,
+        'type_id' => $type,
+        'category_id' => $category,
+        'amount' => $amount]);
+      $exchange_product = DB::table('products')->where('id',$exchange_id)->update(['user_id' => $iduser,
+        'name' => $exchangeitemname,
+        'description' => $exchangedescription,
+        'image_id' => $exch_images->id,
+        'type_id' => $exchangetype,
+        'category_id' => $exchangecategory,
+        'amount' => $exchangeamount]);
+      $tradde = DB::table('traddes')->where('id',$tradde_id)->update(['host_user_id' => $iduser,
+        'product_id' => $product_id,
+        'exchange_id' => $exchange_id,
+        'category_id'=>$category,
+        'ex_category_id'=>$exchangecategory
+      ]);
+      $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->update(['product_id' => $product_id,'tradde_id'=>$tradde_id, 'token' => $product_id]);
+      $exch_images = DB::table('product_images')->where('token',$token)->where('trade_type',2)->update(['product_id' => $exchange_id,'tradde_id'=>$tradde_id, 'token' => $exchange_id]);
+      $offimage = DB::table('product_images')->where('product_id','=',$product_id)->first();
+      $offprod=DB::table('products')->where('id',$product_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$offimage->id]);
+      $excimage = DB::table('product_images')->where('product_id','=',$exchange_id)->first();
+      $excprod=DB::table('products')->where('id',$exchange_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$excimage->id]);
       return response()->json(['success'=>'Success']);
     }
     public function addnew(){
@@ -105,17 +171,8 @@ class ProductController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
             ->join('users','traddes.host_user_id','=','users.id')
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'traddes.id as tradde_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
+            ->select('products.*',
+                     'traddes.*',
                      'product_images.image_url as image_url',
                      'users.name as username',
                      'users.email as email',
@@ -124,6 +181,24 @@ class ProductController extends Controller
             ->where('products.id','=',$id)->first();
         return response()->json($product);
     }
+    public function getexchproduct($id){
+          $iduser = Auth::id();
+          $product = DB::table('products')
+            ->join('traddes', 'traddes.exchange_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->join('users','traddes.host_user_id','=','users.id')
+            ->select('products.*',
+                     'traddes.*',
+                     'product_images.image_url as image_url',
+                     'users.name as username',
+                     'users.email as email',
+                     'users.phone as phone',
+                     'categories.name as category')
+            ->where('products.id','=',$id)->first();
+        return response()->json($product);
+    }    
     public function getmessages($id){
       $iduser = Auth::id();
       $messages= DB::table('messages')

@@ -7,15 +7,28 @@
                 <h4 class="card-title">
                   <div class="row">
                     <div class="col">
-                      <p class="text-left">{{ name }}</p>
+                      <p class="text-left"> {{ name }}</p>
                     </div>
                     <div class="col">
-                    <p class="text-right">$ {{ amount }}</p>
+                    <p class="text-right" v-if="amount">Currently valued in $ {{ amount }}</p>
                     </div>
                   </div>
                 </h4>
                 <p class="card-text">{{ category }} </p>
                 <p class="card-text">{{ description }} </p>
+                <h4 class="card-title">
+                  <div class="row">
+                    <div class="col">
+                      <p class="text-left">To be Exchange By {{ exchname }}</p>
+                    </div>
+                    <div class="col">
+                    <p class="text-right" v-if="exchamount">Currently valued in $ {{ exchamount }}</p>
+                    </div>
+                  </div>
+                </h4>
+                <img :src="exchimage_url" class="img-fluid mx-auto d-block">
+                <p class="card-text">{{ exchcategory }} </p>
+                <p class="card-text">{{ exchdescription }} </p>                
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -90,21 +103,31 @@ export default {
           description: '',
           type_id: '',
           amount: '',
+          exchproduct_id: '',
+          exchcategory_id: '',
+          exchname: '',
+          exchdescription: '',
+          exchtype_id: '',
+          exchamount: '',          
           tradde_number: '',
           sell_id: '',
           buy_id: '',
           status: '',
           image_url: '',
+          exchimage_url:'',
           username: '',
           email: '',
           phone: '',
           category: '',
+          exchcategory:'',
           values: '',
           HomeUrl: localStorage['URLroot'],
           logged: false,
           like: true,
           Getuser: '',
-          Getlike: ''
+          Getlike: '',
+          GetExchange:'',
+          exchange_id:'',
       }
     },
     props: [
@@ -129,8 +152,19 @@ export default {
            this.showedit=false;
            this.showsave=true; 
         },
+        GetExchangeValues(response){
+            this.exchproduct_id=response.id;
+            this.exchcategory_id=response.category_id;
+            this.exchname=response.name;
+            this.exchdescription=response.description;
+            this.exchtype_id=response.type_id;
+            this.exchamount=response.amount;
+            this.exchimage_url=response.image_url;
+            this.exchcategory=response.category;
+
+        },
         GetValues(response){
-            this.product_id=response.id;
+            this.product_id=response.product_id;
             this.category_id=response.category_id;
             this.name=response.name;
             this.description=response.description;
@@ -145,6 +179,7 @@ export default {
             this.email=response.email;
             this.phone=response.phone;
             this.category=response.category;
+            axios.get( localStorage['URLroot'] + '/getexchproduct/' + response.exchange_id).then(response => (this.GetExchangeValues(response.data)));
         },
     },
     mounted() {

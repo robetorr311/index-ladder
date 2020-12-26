@@ -10,7 +10,7 @@
                 <p><a :href="urlLegal" class="footerlinks">Legal Terms</a></p>
             </div>
             <div class="col-md-4">
-              <h3><span class="footertitle">For Tradders</span></h3>
+              <h3><span class="footertitle">For Traders</span></h3>
                 <p><a :href="urlCategories" class="footerlinks">Categories</a></p>
                 <p><a :href="urlForums" class="footerlinks">Forum</a></p>
                 <p><a :href="urlBlog" class="footerlinks">Blog</a></p>
@@ -93,9 +93,9 @@
           this.urlNews= value + '/news';
           this.urlPrivacy= value + '/privacy';
           this.urlLegal= value + '/legal';
-          this.urlCategories= value + '/categories';
-          this.urlForums= value + '/forums';
-          this.urlBlog= value + '/blog';
+          this.urlCategories= value;
+          this.urlForums= value;
+          this.urlBlog= value;
           this.urlFAQs= value + '/faq';
           this.urlTwitter= 'https://www.twitter.com';
           this.urlFacebook= 'https://www.facebook.com';
