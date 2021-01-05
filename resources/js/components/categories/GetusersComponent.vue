@@ -8,7 +8,7 @@
               <a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a>
               <div class="card-body text-center">
                 <h6 class="product-name">
-                  {{ users.username }}
+                  {{ users.name }}
                 </h6>
               </div>
             </div>

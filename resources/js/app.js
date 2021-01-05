@@ -71,6 +71,11 @@ Vue.component('alltrades-component', require('./components/trades/AlltradesCompo
 Vue.component('profiletrader-component', require('./components/trades/TraderprofileComponent.vue').default);
 Vue.component('messages-component', require('./components/trades/MessageComponent.vue').default);
 Vue.component('excimage-component', require('./components/ExcimageComponent.vue').default);
+Vue.component('partner-component', require('./components/products/PartnersComponent.vue').default);
+Vue.component('inprogress-component', require('./components/trades/InprogressComponent.vue').default);
+Vue.component('completed-component', require('./components/trades/CompletedComponent.vue').default);
+Vue.component('cancelled-component', require('./components/trades/CancelledComponent.vue').default);
+Vue.component('qualify-component', require('./components/trades/QualifyComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

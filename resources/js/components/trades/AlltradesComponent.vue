@@ -10,22 +10,64 @@
             </div>
             <div class="row align-items-center">
               <div class="col" v-for="item in items.data">
-                <div class="p-5">      
-                  <div class="card">
+                <div class="card card-item">
                   <a :href="Urlproduct + item.id"><img :src="item.image_url" class="img-fluid mx-auto d-block" height="255px"></a>
                   <div class="card-body">
                     <h6 class="product-name">
-                    <a :href="Urlproduct + item.id">{{ item.name }}</a>
-                    </h6>
-                    <h6 class="product-name">$ {{ item.amount }}</h6>
-              <p class="card-text" v-if="item.description.length>82">{{ item.description.substring(0, 82) }} ... <a :href="Urlproduct + item.id">See More</a></p>
+                      <div class="row">
+                        <div class="col">
+                          <p class="text-left">{{ item.name }}</p>
+                        </div>
+                      </div>                      
+                      <div class="row" v-if="item.amount">
+                        <div class="col">
+                          <p class="text-left">Valued in: $ {{ item.amount }}</p>
+                        </div>
+                      </div>
+                      </h6>
+                      <p class="card-text">Status: {{ item.status_name }}</p>
+                      <p class="card-text">Category: {{ item.category }}</p>
+                      <p class="card-text" v-if="item.description.length>82">{{ item.description.substring(0, 82) }} ... <a :href="Urlproduct + item.id">See More</a></p>
               <p class="card-text" v-else>{{ item.description }}</p>
                   </div>
                     <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        <p class="card-stars"><small>
+          <span v-if="GetQualify(item.host_user_id)===1">
+          <i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===2">
+          <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===3">
+          <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===4">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===5">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===6">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===7">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===8">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+        </span>
+        <span v-else-if="resp===9">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </span>
+        <span v-else-if="resp===10">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </span>
+        <span v-else>
+          <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+        </span>
+        </small></p>
                     </div>
                     </div>
-                  </div>
                 </div>
               </div>
               <div class="row">
@@ -56,10 +98,20 @@ import CategoriesComponent from "../categories/CategoriesComponent.vue";
          contactos: {},
          findbyname:'', 
          items: JSON.parse(this.TradeValues),
-         Urlproduct: localStorage['URLroot'] + '/product/view/'
+         Urlproduct: localStorage['URLroot'] + '/product/view/',
+         resp:0,
        }
     },
+    computed: {
+      GetQ(user) {
+        return this.GetQualify(user);
+      }
+    },    
     methods: {
+      GetQualify(user){
+        axios.get( localStorage['URLroot'] + '/GetQualify/' + user).then(response => ( this.resp=response.data));
+        return this.resp;
+      },
       FindByName(){
         var ValueToFind=this.findbyname;
         var Url=localStorage['URLroot'];

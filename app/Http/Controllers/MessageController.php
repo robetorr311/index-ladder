@@ -34,6 +34,7 @@ class MessageController extends Controller
       $product_id=$request->product_id;
       $trade = DB::table('traddes')->where('product_id','=',$product_id)->first();
       DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id]);
+      DB::table('notifications')->insert(['user_id' => $iduser, 'type' => 1,'product_id' => $product_id]);
       $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->get();
       return response()->json($messages);
     }
@@ -55,6 +56,7 @@ class MessageController extends Controller
       $parent_id=$request->parent_id;
       $trade = DB::table('traddes')->where('product_id','=',$product_id)->first();
       DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id,'parent_id' => $parent_id]);
+      DB::table('notifications')->insert(['user_id' => $iduser, 'type' => 1,'product_id' => $product_id]);
       $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->get();
       return response()->json($messages);
     }     

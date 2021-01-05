@@ -430,27 +430,40 @@ class ProductController extends Controller
       return response()->json($types);
     } 
     public function favorites(){
-          $iduser = Auth::id();
-          $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->join('like_products', 'products.id', '=', 'like_products.product_id')            
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'categories.name as category')
-            ->where('like_products.user_id', '=',$iduser)
-            ->paginate(6);
+      $iduser = Auth::id();
+      $pro=[];
+      $like=[];
+      $myproducts = DB::table('products')->where('user_id','=',$iduser)->get();
+      if(!empty($myproducts)){
+        foreach ($myproducts as $key) {
+          $pro[]=$key->id;
+        }
+      }
+      $mylike = DB::table('like_products')->whereIn('product_id',$pro)->get();
+      if(!empty($mylike)){
+        foreach ($mylike as $key) {
+          $like[]=$key->product_id;
+        }
+      }      
+      $product = DB::table('products')
+        ->join('traddes', 'traddes.product_id', '=', 'products.id')
+        ->join('product_images', 'products.image_id', '=', 'product_images.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+        ->join('like_products', 'products.id', '=', 'like_products.product_id')            
+        ->select('products.id as id',
+              'products.category_id as category_id',
+              'products.name as name',
+              'products.description as description',
+              'products.type_id as type_id',
+              'products.amount as amount',
+              'traddes.tradde_number as tradde_number',
+              'traddes.host_user_id as host_user_id',
+              'traddes.target_user_id as target_user_id',
+              'traddes.status as status',
+              'product_images.image_url as image_url',
+              'categories.name as category')
+            ->whereIn('products.id', $like)->paginate(6);
           if(!empty($product)){ $prod=json_encode($product); } else { $prod="";  } 
           return view('content.dashboard',['TradeValues' => json_encode($product)]); 
     }
@@ -488,54 +501,90 @@ class ProductController extends Controller
           return response()->json($product);
     }        
     public function GetFavorites(){
-          $iduser = Auth::id();
-          $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->join('like_products', 'products.id', '=', 'like_products.product_id')            
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'categories.name as category')
-            ->where('like_products.user_id', '=',$iduser)->get();
+      $iduser = Auth::id();
+      $pro=[];
+      $like=[];
+      $myproducts = DB::table('products')->where('user_id','=',$iduser)->get();
+      if(!empty($myproducts)){
+        foreach ($myproducts as $key) {
+          $pro[]=$key->id;
+        }
+      }
+      $mylike = DB::table('like_products')->whereIn('product_id',$pro)->get();
+      if(!empty($mylike)){
+        foreach ($mylike as $key) {
+          $like[]=$key->product_id;
+        }
+      }
+      $mylike2 = DB::table('like_products')->where('user_id',$iduser)->get();
+      if(!empty($mylike2)){
+        foreach ($mylike2 as $key) {
+          $like[]=$key->product_id;
+        }
+      }
+      $product = DB::table('products')
+        ->join('traddes', 'traddes.product_id', '=', 'products.id')
+        ->join('product_images', 'products.image_id', '=', 'product_images.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+        ->select('products.id as id',
+          'products.category_id as category_id',
+          'products.name as name',
+          'products.description as description',
+          'products.type_id as type_id',
+          'products.amount as amount',
+          'traddes.tradde_number as tradde_number',
+          'traddes.host_user_id as host_user_id',
+          'traddes.target_user_id as target_user_id',
+          'traddes.status as status',
+          'product_images.image_url as image_url',
+          'categories.name as category')
+        ->whereIn('products.id', $like)->get();
           return response()->json($product);
     }
     public function GetUsersFavorites(){
       $iduser = Auth::id();
-      $arraycat=[];
-      $users=[];
-      $products = DB::table('like_products')->where('like_products.user_id','=',$iduser)->get();      
-      $categories = DB::table('like_products')
-                ->join('products', 'like_products.product_id', '=', 'products.id')
-                ->join('traddes', 'traddes.product_id', '=', 'products.id')      
-                ->select('products.category_id')
-                ->where('like_products.user_id','=',$iduser)
-                ->groupByRaw('products.category_id')
-                ->get();
-      if(!empty($categories)){
-        
-        foreach ($categories as $catkey) {
-          $arraycat[]=$catkey->category_id;
+      $pro=[];
+      $like=[];
+      $myproducts = DB::table('products')->where('user_id','=',$iduser)->get();
+      if(!empty($myproducts)){
+        foreach ($myproducts as $key) {
+          $pro[]=$key->id;
         }
-        $users = DB::table('users')
+      }
+      $myproducts2 = DB::table('traddes')->where('host_user_id','=',$iduser)->get();
+      if(!empty($myproducts2)){
+        foreach ($myproducts2 as $key) {
+          $pro[]=$key->product_id;
+        }
+      }
+      $myproducts3 = DB::table('traddes')->where('target_user_id','=',$iduser)->get();
+      if(!empty($myproducts3)){
+        foreach ($myproducts3 as $key) {
+          $pro[]=$key->product_id;
+        }
+      }
+      $mylike = DB::table('like_products')->whereIn('product_id',$pro)->whereNotIn('user_id',[$iduser])->get();
+      if(!empty($mylike)){
+        foreach ($mylike as $key) {
+          $like[]=$key->product_id;
+        }
+      }
+      $usr=[];
+      $pro = DB::table('like_products')->whereIn('product_id',$like)->get();
+      if(!empty($pro)){
+        foreach ($pro as $key) {
+          $usr[]=$key->user_id;
+        }
+      }
+      $users = DB::table('users')
           ->join('like_products', 'like_products.user_id', '=', 'users.id')
           ->join('ident_images', 'ident_images.user_id', '=', 'users.id')
           ->join('products', 'like_products.product_id', '=', 'products.id')          
           ->join('traddes', 'traddes.product_id', '=', 'products.id') 
           ->select('users.id as id', 'users.name as username','ident_images.image_url as image_url')
-          ->whereIn('products.category_id', $arraycat)->where('ident_images.ident_type','=',4)->whereNotIn('users.id', [$iduser])
+          ->whereIn('users.id', $usr)->where('ident_images.ident_type','=',4)
           ->groupby('users.id', 'users.name','ident_images.image_url')->limit(10)->get();
-      }
       return response()->json($users);      
     }
     public function matchusers() {

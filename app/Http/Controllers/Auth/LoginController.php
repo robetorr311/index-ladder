@@ -62,6 +62,9 @@ class LoginController extends Controller
               }     
             }
         }
+        else{
+          return ['redirect' => route('login-user')];
+        }
         /*if (Auth::check()) {
           return ['redirect' => route('welcome')];
         }

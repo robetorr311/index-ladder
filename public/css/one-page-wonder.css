@@ -51,7 +51,11 @@ h6 {
 }
 
 .card {
-  border: 0.5px solid #003ed8 !important;
+  border: 0.5px solid #a4c3ea !important;
+}
+
+.card-item {
+  background-color: #accae8 !important;
 }
 
 .card-header {
@@ -73,6 +77,23 @@ h6 {
 .card-text {
   color: #1b4274 !important;
   font-family: FuturaPTW02-Book;
+}
+
+.card-stars {
+  color: #098823 !important;
+  font-family: FuturaPTW02-Book;
+}
+
+.card-comments {
+  background-color: #cedef3 !important;
+  font-family: FuturaPTW02-Book;
+  color: #1b4274 !important;
+}
+
+.card-fcomments {
+  background-color: #7ba7e0 !important;
+  font-family: FuturaPTW02-Book;
+  color: #1b4274 !important;
 }
 
 .card-title {
@@ -300,7 +321,15 @@ h6 {
 }
 
 .have-notificatons {
-  color: #a60000;
+  color: #098823 !important;
+  font-family: FuturaPTW02-Book;
+}
+
+.have-inprogress {
+  color: #098823 !important;
+  font-family: FuturaPTW02-Book;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .navbar-custom {

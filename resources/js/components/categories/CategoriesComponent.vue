@@ -87,129 +87,121 @@
     </div>
     <p class="pcategory"><span data-target="#services_categories" class="categorieslink" data-toggle="collapse"><i class="fas fa-plus-square" v-if="ClickOnServ===false" @click="ChangeBoxServ"></i><i class="fas fa-minus-square" v-else @click="ChangeBoxServ"></i> Services</span></p>
     <div id="services_categories" class="collapse">
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1===false" @click="ChangeBox1"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1"></i> Some agricultural services (including landscaping and horticulture)</span></p>
-      <div id="subcategory1" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor1">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1799" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1799===false" @click="ChangeBox1799"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1799"></i> Academic Consulting Services</span></p>
+      <div id="subcategory1799" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1799">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory2" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn2===false" @click="ChangeBox2"></i><i class="fas fa-minus-square" v-else @click="ChangeBox2"></i> Hotels and other places of lodging</span></p>
-      <div id="subcategory2" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor2">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1800" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1800===false" @click="ChangeBox1800"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1800"></i> Administrative Services</span></p>
+      <div id="subcategory1800" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1800">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory3" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn3===false" @click="ChangeBox3"></i><i class="fas fa-minus-square" v-else @click="ChangeBox3"></i> Personal services (including dry cleaning, tax preparation, and hair cutting)</span></p>
-      <div id="subcategory3" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor3">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1801" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1801===false" @click="ChangeBox1801"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1801"></i> Animal Care Services</span></p>
+      <div id="subcategory1801" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1801">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory4" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn4===false" @click="ChangeBox4"></i><i class="fas fa-minus-square" v-else @click="ChangeBox4"></i> Business services (including temporary agencies and business software developers)</span></p>
-      <div id="subcategory4" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor4">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1802" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1802===false" @click="ChangeBox1802"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1802"></i> Automobile Maintenance and Repair</span></p>
+      <div id="subcategory1802" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1802">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory5" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn5===false" @click="ChangeBox5"></i><i class="fas fa-minus-square" v-else @click="ChangeBox5"></i> Automotive services</span></p>
-      <div id="subcategory5" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor5">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1803" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1803===false" @click="ChangeBox1803"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1803"></i> Beauty and Lifestyle Service Business</span></p>
+      <div id="subcategory1803" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1803">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory6" class="categorieslink"> <i class="fas fa-plus-square" v-if="ClickOn6===false" @click="ChangeBox6"></i><i class="fas fa-minus-square" v-else @click="ChangeBox6"></i> Miscellaneous repairs</span></p>
-      <div id="subcategory6" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor6">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1804" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1804===false" @click="ChangeBox1804"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1804"></i> Elder Care Services</span></p>
+      <div id="subcategory1804" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1804">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory7" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn7===false" @click="ChangeBox7"></i><i class="fas fa-minus-square" v-else @click="ChangeBox7"></i> Motion pictures</span></p>
-      <div id="subcategory7" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor7">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1805" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1805===false" @click="ChangeBox1805"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1805"></i> Event Service Businesses</span></p>
+      <div id="subcategory1805" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1805">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory8" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn8===false" @click="ChangeBox8"></i><i class="fas fa-minus-square" v-else @click="ChangeBox8"></i> Amusements and recreation</span></p>
-      <div id="subcategory8" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor8">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1806" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1806===false" @click="ChangeBox1806"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1806"></i> Home Maintenance and Repair Services</span></p>
+      <div id="subcategory1806" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1806">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory9" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn9===false" @click="ChangeBox9"></i><i class="fas fa-minus-square" v-else @click="ChangeBox9"></i> Healthcare</span></p>
-      <div id="subcategory9" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor9">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1807" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1807===false" @click="ChangeBox1807"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1807"></i> Legal Services</span></p>
+      <div id="subcategory1807" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1807">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory10" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn10===false" @click="ChangeBox10"></i><i class="fas fa-minus-square" v-else @click="ChangeBox10"></i> Legal services</span></p>
-      <div id="subcategory10" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor10">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1808" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1808===false" @click="ChangeBox1808"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1808"></i> Personal Concierge Services</span></p>
+      <div id="subcategory1808" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1808">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory11" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn11===false" @click="ChangeBox11"></i><i class="fas fa-minus-square" v-else @click="ChangeBox11"></i> Private education</span></p>
-      <div id="subcategory11" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor11">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1809" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1809===false" @click="ChangeBox1809"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1809"></i> Personal Health and Wellness Services</span></p>
+      <div id="subcategory1809" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1809">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory12" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn12===false" @click="ChangeBox12"></i><i class="fas fa-minus-square" v-else @click="ChangeBox12"></i> Social services</span></p>
-      <div id="subcategory12" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor12">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1810" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1810===false" @click="ChangeBox1810"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1810"></i> Sales and Marketing</span></p>
+      <div id="subcategory1810" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1810">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory13" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn13===false" @click="ChangeBox13"></i><i class="fas fa-minus-square" v-else @click="ChangeBox13"></i> Museums, zoos, and botanical gardens</span></p>
-      <div id="subcategory13" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor13">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1811" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1811===false" @click="ChangeBox1811"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1811"></i> Serving Parents Babies and Small Children</span></p>
+      <div id="subcategory1811" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1811">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory14" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn14===false" @click="ChangeBox14"></i><i class="fas fa-minus-square" v-else @click="ChangeBox14"></i> Membership organizations (including houses of worship and clubs)</span></p>
-      <div id="subcategory14" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor14">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1812" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1812===false" @click="ChangeBox1812"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1812"></i> Technology Maintenance and Repair Services</span></p>
+      <div id="subcategory1812" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1812">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory15" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn15===false" @click="ChangeBox15"></i><i class="fas fa-minus-square" v-else @click="ChangeBox15"></i>Engineering and management services (including consulting)</span></p>
-      <div id="subcategory15" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor15">
-          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
-             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
-         </div>
-      </div>
-       <p class="pcategory"><span data-toggle="collapse" data-target="#subcategory16" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn16===false" @click="ChangeBox16"></i><i class="fas fa-minus-square" v-else @click="ChangeBox16"></i> Other miscellaneous services</span></p>
-      <div id="subcategory16" class="collapse">
-         <div class="pad-left" v-for="item in ValuesFor16">
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1813" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1813===false" @click="ChangeBox1813"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1813"></i> Travel and Tourism Service Businesses</span></p>
+      <div id="subcategory1813" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1813">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
              <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
@@ -218,15 +210,139 @@
     </div>   
     <p class="pcategory"><span data-target="#skills_categories"  class="categorieslink" data-toggle="collapse"><i class="fas fa-plus-square" v-if="ClickOnSkill===false" @click="ChangeBoxSkill"></i><i class="fas fa-minus-square" v-else @click="ChangeBoxSkill"></i> Skills</span></p>
     <div id="skills_categories" class="collapse">
-      <div class="pad-left" v-for="categoryskill in valuesski">
-      	<p class="pcategory"><span :data-target="'#' + categoryskill.id" class="categorieslink" data-toggle="collapse" >
-        <i class="far fa-check-square" @click="SelectCategory(categoryskill.id)" v-if="selectedCategory.includes(categoryskill.id)"></i>
-        <i class="far fa-square cursor" @click="SelectCategory(categoryskill.id)" v-else></i>
-      	 {{ categoryskill.name }}</span></p>
-        <div :id="categoryskill.id" class="collapse">
-          <p class="pcategory"><i class="far fa-square cursor"></i> Sub Category1</p>    
-          <p class="pcategory"><i class="far fa-square cursor"></i> Sub Category1</p>
-        </div>
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1957" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1957===false" @click="ChangeBox1957"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1957"></i> Academic Consulting Skills</span></p>
+      <div id="subcategory1957" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1957">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1958" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1958===false" @click="ChangeBox1958"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1958"></i> Administrative Skills</span></p>
+      <div id="subcategory1958" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1958">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1959" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1959===false" @click="ChangeBox1959"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1959"></i> Automobile Maintenance and Repairing Skills</span></p>
+      <div id="subcategory1959" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1959">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1960" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1960===false" @click="ChangeBox1960"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1960"></i> Animal Care Skills</span></p>
+      <div id="subcategory1960" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1960">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1961" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1961===false" @click="ChangeBox1961"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1961"></i> Beauty and Lifestyle Skills Business</span></p>
+      <div id="subcategory1961" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1961">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1962" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1962===false" @click="ChangeBox1962"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1962"></i> Elder Care Skills</span></p>
+      <div id="subcategory1962" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1962">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1963" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1963===false" @click="ChangeBox1963"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1963"></i> Event Service Skills</span></p>
+      <div id="subcategory1963" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1963">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1964" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1964===false" @click="ChangeBox1964"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1964"></i> Home Maintenance and Repair Skills</span></p>
+      <div id="subcategory1964" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1964">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1965" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1965===false" @click="ChangeBox1965"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1965"></i> Legal Skills</span></p>
+      <div id="subcategory1965" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1965">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1966" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1966===false" @click="ChangeBox1966"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1966"></i> Personal Concierge Skills</span></p>
+      <div id="subcategory1966" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1966">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1967" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1967===false" @click="ChangeBox1967"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1967"></i> Personal Health and Wellness Skills</span></p>
+      <div id="subcategory1967" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1967">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1968" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1968===false" @click="ChangeBox1968"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1968"></i> Sales and Marketing</span></p>
+      <div id="subcategory1968" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1968">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1969" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1969===false" @click="ChangeBox1969"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1969"></i> Serving Parents, Babies, and Small Children</span></p>
+      <div id="subcategory1969" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1969">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1970" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1970===false" @click="ChangeBox1970"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1970"></i> Technology Maintenance and Repair Skills</span></p>
+      <div id="subcategory1970" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1970">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
+      </div>
+
+<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1971" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1971===false" @click="ChangeBox1971"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1971"></i> Travel and Tourism Service Businesses</span></p>
+      <div id="subcategory1971" class="collapse">
+         <div class="pad-left" v-for="item in ValuesFor1971">
+          <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
+             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
+         </div>
       </div>
     </div>       
 </div>
@@ -248,22 +364,36 @@
         ValuesFor1338: null,
         ValuesFor1339: null,
         ValuesFor1340: null,
-        ValuesFor1: null,
-        ValuesFor2: null,
-        ValuesFor3: null,
-        ValuesFor4: null,
-        ValuesFor5: null,
-        ValuesFor6: null,
-        ValuesFor7: null,
-        ValuesFor8: null,
-        ValuesFor9: null,
-        ValuesFor10: null,
-        ValuesFor11: null,
-        ValuesFor12: null,
-        ValuesFor13: null,
-        ValuesFor14: null,
-        ValuesFor15: null,
-        ValuesFor16: null,
+        ValuesFor1799: null,
+        ValuesFor1800: null,
+        ValuesFor1801: null,
+        ValuesFor1802: null,
+        ValuesFor1803: null,
+        ValuesFor1804: null,
+        ValuesFor1805: null,
+        ValuesFor1806: null,
+        ValuesFor1807: null,
+        ValuesFor1808: null,
+        ValuesFor1809: null,
+        ValuesFor1810: null,
+        ValuesFor1811: null,
+        ValuesFor1812: null,
+        ValuesFor1813: null,
+        ValuesFor1957:null,
+        ValuesFor1958:null,
+        ValuesFor1959:null,
+        ValuesFor1960:null,
+        ValuesFor1961:null,
+        ValuesFor1962:null,
+        ValuesFor1963:null,
+        ValuesFor1964:null,
+        ValuesFor1965:null,
+        ValuesFor1966:null,
+        ValuesFor1967:null,
+        ValuesFor1968:null,
+        ValuesFor1969:null,
+        ValuesFor1970:null,
+        ValuesFor1971:null,        
         Get1332: 1332,
         Get1333: 1333,
         Get1334: 1334,
@@ -273,23 +403,37 @@
         Get1338: 1338,
         Get1339: 1339,
         Get1340: 1340,
-        Get1: 1,
-        Get2: 2,
-        Get3: 3,
-        Get4: 4,
-        Get5: 5,
-        Get6: 6,
-        Get7: 7,
-        Get8: 8,
-        Get9: 9,
-        Get10: 10,
-        Get11: 11,
-        Get12: 12,
-        Get13: 13,
-        Get14: 14,
-        Get15: 15,
-        Get16: 16,
-      	catski: 257,
+        Get1799: 1799,
+        Get1800: 1800,
+        Get1801: 1801,
+        Get1802: 1802,
+        Get1803: 1803,
+        Get1804: 1804,
+        Get1805: 1805,
+        Get1806: 1806,
+        Get1807: 1807,
+        Get1808: 1808,
+        Get1809: 1809,
+        Get1810: 1810,
+        Get1811: 1811,
+        Get1812: 1812,
+        Get1813: 1813,
+      	catski: 1330,
+        Get1957: 1957,
+        Get1958: 1958,
+        Get1959: 1959,
+        Get1960: 1960,
+        Get1961: 1961,
+        Get1962: 1962,
+        Get1963: 1963,
+        Get1964: 1964,
+        Get1965: 1965,
+        Get1966: 1966,
+        Get1967: 1967,
+        Get1968: 1968,
+        Get1969: 1969,
+        Get1970: 1970,
+        Get1971: 1971,        
         ClickOnProp: false,
         ClickOnServ: false,
         ClickOnSkill: false,
@@ -302,22 +446,35 @@
         ClickOn1338: false,
         ClickOn1339: false,
         ClickOn1340: false,
-        ClickOn1: false,
-        ClickOn2: false,
-        ClickOn3: false,
-        ClickOn4: false,
-        ClickOn5: false,
-        ClickOn6: false,
-        ClickOn7: false,
-        ClickOn8: false,
-        ClickOn9: false,
-        ClickOn10: false,
-        ClickOn11: false,
-        ClickOn12: false,
-        ClickOn13: false,
-        ClickOn14: false,
-        ClickOn15: false,
-        ClickOn16: false,        
+        ClickOn1800: false,
+        ClickOn1801: false,
+        ClickOn1802: false,
+        ClickOn1803: false,
+        ClickOn1804: false,
+        ClickOn1805: false,
+        ClickOn1806: false,
+        ClickOn1807: false,
+        ClickOn1808: false,
+        ClickOn1809: false,
+        ClickOn1810: false,
+        ClickOn1811: false,
+        ClickOn1812: false,
+        ClickOn1813: false,
+        ClickOn1957:false,
+        ClickOn1958:false,
+        ClickOn1959:false,
+        ClickOn1960:false,
+        ClickOn1961:false,
+        ClickOn1962:false,
+        ClickOn1963:false,
+        ClickOn1964:false,
+        ClickOn1965:false,
+        ClickOn1966:false,
+        ClickOn1967:false,
+        ClickOn1968:false,
+        ClickOn1969:false,
+        ClickOn1970:false,
+        ClickOn1971:false,        
       	valuesski: null,
       	selectedCategory:[]
       }
@@ -382,69 +539,125 @@
         var status=this.ClickOn1340;
         if(status==true){ this.ClickOn1340=false; } else { this.ClickOn1340=true; }
       },
-      ChangeBox1(){
-        var status=this.ClickOn1;
-        if(status==true){ this.ClickOn1=false; } else { this.ClickOn1=true; }
+      ChangeBox1799(){
+        var status=this.ClickOn1799;
+        if(status==true){ this.ClickOn1799=false; } else { this.ClickOn1799=true; }
       },
-      ChangeBox2(){
-        var status=this.ClickOn2;
-        if(status==true){ this.ClickOn2=false; } else { this.ClickOn2=true; }
+      ChangeBox1800(){
+        var status=this.ClickOn1800;
+        if(status==true){ this.ClickOn1800=false; } else { this.ClickOn1800=true; }
       },
-      ChangeBox3(){
-        var status=this.ClickOn3;
-        if(status==true){ this.ClickOn3=false; } else { this.ClickOn3=true; }
+      ChangeBox1801(){
+        var status=this.ClickOn1801;
+        if(status==true){ this.ClickOn1801=false; } else { this.ClickOn1801=true; }
       },
-      ChangeBox4(){
-        var status=this.ClickOn4;
-        if(status==true){ this.ClickOn4=false; } else { this.ClickOn4=true; }
+      ChangeBox1802(){
+        var status=this.ClickOn1802;
+        if(status==true){ this.ClickOn1802=false; } else { this.ClickOn1802=true; }
       },
-      ChangeBox5(){
-        var status=this.ClickOn5;
-        if(status==true){ this.ClickOn5=false; } else { this.ClickOn5=true; }
+      ChangeBox1803(){
+        var status=this.ClickOn1803;
+        if(status==true){ this.ClickOn1803=false; } else { this.ClickOn1803=true; }
       },
-      ChangeBox6(){
-        var status=this.ClickOn6;
-        if(status==true){ this.ClickOn6=false; } else { this.ClickOn6=true; }
+      ChangeBox1804(){
+        var status=this.ClickOn1804;
+        if(status==true){ this.ClickOn1804=false; } else { this.ClickOn1804=true; }
       },
-      ChangeBox7(){
-        var status=this.ClickOn7;
-        if(status==true){ this.ClickOn7=false; } else { this.ClickOn7=true; }
+      ChangeBox1805(){
+        var status=this.ClickOn1805;
+        if(status==true){ this.ClickOn1805=false; } else { this.ClickOn1805=true; }
       },
-      ChangeBox8(){
-        var status=this.ClickOn8;
-        if(status==true){ this.ClickOn8=false; } else { this.ClickOn8=true; }
+      ChangeBox1806(){
+        var status=this.ClickOn1806;
+        if(status==true){ this.ClickOn1806=false; } else { this.ClickOn1806=true; }
       },
-      ChangeBox9(){
-        var status=this.ClickOn9;
-        if(status==true){ this.ClickOn9=false; } else { this.ClickOn9=true; }
+      ChangeBox1807(){
+        var status=this.ClickOn1807;
+        if(status==true){ this.ClickOn1807=false; } else { this.ClickOn1807=true; }
       },
-      ChangeBox10(){
-        var status=this.ClickOn10;
-        if(status==true){ this.ClickOn10=false; } else { this.ClickOn10=true; }
+      ChangeBox1808(){
+        var status=this.ClickOn1808;
+        if(status==true){ this.ClickOn1808=false; } else { this.ClickOn1808=true; }
       },
-      ChangeBox11(){
-        var status=this.ClickOn11;
-        if(status==true){ this.ClickOn11=false; } else { this.ClickOn11=true; }
+      ChangeBox1809(){
+        var status=this.ClickOn1809;
+        if(status==true){ this.ClickOn1809=false; } else { this.ClickOn1809=true; }
       },
-      ChangeBox12(){
-        var status=this.ClickOn12;
-        if(status==true){ this.ClickOn12=false; } else { this.ClickOn12=true; }
+      ChangeBox1810(){
+        var status=this.ClickOn1810;
+        if(status==true){ this.ClickOn1810=false; } else { this.ClickOn1810=true; }
       },
-      ChangeBox13(){
-        var status=this.ClickOn13;
-        if(status==true){ this.ClickOn13=false; } else { this.ClickOn13=true; }
+      ChangeBox1811(){
+        var status=this.ClickOn1811;
+        if(status==true){ this.ClickOn1811=false; } else { this.ClickOn1811=true; }
       },
-      ChangeBox14(){
-        var status=this.ClickOn14;
-        if(status==true){ this.ClickOn14=false; } else { this.ClickOn14=true; }
+      ChangeBox1812(){
+        var status=this.ClickOn1812;
+        if(status==true){ this.ClickOn1812=false; } else { this.ClickOn1812=true; }
       },
-      ChangeBox15(){
-        var status=this.ClickOn15;
-        if(status==true){ this.ClickOn15=false; } else { this.ClickOn15=true; }
+      ChangeBox1813(){
+        var status=this.ClickOn1813;
+        if(status==true){ this.ClickOn1813=false; } else { this.ClickOn1813=true; }
       },
-      ChangeBox16(){
-        var status=this.ClickOn16;
-        if(status==true){ this.ClickOn16=false; } else { this.ClickOn16=true; }
+      ChangeBox1957(){
+        var status=this.ClickOn1957;
+        if(status==true){ this.ClickOn1957=false; } else { this.ClickOn1957=true; }
+      },
+      ChangeBox1958(){
+        var status=this.ClickOn1958;
+        if(status==true){ this.ClickOn1958=false; } else { this.ClickOn1958=true; }
+      },
+      ChangeBox1959(){
+        var status=this.ClickOn1959;
+        if(status==true){ this.ClickOn1959=false; } else { this.ClickOn1959=true; }
+      },
+      ChangeBox1960(){
+        var status=this.ClickOn1960;
+        if(status==true){ this.ClickOn1960=false; } else { this.ClickOn1960=true; }
+      },
+      ChangeBox1961(){
+        var status=this.ClickOn1961;
+        if(status==true){ this.ClickOn1961=false; } else { this.ClickOn1961=true; }
+      },
+      ChangeBox1962(){
+        var status=this.ClickOn1962;
+        if(status==true){ this.ClickOn1962=false; } else { this.ClickOn1962=true; }
+      },
+      ChangeBox1963(){
+        var status=this.ClickOn1963;
+        if(status==true){ this.ClickOn1963=false; } else { this.ClickOn1963=true; }
+      },
+      ChangeBox1964(){
+        var status=this.ClickOn1964;
+        if(status==true){ this.ClickOn1964=false; } else { this.ClickOn1964=true; }
+      },
+      ChangeBox1965(){
+        var status=this.ClickOn1965;
+        if(status==true){ this.ClickOn1965=false; } else { this.ClickOn1965=true; }
+      },
+      ChangeBox1966(){
+        var status=this.ClickOn1966;
+        if(status==true){ this.ClickOn1966=false; } else { this.ClickOn1966=true; }
+      },
+      ChangeBox1967(){
+        var status=this.ClickOn1967;
+        if(status==true){ this.ClickOn1967=false; } else { this.ClickOn1967=true; }
+      },
+      ChangeBox1968(){
+        var status=this.ClickOn1968;
+        if(status==true){ this.ClickOn1968=false; } else { this.ClickOn1968=true; }
+      },
+      ChangeBox1969(){
+        var status=this.ClickOn1969;
+        if(status==true){ this.ClickOn1969=false; } else { this.ClickOn1969=true; }
+      },
+      ChangeBox1970(){
+        var status=this.ClickOn1970;
+        if(status==true){ this.ClickOn1970=false; } else { this.ClickOn1970=true; }
+      },
+      ChangeBox1971(){
+        var status=this.ClickOn1971;
+        if(status==true){ this.ClickOn1971=false; } else { this.ClickOn1971=true; }
       },
       removeItemAll(arr, value) {
         var i = 0;
@@ -477,23 +690,36 @@
       axios.get(url + '/categories/getchilds/' + this.Get1338).then(response => (this.ValuesFor1338 = response.data));
       axios.get(url + '/categories/getchilds/' + this.Get1339).then(response => (this.ValuesFor1339 = response.data));
       axios.get(url + '/categories/getchilds/' + this.Get1340).then(response => (this.ValuesFor1340 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get1).then(response => (this.ValuesFor1 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get2).then(response => (this.ValuesFor2 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get3).then(response => (this.ValuesFor3 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get4).then(response => (this.ValuesFor4 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get5).then(response => (this.ValuesFor5 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get6).then(response => (this.ValuesFor6 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get7).then(response => (this.ValuesFor7 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get8).then(response => (this.ValuesFor8 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get9).then(response => (this.ValuesFor9 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get10).then(response => (this.ValuesFor10 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get11).then(response => (this.ValuesFor11 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get12).then(response => (this.ValuesFor12 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get13).then(response => (this.ValuesFor13 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get14).then(response => (this.ValuesFor14 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get15).then(response => (this.ValuesFor15 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.Get16).then(response => (this.ValuesFor16 = response.data));
-      axios.get(url + '/categories/getchilds/' + this.catski).then(response => (this.valuesski = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1799).then(response => (this.ValuesFor1799 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1800).then(response => (this.ValuesFor1800 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1801).then(response => (this.ValuesFor1801 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1802).then(response => (this.ValuesFor1802 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1803).then(response => (this.ValuesFor1803 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1804).then(response => (this.ValuesFor1804 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1805).then(response => (this.ValuesFor1805 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1806).then(response => (this.ValuesFor1806 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1807).then(response => (this.ValuesFor1807 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1808).then(response => (this.ValuesFor1808 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1809).then(response => (this.ValuesFor1809 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1810).then(response => (this.ValuesFor1810 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1811).then(response => (this.ValuesFor1811 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1812).then(response => (this.ValuesFor1812 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1813).then(response => (this.ValuesFor1813 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1957).then(response => (this.ValuesFor1957 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1958).then(response => (this.ValuesFor1958 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1959).then(response => (this.ValuesFor1959 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1960).then(response => (this.ValuesFor1960 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1961).then(response => (this.ValuesFor1961 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1962).then(response => (this.ValuesFor1962 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1963).then(response => (this.ValuesFor1963 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1964).then(response => (this.ValuesFor1964 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1965).then(response => (this.ValuesFor1965 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1966).then(response => (this.ValuesFor1966 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1967).then(response => (this.ValuesFor1967 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1968).then(response => (this.ValuesFor1968 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1969).then(response => (this.ValuesFor1969 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1970).then(response => (this.ValuesFor1970 = response.data));
+      axios.get(url + '/categories/getchilds/' + this.Get1971).then(response => (this.ValuesFor1971 = response.data));
     }
   }	
 </script>

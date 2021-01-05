@@ -82,10 +82,13 @@ Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetType
 Route::post('/messages/store', [App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
 Route::post('/messages/delete', [App\Http\Controllers\MessageController::class, 'delete'])->name('messages.delete');
 Route::post('/messages/SendResponse', [App\Http\Controllers\MessageController::class, 'SendResponse'])->name('messages.SendResponse');
+Route::post('/trade/accept', [App\Http\Controllers\TraddeController::class, 'accept'])->name('trades.accept');
+Route::post('/trade/cancel', [App\Http\Controllers\TraddeController::class, 'cancel'])->name('trades.cancel');
+Route::post('/trade/finish', [App\Http\Controllers\TraddeController::class, 'finish'])->name('trades.finish');
+Route::post('/trade/confirm', [App\Http\Controllers\TraddeController::class, 'confirm'])->name('trades.confirm');
 Route::get('/GetNotifications', [App\Http\Controllers\MessageController::class, 'GetNotifications'])->name('GetNotifications');
 Route::post('/notifications/SetView', [App\Http\Controllers\MessageController::class, 'SetView'])->name('notifications.SetView');
 Route::get('/GetMessages/{product}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
-Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
 Route::get('/GetTrade/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrade'])->name('GetTrade');
 Route::get('/GetTrader/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrader'])->name('GetTrader');
@@ -95,6 +98,15 @@ Route::get('/mytrades/all', [App\Http\Controllers\TraddeController::class, 'GetA
 Route::get('/trades/all', [App\Http\Controllers\TraddeController::class, 'GetAllTrades'])->name('GetAllTrades');
 Route::get('/trades/GetOffer', [App\Http\Controllers\TraddeController::class, 'GetOffer'])->name('trade.GetOffer');
 Route::get('/trades/GetTime', [App\Http\Controllers\TraddeController::class, 'GetTime'])->name('trade.GetTime');
+Route::get('/GetPartners', [App\Http\Controllers\TraddeController::class, 'GetPartners'])->name('GetPartners');
+Route::get('/GetInProgress', [App\Http\Controllers\TraddeController::class, 'GetInProgress'])->name('GetInProgress');
+Route::get('/GetCancelled', [App\Http\Controllers\TraddeController::class, 'GetCancelled'])->name('GetCancelled');
+Route::get('/GetCompleted', [App\Http\Controllers\TraddeController::class, 'GetCompleted'])->name('GetCompleted');
+Route::get('/GetConfirmed/{tradde}', [App\Http\Controllers\TraddeController::class, 'GetConfirmed'])->name('GetConfirmed');
+Route::get('/GetHostQualify', [App\Http\Controllers\TraddeController::class, 'GetHostQualify'])->name('GetHostQualify');
+Route::get('/GetQualify/{user}', [App\Http\Controllers\TraddeController::class, 'GetQualify'])->name('GetQualify');
+Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
+Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::get('/categories/choose', [App\Http\Controllers\CategoryController::class, 'choose_categories'])->name('categories.choose');

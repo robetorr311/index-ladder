@@ -14,22 +14,17 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Trading Partners</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Component here....</p>
-                    </div>
-                  </div>
+                  <partner-component></partner-component>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <inprogress-component></inprogress-component>
                 </div>
               </div>               
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-star"></i> Score and comments</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Info component here....</p>
-                    </div>
-                  </div>
+                  <qualify-component></qualify-component>
                 </div>
               </div>              
             </div>
@@ -81,22 +76,12 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Completed Trades</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Component here....</p>
-                    </div>
-                  </div>
+                  <completed-component></completed-component>
                 </div>
               </div> 
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Cancelled Trades</h5></div>
-                    <div class="card-body">
-                      <p class="card-text">Component here....</p>
-                    </div>
-                  </div>
+                  <cancelled-component></cancelled-component>
                 </div>
               </div>                            
             </div>
@@ -116,6 +101,9 @@
   import SalesComponent from "../products/SalesComponent.vue";
   import TraderprofileComponent from "../trades/TraderprofileComponent.vue";
   import FavoritesComponent from "../products/FavoritesComponent.vue";
+  import InprogressComponent from "../trades/InprogressComponent.vue";
+  import CompletedComponent from "../trades/CompletedComponent.vue";
+  import CancelledComponent from "../trades/CancelledComponent.vue";
 
   export default {
       components: {
@@ -131,6 +119,9 @@
         SalesComponent,
         TraderprofileComponent,
         FavoritesComponent,
+        InprogressComponent,
+        CancelledComponent,
+        CompletedComponent,
       },
       data() {
         return {

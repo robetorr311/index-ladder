@@ -1,6 +1,9 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
     <div class="container">
+    <div class="alert alert-danger" v-if="fail">
+      <strong>Fail!</strong> Wrong Email or Password 
+    </div>          
         <div id="formregistration">
       <div class="row align-items-center">
         <div class="col-lg-8 order-lg-2">
@@ -117,9 +120,23 @@ export default {
       UrlRecover: localStorage['URLroot'] + '/recover',
       UrlRegistration: localStorage['URLroot'] + '/registration',
       UrlHome: localStorage['URLroot'],
+      fail:false,
      }
     },
     methods: {
+        showFail(){
+          var value = localStorage['message'];
+          var str=value.split('|');
+          if(value.length>0){
+            this.show=str[2];
+            if(this.show==3){
+              this.fail=true;
+              setTimeout(() => {
+                this.fail=false;
+              },6000); 
+            }
+          }          
+        },
         onSubmit() {
             var login = localStorage['URLroot'] + '/login-user';
             var setnumber = localStorage['URLroot'] + '/setnumber';
@@ -135,7 +152,7 @@ export default {
                 var red=response.data.redirect;
                 switch (red) {
                   case login:
-                    localStorage.setItem( 'message', 'error|Login or password incorrect!|1' );
+                    localStorage.setItem( 'message', 'fail|Wrong User or Password!!!|3' );
                     location.href = response.data.redirect;
                     break;
                   case setnumber:
@@ -155,7 +172,8 @@ export default {
             });           
         },
     },
-    mounted() {    
+    mounted() {
+     this.showFail();    
     }    
 }
 </script>

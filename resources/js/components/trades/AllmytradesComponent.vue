@@ -5,7 +5,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col" v-for="product in items.data">
-            <div class="card">
+            <div class="card card-item">
               <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
                 <h6 class="product-name">

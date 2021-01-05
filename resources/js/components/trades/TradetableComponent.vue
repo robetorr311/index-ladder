@@ -4,14 +4,26 @@
     <div class="card-body">
       <div class="row">
         <div class="col" v-for="product in GetValues">
-            <div class="card">
+            <div class="card card-item" >
               <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block" height="255px"></a>
               <div class="card-body">
-                <h6 class="product-name">
-                  {{ product.name }}
-                </h6>
-                <h6 class="product-name">$ {{ product.amount }}</h6>
-              </div>
+                    <h6 class="product-name">
+                      <div class="row">
+                        <div class="col">
+                          <p class="text-left">{{ product.name }}</p>
+                        </div>
+                      </div>                      
+                      <div class="row" v-if="product.amount">
+                        <div class="col">
+                          <p class="text-left">Valued in: $ {{ product.amount }}</p>
+                        </div>
+                      </div>
+                      </h6>
+                      <p class="card-text">Status: {{ product.status_name }}</p>
+                      <p class="card-text">Category: {{ product.category }}</p>
+                      <p class="card-text" v-if="product.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + product.id">See More</a></p>
+              <p class="card-text" v-else>{{ product.description }}</p>
+                  </div>              
               <div class="card-footer"><a :href="UrlEdit + product.id"><span class="card-title cursor"><i class="fas fa-pencil-alt"></i></span></a> </div>              
             </div>
         </div>

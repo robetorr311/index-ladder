@@ -24,9 +24,19 @@
             </div>            
           </li>
           <li class="nav-item" v-else>
-            <a :href="homeUrl" class="nav-link"><span class="color_head3"><i class="fas fa-bell"></i> Notifications </span></a>
+            <a :href="homeUrl" class="nav-link"><span class="color_head3"><i class="fas fa-shopping-cart"></i> Notifications </span></a>
           </li>
-          <li class="nav-item">
+          <li  class="nav-item dropdown" v-if="CartTrades.length">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+               <span class="color_head3"><i class="fas fa-shopping-cart"></i><sup><span class="have-inprogress">{{ inprogress }}</span></sup> Cart </span>
+            </a>
+            <div class="dropdown-menu">
+              <span v-for="trade in CartTrades">
+                <a class="dropdown-item" :href="Urlproduct + trade.id "><i class="fas fa-bell"></i> {{ trade.name }}</a>
+              </span>
+            </div>            
+          </li>
+          <li class="nav-item" v-else>
             <a :href="homeUrl" class="nav-link"><span class="color_head3"><i class="fas fa-shopping-cart"></i> Cart </span></a>
           </li>
           <li class="nav-item">
@@ -108,7 +118,9 @@ skills and services at low risk</h2>
          getHomeURL: '',
          Notifications: '',
          URLImagelogo: localStorage['URLroot'] + '/images/index-ladder-named-logo.png',
-         Urlproduct: localStorage['URLroot'] + '/product/view/'
+         Urlproduct: localStorage['URLroot'] + '/product/view/',
+         inprogress:'',
+         CartTrades:'',
        }
     },      
         methods : {
@@ -127,6 +139,8 @@ skills and services at low risk</h2>
             this.dashboardUrl= localStorage['URLroot']+ '/dashboard';
             axios.get(localStorage['URLroot'] + '/images/haveavatar').then(response => (this.HaveAvatar = response.data));
             axios.get(localStorage['URLroot'] + '/GetNotifications').then(response => (this.Notifications = response.data));
+            axios.get(localStorage['URLroot'] + '/GetInProgress').then(response => (this.CartTrades = response.data));
+            axios.get(localStorage['URLroot'] + '/CountInProgress').then(response => (this.inprogress = response.data));
         }
     }
 </script>
