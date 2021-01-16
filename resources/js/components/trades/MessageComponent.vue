@@ -91,6 +91,7 @@ for (let [rule, validation] of Object.entries(rules)) {
         },
         props: [
             'ProductValue',
+            'ProposalValue'
           ],        
         methods: {
           SendMessage(){
@@ -99,6 +100,7 @@ for (let [rule, validation] of Object.entries(rules)) {
               csrfToken: myToken.csrfToken,
               message:this.message,
               product_id: this.ProductValue,
+              proposal_id: this.ProposalValue
             }
             ).then(response => (this.MyMessages = response.data));
           },
@@ -121,18 +123,19 @@ for (let [rule, validation] of Object.entries(rules)) {
               message:this.resp,
               parent_id: id,
               product_id: this.ProductValue,
+              proposal_id: this.ProposalValue
             }
             ).then(response => (this.MyMessages = response.data));
             this.MyResponse='';
           },
           startInterval() {
             setInterval(() => {
-               axios.get( localStorage['URLroot'] + '/GetMessages/' + this.ProductValue).then(response => (this.MyMessages = response.data));
+               axios.get( localStorage['URLroot'] + '/GetMessages/' + this.ProductValue + '/' + this.ProposalValue).then(response => (this.MyMessages = response.data));
             }, 2000)
           },          
         },
         mounted() {
-            axios.get( localStorage['URLroot'] + '/GetMessages/' + this.ProductValue).then(response => (this.MyMessages = response.data));
+            axios.get( localStorage['URLroot'] + '/GetMessages/' + this.ProductValue + '/' + this.ProposalValue).then(response => (this.MyMessages = response.data));
             axios.get( localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.Getuser = response.data));
             this.startInterval()
         }         

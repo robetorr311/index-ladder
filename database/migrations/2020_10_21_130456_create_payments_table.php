@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->string('tradde_number');
             $table->bigInteger('tradde_id');
             $table->double('amount', 8, 2);
-            $table->bigInteger('status');                                    
+            $table->string('status');                                    
             $table->timestamps();
         });
     }

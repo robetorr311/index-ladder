@@ -32,9 +32,10 @@ class MessageController extends Controller
       $token=csrf_token();
       $message=$request->message;
       $product_id=$request->product_id;
+      $proposal_id=$request->proposal_id;
       $trade = DB::table('traddes')->where('product_id','=',$product_id)->first();
-      DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id]);
-      DB::table('notifications')->insert(['user_id' => $iduser, 'type' => 1,'product_id' => $product_id]);
+      DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id,'proposal_id' => $proposal_id]);
+      DB::table('notifications')->insert(['user_id' => $iduser, 'type_id' => 1,'product_id' => $product_id]);
       $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->get();
       return response()->json($messages);
     }
@@ -54,16 +55,17 @@ class MessageController extends Controller
       $message=$request->message;
       $product_id=$request->product_id;
       $parent_id=$request->parent_id;
+      $proposal_id=$request->proposal_id;
       $trade = DB::table('traddes')->where('product_id','=',$product_id)->first();
-      DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id,'parent_id' => $parent_id]);
-      DB::table('notifications')->insert(['user_id' => $iduser, 'type' => 1,'product_id' => $product_id]);
+      DB::table('messages')->insert(['user_id' => $iduser, 'message' => $message,'tradde_id' => $trade->id,'parent_id' => $parent_id,'proposal_id'=>$proposal_id]);
+      DB::table('notifications')->insert(['user_id' => $iduser, 'type_id' => 1,'product_id' => $product_id]);
       $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->get();
       return response()->json($messages);
     }     
-    public function GetMessages($product){
+    public function GetMessages($product,$proposal){
       $iduser = Auth::id();
       $trade = DB::table('traddes')->where('product_id','=',$product)->first();
-      $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->get();
+      $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->where('proposal_id','=',$proposal)->get();
       return response()->json($messages);        
     }
     public function GetNotifications(){

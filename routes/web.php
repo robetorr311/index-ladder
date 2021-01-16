@@ -82,13 +82,15 @@ Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetType
 Route::post('/messages/store', [App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
 Route::post('/messages/delete', [App\Http\Controllers\MessageController::class, 'delete'])->name('messages.delete');
 Route::post('/messages/SendResponse', [App\Http\Controllers\MessageController::class, 'SendResponse'])->name('messages.SendResponse');
+Route::post('/trade/publish', [App\Http\Controllers\TraddeController::class, 'publish'])->name('trades.publish');
+Route::post('/trade/propose', [App\Http\Controllers\TraddeController::class, 'propose'])->name('trades.propose');
 Route::post('/trade/accept', [App\Http\Controllers\TraddeController::class, 'accept'])->name('trades.accept');
 Route::post('/trade/cancel', [App\Http\Controllers\TraddeController::class, 'cancel'])->name('trades.cancel');
 Route::post('/trade/finish', [App\Http\Controllers\TraddeController::class, 'finish'])->name('trades.finish');
 Route::post('/trade/confirm', [App\Http\Controllers\TraddeController::class, 'confirm'])->name('trades.confirm');
 Route::get('/GetNotifications', [App\Http\Controllers\MessageController::class, 'GetNotifications'])->name('GetNotifications');
 Route::post('/notifications/SetView', [App\Http\Controllers\MessageController::class, 'SetView'])->name('notifications.SetView');
-Route::get('/GetMessages/{product}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
+Route::get('/GetMessages/{product}/{proposal}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
 Route::get('/GetTrade/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrade'])->name('GetTrade');
 Route::get('/GetTrader/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrader'])->name('GetTrader');
@@ -104,6 +106,10 @@ Route::get('/GetCancelled', [App\Http\Controllers\TraddeController::class, 'GetC
 Route::get('/GetCompleted', [App\Http\Controllers\TraddeController::class, 'GetCompleted'])->name('GetCompleted');
 Route::get('/GetConfirmed/{tradde}', [App\Http\Controllers\TraddeController::class, 'GetConfirmed'])->name('GetConfirmed');
 Route::get('/GetHostQualify', [App\Http\Controllers\TraddeController::class, 'GetHostQualify'])->name('GetHostQualify');
+Route::get('/CountProposal/{tradde_id}', [App\Http\Controllers\TraddeController::class, 'CountProposal'])->name('CountProposal');
+Route::get('/GetProposal/{tradde_id}', [App\Http\Controllers\TraddeController::class, 'GetProposal'])->name('GetProposal');
+Route::get('/GetPProposals/{product_id}', [App\Http\Controllers\TraddeController::class, 'GetPProposals'])->name('GetPProposals');
+Route::get('/AcceptedProposal/{tradde_id}', [App\Http\Controllers\TraddeController::class, 'AcceptedProposal'])->name('AcceptedProposal');
 Route::get('/GetQualify/{user}', [App\Http\Controllers\TraddeController::class, 'GetQualify'])->name('GetQualify');
 Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
 Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
@@ -143,3 +149,9 @@ Route::get('/IsUploaded/{type}', [App\Http\Controllers\ProductImageController::c
 Route::post('/imagedelete', [App\Http\Controllers\ProductImageController::class, 'imagedelete'])->name('imagedelete');
 //Dashboard
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+//Stripe
+Route::post('/stripe/getpayment/{trade_id}', [App\Http\Controllers\StripeController::class, 'Getpayment'])-> name('stripe.Getpayment');
+Route::get('/stripe/connect', [App\Http\Controllers\StripeController::class, 'showConnect'])->name('stripe.connect');
+Route::get('/stripe/connect/verify', [App\Http\Controllers\StripeController::class, 'verifyConnect'])->name('stripe.connect.post');
+Route::get('/my/webhook/endpoint', [App\Http\Controllers\StripeController::class, 'endpoint'])->name('stripe.endpoint');
+Route::get('/GetUrlConnectStripe', [App\Http\Controllers\StripeController::class, 'GetUrlConnectStripe'])->name('stripe.GetUrl');

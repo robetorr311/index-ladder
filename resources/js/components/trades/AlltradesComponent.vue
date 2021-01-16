@@ -31,41 +31,7 @@
               <p class="card-text" v-else>{{ item.description }}</p>
                   </div>
                     <div class="card-footer">
-        <p class="card-stars"><small>
-          <span v-if="GetQualify(item.host_user_id)===1">
-          <i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===2">
-          <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===3">
-          <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===4">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===5">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===6">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===7">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===8">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-        </span>
-        <span v-else-if="resp===9">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-        </span>
-        <span v-else-if="resp===10">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </span>
-        <span v-else>
-          <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-        </span>
-        </small></p>
+                      <getqualify-component :user-value="item.host_user_id"></getqualify-component>
                     </div>
                     </div>
                 </div>
@@ -103,13 +69,10 @@ import CategoriesComponent from "../categories/CategoriesComponent.vue";
        }
     },
     computed: {
-      GetQ(user) {
-        return this.GetQualify(user);
-      }
     },    
     methods: {
       GetQualify(user){
-        axios.get( localStorage['URLroot'] + '/GetQualify/' + user).then(response => ( this.resp=response.data));
+        axios.get( localStorage['URLroot'] + '/GetQualify/' + user).then(response => ( this.resp=parseInt(response.data)));
         return this.resp;
       },
       FindByName(){

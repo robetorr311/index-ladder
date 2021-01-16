@@ -115,12 +115,26 @@
                           <div class="col">
                               <avatar-component :url-avatar="UrlAva"></avatar-component>
                           </div>
-                      </div>                                                                   
+                      </div>
+                      <div class="row justify-content-center" v-if="stripe">
+                        <div class="col">
+                          <div class="text-center">
+                          <a type="button" :href="urlStripe" class="btn btn-secondary"><i class="fab fa-cc-stripe cursor stripe"></i> <span class="stripe"> Connect with Stripe</span> </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row justify-content-center" v-else>
+                        <div class="col">
+                          <div class="text-center">
+                            <i class="fab fa-cc-stripe stripe"></i> <span class="stripe"> Connected!!!</span> 
+                          </div>
+                        </div>
+                      </div>                      
                     </form>
                     </div>
                   </div>
                   <div class="card">
-                  <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Documents Section</h5></div>                    
+                  <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Documents Section</h5></div>
                     <div class="card-body">
                       <form>
                       <div class="row justify-content-center">
@@ -211,7 +225,9 @@ export default {
       CodeSent:'',
       ChkCode: '',
       IsTwoStepEnaled:'',
-      DisableTS: false
+      DisableTS: false,
+      stripe: false,
+      urlStripe:'',
       }
     },
     props: [ ],
@@ -287,13 +303,24 @@ export default {
             }
           ).then(response => (this.ChkCode = response.data));
           location.reload();
-        },              
+        },
+        SetStripe(response){
+          let stripe_id=response.stripe_id;
+          if (!stripe_id){
+            this.stripe=true;
+            axios.get(localStorage['URLroot'] + '/GetUrlConnectStripe').then(response => (this.urlStripe = response.data));
+          }
+          else {
+            this.stripe=false;
+          }
+        }
     },
     mounted() {
             axios.get(localStorage['URLroot'] + '/profile/PhoneVerifyed').then(response => (this.PhoneVerified = response.data));
             axios.get(localStorage['URLroot'] + '/profile/IsTwoStepEnaled').then(response => (this.IsTwoStepEnaled = response.data));
             axios.get(localStorage['URLroot'] + '/profile/UrlIdent/4').then(response => (this.UrlAvatar(response.data)));
-            axios.get(localStorage['URLroot'] + '/profile/registrationValues').then(response => (this.registrationValues(response.data)));            
+            axios.get(localStorage['URLroot'] + '/profile/registrationValues').then(response => (this.registrationValues(response.data)));
+            axios.get(localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.SetStripe(response.data)));
     }     
 }
 </script>

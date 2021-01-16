@@ -1,12 +1,9 @@
 <template>
-    <div class="container-fluid">
+    <div class="card">
+      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Last Services Published</h5></div>
+      <div class="card-body">      
       <div class="row align-items-center">
-        <div class="col-lg-12">
-          <h2> Last Services</h2>
-        </div>
-      </div>      
-      <div class="row align-items-center">
-        <div class="col-lg-3"  v-for="service in GetServ">
+        <div class="col"  v-for="service in GetServ">
           <div class="p-5">      
             <div class="card">
               <a :href="Urlproduct + service.id"><img :src="service.image_url" class="img-fluid mx-auto d-block"></a>
@@ -19,21 +16,23 @@
                 <p class="card-text" v-else>{{ service.description }}</p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <a :href="UrlUser + item.user_id"><getqualify-component :user-value="item.user_id"></getqualify-component></a>
               </div>
             </div>
           </div>
         </div>                  
       </div>
     </div>
+  </div>
 </template>
 
 <script>
     export default {
       data() {
         return {
-         Urlproduct: localStorage['URLroot'] + '/product/',
-         GetServ: ''
+         Urlproduct: localStorage['URLroot'] + '/product/view/',
+         GetServ: '',
+         UrlUser: localStorage['URLroot'] + '/user/show/',
        }
     },
     props: [],

@@ -34,4 +34,9 @@ return [
         'auth_token' => env('5b954c3d2ec4630f4c10c3d60837b905'),
         'phone' => env('+12058909484'),
     ],
+    'stripe' => [
+        'model' => App\Models\User::class,
+        'key' => env('pk_test_51I6rk8IwloEcEGxLuFCGtGeMMBrieDxwLTx2qzxy2zFP8RtMtR4Oh8TMDafevEJpOfXEPUJQoLZn6YBCREwUIZLr00FC0zH1yN'),
+        'secret' => env('sk_test_51I6rk8IwloEcEGxLYDWaJGO8e0TqXa031RofdKLtlakAIXpy3P7B8HoknKJy461anBiFdLFLnRCEaQFWRw9ZQbXu00qt7qai6h'),
+    ],    
 ];

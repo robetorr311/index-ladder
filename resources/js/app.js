@@ -76,6 +76,10 @@ Vue.component('inprogress-component', require('./components/trades/InprogressCom
 Vue.component('completed-component', require('./components/trades/CompletedComponent.vue').default);
 Vue.component('cancelled-component', require('./components/trades/CancelledComponent.vue').default);
 Vue.component('qualify-component', require('./components/trades/QualifyComponent.vue').default);
+Vue.component('publishtrade-component', require('./components/trades/PublishtradeComponent.vue').default);
+Vue.component('trade-component', require('./components/trades/TradeComponent.vue').default);
+Vue.component('showproposals-component', require('./components/trades/ShowproposalsComponent.vue').default);
+Vue.component('getqualify-component', require('./components/trades/GetqualifyComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

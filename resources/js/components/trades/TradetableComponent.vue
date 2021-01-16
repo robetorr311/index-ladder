@@ -24,7 +24,9 @@
                       <p class="card-text" v-if="product.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + product.id">See More</a></p>
               <p class="card-text" v-else>{{ product.description }}</p>
                   </div>              
-              <div class="card-footer"><a :href="UrlEdit + product.id"><span class="card-title cursor"><i class="fas fa-pencil-alt"></i></span></a> </div>              
+              <div class="card-footer">
+                <a :href="UrlEdit + product.id" v-if="product.status_name==='Published/Pending'"><span class="card-title cursor"><i class="fas fa-pencil-alt"></i></span></a> 
+              </div>              
             </div>
         </div>
       </div>      

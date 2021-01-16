@@ -341,14 +341,15 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'products.amount as amount',
+                     'products.user_id as user_id',
                      'traddes.tradde_number as tradde_number',
                      'traddes.host_user_id as host_user_id',
                      'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
-            ->where('products.type_id','=',1)
+            ->where('products.type_id','=',1329)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(4)->get();
+            ->limit(3)->get();
             return response()->json($se);
     }
     public function topfourSki(){
@@ -363,14 +364,15 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'products.amount as amount',
+                     'products.user_id as user_id',
                      'traddes.tradde_number as tradde_number',
                      'traddes.host_user_id as host_user_id',
                      'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
-            ->where('products.type_id','=',2)
+            ->where('products.type_id','=',1330)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(4)->get();
+            ->limit(3)->get();
             return response()->json($se);
     }
     public function topfourPro(){
@@ -385,14 +387,15 @@ class ProductController extends Controller
                      'products.description as description',
                      'products.type_id as type_id',
                      'products.amount as amount',
+                     'products.user_id as user_id',
                      'traddes.tradde_number as tradde_number',
                      'traddes.host_user_id as host_user_id',
                      'traddes.target_user_id as target_user_id',
                      'traddes.status as status',
                      'product_images.image_url as image_url')
-            ->where('products.type_id','=',3)
+            ->where('products.type_id','=',1331)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(4)->get();
+            ->limit(3)->get();
             return response()->json($se);
     }
     public function Like(Request $request){

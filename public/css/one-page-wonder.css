@@ -332,6 +332,10 @@ h6 {
   font-weight: 700;
 }
 
+.stripe {
+  font-size: 2rem !important;
+}
+
 .navbar-custom {
   padding-top: 1rem;
   padding-bottom: 1rem;

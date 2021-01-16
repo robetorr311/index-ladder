@@ -36,10 +36,12 @@
                 <profile-component></profile-component>
               </div>
               <div v-else-if="CenterContent===2">
-                <addnewproduct-component></addnewproduct-component>
+                <!--<addnewproduct-component></addnewproduct-component> -->
+                <publishtrade-component></publishtrade-component>
               </div>
               <div v-else-if="CenterContent===3">
-                <product-component :product-value="ProductID"></product-component>
+                <trade-component :product-value="ProductID"></trade-component>
+                <!--<product-component :product-value="ProductID"></product-component>-->
               </div>
               <div v-else-if="CenterContent===4">
                 <editproduct-component :product-value="ProductID"></editproduct-component>
@@ -61,7 +63,10 @@
               </div>
               <div v-else>
                 <tradetable-component></tradetable-component>
-              </div>              
+              </div>
+              <products-component></products-component>
+              <services-component></services-component>
+              <skills-component></skills-component>              
             </div>
             <div class="col-lg-2">
               <div class="row">
