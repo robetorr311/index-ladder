@@ -84,6 +84,12 @@ Vue.component('tradehostuser-component', require('./components/trades/Tradehostu
 Vue.component('finishtrade-component', require('./components/trades/FinishtradeComponent.vue').default);
 Vue.component('tradepartner-component', require('./components/trades/TradepartnerComponent.vue').default);
 Vue.component('tradeproduct-component', require('./components/trades/TradesproductComponent.vue').default);
+Vue.component('choosepro-component', require('./components/categories/ChooseproductsComponent.vue').default);
+Vue.component('chooseserv-component', require('./components/categories/ChooseservicesComponent.vue').default);
+Vue.component('chooseskill-component', require('./components/categories/ChooseskillsComponent.vue').default);
+Vue.component('profileshare-component', require('./components/profile/ShareComponent.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -117,6 +117,10 @@ Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'C
 Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::class, 'viewproduct'])->name('trades.viewproduct');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
+Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');
+Route::get('/GetSeedProducts', [App\Http\Controllers\CategoryController::class, 'GetSeedProducts'])->name('categories.GetSeedProducts');
+Route::get('/GetSeedSkills', [App\Http\Controllers\CategoryController::class, 'GetSeedSkills'])->name('categories.GetSeedSkills');
+Route::get('/GetSeedServices', [App\Http\Controllers\CategoryController::class, 'GetSeedServices'])->name('categories.GetSeedServices');
 Route::get('/categories/choose', [App\Http\Controllers\CategoryController::class, 'choose_categories'])->name('categories.choose');
 Route::get('/categories/getchilds/{parent}', [App\Http\Controllers\CategoryController::class, 'getchilds'])->name('getchilds');
 Route::get('/categories/getparent/{categoryid}', [App\Http\Controllers\CategoryController::class, 'getparent'])->name('getparent');
