@@ -39,6 +39,48 @@ class CategoryController extends Controller
     public function choose_categories(){
     	return view('categories.choose');
     }
+    public function seedstore(Request $request){
+      $iduser = Auth::id();
+      $type_id=$request->type_id;
+      $category_id=$request->category_id;
+      $categories=DB::table('seeds')->insert(['user_id' => $iduser,
+        'type_id' => $type_id,
+        'category_id' => $category_id]);
+      return response()->json(['success'=>'Success']);
+    }
+    public function GetSeedProducts(){
+      $iduser = Auth::id();
+      $categories=DB::table('seeds')
+        ->join('categories', 'seeds.category_id','=','categories.id')
+        ->select('seeds.id as id,
+               categories.id as category_id,
+               categories.name as category')
+        ->where('user_id','=',$iduser)
+        ->where('seeds.type_id','=',1331)->get();
+      return response()->json($categories);
+    } 
+    public function GetSeedSkills(){
+      $iduser = Auth::id();
+      $categories=DB::table('seeds')
+        ->join('categories', 'seeds.category_id','=','categories.id')
+        ->select('seeds.id as id,
+               categories.id as category_id,
+               categories.name as category')
+        ->where('user_id','=',$iduser)
+        ->where('seeds.type_id','=',1330)->get();
+      return response()->json($categories);
+    } 
+    public function GetSeedServices(){
+      $iduser = Auth::id();
+      $categories=DB::table('seeds')
+        ->join('categories', 'seeds.category_id','=','categories.id')
+        ->select('seeds.id as id,
+               categories.id as category_id,
+               categories.name as category')
+        ->where('user_id','=',$iduser)
+        ->where('seeds.type_id','=',1329)->get();
+      return response()->json($categories);
+    }            
     public function like(Request $request){
       $iduser = Auth::id();
       $like = Choose_categorie::create([

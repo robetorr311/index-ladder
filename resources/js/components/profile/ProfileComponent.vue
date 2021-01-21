@@ -133,6 +133,7 @@
                     </form>
                     </div>
                   </div>
+                  <profileshare-component></profileshare-component>
                   <div class="card">
                   <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Documents Section</h5></div>
                     <div class="card-body">
@@ -163,6 +164,7 @@ import { ValidationProvider } from 'vee-validate';
 import { extend } from 'vee-validate';
 import { confirmed, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
+import ShareComponent from "./ShareComponent.vue";
 import PictureComponent from "../PictureComponent.vue";
 import CardComponent from "../CardComponent.vue";
 import LicenseComponent from "../LicenseComponent.vue";
@@ -193,6 +195,7 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
+    ShareComponent,
     PictureComponent,
     CardComponent,
     LicenseComponent,

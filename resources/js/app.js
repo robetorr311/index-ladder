@@ -80,6 +80,11 @@ Vue.component('publishtrade-component', require('./components/trades/Publishtrad
 Vue.component('trade-component', require('./components/trades/TradeComponent.vue').default);
 Vue.component('showproposals-component', require('./components/trades/ShowproposalsComponent.vue').default);
 Vue.component('getqualify-component', require('./components/trades/GetqualifyComponent.vue').default);
+Vue.component('choosepro-component', require('./components/categories/ChooseproductsComponent.vue').default);
+Vue.component('chooseserv-component', require('./components/categories/ChooseservicesComponent.vue').default);
+Vue.component('chooseskill-component', require('./components/categories/ChooseskillsComponent.vue').default);
+Vue.component('profileshare-component', require('./components/profile/ShareComponent.vue').default);
+
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
