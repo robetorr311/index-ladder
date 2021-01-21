@@ -296,6 +296,29 @@ class ProductController extends Controller
             ->paginate(6);
         return view('content.dashboard',['TradeValues' => json_encode($product)]); 
     }
+    public function GetByCategory($product_id){
+      $iduser = Auth::id();
+      $trades = DB::table('traddes')->where('product_id','=',$product_id)->first();
+      $product = DB::table('products')->where('id','=',$product_id)->first();
+      $product_category = DB::table('products')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('users', 'products.user_id', '=', 'users.id')
+            ->join('type_products','products.type_id','=','type_products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('traddes', 'products.id','=','traddes.product_id' )
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.user_id as user_id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'product_images.image_url as image_url',
+                     'categories.name as category',
+                     'users.email as user_email',
+                     'type_products.name as type_product')->where('traddes.status','=',1)->get();
+      return response()->json($product_category);
+    }
     public function FindByName($search){
           $iduser = Auth::id();
           $usr= User::where('id', $iduser)->first();

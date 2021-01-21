@@ -16,7 +16,7 @@
                 <p class="card-text" v-else>{{ skill.description }}</p>
               </div>
               <div class="card-footer">
-                <a :href="UrlUser + item.user_id"><getqualify-component :user-value="item.user_id"></getqualify-component></a>
+                <a :href="UrlUser + skill.user_id"><getqualify-component :user-value="skill.user_id"></getqualify-component></a>
               </div>
             </div>
           </div>

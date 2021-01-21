@@ -165,7 +165,7 @@ class CategoryController extends Controller
         }
         for ($i = 0; $i < $count; $i++) {
           if(strlen($arraysearch[$i])>=3){
-            $catego= DB::table('categories')->whereIn('id', $cat)->orwhere('name', 'like', '%'.$arraysearch[$i].'%')->get();
+            $catego= DB::table('categories')->whereIn('id', $cat)->get();
             if(!empty($catego)){
               foreach ($catego as $key) {
                 $categories[]=array('id'=>$key->id,'name'=>$key->name);

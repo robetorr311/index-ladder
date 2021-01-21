@@ -78,6 +78,7 @@ Route::get('/products/matchusers', [App\Http\Controllers\ProductController::clas
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('gallery');
 Route::get('/gallery', [App\Http\Controllers\ProductController::class, 'gallery'])->name('categories');
 Route::get('/GetTypes', [App\Http\Controllers\ProductController::class, 'GetTypes'])->name('GetTypes');
+Route::get('/GetByCategory/{product_id}', [App\Http\Controllers\ProductController::class, 'GetByCategory'])->name('GetByCategory');
 //Trades
 Route::post('/messages/store', [App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
 Route::post('/messages/delete', [App\Http\Controllers\MessageController::class, 'delete'])->name('messages.delete');
@@ -113,6 +114,7 @@ Route::get('/AcceptedProposal/{tradde_id}', [App\Http\Controllers\TraddeControll
 Route::get('/GetQualify/{user}', [App\Http\Controllers\TraddeController::class, 'GetQualify'])->name('GetQualify');
 Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
 Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
+Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::class, 'viewproduct'])->name('trades.viewproduct');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::get('/categories/choose', [App\Http\Controllers\CategoryController::class, 'choose_categories'])->name('categories.choose');
@@ -142,11 +144,12 @@ Route::post('/upload/license', [App\Http\Controllers\IdentImageController::class
 Route::post('/upload/card', [App\Http\Controllers\IdentImageController::class, 'card'])->name('card');
 Route::post('/upload/avatar', [App\Http\Controllers\IdentImageController::class, 'avatar'])->name('avatar');
 Route::post('/change/avatar', [App\Http\Controllers\IdentImageController::class, 'changeavatar'])->name('changeavatar');
+Route::post('/imagedelete', [App\Http\Controllers\ProductImageController::class, 'imagedelete'])->name('imagedelete');
 Route::get('/images/haveavatar', [App\Http\Controllers\IdentImageController::class, 'haveavatar'])->name('haveavatar');
 Route::get('/GetUploaded/{type}', [App\Http\Controllers\ProductImageController::class, 'GetUploaded'])->name('GetUploaded');
 Route::get('/GetEditPictures/{id}/{type}', [App\Http\Controllers\ProductImageController::class, 'GetEditPictures'])->name('GetEditPictures');
 Route::get('/IsUploaded/{type}', [App\Http\Controllers\ProductImageController::class, 'IsUploaded'])->name('IsUploaded');
-Route::post('/imagedelete', [App\Http\Controllers\ProductImageController::class, 'imagedelete'])->name('imagedelete');
+Route::get('/GetImages', [App\Http\Controllers\ProductImageController::class, 'GetImages'])->name('GetImages');
 //Dashboard
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 //Stripe

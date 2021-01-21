@@ -31,17 +31,19 @@
             <div class="col">
               <div v-if="CenterContent===0">
                 <tradetable-component></tradetable-component>
+                <products-component></products-component>
+                <services-component></services-component>
+                <skills-component></skills-component>
               </div>
               <div v-else-if="CenterContent===1">
                 <profile-component></profile-component>
               </div>
               <div v-else-if="CenterContent===2">
-                <!--<addnewproduct-component></addnewproduct-component> -->
                 <publishtrade-component></publishtrade-component>
               </div>
               <div v-else-if="CenterContent===3">
                 <trade-component :product-value="ProductID"></trade-component>
-                <!--<product-component :product-value="ProductID"></product-component>-->
+                <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
               </div>
               <div v-else-if="CenterContent===4">
                 <editproduct-component :product-value="ProductID"></editproduct-component>
@@ -63,10 +65,10 @@
               </div>
               <div v-else>
                 <tradetable-component></tradetable-component>
-              </div>
-              <products-component></products-component>
-              <services-component></services-component>
-              <skills-component></skills-component>              
+                <products-component></products-component>
+                <services-component></services-component>
+                <skills-component></skills-component>
+              </div>             
             </div>
             <div class="col-lg-2">
               <div class="row">

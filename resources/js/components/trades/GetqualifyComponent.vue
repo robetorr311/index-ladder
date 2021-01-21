@@ -36,8 +36,10 @@
         </small></p>
 </template>
 <script>
+
   export default {
     components: {
+      
     },    
     data() {
         return {

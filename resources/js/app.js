@@ -8,7 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.events = new Vue();
-
 const VueUploadComponent = require('vue-upload-component');
 Vue.component('file-upload', VueUploadComponent);
 //import * as VeeValidate from 'vee-validate';
@@ -77,10 +76,14 @@ Vue.component('completed-component', require('./components/trades/CompletedCompo
 Vue.component('cancelled-component', require('./components/trades/CancelledComponent.vue').default);
 Vue.component('qualify-component', require('./components/trades/QualifyComponent.vue').default);
 Vue.component('publishtrade-component', require('./components/trades/PublishtradeComponent.vue').default);
-Vue.component('trade-component', require('./components/trades/TradeComponent.vue').default);
+Vue.component('trade-component', require('./components/trades/TradeshowComponent.vue').default);
 Vue.component('showproposals-component', require('./components/trades/ShowproposalsComponent.vue').default);
 Vue.component('getqualify-component', require('./components/trades/GetqualifyComponent.vue').default);
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('newproposal-component', require('./components/trades/NewproposalComponent.vue').default);
+Vue.component('tradehostuser-component', require('./components/trades/TradehostuserComponent.vue').default);
+Vue.component('finishtrade-component', require('./components/trades/FinishtradeComponent.vue').default);
+Vue.component('tradepartner-component', require('./components/trades/TradepartnerComponent.vue').default);
+Vue.component('tradeproduct-component', require('./components/trades/TradesproductComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

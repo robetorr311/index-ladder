@@ -54,10 +54,12 @@
   </div>
 </template>
 <script>
+import GetqualifyComponent from "./GetqualifyComponent.vue";
 import CategoriesComponent from "../categories/CategoriesComponent.vue";
   export default {
     components: {
-      CategoriesComponent
+      CategoriesComponent,
+      GetqualifyComponent
     },    
     data() {
         return {

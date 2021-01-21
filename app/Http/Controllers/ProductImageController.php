@@ -72,5 +72,9 @@ class ProductImageController extends Controller
       $token=csrf_token();
       $images = DB::table('product_images')->where('trade_type','=', $type)->where('token','=', $token)->count();
       return response()->json(['count' => $images]);           
-    }    
+    }
+    public function GetImages(){
+      $img= DB::table('product_images')->get();
+      return response()->json($img);
+    }
 }
