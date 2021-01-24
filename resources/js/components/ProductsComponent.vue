@@ -4,13 +4,12 @@
       <div class="card-body">    
       <div class="row align-items-center">
         <div class="col"  v-for="product in GetProduct">
-          <div class="p-5">      
             <div class="card">
               <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
-                <h4 class="card-title">
+                <h6 class="card-title">
                   <a :href="Urlproduct + product.id">{{ product.name }}</a>
-                </h4>
+                </h6>
                 <h5>$ {{ product.amount }}</h5>
                 <p class="card-text" v-if="product.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + product.id">See More</a></p>
                 <p class="card-text" v-else>{{ product.description }}</p>
@@ -19,7 +18,6 @@
                 <a :href="UrlUser + product.user_id"><getqualify-component :user-value="product.user_id"></getqualify-component></a>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

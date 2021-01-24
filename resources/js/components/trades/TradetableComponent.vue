@@ -32,10 +32,9 @@
       </div>      
     </div>
     <div class="card-footer" v-if="count > 14">
-      <a type="button" :href="UrlAllMyTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show more</a> <a type="button" :href="UrlAllTrades" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show all trades</a>
+      <a type="button" :href="UrlAllMyTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show more</a> 
     </div>
-    <div class="card-footer" v-else>
-      <a type="button" :href="UrlAllTrades" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show all trades</a>
+    <div v-else>
     </div>    
   </div>
 </template>

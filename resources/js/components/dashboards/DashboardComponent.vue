@@ -31,9 +31,7 @@
             <div class="col">
               <div v-if="CenterContent===0">
                 <tradetable-component></tradetable-component>
-                <products-component></products-component>
-                <services-component></services-component>
-                <skills-component></skills-component>
+                <tradeseed-component ></tradeseed-component>
               </div>
               <div v-else-if="CenterContent===1">
                 <profile-component></profile-component>
@@ -44,6 +42,7 @@
               <div v-else-if="CenterContent===3">
                 <trade-component :product-value="ProductID"></trade-component>
                 <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
+                <tradeseed-component ></tradeseed-component>
               </div>
               <div v-else-if="CenterContent===4">
                 <editproduct-component :product-value="ProductID"></editproduct-component>
@@ -65,9 +64,7 @@
               </div>
               <div v-else>
                 <tradetable-component></tradetable-component>
-                <products-component></products-component>
-                <services-component></services-component>
-                <skills-component></skills-component>
+                <tradeseed-component ></tradeseed-component>
               </div>             
             </div>
             <div class="col-lg-2">
@@ -78,21 +75,27 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <favusers-component></favusers-component>
+                  <products-component></products-component>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
-                  <completed-component></completed-component>
+                  <skills-component></skills-component>
+                </div>
+              </div>              
+              <div class="row">
+                <div class="col">
+                  <services-component></services-component>
                 </div>
               </div> 
               <div class="row">
                 <div class="col">
                   <cancelled-component></cancelled-component>
                 </div>
-              </div>                            
+              </div>
             </div>
-          </div>          
+          </div>
+          <tradesall-component></tradesall-component>  
     </div>
 </template>
 <script>
@@ -111,6 +114,7 @@
   import InprogressComponent from "../trades/InprogressComponent.vue";
   import CompletedComponent from "../trades/CompletedComponent.vue";
   import CancelledComponent from "../trades/CancelledComponent.vue";
+  import ShowalltradesComponent from "../trades/ShowalltradesComponent.vue";  
 
   export default {
       components: {
@@ -129,6 +133,7 @@
         InprogressComponent,
         CancelledComponent,
         CompletedComponent,
+        ShowalltradesComponent
       },
       data() {
         return {

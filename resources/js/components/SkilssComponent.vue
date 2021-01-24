@@ -4,13 +4,12 @@
       <div class="card-body">      
       <div class="row align-items-center">
         <div class="col"  v-for="skill in GetSki">
-          <div class="p-5">      
-            <div class="card">
+          <div class="card">
               <a :href="Urlproduct + skill.id"><img :src="skill.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
-                <h4 class="card-title">
+                <h6 class="card-title">
                   <a :href="Urlproduct + skill.id">{{ skill.name }}</a>
-                </h4>
+                </h6>
                 <h5>$ {{ skill.amount }}</h5>
                 <p class="card-text" v-if="skill.description.length>82">{{ skill.description.substring(0, 82) }} ... <a :href="Urlproduct + skill.id">See More</a></p>
                 <p class="card-text" v-else>{{ skill.description }}</p>
@@ -20,8 +19,7 @@
               </div>
             </div>
           </div>
-        </div>                  
-      </div>
+        </div>
     </div>
   </div>
 </template>

@@ -317,7 +317,7 @@ h6 {
 .over {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 70px;
+  height: 100px;
 }
 
 .have-notificatons {
@@ -334,6 +334,24 @@ h6 {
 
 .stripe {
   font-size: 2rem !important;
+}
+
+.product {
+  font-family: FuturaPTW02-Book;
+  background-color: #3aff62 !important;
+  color: #1b4274 !important;
+}
+
+.service {
+  font-family: FuturaPTW02-Book;
+  background-color: #a5bfff !important;
+  color: #1b4274 !important;
+}
+
+.skills {
+  font-family: FuturaPTW02-Book;
+  background-color: #ab43e1 !important;
+  color: #fff !important;
 }
 
 .navbar-custom {

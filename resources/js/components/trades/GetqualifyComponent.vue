@@ -49,8 +49,12 @@
     computed: {
     },    
     methods: {
+      SetResp(response){
+        this.resp=parseInt(response);
+      },
       GetQualify(user){
-        axios.get( localStorage['URLroot'] + '/GetQualify/' + this.UserValue).then(response => ( this.resp=parseInt(response.data)));
+        let user_id=parseInt(user);
+        axios.get( localStorage['URLroot'] + '/GetQualify/' + user_id).then(response => ( this.SetResp(response.data)));
       },
     },
     props: [ 'UserValue' ],

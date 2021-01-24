@@ -1,9 +1,37 @@
 <template>
     <div class="card">
-      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Example Component</h5></div>
+      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Post that match with this trade category</h5></div>
       <div class="card-body">
         <div class="table-responsive">
-          <datatable :data="GetValues" :columns="columns" ></datatable>
+          <table id="ProductsTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>User</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in GetValues">
+                <td><a :href="Urlproduct + item.id"><img :src="item.image_url" width="100px"></a></td>
+                <td> {{ item.name }} </td>
+                <td> {{ item.type_product }} </td>
+                <td> {{ item.category }} </td>
+                <td> {{ item.user_email }} </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>User</th>
+               </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
       <div class="card-footer"></div>
@@ -12,38 +40,50 @@
 
 <script>
 import GetqualifyComponent from "./GetqualifyComponent.vue";
-require("bootstrap-vue-datatable");
+import jquery from "jquery";
 import moment from "moment";
+import datatables from 'datatables.net';
+import datatablesnetscroller from 'datatables.net-scroller';
 export default {
   components: {
+    GetqualifyComponent,    
+    jquery,
     moment,
-    GetqualifyComponent,
+    datatables,
+    datatablesnetscroller
   },        
   data() {
     return {
       GetValues:[],
-      columns: [
-        {name: "image_url", th: "Image", render (row, cell, index) {
-            let str='<img src="' + row.image_url + '" width="100px">';
-            return str; }},
-        {name: "name", th: "Name"},
-        {name: "type_product", th: "Type"},        
-        {name: "category", th: "Product"},
-        {name: "user_email", th: "User Email"},
-        {name: "user_id", th: "User", render(row, cell, index){
-            return '<a type="button" class="btn btn-secondary" href="'+ localStorage['URLroot'] + '/product/view/' + row.id + '"> Show </a>';
-        }},
-        ],
+      Urlproduct: localStorage['URLroot'] + '/product/view/',
     };
   },
   props: [
     'ProductValue'
   ],
   methods: {
+    SetTable(response){
+      this.GetValues=response;
+      this.initDtt();
+    },
+    initDtt() {
+      this.$nextTick(function () {
+        $("#ProductsTable").DataTable({
+          "scrollY":        "500px",
+          "scrollCollapse": true,          
+          "columns": [
+            { "data": "image_url" },
+            { "data": "name" },
+            { "data": "type_product" },
+            { "data": "category" },
+            { "data": "user_email" },
+          ]
+        }).draw();
+      });
+    }    
   },
   mounted() {
-    axios.get(localStorage['URLroot'] + '/GetByCategory/' + this.ProductValue).then(response => (this.GetValues=response.data));
+    axios.get(localStorage['URLroot'] + '/GetByCategory/' + this.ProductValue).then(response => (this.SetTable(response.data)));
   },        
 }
-
 </script>

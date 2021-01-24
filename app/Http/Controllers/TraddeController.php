@@ -565,5 +565,54 @@ class TraddeController extends Controller
           'users.name as name',
           'qualifies.qualify as qualify')->where('user_id','=',$iduser)->limit(5)->get();
       return response()->json($qualify);      
-    }  
+    }
+    public function GetTradesPublished(){
+      $iduser = Auth::id();
+      $product_category = DB::table('products')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('users', 'products.user_id', '=', 'users.id')
+            ->join('type_products','products.type_id','=','type_products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('traddes', 'products.id','=','traddes.product_id' )
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.user_id as user_id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'product_images.image_url as image_url',
+                     'categories.name as category',
+                     'users.email as user_email',
+                     'type_products.name as type_product')->where('traddes.status','=',1)->get();
+      return response()->json($product_category);
+    }
+    public function GetBySeed(){
+      $iduser = Auth::id();
+      $trd=[];
+      $seed=DB::table('seeds')->where('user_id','=',$iduser)->get();
+      if(!empty($seed)){
+        foreach ($seed as $key) {
+          $trd[]=$key->category_id;
+        }
+      }
+      $product_category = DB::table('products')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('users', 'products.user_id', '=', 'users.id')
+            ->join('type_products','products.type_id','=','type_products.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('traddes', 'products.id','=','traddes.product_id' )
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.user_id as user_id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'product_images.image_url as image_url',
+                     'categories.name as category',
+                     'users.email as user_email',
+                     'type_products.name as type_product')->whereIn('products.category_id',$trd)->get();
+      return response()->json($product_category);
+    }          
 }

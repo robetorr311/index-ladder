@@ -48,13 +48,19 @@ class CategoryController extends Controller
         'category_id' => $category_id]);
       return response()->json(['success'=>'Success']);
     }
+    public function seeddelete(Request $request){
+      $iduser = Auth::id();
+      $id=$request->id;
+      $categories=DB::table('seeds')->where('id','=',$id)->delete();
+      return response()->json(['success'=>'Success']);
+    }    
     public function GetSeedProducts(){
       $iduser = Auth::id();
       $categories=DB::table('seeds')
         ->join('categories', 'seeds.category_id','=','categories.id')
-        ->select('seeds.id as id,
-               categories.id as category_id,
-               categories.name as category')
+        ->select('seeds.id as id',
+               'categories.id as category_id',
+               'categories.name as category')
         ->where('user_id','=',$iduser)
         ->where('seeds.type_id','=',1331)->get();
       return response()->json($categories);
@@ -63,9 +69,9 @@ class CategoryController extends Controller
       $iduser = Auth::id();
       $categories=DB::table('seeds')
         ->join('categories', 'seeds.category_id','=','categories.id')
-        ->select('seeds.id as id,
-               categories.id as category_id,
-               categories.name as category')
+        ->select('seeds.id as id',
+               'categories.id as category_id',
+               'categories.name as category')
         ->where('user_id','=',$iduser)
         ->where('seeds.type_id','=',1330)->get();
       return response()->json($categories);
@@ -74,9 +80,9 @@ class CategoryController extends Controller
       $iduser = Auth::id();
       $categories=DB::table('seeds')
         ->join('categories', 'seeds.category_id','=','categories.id')
-        ->select('seeds.id as id,
-               categories.id as category_id,
-               categories.name as category')
+        ->select('seeds.id as id',
+               'categories.id as category_id',
+               'categories.name as category')
         ->where('user_id','=',$iduser)
         ->where('seeds.type_id','=',1329)->get();
       return response()->json($categories);

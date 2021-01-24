@@ -3,7 +3,29 @@
       <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Example Component</h5></div>
       <div class="card-body">
         <div class="table-responsive">
-          <datatable :data="GetValues" :columns="columns" :actions="[]"></datatable>
+          <table id="imagesTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Product</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in GetValues">
+                <td><img :src="item.image_url" width="100px"></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.product_id }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Product</th>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
       <div class="card-footer"></div>
@@ -11,33 +33,44 @@
 </template>
 
 <script>
-require("bootstrap-vue-datatable");
+
+import jquery from "jquery";
 import moment from "moment";
+import datatables from 'datatables.net';
 export default {
   components: {
-    moment
+    jquery,
+    moment,
+    datatables
   },        
   data() {
     return {
       GetValues:[],
-      columns: [
-        {name: "image_url", th: "Image", render (row, cell, index) {
-            let str='<img src="' + row.image_url + '" width="100px">';
-            return str; }},
-        {name: "name", th: "Name"},
-        {name: "product_id", th: "Product"}],
-      actions: [
-          {text: "Delete", color: "danger", action: (row, index) => {
-            alert('about to delete ${row.name} ${row.product_id}');
-          }}],      
     };
   },
   props: [
   ],
   methods: {
+    SetTable(response){
+      this.GetValues=response;
+      this.initDtt();
+    },
+    initDtt() {
+      this.$nextTick(function () {
+        $("#imagesTable").DataTable({
+          "columns": [
+            { "data": "image_url" },
+            { "data": "name" },
+            { "data": "product_id" }
+          ]
+        }).draw();
+
+   });
+      //});
+    }
   },
   mounted() {
-    axios.get(localStorage['URLroot'] + '/GetImages').then(response => (this.GetValues=response.data));
+    axios.get(localStorage['URLroot'] + '/GetImages').then(response => (this.SetTable(response.data)));
   },        
 }
 </script>

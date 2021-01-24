@@ -93,6 +93,8 @@ Route::get('/GetNotifications', [App\Http\Controllers\MessageController::class, 
 Route::post('/notifications/SetView', [App\Http\Controllers\MessageController::class, 'SetView'])->name('notifications.SetView');
 Route::get('/GetMessages/{product}/{proposal}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
+Route::get('/GetTradesPublished', [App\Http\Controllers\TraddeController::class, 'GetTradesPublished'])->name('GetTradesPublished');
+Route::get('/GetBySeed', [App\Http\Controllers\TraddeController::class, 'GetBySeed'])->name('GetBySeed');
 Route::get('/GetTrade/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrade'])->name('GetTrade');
 Route::get('/GetTrader/{id}', [App\Http\Controllers\TraddeController::class, 'GetTrader'])->name('GetTrader');
 Route::get('/GetTraderAvatar/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderAvatar'])->name('GetTraderAvatar');
@@ -115,9 +117,11 @@ Route::get('/GetQualify/{user}', [App\Http\Controllers\TraddeController::class, 
 Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
 Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
 Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::class, 'viewproduct'])->name('trades.viewproduct');
+
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');
+Route::post('/seeddelete', [App\Http\Controllers\CategoryController::class, 'seeddelete'])->name('categories.seeddelete');
 Route::get('/GetSeedProducts', [App\Http\Controllers\CategoryController::class, 'GetSeedProducts'])->name('categories.GetSeedProducts');
 Route::get('/GetSeedSkills', [App\Http\Controllers\CategoryController::class, 'GetSeedSkills'])->name('categories.GetSeedSkills');
 Route::get('/GetSeedServices', [App\Http\Controllers\CategoryController::class, 'GetSeedServices'])->name('categories.GetSeedServices');

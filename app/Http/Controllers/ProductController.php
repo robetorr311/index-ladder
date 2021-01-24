@@ -316,7 +316,7 @@ class ProductController extends Controller
                      'product_images.image_url as image_url',
                      'categories.name as category',
                      'users.email as user_email',
-                     'type_products.name as type_product')->where('traddes.status','=',1)->get();
+                     'type_products.name as type_product')->where('traddes.status','=',1)->where('products.type_id','=',$product->type_id)->get();
       return response()->json($product_category);
     }
     public function FindByName($search){

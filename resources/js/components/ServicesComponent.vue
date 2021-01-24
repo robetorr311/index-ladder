@@ -4,13 +4,12 @@
       <div class="card-body">      
       <div class="row align-items-center">
         <div class="col"  v-for="service in GetServ">
-          <div class="p-5">      
-            <div class="card">
+           <div class="card">
               <a :href="Urlproduct + service.id"><img :src="service.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
-                <h4 class="card-title">
+                <h6 class="card-title">
                   <a :href="Urlproduct + service.id">{{ service.name }}</a>
-                </h4>
+                </h6>
                 <h5>$ {{ service.amount }}</h5>
                 <p class="card-text" v-if="service.description.length>82">{{ service.description.substring(0, 82) }} ... <a :href="Urlproduct + service.id">See More</a></p>
                 <p class="card-text" v-else>{{ service.description }}</p>
@@ -19,7 +18,6 @@
                 <a :href="UrlUser + service.user_id"><getqualify-component :user-value="service.user_id"></getqualify-component></a>
               </div>
             </div>
-          </div>
         </div>                  
       </div>
     </div>

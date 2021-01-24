@@ -11,9 +11,9 @@
               </div>
               <div class="col">
                 <div v-if="GetProducts">
-                <span class="badge badge-pill badge-primary" v-for="items in GetProducts">
-                    {{ item.category}}
-                    <span class="badge badge-light">4</span>
+                <span class="badge badge-pill product" v-for="items in GetProducts">
+                    {{ items.category }}
+                    <span class="badge badge-light"><i class="fas fa-times-circle" @click="deleteitem(items.id)"></i></span>
                 </span>
                 </div>
               </div>
@@ -29,9 +29,9 @@
               </div>
               <div class="col">
                 <div v-if="GetSkills">
-                <span class="badge badge-pill badge-primary" v-for="items in GetSkills">
-                    {{ item.category}}
-                    <span class="badge badge-light">4</span>
+                <span class="badge badge-pill skills" v-for="items in GetSkills">
+                    {{ items.category }}
+                    <span class="badge badge-light"><i class="fas fa-times-circle" @click="deleteitem(items.id)" ></i></span>
                 </span>
                 </div>                
               </div>
@@ -47,9 +47,9 @@
               </div>
               <div class="col">
                 <div v-if="GetServices">
-                <span class="badge badge-pill badge-primary" v-for="items in GetServices">
-                    {{ item.category}}
-                    <span class="badge badge-light">4</span>
+                <span class="badge badge-pill service" v-for="items in GetServices">
+                    {{ items.category }}
+                    <span class="badge badge-light"><i class="fas fa-times-circle" @click="deleteitem(items.id)"></i></span>
                 </span>
                 </div>                
               </div>
@@ -78,6 +78,14 @@
       };
     },
     methods: {
+      deleteitem(id){
+        axios.post( localStorage['URLroot'] + '/seeddelete' ,
+        {
+          csrfToken: myToken.csrfToken,
+          id: id
+        }
+        ).then(response => (this.GetUploaded = response.data));
+      },
       startInterval() {
         setInterval(() => {
           var url = localStorage['URLroot'];  
