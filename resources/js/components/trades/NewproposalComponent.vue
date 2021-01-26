@@ -193,6 +193,7 @@ export default {
         this.showSuccess();
     },
     showSuccess(){
+        window.scrollTo(0,0);
         this.success=true;
         setTimeout(() => {
           location.reload();

@@ -372,6 +372,20 @@ class TraddeController extends Controller
       return response()->json($image);        
     }
     public function GetTraderTrades($id){
+      $usr= User::where('id', $id)->first();
+      $trd=[];
+      $host_trades=DB::table('traddes')->where('host_user_id','=',$usr->id)->get();
+      if(!empty($host_trades)){
+        foreach ($host_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }
+      $target_trades=DB::table('traddes')->where('target_user_id','=',$usr->id)->get();
+      if(!empty($target_trades)){
+        foreach ($target_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }      
       $product = DB::table('products')
         ->join('traddes', 'traddes.product_id', '=', 'products.id')
         ->join('product_images', 'products.image_id', '=', 'product_images.id')
@@ -394,8 +408,9 @@ class TraddeController extends Controller
                  'registrations.lastname as lastname',
                  'registrations.email as email',
                  'registrations.phone as phone',
-                 'categories.name as category')
-        ->where('traddes.host_user_id','=',$id)->orWhere('traddes.target_user_id','=',$id)->limit(15)->get();
+                 'categories.name as category',
+                 'status_trades.name as status_name')
+        ->whereIn('traddes.id',$trd)->get();
         return response()->json($product);
     }
     public function GetOffer(){

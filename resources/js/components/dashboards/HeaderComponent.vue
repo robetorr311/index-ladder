@@ -24,7 +24,7 @@
             </div>            
           </li>
           <li class="nav-item" v-else>
-            <a :href="homeUrl" class="nav-link"><span class="color_head3"><i class="fas fa-shopping-cart"></i> Notifications </span></a>
+            <a :href="homeUrl" class="nav-link"><span class="color_head3"><i class="fas fa-bell"></i> Notifications </span></a>
           </li>
           <li  class="nav-item dropdown" v-if="CartTrades.length">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -32,7 +32,7 @@
             </a>
             <div class="dropdown-menu">
               <span v-for="trade in CartTrades">
-                <a class="dropdown-item" :href="Urlproduct + trade.id "><i class="fas fa-bell"></i> {{ trade.name }}</a>
+                <a class="dropdown-item" :href="Urlproduct + trade.id "><i class="fas fa-shopping-cart"></i> {{ trade.name }}</a>
               </span>
             </div>            
           </li>

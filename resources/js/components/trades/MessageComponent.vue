@@ -2,14 +2,18 @@
   <div class="card">
   <div class="card-header"><h5 class="card-title"><i class="fas fa-comments"></i> Messages / Questions about Trade</h5> </div>
   <div class="card-body">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" v-if="MyMessages">
       <div class="col">
+      </div>
+    </div>
+    <div class="row justify-content-center" v-else>
+      <div class="col">        
         <ValidationProvider name="message" rules="max:249" v-slot="{ errors }">
           <div class="input-group" >
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
             </div>
-            <textarea v-model="message" class="form-control" name="message" placeholder="Address"></textarea>
+            <textarea v-model="message" class="form-control" name="message" placeholder="Write message"></textarea>
             <div class="input-group-append">
                <button class="btn btn-secondary" @click="SendMessage"><i class="far fa-paper-plane"></i> Send</button>
             </div>
@@ -42,7 +46,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
             </div>
-            <textarea v-model="resp" class="form-control" name="resp" placeholder="Address"></textarea>
+            <textarea v-model="resp" class="form-control" name="resp" placeholder="Write message"></textarea>
             <div class="input-group-append">
                <button class="btn btn-secondary" @click="Sendresp(mes.id)"><i class="far fa-paper-plane"></i> Send</button>
             </div>

@@ -104,6 +104,7 @@
     <div v-else></div>
     <div v-if="showHostUser">
         <tradehostuser-component :user-value="host_user_id"></tradehostuser-component>
+        <messages-component :product-value="ProductValue" :proposal-value="ProposalValue"></messages-component>
     </div>
     <div v-else></div> 
 </ValidationObserver>

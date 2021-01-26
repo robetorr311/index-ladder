@@ -259,6 +259,9 @@ class RegistrationController extends Controller
       $usr= User::where('id', $iduser)->first();
       $usr->phone=$request->phone;
       $usr->save();
+      $regis= Registration::where('user_id', $id)->first();
+      $regis->phone=$usr->phone;
+      $regis->save();
       $usernameEnd="";
       $recipients=$request->phone;
       $verification_code = rand(100000,999999);

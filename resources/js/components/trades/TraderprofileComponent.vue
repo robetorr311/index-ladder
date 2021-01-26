@@ -5,6 +5,7 @@
     <div class="card-header"><h5 class="card-title"><i class="fas fa-info-circle"></i> Trader Info</h5></div>
     <div class="card-body">
       <img :src="UrlAva"  class="img-fluid mx-auto d-block rounded-circle" width="100px">
+      <getqualify-component :user-value="traderValue"></getqualify-component>
         <p class="card-text">
          {{ name }}
         </p>
@@ -31,23 +32,28 @@
                   {{ product.name }}
                 </h6>
                 <h6 class="product-name">$ {{ product.amount }}</h6>
+                <h6 class="product-name">{{ product.status_name }}</h6>
               </div>
             </div>
         </div>
       </div>      
     </div>
     <div class="card-footer" v-if="count > 14">
-      <a type="button" :href="UrlAllMyTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show more</a> <a type="button" :href="UrlAllTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show all trades</a>
+      <a type="button" :href="UrlAllMyTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show more</a> 
     </div>
     <div class="card-footer" v-else>
-      <a type="button" :href="UrlAllTrades" target="blank" class="btn btn-secondary"><i class="fas fa-address-card"></i> Show all trades</a>
+      
     </div>    
   </div> 
   </div>
   </div> 
 </template>
 <script>
+import GetqualifyComponent from "./GetqualifyComponent.vue";
 export default {
+  components: {
+    GetqualifyComponent,
+  },  
   data() {
     return {
       name: '',
