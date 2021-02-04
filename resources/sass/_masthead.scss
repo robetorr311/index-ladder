@@ -40,6 +40,20 @@ header.masthead2 {
     max-width: 100% !important;
   }
 }
+@media only screen and (max-width: 810px) {
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 50vh;
+  width: 50vw;
+}
+.qualifychart-container {
+  position: relative;
+  margin: auto;
+  height: 25vh;
+  width: 50vw;
+}
+}
 @media (min-width: 992px) {
   header.masthead {
     padding-top: 25px;
@@ -86,4 +100,5 @@ header.masthead2 {
   .masthead-padding{
     padding-top: 40px !important;
   }
+
 }

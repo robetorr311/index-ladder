@@ -62,6 +62,10 @@ h6 {
   color: #098823 !important;
   font-family: FuturaPTW02-Book;
 }
+.card-stars-m{
+  color: $secondary !important;
+  font-family: FuturaPTW02-Book;
+}
 .card-comments{
   background-color: lighten($third, 60%) !important;
   font-family: FuturaPTW02-Book;
@@ -132,11 +136,15 @@ h6 {
   color: #ffffff !important;
 }
 .pad-left{
-  padding-left: 1rem !important;
+  padding-left: 2rem !important;
   padding-bottom: 1px !important;
 }
 .pcategory{
   margin-bottom: 1px !important;
+}
+.psubcategory{
+  margin-bottom: 1px !important;
+  padding-left: 1rem !important;
 }
 .categorieslink{
   text-decoration: none;
@@ -261,7 +269,7 @@ h6 {
 .over{
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 100px;
+  height: 500px;
 }
 .have-notificatons{
   color: #098823 !important;
@@ -290,4 +298,16 @@ h6 {
   font-family: FuturaPTW02-Book;
   background-color: lighten($secondary, 40%) !important;
   color: $white !important;
+}
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 20vh;
+  width: 50vw;
+}
+.qualifychart-container {
+  position: relative;
+  margin: auto;
+  height: 25vh;
+  width: 10vw;
 }

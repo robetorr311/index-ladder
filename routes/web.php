@@ -114,10 +114,12 @@ Route::get('/GetProposal/{tradde_id}', [App\Http\Controllers\TraddeController::c
 Route::get('/GetPProposals/{product_id}', [App\Http\Controllers\TraddeController::class, 'GetPProposals'])->name('GetPProposals');
 Route::get('/AcceptedProposal/{tradde_id}', [App\Http\Controllers\TraddeController::class, 'AcceptedProposal'])->name('AcceptedProposal');
 Route::get('/GetQualify/{user}', [App\Http\Controllers\TraddeController::class, 'GetQualify'])->name('GetQualify');
+Route::get('/GetQualifyStatus/{user_id}/{trade_id}', [App\Http\Controllers\TraddeController::class, 'GetQualifyStatus'])->name('GetQualifyStatus');
+Route::get('/GetQualifyTrade/{user_id}/{trade_id}', [App\Http\Controllers\TraddeController::class, 'GetQualifyTrade'])->name('GetQualifyTrade');
 Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
 Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
 Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::class, 'viewproduct'])->name('trades.viewproduct');
-
+Route::get('/downloadPDF',[App\Http\Controllers\TraddeController::class, 'downloadPDF'])->name('trades.downloadPDF');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');
@@ -133,6 +135,12 @@ Route::get('/categories/getusers', [App\Http\Controllers\CategoryController::cla
 Route::get('/GetUsersCategory', [App\Http\Controllers\CategoryController::class, 'GetUsersCategory'])->name('GetUsersCategory');
 Route::get('/categories/matchusers', [App\Http\Controllers\CategoryController::class, 'matchusers'])->name('categories.matchusers');
 Route::get('/categories/search/{search}', [App\Http\Controllers\CategoryController::class, 'search'])->name('categories.search');
+Route::get('/GetDetailedProductRating', [App\Http\Controllers\CategoryController::class, 'GetDetailedProductRating'])->name('GetDetailedProductRating');
+Route::get('/GetDetailedSkillRating', [App\Http\Controllers\CategoryController::class, 'GetDetailedSkillRating'])->name('GetDetailedSkillRating');
+Route::get('/GetDetailedServiceRating', [App\Http\Controllers\CategoryController::class, 'GetDetailedServiceRating'])->name('GetDetailedServiceRating');
+Route::get('/GetProductRating', [App\Http\Controllers\CategoryController::class, 'GetProductRating'])->name('GetProductRating');
+Route::get('/GetSkillRating', [App\Http\Controllers\CategoryController::class, 'GetSkillRating'])->name('GetSkillRating');
+Route::get('/GetServiceRating', [App\Http\Controllers\CategoryController::class, 'GetServiceRating'])->name('GetServiceRating');
 //Content
 Route::post('/contact-us/submit', [App\Http\Controllers\HomeController::class, 'contactUsSubmit'])->name('contact-us.submit');
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');

@@ -74,6 +74,9 @@ Vue.component('partner-component', require('./components/products/PartnersCompon
 Vue.component('inprogress-component', require('./components/trades/InprogressComponent.vue').default);
 Vue.component('completed-component', require('./components/trades/CompletedComponent.vue').default);
 Vue.component('cancelled-component', require('./components/trades/CancelledComponent.vue').default);
+Vue.component('qratingproducts-component', require('./components/trades/QratingproductsComponent.vue').default);
+Vue.component('qratingskills-component', require('./components/trades/QratingskillsComponent.vue').default);
+Vue.component('qratingservices-component', require('./components/trades/QratingservicesComponent.vue').default);
 Vue.component('qualify-component', require('./components/trades/QualifyComponent.vue').default);
 Vue.component('publishtrade-component', require('./components/trades/PublishtradeComponent.vue').default);
 Vue.component('trade-component', require('./components/trades/TradeshowComponent.vue').default);
@@ -90,6 +93,12 @@ Vue.component('chooseskill-component', require('./components/categories/Choosesk
 Vue.component('profileshare-component', require('./components/profile/ShareComponent.vue').default);
 Vue.component('tradesall-component', require('./components/trades/ShowalltradesComponent.vue').default);
 Vue.component('tradeseed-component', require('./components/trades/TradesseedComponent.vue').default);
+Vue.component('getqualifyf-component', require('./components/trades/GetqualifyfComponent.vue').default);
+Vue.component('ratingproducts-component', require('./components/categories/RatingproductsComponent.vue').default);
+Vue.component('ratingskills-component', require('./components/categories/RatingskillsComponent.vue').default);
+Vue.component('ratingservices-component', require('./components/categories/RatingservicesComponent.vue').default);
+Vue.component('myrating-component', require('./components/profile/MyratingComponent.vue').default);
+
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"><h5 class="card-title"><i class="fas fa-star"></i> Score and comments</h5></div>
+    <div class="card-header"><h5 class="card-title"><i class="fas fa-star"></i> Ratings Scores</h5></div>
       <div class="card-body">
         <p class="card-stars">
           <span v-if="qualify===1">
@@ -37,7 +37,7 @@
           <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
         </span>
         </p>
-        <div class="row justify-content-center" v-for="comment in MyComments">
+        <!--<div class="row justify-content-center" v-for="comment in MyComments">
           <div class="col">
           <div class="card">
             <div class="card-header"><i class="fas fa-comment"></i> Comments</div>
@@ -84,7 +84,10 @@
               </div>            
             </div>
           </div>
-        </div>        
+        </div>-->
+        <qratingproducts-component></qratingproducts-component>
+        <qratingskills-component></qratingskills-component>
+        <qratingservices-component></qratingservices-component>
       </div>
   </div>
 </template>

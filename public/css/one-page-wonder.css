@@ -84,6 +84,11 @@ h6 {
   font-family: FuturaPTW02-Book;
 }
 
+.card-stars-m {
+  color: #360c4c !important;
+  font-family: FuturaPTW02-Book;
+}
+
 .card-comments {
   background-color: #cedef3 !important;
   font-family: FuturaPTW02-Book;
@@ -164,12 +169,17 @@ h6 {
 }
 
 .pad-left {
-  padding-left: 1rem !important;
+  padding-left: 2rem !important;
   padding-bottom: 1px !important;
 }
 
 .pcategory {
   margin-bottom: 1px !important;
+}
+
+.psubcategory {
+  margin-bottom: 1px !important;
+  padding-left: 1rem !important;
 }
 
 .categorieslink {
@@ -317,7 +327,7 @@ h6 {
 .over {
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 100px;
+  height: 500px;
 }
 
 .have-notificatons {
@@ -352,6 +362,20 @@ h6 {
   font-family: FuturaPTW02-Book;
   background-color: #ab43e1 !important;
   color: #fff !important;
+}
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 20vh;
+  width: 50vw;
+}
+
+.qualifychart-container {
+  position: relative;
+  margin: auto;
+  height: 25vh;
+  width: 10vw;
 }
 
 .navbar-custom {
@@ -425,6 +449,22 @@ header.masthead2 {
   .mobil {
     width: 100% !important;
     max-width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  .chart-container {
+    position: relative;
+    margin: auto;
+    height: 50vh;
+    width: 50vw;
+  }
+
+  .qualifychart-container {
+    position: relative;
+    margin: auto;
+    height: 25vh;
+    width: 50vw;
   }
 }
 

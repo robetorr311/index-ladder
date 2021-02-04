@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
     <div class="card">
-      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Trade Number: {{ tradde_number }}</h5></div>
+      <div class="card-header"><p class="text-left"><h5 class="card-title"><i class="far fa-handshake"></i> Trade Number: {{ tradde_number }}</h5></p> <p class="text-right"><img :src="qrcode"></p></div>
       <div class="card-body">
         <div class="card">
           <div class="card-header"><h4 class="card-title"><i class="far fa-handshake"></i>                   
@@ -230,6 +230,7 @@ export default {
           showFinish:false,
           showPaybutton:false,
           showConfirm: false,
+          qrcode: '',
       }
     },
     props: [
@@ -507,7 +508,8 @@ export default {
             this.HostUserEmail=response.email;
             this.HostUserPhone=response.phone;
             this.exchange_id=response.exchange_id;
-            this.HostUserURL=localStorage['URLroot'] + '/user/show/' + response.host_user_id;             
+            this.qrcode= localStorage['URLroot'] + '/qrcodes/' + this.tradde_number + '.svg';
+            this.HostUserURL=localStorage['URLroot'] + '/user/show/' + response.host_user_id;
             axios.get( localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.Getuser(response.data)));
         },
         SetConfirmed(response){

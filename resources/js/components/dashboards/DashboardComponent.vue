@@ -32,17 +32,20 @@
               <div v-if="CenterContent===0">
                 <tradetable-component></tradetable-component>
                 <tradeseed-component ></tradeseed-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===1">
                 <profile-component></profile-component>
               </div>
               <div v-else-if="CenterContent===2">
                 <publishtrade-component></publishtrade-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===3">
                 <trade-component :product-value="ProductID"></trade-component>
                 <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
                 <tradeseed-component ></tradeseed-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===4">
                 <editproduct-component :product-value="ProductID"></editproduct-component>
@@ -51,13 +54,13 @@
                 <profiletrader-component :trader-value="TraderID"></profiletrader-component>
               </div>
               <div v-else-if="CenterContent===6">
-                <alltrades-component :trade-values="TradeValues" ></alltrades-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===7">
-                <alltrades-component :trade-values="TradeValues" ></alltrades-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===8">
-                <alltrades-component :trade-values="TradeValues" ></alltrades-component>
+                <tradesall-component></tradesall-component>
               </div>
               <div v-else-if="CenterContent===9">
                 <favorites-component :trade-values="TradeValues"></favorites-component>
@@ -65,6 +68,7 @@
               <div v-else>
                 <tradetable-component></tradetable-component>
                 <tradeseed-component ></tradeseed-component>
+                <tradesall-component></tradesall-component>
               </div>             
             </div>
             <div class="col-lg-2">
@@ -94,8 +98,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <tradesall-component></tradesall-component>  
+          </div>  
     </div>
 </template>
 <script>

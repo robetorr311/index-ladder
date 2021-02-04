@@ -2,123 +2,123 @@
   <div class="list-group">  
     <p class="pcategory"><span data-target="#services_categories" class="categorieslink" data-toggle="collapse"><i class="fas fa-plus-square" v-if="ClickOnServ===false" @click="ChangeBoxServ"></i><i class="fas fa-minus-square" v-else @click="ChangeBoxServ"></i> Services</span></p>
     <div id="services_categories" class="collapse">
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1799" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1799===false" @click="ChangeBox1799"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1799"></i> Academic Consulting Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1799" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1799===false" @click="ChangeBox1799"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1799"></i> Academic Consulting Services</span></p>
       <div id="subcategory1799" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1799">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1800" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1800===false" @click="ChangeBox1800"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1800"></i> Administrative Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1800" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1800===false" @click="ChangeBox1800"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1800"></i> Administrative Services</span></p>
       <div id="subcategory1800" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1800">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1801" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1801===false" @click="ChangeBox1801"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1801"></i> Animal Care Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1801" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1801===false" @click="ChangeBox1801"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1801"></i> Animal Care Services</span></p>
       <div id="subcategory1801" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1801">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1802" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1802===false" @click="ChangeBox1802"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1802"></i> Automobile Maintenance and Repair</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1802" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1802===false" @click="ChangeBox1802"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1802"></i> Automobile Maintenance and Repair</span></p>
       <div id="subcategory1802" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1802">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1803" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1803===false" @click="ChangeBox1803"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1803"></i> Beauty and Lifestyle Service Business</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1803" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1803===false" @click="ChangeBox1803"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1803"></i> Beauty and Lifestyle Service Business</span></p>
       <div id="subcategory1803" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1803">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1804" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1804===false" @click="ChangeBox1804"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1804"></i> Elder Care Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1804" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1804===false" @click="ChangeBox1804"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1804"></i> Elder Care Services</span></p>
       <div id="subcategory1804" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1804">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1805" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1805===false" @click="ChangeBox1805"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1805"></i> Event Service Businesses</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1805" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1805===false" @click="ChangeBox1805"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1805"></i> Event Service Businesses</span></p>
       <div id="subcategory1805" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1805">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1806" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1806===false" @click="ChangeBox1806"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1806"></i> Home Maintenance and Repair Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1806" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1806===false" @click="ChangeBox1806"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1806"></i> Home Maintenance and Repair Services</span></p>
       <div id="subcategory1806" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1806">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1807" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1807===false" @click="ChangeBox1807"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1807"></i> Legal Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1807" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1807===false" @click="ChangeBox1807"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1807"></i> Legal Services</span></p>
       <div id="subcategory1807" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1807">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1808" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1808===false" @click="ChangeBox1808"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1808"></i> Personal Concierge Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1808" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1808===false" @click="ChangeBox1808"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1808"></i> Personal Concierge Services</span></p>
       <div id="subcategory1808" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1808">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1809" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1809===false" @click="ChangeBox1809"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1809"></i> Personal Health and Wellness Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1809" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1809===false" @click="ChangeBox1809"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1809"></i> Personal Health and Wellness Services</span></p>
       <div id="subcategory1809" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1809">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1810" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1810===false" @click="ChangeBox1810"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1810"></i> Sales and Marketing</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1810" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1810===false" @click="ChangeBox1810"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1810"></i> Sales and Marketing</span></p>
       <div id="subcategory1810" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1810">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1811" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1811===false" @click="ChangeBox1811"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1811"></i> Serving Parents Babies and Small Children</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1811" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1811===false" @click="ChangeBox1811"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1811"></i> Serving Parents Babies and Small Children</span></p>
       <div id="subcategory1811" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1811">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1812" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1812===false" @click="ChangeBox1812"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1812"></i> Technology Maintenance and Repair Services</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1812" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1812===false" @click="ChangeBox1812"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1812"></i> Technology Maintenance and Repair Services</span></p>
       <div id="subcategory1812" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1812">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
-<p class="pcategory"><span data-toggle="collapse" data-target="#subcategory1813" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1813===false" @click="ChangeBox1813"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1813"></i> Travel and Tourism Service Businesses</span></p>
+<p class="psubcategory"><span data-toggle="collapse" data-target="#subcategory1813" class="categorieslink"><i class="fas fa-plus-square" v-if="ClickOn1813===false" @click="ChangeBox1813"></i><i class="fas fa-minus-square" v-else @click="ChangeBox1813"></i> Travel and Tourism Service Businesses</span></p>
       <div id="subcategory1813" class="collapse">
          <div class="pad-left" v-for="item in ValuesFor1813">
           <p class="pcategory"><span class="categorieslink" data-toggle="collapse" >
-             <i class="far fa-check-square" @click="SelectCategory(item.id)" v-if="selectedCategory.includes(item.id)"></i>
+             <i class="far fa-check-square" v-if="selectedCategory.includes(item.id)"></i>
              <i class="far fa-square cursor" @click="SelectCategory(item.id)" v-else></i> {{ item.name }}</span></p>
          </div>
       </div>
@@ -180,14 +180,7 @@
         },
         methods: {
       SelectCategory(categorypro){
-      	var n = this.selectedCategory.includes(categorypro);
-      	console.log(n);
-        if(n){ 
-        	console.log('Success'); 
-        } 
-        else { 
         	this.selectedCategory.push(categorypro);
-        }
           axios.post( localStorage['URLroot'] + '/seedstore' ,
           {
             csrfToken: myToken.csrfToken,
@@ -195,7 +188,6 @@
             category_id: categorypro,
           }
           ).then(response => (this.IsSaved = response.data));
-
       },
       ChangeBoxServ(){
         var status=this.ClickOnServ;
@@ -279,8 +271,14 @@
         .then(function(response) {
             location.href = response.data.redirect;
         });
-      }               
-       
+      },               
+        GetServ(response){
+          let c=[];
+          $.each(response, function(key, value) {
+            c.push(value.category_id);
+          });
+          this.selectedCategory=c;
+        }       
 
         },
         mounted() {
@@ -300,6 +298,7 @@
       axios.get(url + '/categories/getchilds/' + this.Get1811).then(response => (this.ValuesFor1811 = response.data));
       axios.get(url + '/categories/getchilds/' + this.Get1812).then(response => (this.ValuesFor1812 = response.data));
       axios.get(url + '/categories/getchilds/' + this.Get1813).then(response => (this.ValuesFor1813 = response.data));
+      axios.get(url + '/GetSeedServices').then(response => (this.GetServ(response.data)));
         },
 
     }

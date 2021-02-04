@@ -25,7 +25,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col" v-for="product in GetTrades">
-            <div class="card">
+            <div class="card" >
               <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
                 <h6 class="product-name">
@@ -34,6 +34,7 @@
                 <h6 class="product-name">$ {{ product.amount }}</h6>
                 <h6 class="product-name">{{ product.status_name }}</h6>
               </div>
+              <div class="card-footer"><getqualifyf-component :user-value="traderValue" :trade-value="product.tradde_id"></getqualifyf-component></div>
             </div>
         </div>
       </div>      

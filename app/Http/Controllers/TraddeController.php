@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class TraddeController extends Controller
 {
     /**
@@ -571,6 +571,15 @@ class TraddeController extends Controller
       $qualify = DB::table('qualifies')->where('user_id','=',$user)->avg('qualify');
       $rounded=round($qualify, 0);
       return response()->json($rounded);
+    }
+    public function GetQualifyStatus($user_id,$trade_id){
+      $qualify = DB::table('qualifies')->where('tradde_id','=',$trade_id)->where('user_id','=',$user_id)->count();
+      return response()->json($qualify);
+    }
+    public function GetQualifyTrade($user_id,$trade_id){
+      $qualify = DB::table('qualifies')->where('tradde_id','=',$trade_id)->where('user_id','=',$user_id)->avg('qualify');
+      $rounded=round($qualify, 0);
+      return response()->json($rounded);
     }    
     public function MyComments(){
       $iduser = Auth::id();
@@ -629,5 +638,19 @@ class TraddeController extends Controller
                      'users.email as user_email',
                      'type_products.name as type_product')->whereIn('products.category_id',$trd)->get();
       return response()->json($product_category);
-    }          
+    }
+    public function downloadPDF()
+    {
+
+      $data = [
+        'titulo' => 'Styde.net',
+        'path' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ttf'),
+        'ufm' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ufm')
+      ];
+      return \PDF::loadView('pdf.barteragreement', $data)
+        ->setPaper('a4', 'landscape')
+        ->download('barteragreement.pdf');
+      /*$data = PDF::loadView('pdf.barteragreement', $data)
+        ->save(storage_path('app/public/pdf/') . 'archivo.pdf');*/
+    }
 }

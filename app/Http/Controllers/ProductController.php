@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class ProductController extends Controller
 {
     /**
@@ -161,6 +161,12 @@ class ProductController extends Controller
     }    
     public function viewproduct($id){
       $TradeValues="";
+      $tradde = DB::table('traddes')->where('product_id','=',$id)->first();
+      $thisURL=url()->current();
+      $path='../public/qrcodes/'.$tradde->tradde_number.'.svg';
+      QrCode::size(100);
+      QrCode::color(54, 38, 89);
+      QrCode::color(54, 38, 89)->generate($thisURL, $path);
       return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
     public function getproduct($id){

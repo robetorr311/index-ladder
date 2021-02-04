@@ -156,6 +156,7 @@
                     </form>
                     </div>
                 </div>
+                <myrating-component></myrating-component>
     </ValidationObserver>   
 </template>
 <script>
@@ -165,6 +166,7 @@ import { extend } from 'vee-validate';
 import { confirmed, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
 import ShareComponent from "./ShareComponent.vue";
+import MyratingComponent from "./MyratingComponent.vue";
 import PictureComponent from "../PictureComponent.vue";
 import CardComponent from "../CardComponent.vue";
 import LicenseComponent from "../LicenseComponent.vue";
@@ -199,7 +201,8 @@ export default {
     PictureComponent,
     CardComponent,
     LicenseComponent,
-    AvatarComponent },
+    AvatarComponent,
+    MyratingComponent },
   data() {
     return {
       firstname: '',
