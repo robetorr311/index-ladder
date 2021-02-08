@@ -98,7 +98,10 @@ Vue.component('ratingproducts-component', require('./components/categories/Ratin
 Vue.component('ratingskills-component', require('./components/categories/RatingskillsComponent.vue').default);
 Vue.component('ratingservices-component', require('./components/categories/RatingservicesComponent.vue').default);
 Vue.component('myrating-component', require('./components/profile/MyratingComponent.vue').default);
-
+Vue.component('pratingproducts-component', require('./components/trades/PratingproductsComponent.vue').default);
+Vue.component('pratingskills-component', require('./components/trades/PratingskillsComponent.vue').default);
+Vue.component('pratingservices-component', require('./components/trades/PratingservicesComponent.vue').default);
+Vue.component('profilepartner-component', require('./components/profile/ProfilepartnerComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

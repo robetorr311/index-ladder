@@ -52,6 +52,7 @@
               </div>
               <div v-else-if="CenterContent===5">
                 <profiletrader-component :trader-value="TraderID"></profiletrader-component>
+                <profilepartner-component :user-value="TraderID"></profilepartner-component>
               </div>
               <div v-else-if="CenterContent===6">
                 <tradesall-component></tradesall-component>
@@ -64,6 +65,8 @@
               </div>
               <div v-else-if="CenterContent===9">
                 <favorites-component :trade-values="TradeValues"></favorites-component>
+                <tradeseed-component ></tradeseed-component>
+                <tradesall-component></tradesall-component>                
               </div>
               <div v-else>
                 <tradetable-component></tradetable-component>

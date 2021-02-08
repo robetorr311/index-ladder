@@ -88,13 +88,7 @@ class ProductController extends Controller
       $type=$request->type;
       $description=$request->description; 
       $category=$request->category;
-      $exchangeitemname=$request->exchangeitemname;
-      $exchangeamount=$request->exchangeamount;
-      $exchangetype=$request->exchangetype;
-      $exchangedescription=$request->exchangedescription;
-      $exchangecategory=$request->exchangecategory;
       $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->first();
-      $exch_images = DB::table('product_images')->where('token',$token)->where('trade_type',2)->first();      
       $offer_product = DB::table('products')->where('id',$product_id)->update(['user_id' => $iduser,
         'name' => $itemname,
         'description' => $description,
@@ -102,25 +96,13 @@ class ProductController extends Controller
         'type_id' => $type,
         'category_id' => $category,
         'amount' => $amount]);
-      $exchange_product = DB::table('products')->where('id',$exchange_id)->update(['user_id' => $iduser,
-        'name' => $exchangeitemname,
-        'description' => $exchangedescription,
-        'image_id' => $exch_images->id,
-        'type_id' => $exchangetype,
-        'category_id' => $exchangecategory,
-        'amount' => $exchangeamount]);
       $tradde = DB::table('traddes')->where('id',$tradde_id)->update(['host_user_id' => $iduser,
         'product_id' => $product_id,
-        'exchange_id' => $exchange_id,
         'category_id'=>$category,
-        'ex_category_id'=>$exchangecategory
       ]);
       $offer_images = DB::table('product_images')->where('token',$token)->where('trade_type',1)->update(['product_id' => $product_id,'tradde_id'=>$tradde_id, 'token' => $product_id]);
-      $exch_images = DB::table('product_images')->where('token',$token)->where('trade_type',2)->update(['product_id' => $exchange_id,'tradde_id'=>$tradde_id, 'token' => $exchange_id]);
       $offimage = DB::table('product_images')->where('product_id','=',$product_id)->first();
       $offprod=DB::table('products')->where('id',$product_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$offimage->id]);
-      $excimage = DB::table('product_images')->where('product_id','=',$exchange_id)->first();
-      $excprod=DB::table('products')->where('id',$exchange_id)->update(['tradde_id'=>$tradde_id,'image_id'=>$excimage->id]);
       return response()->json(['success'=>'Success']);
     }
     public function addnew(){

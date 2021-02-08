@@ -384,7 +384,7 @@ class CategoryController extends Controller
       $hostqualify = DB::table('qualifies')
                 ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
                 ->join('users', 'traddes.target_user_id', '=', 'users.id')
-                ->join('products', 'traddes.product_id', '=', 'products.id')                
+                ->join('products', 'traddes.product_id', '=', 'products.id')
                 ->select('qualifies.tradde_id as id',
                      'qualifies.user_id as user_id',
                      'qualifies.fairness as fairness',
@@ -400,7 +400,7 @@ class CategoryController extends Controller
       $targetqualify = DB::table('qualifies')
                 ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
                 ->join('users', 'traddes.host_user_id', '=', 'users.id')
-                ->join('products', 'traddes.exchange_id', '=', 'products.id')                
+                ->join('products', 'traddes.exchange_id', '=', 'products.id')
                 ->select('qualifies.tradde_id as id',
                      'qualifies.user_id as user_id',
                      'qualifies.fairness as fairness',
@@ -535,5 +535,155 @@ class CategoryController extends Controller
       $h = $merged->avg('honesty');
       $honesty = round($h,0);
       return response()->json(['fairness' => $fairness,'description' => $description,'value' => $value,'satisfied' => $satisfied,'honesty' => $honesty]);
-    }  
+    }
+    public function GetUProductRating($user_id){
+      $iduser = $user_id;
+      $fairness = '';
+      $description = '';
+      $value = '';
+      $satisfied = '';
+      $honesty = '';
+      $hostqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.target_user_id', '=', 'users.id')
+                ->join('products', 'traddes.product_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.host_user_id','=',$iduser)->where('products.type_id','=',1331)->get();
+      $targetqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.host_user_id', '=', 'users.id')
+                ->join('products', 'traddes.exchange_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.target_user_id','=',$iduser)->where('products.type_id','=',1331)->get();
+      $collection = collect($hostqualify);
+      $merged = $collection->merge($targetqualify);
+      $merged->all();
+      $fairness = $merged->implode('fairness',',');
+      $description = $merged->implode('description',',');
+      $value = $merged->implode('value',',');
+      $satisfied = $merged->implode('satisfied',',');
+      $honesty = $merged->implode('honesty',',');
+      $labels = $merged->implode('user_email',',');       
+      return response()->json(['labels'=>$labels,'fairness' => $fairness,'description' => $description,'value' => $value,'satisfied' => $satisfied,'honesty' => $honesty]);
+    }
+    public function GetUSkillRating($user_id){
+      $iduser = $user_id;
+      $fairness = '';
+      $description = '';
+      $value = '';
+      $satisfied = '';
+      $honesty = '';
+      $hostqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.target_user_id', '=', 'users.id')
+                ->join('products', 'traddes.product_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.host_user_id','=',$iduser)->where('products.type_id','=',1330)->get();
+      $targetqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.host_user_id', '=', 'users.id')
+                ->join('products', 'traddes.exchange_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.target_user_id','=',$iduser)->where('products.type_id','=',1330)->get();
+      $collection = collect($hostqualify);
+      $merged = $collection->merge($targetqualify);
+      $merged->all();
+      $fairness = $merged->implode('fairness',',');
+      $description = $merged->implode('description',',');
+      $value = $merged->implode('value',',');
+      $satisfied = $merged->implode('satisfied',',');
+      $honesty = $merged->implode('honesty',',');
+      $labels = $merged->implode('user_email',',');       
+      return response()->json(['labels'=>$labels,'fairness' => $fairness,'description' => $description,'value' => $value,'satisfied' => $satisfied,'honesty' => $honesty]);
+    }
+    public function GetUServiceRating($user_id){
+      $iduser = $user_id;
+      $fairness = '';
+      $description = '';
+      $value = '';
+      $satisfied = '';
+      $honesty = '';
+      $hostqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.target_user_id', '=', 'users.id')
+                ->join('products', 'traddes.product_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.host_user_id','=',$iduser)->where('products.type_id','=',1329)->get();
+      $targetqualify = DB::table('qualifies')
+                ->join('traddes', 'qualifies.tradde_id', '=', 'traddes.id')
+                ->join('users', 'traddes.host_user_id', '=', 'users.id')
+                ->join('products', 'traddes.exchange_id', '=', 'products.id')                
+                ->select('qualifies.tradde_id as id',
+                     'qualifies.user_id as user_id',
+                     'qualifies.fairness as fairness',
+                     'qualifies.description as description',
+                     'qualifies.value as value',
+                     'qualifies.satisfied as satisfied',
+                     'qualifies.honesty as honesty',
+                     'qualifies.qualify as qualify',
+                     'qualifies.comments as comments',
+                     'users.email as user_email')
+                ->where('qualifies.user_id','=',$iduser)
+                ->where('traddes.target_user_id','=',$iduser)->where('products.type_id','=',1329)->get();
+      $collection = collect($hostqualify);
+      $merged = $collection->merge($targetqualify);
+      $merged->all();
+      $fairness = $merged->implode('fairness',',');
+      $description = $merged->implode('description',',');
+      $value = $merged->implode('value',',');
+      $satisfied = $merged->implode('satisfied',',');
+      $honesty = $merged->implode('honesty',',');
+      $labels = $merged->implode('user_email',',');       
+      return response()->json(['labels'=>$labels,'fairness' => $fairness,'description' => $description,'value' => $value,'satisfied' => $satisfied,'honesty' => $honesty]);
+    }      
 }

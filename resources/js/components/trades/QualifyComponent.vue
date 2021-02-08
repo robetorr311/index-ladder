@@ -37,54 +37,6 @@
           <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
         </span>
         </p>
-        <!--<div class="row justify-content-center" v-for="comment in MyComments">
-          <div class="col">
-          <div class="card">
-            <div class="card-header"><i class="fas fa-comment"></i> Comments</div>
-              <div class="card-body card-comments">
-                <p class="card-text">User: {{  comment.name }}</p>
-                <p class="card-text">Comment: {{ comment.comment }} </p>
-              </div>
-              <div class="card-footer card-fcomments">
-                <p class="card-stars">
-                <span v-if="parseInt(comment.qualify)===1">
-                  <i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===2">
-                  <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===3">
-                  <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===4">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===5">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===6">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===7">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===8">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===9">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                </span>
-                <span v-else-if="parseInt(comment.qualify)===10">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </span>
-                <span v-else>
-                  <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                </span>
-              </p>
-              </div>            
-            </div>
-          </div>
-        </div>-->
         <qratingproducts-component></qratingproducts-component>
         <qratingskills-component></qratingskills-component>
         <qratingservices-component></qratingservices-component>

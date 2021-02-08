@@ -40,7 +40,7 @@
                         </ValidationProvider>
                       </div>
                     </div>                    
-                    <div class="row justify-content-center" v-if="type==='1331'">
+                    <div class="row justify-content-center" v-if="show_amount">
                     <div class="col">
                       <ValidationProvider name="amount" rules="double" v-slot="{ errors }">
                         <div class="input-group" >
@@ -72,91 +72,19 @@
                         <ValidationProvider name="upload1" rules="required" v-slot="{ errors }">
                           <input v-model="upload1" type="hidden" class="form-control" name="upload1">
                           <span class="has-error">{{ errors[0] }}</span>
-                        </ValidationProvider>                         
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card">
-                  <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> To be Exchange By</h5></div>
-                  <div class="card-body">
-                    <div class="row justify-content-center">
-                      <div class="col">
-                        <ValidationProvider name="exchangeitemname" rules="required|max:249" v-slot="{ errors }">
-                          <div class="input-group" >
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                            </div>
-                            <input v-model="exchangeitemname" type="text" class="form-control" name="exchangeitemname" @keydown="onInputExcChange" placeholder="Name">
-                            <span class="has-error">{{ errors[0] }}</span>
-                          </div>
-                        </ValidationProvider>
-                      </div>
-                    </div>
-                    <div class="row justify-content-center">
-                      <div class="col">
-                        <ValidationProvider name="exchangecategory" rules="required" v-slot="{ errors }">
-                          <div class="input-group" >
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                            </div>
-                            <select v-model="exchangecategory" class="form-control" name="exchangecategory" @change="Exchchoose()">
-                          <option value="" >Choose One Category</option>
-                          <option v-for="option in ExchCategoryData" v-bind:value="option.id">
-                             {{ option.name }}
-                          </option>
-                            </select>
-                            <span class="has-error">{{ errors[0] }}</span>
-                          </div>
-                        </ValidationProvider>
-                      </div>
-                    </div>                    
-                    <div class="row justify-content-center" v-if="exchtype==='1331'">
-                    <div class="col">
-                      <ValidationProvider name="exchangeamount" rules="double" v-slot="{ errors }">
-                        <div class="input-group" >
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                          </div>
-                          <input v-model="exchangeamount" type="text" class="form-control" name="exchangeamount" @change="SetExchDecimal()" placeholder="Amount">
-                          <span class="has-error">{{ errors[0] }}</span>
-                        </div>
-                      </ValidationProvider>
-                    </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col">
-                          <ValidationProvider name="exchangedescription" rules="required|max:249" v-slot="{ errors }">
-                          <div class="input-group" >
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-tags"></i></span>
-                            </div>
-                            <textarea v-model="exchangedescription" type="text" class="form-control" name="exchangedescription" placeholder="Description"></textarea>
-                            <span class="has-error">{{ errors[0] }}</span>
-                          </div>
-                          </ValidationProvider>
-                        </div>
-                    </div>  
-                    <div class="row justify-content-center">
-                      <div class="col">
-                        <excimage-component :product-value="productValue" :type-value="2" :edit-value="1"></excimage-component>
-                        <ValidationProvider name="upload2" rules="required" v-slot="{ errors }">
-                          <input v-model="upload2" type="hidden" class="form-control" name="upload2">
-                          <span class="has-error">{{ errors[0] }}</span>
-                        </ValidationProvider> 
+                        </ValidationProvider>  
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-footer">
+              <div class="card-footer">   
                 <div class="text-center">
                   <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="SaveItem" :disabled="invalid">Save Item</button>
                 </div>
               </div>
           </div>
-  </ValidationObserver>     
+  </ValidationObserver>   
 </template>
 <script>
 import { ValidationObserver } from 'vee-validate';
@@ -165,7 +93,6 @@ import { extend } from 'vee-validate';
 import { confirmed, double, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
 import UploadComponent from "../UploadComponent.vue";
-import ExcimageComponent from "../ExcimageComponent.vue";
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule]);
 });
@@ -192,8 +119,7 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    UploadComponent,
-    ExcimageComponent,
+    UploadComponent
   },
   data() {
     return {
@@ -201,15 +127,8 @@ export default {
         amount: '',
         description: '',
         category: '',
-        exchangeitemname:'',
-        exchangeamount: '',
-        exchangedescription: '',
-        exchangecategory: '',        
         subcategory: '',
-        exchange_id:'',
-        tradde_id:'',
         type: '',
-        exchtype:'',
         offer: '',
         time:'',
         product_images:[],
@@ -218,8 +137,6 @@ export default {
         GetTypes:'',
         GetCategories:'',
         GetSubCategories:'',
-        GetECategories:'',
-        GetESubCategories:'',        
         product: '',
         file: '',
         success: '',
@@ -227,81 +144,16 @@ export default {
         IsSaved:'',
         success: false,
         show_amount: false,
-        show_e_amount: false,
         CategoryData:'',
-        ExchCategoryData:'',
-        exchcategory_id:'',
         upload1:'',
-        upload2:'', 
+        upload2:'',
+        tradde_id:'', 
       }
     },
     props: [
       'productValue'
     ],
     methods: {
-      SaveItem(){
-        axios.post( localStorage['URLroot'] + '/product/update' ,
-        {
-          csrfToken: myToken.csrfToken,
-          product_id: this.productValue,
-          tradde_id: this.tradde_id,
-          exchange_id: this.exchange_id,
-          itemname:this.itemname,
-          amount: this.amount,
-          type: this.type,
-          description: this.description,
-          category: this.category,
-          exchangeitemname:this.exchangeitemname,
-          exchangeamount: this.exchangeamount,
-          exchangetype: this.exchtype,
-          exchangedescription: this.exchangedescription,
-          exchangecategory: this.exchangecategory 
-        }
-        ).then(response => (this.IsSaved = response.data));
-        this.showSuccess();
-      },
-      showSuccess(){
-          this.success=true;
-          setTimeout(() => {
-            location.href = localStorage['URLroot'] + '/dashboard';
-          },6000);        
-      },
-      GetExchangeValues(response){
-          this.exchproduct_id=response.id;
-          this.exchangeitemname=response.name;
-          this.exchangedescription=response.description;
-          this.exchtype=response.type_id;
-          this.exchangeamount=response.amount;
-          this.exchangecategory=response.ex_category_id;
-          axios.get( localStorage['URLroot'] + '/categories/search/' + this.exchangeitemname).then(response => (this.ExchCategoryData = response.data));
-      },
-      GetEx(response){
-        this.exchange_id=response.exchange_id;
-        axios.get( localStorage['URLroot'] + '/getexchproduct/' + response.exchange_id).then(response => (this.GetExchangeValues(response.data)));
-      },
-      setValues(data){
-        this.itemname=data.name;
-        this.amount=data.amount;
-        this.description=data.description;
-        this.type=data.type_id;
-        this.category=data.category_id;
-        this.tradde_id=data.tradde_id;
-        axios.get( localStorage['URLroot'] + '/categories/search/' + this.itemname).then(response => (this.CategoryData = response.data));
-        axios.get( localStorage['URLroot'] + '/GetTrade/' + data.tradde_id).then(response => (this.GetEx(response.data)));
-      },
-      GetCat(){
-        var parent='';
-        if(this.type==1){
-          parent=1329;
-        }
-        else if (this.type==2){
-          parent=1330;
-        }
-        else{
-          parent=1331;
-        }
-        axios.get( localStorage['URLroot'] + '/categories/getchilds/' + parent).then(response => (this.GetCategories = response.data));
-      },
       SetDecimal(){
         let am = this.amount;
         let index=am.indexOf(".");
@@ -310,35 +162,47 @@ export default {
         }
         this.amount=am;
       },
-      SetExchDecimal(){
-        let am = this.exchangeamount;
-        let index=am.indexOf(".");
-        if(index<0){
-          am=am + '.00';
+      SetType(response){
+        this.type = response.id;
+        if(response.id=='1331'){
+          this.show_amount=true;
         }
-        this.exchangeamount=am;
-      },      
-      getType(response){
-        axios.get( localStorage['URLroot'] + '/categories/getparent/' + response.id).then(response => (this.type = response.data.id));
+        else{
+          this.show_amount=false;
+        }
       },
-      getExchType(response){
-        axios.get( localStorage['URLroot'] + '/categories/getparent/' + response.id).then(response => (this.exchtype = response.data.id));
+      getType(response){
+        axios.get( localStorage['URLroot'] + '/categories/getparent/' + response.id).then(response => (this.SetType(response.data)));
       },
       choose() {
         axios.get( localStorage['URLroot'] + '/categories/getparent/' + this.category).then(response => (this.getType(response.data)));
       },
-      Exchchoose(){
-        axios.get( localStorage['URLroot'] + '/categories/getparent/' + this.exchangecategory).then(response => (this.getExchType(response.data)));
-      },
-      onInputExcChange(){
-        if(this.exchangeitemname.length>2) {
-          axios.get( localStorage['URLroot'] + '/categories/search/' + this.exchangeitemname).then(response => (this.ExchCategoryData = response.data));
-        }
-      },      
       onInputChange() {
         if(this.itemname.length>2) {
           axios.get( localStorage['URLroot'] + '/categories/search/' + this.itemname).then(response => (this.CategoryData = response.data));
         }
+      },
+      SaveItem(){
+        axios.post( localStorage['URLroot'] + '/product/update' ,
+        {
+          csrfToken: myToken.csrfToken,
+          product_id: this.productValue,
+          itemname:this.itemname,
+          amount: this.amount,
+          type: this.type,
+          description: this.description,
+          category: this.category,
+          tradde_id: this.tradde_id
+        }
+        ).then(response => (this.IsSaved = response.data));
+        this.showSuccess();
+      },
+      showSuccess(){
+          window.scrollTo(0,0);
+          this.success=true;
+          setTimeout(() => {
+            location.href = localStorage['URLroot'] + '/dashboard';
+          },6000);        
       },
       IsUploaded(response){
         if(response.count>0){
@@ -348,23 +212,22 @@ export default {
           this.upload1='';
         }
       },
-      IsEUploaded(response){
-        if(response.count>0){
-          this.upload2=response.count;
-        }
-        else{
-          this.upload2='';
-        }
-      },
+      setValues(data){
+        this.itemname=data.name;
+        this.amount=data.amount;
+        this.description=data.description;
+        this.type=data.type_id;
+        this.category=data.category_id;
+        this.tradde_id=data.tradde_id;
+        axios.get( localStorage['URLroot'] + '/categories/search/' + this.itemname).then(response => (this.CategoryData = response.data));
+      },      
       startInterval() {
         setInterval(() => {
           axios.get(localStorage['URLroot'] + '/IsUploaded/' + 1).then(response => (this.IsUploaded(response.data)));
-          axios.get(localStorage['URLroot'] + '/IsUploaded/' + 2).then(response => (this.IsEUploaded(response.data)));
         }, 2000)
-      },      
+      },
     },
     mounted() {
-      axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.GetItem=response.data));
       axios.get( localStorage['URLroot'] + '/GetItem/' + this.productValue).then(response => (this.setValues(response.data)));
       axios.get( localStorage['URLroot'] + '/GetTypes').then(response => (this.GetTypes = response.data));
       this.startInterval();

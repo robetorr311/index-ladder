@@ -141,6 +141,9 @@ Route::get('/GetDetailedServiceRating', [App\Http\Controllers\CategoryController
 Route::get('/GetProductRating', [App\Http\Controllers\CategoryController::class, 'GetProductRating'])->name('GetProductRating');
 Route::get('/GetSkillRating', [App\Http\Controllers\CategoryController::class, 'GetSkillRating'])->name('GetSkillRating');
 Route::get('/GetServiceRating', [App\Http\Controllers\CategoryController::class, 'GetServiceRating'])->name('GetServiceRating');
+Route::get('/GetUProductRating/{user_id}', [App\Http\Controllers\CategoryController::class, 'GetUProductRating'])->name('GetUProductRating');
+Route::get('/GetUSkillRating/{user_id}', [App\Http\Controllers\CategoryController::class, 'GetUSkillRating'])->name('GetUSkillRating');
+Route::get('/GetUServiceRating/{user_id}', [App\Http\Controllers\CategoryController::class, 'GetUServiceRating'])->name('GetUServiceRating');
 //Content
 Route::post('/contact-us/submit', [App\Http\Controllers\HomeController::class, 'contactUsSubmit'])->name('contact-us.submit');
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'aboutUs'])->name('about-us');
