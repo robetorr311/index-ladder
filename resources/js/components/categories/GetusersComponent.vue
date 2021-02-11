@@ -2,17 +2,15 @@
   <div class="card">
     <div class="card-header"><h5 class="card-title"><i class="fas fa-users"></i> Traders that match with your categories</h5></div>
     <div class="card-body">
+      <div id="getusers">
       <div class="row">
-        <div class="col" v-for="users in GetValues">
-            <div class="card">
-              <a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a>
-              <div class="card-body text-center">
-                <h6 class="product-name">
-                  {{ users.name }}
-                </h6>
-              </div>
+          <div class="col"  v-for="users in GetValues">
+            <div class="box">
+              <div class="icon"><a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a></div>
+              <h4 class="title"><a :href="UrlUser + users.id">{{ users.name }}</a></h4>
             </div>
-        </div>
+          </div>        
+      </div>
       </div>
     </div>
     <div class="card-footer" v-if="count > 9">

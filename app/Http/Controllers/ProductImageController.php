@@ -38,8 +38,9 @@ class ProductImageController extends Controller
       $image = $request->file('file');
       $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
       $img = Image::make($image->path());
-      $img->resize(340, 255, function ($constraint) {
-          $constraint->aspectRatio();
+      $img->resize(300, 240, function ($constraint) {
+          //$constraint->aspectRatio();
+          $constraint->upsize();
       })->save($upload_path.'/'.$generated_new_name);
       $token=csrf_token();
       $img = DB::table('product_images')->insertGetId([

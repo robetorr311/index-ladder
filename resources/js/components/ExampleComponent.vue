@@ -1,109 +1,35 @@
 <template>
-   <div>
-     <canvas></canvas>
-   </div>
+  <div class="card">
+    <div class="card-header"><h5 class="card-title"><i class="fas fa-handshake"></i> Trading Partners</h5></div>
+      <div class="card-body">
+      <div id="topproducts">
+      <div class="row">
+          <div class="col"  v-for="product in GetProduct">
+            <div class="box">
+              <div class="icon"><a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a></div>
+              <h6 class="title">{{ product.name }}</h6>
+              <h6 class="description">{{ product.description }}</h6>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="card-footer">
+    </div>     
+  </div>
 </template>
 <script>
-
-import { Bar } from 'vue-chartjs'
-
-  export default {
-    extends: Bar,
-    data() {
-      return {
-          chartType: 'bar',
-          chartOptions: {
-            scales: {
-              xAxes: [
-              {
-                stacked: false,
-                gridLines: { display: false },
-              },
-              ],
-              yAxes: [
-              {
-                ticks: {
-                  min: 0,
-                  stepSize: 1,
-                  callback: function(value, index, values) {
-                    if (value % Math.round(values[0] / 6) == 0) {
-                      return value;
-                    } else if (value === 0) {
-                      return value;
-                    }
-                  },
-                },
-              },
-              ],
-            },
-            maintainAspectRatio: false,
-            legend: {
-              labels: {
-                boxWidth: 10,
-              },
-              position: "bottom",
-            },
-          },
-        };
-      },
-      methods: {
-        chartConstructor(chartType, chartData, chartOptions) {
-          const chartElement = document.querySelector("canvas");
-          const chart = new Chart(chartElement, {
-            type: chartType,
-            data: chartData,
-            options: chartOptions,
-          });
-        },
-
-        /*
-
-        */
-        GetProductRating(response){
-          let chartData={
-            labels: response.labels.split(','),
-            datasets: [
-            {
-              label: "Value Fairness",
-              data:  response.fairness.split(','),
-              backgroundColor: "rgba(18, 107, 186)",
-              borderColor: "#000000",
-              lineTension: 0,
-            },
-            {
-              label: "Photos vs Actual",
-              data:  response.description.split(','),
-              backgroundColor: "rgba(240, 227, 138)",
-              borderColor: "#000000",
-              lineTension: 0,
-            },
-            {
-              label: "Value vs Utility",
-              data:  response.value.split(','),
-              backgroundColor: "rgba(64, 171, 64)",
-              borderColor: "#000000",
-              lineTension: 0,
-            },
-            {
-              label: "Satisfied with trade",
-              data:  response.satisfied.split(','),
-              backgroundColor: "rgba(201, 64, 64)",
-              borderColor: "#000000",
-              lineTension: 0,
-            },
-            {
-              label: "Honesty Level",
-              data:  response.honesty.split(','),
-              backgroundColor: "rgba(56, 153, 219)",
-              borderColor: "#000000",
-              lineTension: 0,
-            },                        
-            ]};
-          this.chartConstructor(this.chartType, chartData, this.chartOptions);
+    export default {
+      data() {
+        return {
+         Urlproduct: localStorage['URLroot'] + '/product/view/',
+         GetProduct: '',
+         UrlUser: localStorage['URLroot'] + '/user/show/',
+       }
+    },
+    props: [],
+    mounted() {
+          axios.get(localStorage['URLroot'] + '/topfourPro').then(response => (this.GetProduct = response.data));
         }
-      },
-      mounted() {
-        axios.get(localStorage['URLroot'] + '/GetProductRating').then(response => (this.GetProductRating(response.data)));
-      },          
-  }
+    }
 </script>

@@ -9,43 +9,142 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <slidefav-component></slidefav-component>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <partner-component></partner-component>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <inprogress-component></inprogress-component>
-                </div>
-              </div>               
-              <div class="row">
-                <div class="col">
                   <qualify-component></qualify-component>
                 </div>
               </div>              
             </div>
             <div class="col">
               <div v-if="CenterContent===0">
-                <tradetable-component></tradetable-component>
-                <tradeseed-component ></tradeseed-component>
-                <tradesall-component></tradesall-component>
+                <div class="row">
+                  <div class="col">                
+                      <tradetable-component></tradetable-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <tradeseed-component ></tradeseed-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <tradesall-component></tradesall-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <slidefav-component></slidefav-component>
+                  </div>
+                  <div class="col">
+                    <inprogress-component></inprogress-component>
+                  </div>            
+                </div> 
+                <div class="row">
+                  <div class="col">
+                    <products-component></products-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <skills-component></skills-component>
+                  </div>
+                </div>              
+                <div class="row">
+                  <div class="col">
+                    <services-component></services-component>
+                  </div>
+                </div> 
               </div>
               <div v-else-if="CenterContent===1">
-                <profile-component></profile-component>
+                <div class="row">
+                  <div class="col">                
+                    <profile-component></profile-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <slidefav-component></slidefav-component>
+                  </div>
+                  <div class="col">
+                    <inprogress-component></inprogress-component>
+                  </div>            
+                </div> 
+                <div class="row">
+                  <div class="col">
+                    <products-component></products-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <skills-component></skills-component>
+                  </div>
+                </div>              
+                <div class="row">
+                  <div class="col">
+                    <services-component></services-component>
+                  </div>
+                </div>
               </div>
               <div v-else-if="CenterContent===2">
-                <publishtrade-component></publishtrade-component>
-                <tradesall-component></tradesall-component>
+                <div class="row">
+                  <div class="col">
+                    <publishtrade-component></publishtrade-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <tradeseed-component ></tradeseed-component>
+                  </div>
+                </div>                
+                <div class="row">
+                  <div class="col">
+                    <tradesall-component></tradesall-component>
+                  </div>
+                </div>
               </div>
               <div v-else-if="CenterContent===3">
-                <trade-component :product-value="ProductID"></trade-component>
-                <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
-                <tradeseed-component ></tradeseed-component>
-                <tradesall-component></tradesall-component>
+                <div class="row">
+                  <div class="col">
+                    <trade-component :product-value="ProductID"></trade-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">                
+                    <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <tradeseed-component ></tradeseed-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <tradesall-component></tradesall-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <slidefav-component></slidefav-component>
+                  </div>
+                  <div class="col">
+                    <inprogress-component></inprogress-component>
+                  </div>            
+                </div> 
+                <div class="row">
+                  <div class="col">
+                    <products-component></products-component>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <skills-component></skills-component>
+                  </div>
+                </div>              
+                <div class="row">
+                  <div class="col">
+                    <services-component></services-component>
+                  </div>
+                </div> 
               </div>
               <div v-else-if="CenterContent===4">
                 <editproduct-component :product-value="ProductID"></editproduct-component>
@@ -69,9 +168,44 @@
                 <tradesall-component></tradesall-component>                
               </div>
               <div v-else>
+          <div class="row">
+            <div class="col">                
                 <tradetable-component></tradetable-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
                 <tradeseed-component ></tradeseed-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
                 <tradesall-component></tradesall-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <slidefav-component></slidefav-component>
+            </div>
+            <div class="col">
+              <inprogress-component></inprogress-component>
+            </div>            
+          </div> 
+          <div class="row">
+            <div class="col">
+              <products-component></products-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <skills-component></skills-component>
+            </div>
+          </div>              
+          <div class="row">
+            <div class="col">
+              <services-component></services-component>
+            </div>
+          </div>                  
               </div>             
             </div>
             <div class="col-lg-2">
@@ -82,26 +216,11 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <products-component></products-component>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <skills-component></skills-component>
+                  <partner-component></partner-component>
                 </div>
               </div>              
-              <div class="row">
-                <div class="col">
-                  <services-component></services-component>
-                </div>
-              </div> 
-              <div class="row">
-                <div class="col">
-                  <cancelled-component></cancelled-component>
-                </div>
-              </div>
             </div>
-          </div>  
+          </div>      
     </div>
 </template>
 <script>

@@ -1,26 +1,22 @@
 <template>
     <div class="card">
-      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Last Skills Published</h5></div>
-      <div class="card-body">      
-      <div class="row align-items-center">
-        <div class="col"  v-for="skill in GetSki">
-          <div class="card">
-              <a :href="Urlproduct + skill.id"><img :src="skill.image_url" class="img-fluid mx-auto d-block"></a>
-              <div class="card-body">
-                <h6 class="card-title">
-                  <a :href="Urlproduct + skill.id">{{ skill.name }}</a>
-                </h6>
-                <h5>$ {{ skill.amount }}</h5>
-                <p class="card-text" v-if="skill.description.length>82">{{ skill.description.substring(0, 82) }} ... <a :href="Urlproduct + skill.id">See More</a></p>
-                <p class="card-text" v-else>{{ skill.description }}</p>
-              </div>
-              <div class="card-footer">
-                <a :href="UrlUser + skill.user_id"><getqualify-component :user-value="skill.user_id"></getqualify-component></a>
-              </div>
+    <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Last Skills Published</h5></div>
+      <div class="card-body">
+      <div id="topskills">
+      <div class="row">
+          <div class="col" v-for="skill in GetSki">
+            <div class="box">
+              <div class="icon"><a :href="Urlproduct + skill.id"><img :src="skill.image_url" class="img-fluid mx-auto d-block"></a></div>
+              <h6 class="title">{{ skill.name }}</h6>
+              <h6 class="description" v-if="skill.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + skill.id">See More</a></h6>
+              <h6 class="description" v-else>{{ skill.description }}</h6>
             </div>
-          </div>
-        </div>
+          </div>        
+      </div>
+      </div>
     </div>
+    <div class="card-footer">
+    </div>     
   </div>
 </template>
 

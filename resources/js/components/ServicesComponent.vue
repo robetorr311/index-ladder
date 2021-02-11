@@ -1,26 +1,22 @@
 <template>
     <div class="card">
       <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Last Services Published</h5></div>
-      <div class="card-body">      
-      <div class="row align-items-center">
-        <div class="col"  v-for="service in GetServ">
-           <div class="card">
-              <a :href="Urlproduct + service.id"><img :src="service.image_url" class="img-fluid mx-auto d-block"></a>
-              <div class="card-body">
-                <h6 class="card-title">
-                  <a :href="Urlproduct + service.id">{{ service.name }}</a>
-                </h6>
-                <h5>$ {{ service.amount }}</h5>
-                <p class="card-text" v-if="service.description.length>82">{{ service.description.substring(0, 82) }} ... <a :href="Urlproduct + service.id">See More</a></p>
-                <p class="card-text" v-else>{{ service.description }}</p>
-              </div>
-              <div class="card-footer">
-                <a :href="UrlUser + service.user_id"><getqualify-component :user-value="service.user_id"></getqualify-component></a>
-              </div>
+      <div class="card-body">
+      <div id="topservices">
+      <div class="row">
+          <div class="col" v-for="service in GetServ">
+            <div class="box">
+              <div class="icon"><a :href="Urlproduct + service.id"><img :src="service.image_url" class="img-fluid mx-auto d-block"></a></div>
+              <h6 class="title">{{ service.name }}</h6>
+              <h6 class="description" v-if="service.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + service.id">See More</a></h6>
+              <h6 class="description" v-else>{{ service.description }}</h6>
             </div>
-        </div>                  
+          </div>        
+      </div>
       </div>
     </div>
+    <div class="card-footer">
+    </div>       
   </div>
 </template>
 

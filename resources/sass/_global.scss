@@ -311,3 +311,506 @@ h6 {
   height: 25vh;
   width: 10vw;
 }
+#getusers{
+  color: $third !important;
+  /*background: $third;*/
+  padding-top:20px;
+}
+#getusers .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, #003ed8 , #462469);
+}
+
+#getusers .icon {
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+  transition: 0.2s;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 72px;
+  height: 72px;
+  background: $third;
+}
+
+#getusers .icon a {
+  display: inline-block;
+}
+
+#getusers .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#getusers .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#getusers .box:hover .icon i {
+  color: $third !important;
+}
+
+#getusers .box:hover .icon a {
+  color: $third !important;
+}
+
+#getusers .title {
+  color: $gray-200;
+  padding-top:25px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#getusers .title a {
+  color: $gray-200 !important;
+}
+#getusers .section-header {
+  padding:30px !important;
+}
+
+#getusers .description {
+  font-size: 14px;
+  line-height: 24px;
+}
+#getpartners{
+  color: $third !important;
+  /*background: $third;*/
+  padding-top:20px;
+}
+#getpartners .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, #003ed8 , #462469);
+}
+
+#getpartners .icon {
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+  transition: 0.2s;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 72px;
+  height: 72px;
+  background: $third;
+}
+
+#getpartners .icon a {
+  display: inline-block;
+}
+
+#getpartners .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#getpartners .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#getpartners .box:hover .icon i {
+  color: $third !important;
+}
+
+#getpartners .box:hover .icon a {
+  color: $third !important;
+}
+
+#getpartners .title {
+  color: $gray-200;
+  padding-top:25px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#getpartners .title a {
+  color: $gray-200 !important;
+}
+#getpartners .section-header {
+  padding:30px !important;
+}
+
+#getpartners .description {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+#topproducts{
+  color: $third !important;
+  padding-top:70px;
+}
+#topproducts .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+}
+
+#topproducts .icon {
+  position: absolute;
+  top: -86px;
+  left: calc(50% - 86px);
+  transition: 0.2s;
+  border-radius: 10%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 172px;
+  height: 172px;
+  background: $third;
+}
+
+#topproducts .icon a {
+  display: inline-block;
+}
+
+#topproducts .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#topproducts .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#topproducts .box:hover .icon i {
+  color: $third !important;
+}
+
+#topproducts .box:hover .icon a {
+  color: $third !important;
+}
+
+#topproducts .title {
+  color: $gray-200;
+  padding-top:75px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#topproducts .title a {
+  color: $gray-200 !important;
+}
+#topproducts .section-header {
+  padding:30px !important;
+}
+
+#topproducts .description {
+  color: $gray-200 !important;
+  padding-top:10px;
+  font-size: 14px;
+  line-height: 24px;
+}
+#topskills{
+  color: $third !important;
+  padding-top:70px;
+}
+#topskills .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+}
+
+#topskills .icon {
+  position: absolute;
+  top: -86px;
+  left: calc(50% - 86px);
+  transition: 0.2s;
+  border-radius: 10%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 172px;
+  height: 172px;
+  background: $third;
+}
+
+#topskills .icon a {
+  display: inline-block;
+}
+
+#topskills .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#topskills .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#topskills .box:hover .icon i {
+  color: $third !important;
+}
+
+#topskills .box:hover .icon a {
+  color: $third !important;
+}
+
+#topskills .title {
+  color: $gray-200;
+  padding-top:75px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#topskills .title a {
+  color: $gray-200 !important;
+}
+#topskills .section-header {
+  padding:30px !important;
+}
+
+#topskills .description {
+  color: $gray-200 !important;
+  padding-top:10px;
+  font-size: 14px;
+  line-height: 24px;
+}
+#topservices{
+  color: $third !important;
+  padding-top:70px;
+}
+#topservices .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+}
+
+#topservices .icon {
+  position: absolute;
+  top: -86px;
+  left: calc(50% - 86px);
+  transition: 0.2s;
+  border-radius: 10%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 172px;
+  height: 172px;
+  background: $third;
+}
+
+#topservices .icon a {
+  display: inline-block;
+}
+
+#topservices .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#topservices .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#topservices .box:hover .icon i {
+  color: $third !important;
+}
+
+#topservices .box:hover .icon a {
+  color: $third !important;
+}
+
+#topservices .title {
+  color: $gray-200;
+  padding-top:75px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#topservices .title a {
+  color: $gray-200 !important;
+}
+#topservices .section-header {
+  padding:30px !important;
+}
+
+#topservices .description {
+  color: $gray-200 !important;
+  padding-top:10px;
+  font-size: 14px;
+  line-height: 24px;
+}
+#tradeseed{
+  color: $third !important;
+  padding-top:70px;
+}
+#tradeseed .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+}
+
+#tradeseed .icon {
+  position: absolute;
+  top: -86px;
+  left: calc(50% - 86px);
+  transition: 0.2s;
+  border-radius: 10%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 172px;
+  height: 172px;
+  background: $third;
+}
+
+#tradeseed .icon a {
+  display: inline-block;
+}
+
+#tradeseed .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#tradeseed .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#tradeseed .box:hover .icon i {
+  color: $third !important;
+}
+
+#tradeseed .box:hover .icon a {
+  color: $third !important;
+}
+
+#tradeseed .title {
+  color: $gray-200;
+  padding-top:75px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#tradeseed .title a {
+  color: $gray-200 !important;
+}
+#tradeseed .section-header {
+  padding:30px !important;
+}
+
+#tradeseed .description {
+  color: $gray-200 !important;
+  padding-top:10px;
+  font-size: 14px;
+  line-height: 24px;
+}
+#alltrades{
+  color: $third !important;
+  padding-top:70px;
+}
+#alltrades .box {
+  padding: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+}
+
+#alltrades .icon {
+  position: absolute;
+  top: -86px;
+  left: calc(50% - 86px);
+  transition: 0.2s;
+  border-radius: 10%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 172px;
+  height: 172px;
+  background: $third;
+}
+
+#alltrades .icon a {
+  display: inline-block;
+}
+
+#alltrades .icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#alltrades .box:hover .icon {
+  background: #fff;
+  border: 2px solid $third;
+}
+
+#alltrades .box:hover .icon i {
+  color: $third !important;
+}
+
+#alltrades .box:hover .icon a {
+  color: $third !important;
+}
+
+#alltrades .title {
+  color: $gray-200;
+  padding-top:75px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+#alltrades .title a {
+  color: $gray-200 !important;
+}
+#alltrades .section-header {
+  padding:30px !important;
+}
+
+#alltrades .description {
+  color: $gray-200 !important;
+  padding-top:10px;
+  font-size: 14px;
+  line-height: 24px;
+}
