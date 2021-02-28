@@ -2,59 +2,35 @@
     <div class="card">
       <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Post that match with this trade category</h5></div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table id="ProductsTable" class="table table-hover">
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Category</th>
-                <th>User</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in GetValues">
-                <td><a :href="Urlproduct + item.id"><img :src="item.image_url" width="100px"></a></td>
-                <td> {{ item.name }} </td>
-                <td> {{ item.type_product }} </td>
-                <td> {{ item.category }} </td>
-                <td> {{ item.user_email }} </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Category</th>
-                <th>User</th>
-               </tr>
-            </tfoot>
-          </table>
-        </div>
+      <div id="alltrades">
+      <div class="row">
+          <div class="col" v-for="item in GetValues">
+            <div class="box">
+              <div class="icon"><a :href="Urlproduct + item.id"><img :src="item.image_url" class="img-fluid mx-auto d-block"></a></div>
+              <p><h4 class="title">{{ item.name }}</h4></p>
+              <p><h6 class="description">{{ item.category }}</h6></p>  
+              <p><h4 class="description" v-if="item.description.length>82">{{ item.description.substring(0, 82) }} ... <a :href="Urlproduct + item.id">See More</a></h4>
+              <h4 class="description" v-else>{{ item.description }}</h4></p>
+              <p v-if="parseInt(item.amount)>0"><h4 class="description">$ {{ item.amount }}</h4></p>
+              <p><a :href="PartnerURL + item.user_id"><getqualify-component :user-value="item.user_id"></getqualify-component></a></p>
+            </div>
+          </div>
+      </div>
+      </div>
       </div>
       <div class="card-footer"></div>
     </div>
 </template>
-
 <script>
 import GetqualifyComponent from "./GetqualifyComponent.vue";
-import jquery from "jquery";
-import moment from "moment";
-import datatables from 'datatables.net';
-import datatablesnetscroller from 'datatables.net-scroller';
 export default {
   components: {
     GetqualifyComponent,    
-    jquery,
-    moment,
-    datatables,
-    datatablesnetscroller
   },        
   data() {
     return {
       GetValues:[],
+      PartnerURL: localStorage['URLroot'] + '/user/show/',
       Urlproduct: localStorage['URLroot'] + '/product/view/',
     };
   },
@@ -64,23 +40,7 @@ export default {
   methods: {
     SetTable(response){
       this.GetValues=response;
-      this.initDtt();
     },
-    initDtt() {
-      this.$nextTick(function () {
-        $("#ProductsTable").DataTable({
-          "scrollY":        "500px",
-          "scrollCollapse": true,          
-          "columns": [
-            { "data": "image_url" },
-            { "data": "name" },
-            { "data": "type_product" },
-            { "data": "category" },
-            { "data": "user_email" },
-          ]
-        }).draw();
-      });
-    }    
   },
   mounted() {
     axios.get(localStorage['URLroot'] + '/GetByCategory/' + this.ProductValue).then(response => (this.SetTable(response.data)));

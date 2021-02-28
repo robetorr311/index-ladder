@@ -605,6 +605,7 @@ class TraddeController extends Controller
                      'products.name as name',
                      'products.type_id as type_id',
                      'products.amount as amount',
+                     'products.description as description',
                      'product_images.image_url as image_url',
                      'categories.name as category',
                      'users.email as user_email',
@@ -633,6 +634,7 @@ class TraddeController extends Controller
                      'products.name as name',
                      'products.type_id as type_id',
                      'products.amount as amount',
+                     'products.description as description',
                      'product_images.image_url as image_url',
                      'categories.name as category',
                      'users.email as user_email',
@@ -641,16 +643,36 @@ class TraddeController extends Controller
     }
     public function downloadPDF()
     {
-
+      $iduser = Auth::id();
+      $usr= User::where('id', $iduser)->first();
+      $time=time();
+      $day = strftime("%d",$time);
+      $month =strftime("%m",$time);
+      $yyyy= strftime("%Y",$time);
+      $expday = strftime("%d",$time);
+      $expmonth =strftime("%m",$time);
+      $expyyyy= strftime("%Y",$time);
+      $registration=DB::table('registrations')->where('user_id','=',$iduser)->first();
       $data = [
         'titulo' => 'Styde.net',
-        'path' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ttf'),
-        'ufm' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ufm')
+        'path' => public_path('fonts/0fac23294cabd9471f8ca7816bf12eae.ttf'),
+        'ufm' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ufm'),
+        'day' => $day,
+        'month' => $month,
+        'yyyy' => $yyyy,
+        'expday' => $expday,
+        'expmonth' => $expmonth,
+        'expyyyy' => $expyyyy,        
+        'user_name' => $usr->name,
+        'user_email' => $usr->email,
+        'user_phone' => $usr->phone,
+        'user_address' => $registration->address,
+        'partner_name' => $usr->name,
+        'partner_email' => $usr->email,
+        'partner_phone' => $usr->phone,
+        'partner_address' => $registration->address        
       ];
-      return \PDF::loadView('pdf.barteragreement', $data)
-        ->setPaper('a4', 'landscape')
-        ->download('barteragreement.pdf');
-      /*$data = PDF::loadView('pdf.barteragreement', $data)
-        ->save(storage_path('app/public/pdf/') . 'archivo.pdf');*/
+      return \PDF::loadView('pdf.barteragreement', $data)->setOptions(['dpi' => 150, 'defaultFont' => 'futura', 'chroot' => public_path()])
+        ->setPaper('a4', 'portrait')->download('barteragreement.pdf');
     }
 }

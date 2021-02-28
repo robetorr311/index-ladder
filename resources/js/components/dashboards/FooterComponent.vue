@@ -19,7 +19,7 @@
             <div class="col-md-4">
               <h3><span class="footertitle">Contact us</span></h3>
                 <span class="footertitle"><p>The address of company Index Ladder here...</p></span>
-                <span class="footertitle"><p>Email of index ladder</p></span>
+                <span class="footertitle"><p>info@indexladder.com</p></span>
                 <div class="row">
                   <div class="col-md-10">
                     <h3><span class="footertitle">Contact form</span></h3>
@@ -61,7 +61,7 @@
         </div>        
         <div class="row justify-content-center">
             <div class="col-md-12">
-              <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2020</p>
+              <p class="m-0 text-center text-white small">Copyright &copy; Index Ladder 2020</p>
             </div>
         </div>              
       

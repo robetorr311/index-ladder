@@ -8,7 +8,11 @@
             <div class="box">
               <div class="icon"><a :href="Urlproduct + item.id"><img :src="item.image_url" class="img-fluid mx-auto d-block"></a></div>
               <h6 class="title">{{ item.name }}</h6>
-              <h6 class="description">{{ item.description }}</h6>
+              <p><h6 class="description">{{ item.category }}</h6></p>  
+              <p><h4 class="description" v-if="item.description.length>82">{{ item.description.substring(0, 82) }} ... <a :href="Urlproduct + item.id">See More</a></h4>
+              <h4 class="description" v-else>{{ item.description }}</h4></p>
+              <p v-if="item.amount"><h4 class="description">$ {{ item.amount }}</h4></p>
+              <p><a :href="PartnerURL + item.user_id"><getqualify-component :user-value="item.user_id"></getqualify-component></a></p>
             </div>
           </div>
       </div>
@@ -28,6 +32,7 @@ export default {
     return {
       GetValues:[],
       Urlproduct: localStorage['URLroot'] + '/product/view/',
+      PartnerURL: localStorage['URLroot'] + '/user/show/',
     };
   },
   props: [

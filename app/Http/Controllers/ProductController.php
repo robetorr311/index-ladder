@@ -304,7 +304,8 @@ class ProductController extends Controller
                      'product_images.image_url as image_url',
                      'categories.name as category',
                      'users.email as user_email',
-                     'type_products.name as type_product')->where('traddes.status','=',1)->where('products.type_id','=',$product->type_id)->get();
+                     'type_products.name as type_product',
+                     'products.description as description',)->where('traddes.status','=',1)->where('products.type_id','=',$product->type_id)->get();
       return response()->json($product_category);
     }
     public function FindByName($search){
@@ -360,7 +361,7 @@ class ProductController extends Controller
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',1329)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(3)->get();
+            ->limit(4)->get();
             return response()->json($se);
     }
     public function topfourSki(){
@@ -383,7 +384,7 @@ class ProductController extends Controller
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',1330)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(3)->get();
+            ->limit(4)->get();
             return response()->json($se);
     }
     public function topfourPro(){
@@ -406,7 +407,7 @@ class ProductController extends Controller
                      'product_images.image_url as image_url')
             ->where('products.type_id','=',1331)->where('traddes.status','=',1)
             ->orderBy('products.id','asc')
-            ->limit(3)->get();
+            ->limit(4)->get();
             return response()->json($se);
     }
     public function Like(Request $request){
