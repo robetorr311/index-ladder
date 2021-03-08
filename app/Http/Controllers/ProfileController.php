@@ -14,6 +14,7 @@ use App\Models\Registration;
 use App\Models\Ident_image;
 use Twilio\Rest\Client;
 use Carbon\Carbon;
+use Twilio\Exceptions\TwilioException;
 class ProfileController extends Controller
 {
     public function __construct()
@@ -50,21 +51,29 @@ class ProfileController extends Controller
     public function SendVerifySMS(){
       $id = Auth::id();
       $usr= User::where('id', $id)->first();
+      $regis= Registration::where('user_id', $id)->first();
       $usernameEnd=$usr->name;
-      $recipients=$usr->phone;
+      $recipients=$regis->phone;
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
       $account_sid = config('services.twilio')['account_sid'];
       $auth_token = config('services.twilio')['auth_token'];
-      $phone = '+12058909484';
+      $phone = '+16592047115';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
       $twilio = new Client($account_sid, $auth_token);
-      $twilio->messages->create($recipients, [
+      try {
+          $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );
-      return view('profile.phone_verification');      
+          ] );
+          $logged_in=0;
+          return view('profile.phone_verification');
+      } catch (TwilioException $e) {
+        return response()->json(['success'=>$e->getCode()]);
+        //die( $e->getCode() . ' : ' . $e->getMessage() );
+      }
+            
     }
     public function SixDigits(Request $request)
     {
@@ -130,17 +139,28 @@ class ProfileController extends Controller
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
-      $account_sid = config('services.twilio')['account_sid'];
+      /*$account_sid = config('services.twilio')['account_sid'];
       $auth_token = config('services.twilio')['auth_token'];
-      $phone = '+12058909484';
+      $phone = '+16592047115';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
       $twilio = new Client($account_sid, $auth_token);
-      $twilio->messages->create($recipients, [
+      try {
+          $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );
-      $success="Success";
-      return response()->json(['success' => $success]);
+          ] );
+          $logged_in=0;
+          return response()->json(['success' => 'Success']);
+      } catch (TwilioException $e) {
+        return response()->json(['success'=>$e->getCode()]);
+        //die( $e->getCode() . ' : ' . $e->getMessage() );
+      }*/
+      $data= array('username' => $usr->name,
+                   'email' => $usr->email, 
+                   'code' => $verification_code);          
+      Mail::send('mails.code',$data,function($message) use ($data){
+        $message->to($data['email'],$data['username'])->subject('Your 6 digits code');
+      });
     }
     public function IsTwoStepEnaled(){
       $id = Auth::id();

@@ -30,9 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'twilio' => [
-        'account_sid' => env('AC45c7615c4ffc9aa921a152c25eb4ca1d'),
-        'auth_token' => env('5b954c3d2ec4630f4c10c3d60837b905'),
-        'phone' => env('+12058909484'),
+        'account_sid' => env('AC687546af2328e21388dcb8317c78e09a'),
+        'auth_token' => env('f7f73eecbd6d56177be278859910a978'),
+        'phone' => env('+16592047115'),
     ],
     'stripe' => [
         'model' => App\Models\User::class,

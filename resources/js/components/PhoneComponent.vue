@@ -28,7 +28,7 @@
                       <div class="row justify-content-center">
                         <div class="col-md-12">
                           <div class="d-flex justify-content-center" >  
-                            <button type="button" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" @click="submitForm">Submit</button>
+                            <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="submitForm">Submit</button>
                           </div>
                         </div>
                       </div>                      
@@ -82,9 +82,16 @@ export default {
         },
         methods: {
             showSuccess(response){
+              console.log(response);
               this.success=response.success;         
               this.show=true;
-              location.href = localStorage['URLroot'] + '/verify_phone';
+              if(response.success=='Success'){
+                location.href = localStorage['URLroot'] + '/verify_phone';
+              }
+              else{
+                location.href = localStorage['URLroot'] + '/dashboard';
+              }              
+              //location.href = localStorage['URLroot'] + '/verify_phone';
             },
             submitForm() {
               axios.post( localStorage['URLroot'] + '/registration/phonenumber' ,

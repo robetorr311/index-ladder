@@ -17,28 +17,17 @@
                     <div class="card-body">
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">
-                          <div class="col-md-6">
-                            <ValidationProvider name="firstname" rules="required" v-slot="{ errors }">
+                          <div class="col">
+                            <ValidationProvider name="username" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-user"></i></span>
                           </div>
-                              <input v-model="firstname" type="text" class="form-control" name="firstname" placeholder="Name">
+                              <input v-model="username" type="text" class="form-control" name="username" placeholder="Name">
                             </div>
                             <br><p><span class="has-error">{{ errors[0] }}</span></p>
                             </ValidationProvider>
-                        </div>
-                        <div class="col-md-6">
-                            <ValidationProvider name="lastname" rules="required" v-slot="{ errors }">
-                            <div class="input-group" >
-                              <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-user"></i></span>
-                          </div>
-                              <input v-model="lastname" type="text" class="form-control" name="lastname" placeholder="Lastname">
-                            </div>
-                              <br><p><span class="has-error">{{ errors[0] }}</span></p>
-                            </ValidationProvider>
-                        </div>                        
+                        </div>                     
                       </div>
                       <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -130,8 +119,7 @@ export default {
   },
   data() {
     return {
-      firstname: '',
-      lastname: '',
+      username: '',
       password: '',
       repassword: '',
       email: '',
@@ -156,8 +144,7 @@ export default {
               axios.post( localStorage['URLroot'] + '/registration/addnew',
                   {
                      csrfToken: myToken.csrfToken,
-                     firstname: this.firstname,
-                     lastname: this.lastname,
+                     username: this.username,
                      password: this.password,
                      repassword: this.repassword,
                      email: this.email

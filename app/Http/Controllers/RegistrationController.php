@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Ident_image;
+use Twilio\Exceptions\TwilioException;
 class RegistrationController extends Controller
 {
     /**
@@ -59,17 +60,28 @@ class RegistrationController extends Controller
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
       $usr->save();
-      /*$account_sid = config('services.twilio')['account_sid'];
-      $auth_token = config('services.twilio')['auth_token'];
-      $phone = '+12058909484';
+      /*$phone = '+16592047115';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
       $twilio = new Client($account_sid, $auth_token);
-      $twilio->messages->create($recipients, [
+      try {
+          $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );*/
-        $logged_in=0;
-        return view('registration.twostep', ['emailValue' => $email]);
+          ] );
+          $logged_in=0;
+          return view('registration.twostep', ['emailValue' => $email]);
+      } catch (TwilioException $e) {
+        return response()->json(['success'=>$e->getCode()]);
+        //die( $e->getCode() . ' : ' . $e->getMessage() );
+      }*/
+      $data= array('username' => $usr->name,
+                   'email' => $usr->email, 
+                   'code' => $verification_code);          
+      Mail::send('mails.code',$data,function($message) use ($data){
+        $message->to($data['email'],$data['username'])->subject('Your 6 digits code');
+      });
+      return view('registration.twostep', ['emailValue' => $email]);      
+      $logged_in=0;
     }    
   
     /**
@@ -81,8 +93,7 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-          'firstname' => 'required|string|max:200',
-          'lastname' => 'required|string|max:200',
+          'username' => 'required|string|max:50',
           'email' => 'required|string|email|max:30'
         ]);
         if ($validator->fails()) {
@@ -91,15 +102,13 @@ class RegistrationController extends Controller
         }
         else {
           $regis = Registration::create([
-                    'firstname' => $request->firstname,
-                    'lastname' => $request->lastname,
                     'password' => Hash::make($request->password),
                     'email' => $request->email,
                     'token' => $request->csrfToken
                 ]);
           $regis->save();
           $usr= User::create([
-            'name' => $request->firstname. ' ' . $request->lastname,
+            'name' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => 2,
@@ -108,8 +117,7 @@ class RegistrationController extends Controller
           $usr->save();
           $users=DB::table('users')->where('email', $request->email)->first();
           DB::table('registrations')->where('email', $request->email)->update(['user_id' => $users->id]);
-          $data= array('firstname' => $request->firstname, 
-                       'lastname' => $request->firstname,
+          $data= array('firstname' => $request->username,
                        'email' => $request->email, 
                        'token' => $request->csrfToken, 
                        'link'=> route('verify',[ 'token' => $request->csrfToken, 'email' => $request->email ]));          
@@ -131,14 +139,22 @@ class RegistrationController extends Controller
       return response()->json(['success' => $success]);
     }
     public function SendSMS($message,$recipients){
-        $account_sid = config('services.twilio')['account_sid'];
-        $auth_token = config('services.twilio')['auth_token'];
-        $phone = '+12058909484';
-        $twilio = new Client($account_sid, $auth_token);
-        $twilio->messages->create($recipients, [
+      $account_sid = config('services.twilio')['account_sid'];
+      $auth_token = config('services.twilio')['auth_token'];
+      $phone = '+16592047115';
+      $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
+      $twilio = new Client($account_sid, $auth_token);
+      try {
+          $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );
+          ] );
+          $logged_in=0;
+          return view('registration.twostep', ['emailValue' => $email]);
+      } catch (TwilioException $e) {
+        return response()->json(['success'=>$e->getCode()]);
+        //die( $e->getCode() . ' : ' . $e->getMessage() );
+      }
     }     
     public function verify($token,$email)
     {
@@ -257,27 +273,33 @@ class RegistrationController extends Controller
     public function phonenumber(Request $request){
       $iduser = Auth::id();
       $usr= User::where('id', $iduser)->first();
-      $usr->phone=$request->phone;
-      $usr->save();
-      $regis= Registration::where('user_id', $id)->first();
+      $regis= Registration::where('user_id', $iduser)->first();
       $regis->phone=$usr->phone;
       $regis->save();
       $usernameEnd="";
       $recipients=$request->phone;
       $verification_code = rand(100000,999999);
       $usr->verification_code=$verification_code;
+      $usr->phone=$request->phone;
       $usr->save();
-      /*$account_sid = config('services.twilio')['account_sid'];
+      $account_sid = config('services.twilio')['account_sid'];
       $auth_token = config('services.twilio')['auth_token'];
-      $phone = '+12058909484';
+      $phone = '+16592047115';
       $message=$verification_code. ' is the verification code for your phone number in Index Ladder!';
       $twilio = new Client($account_sid, $auth_token);
-      $twilio->messages->create($recipients, [
+      try {
+          $twilio->messages->create($recipients, [
             'from' => $phone,
             'body' => $message
-        ] );*/
-        $logged_in=0;
-        return response()->json(['success'=>'Success']);
+          ] );
+          $logged_in=0;
+          return response()->json(['success'=>'Success']);
+      } catch (TwilioException $e) {
+        return response()->json(['success'=>$e->getCode()]);
+        //die( $e->getCode() . ' : ' . $e->getMessage() );
+      }      
+
+        //21408
     }
     public function verify_phone(){
       return view('profile.verify_number');

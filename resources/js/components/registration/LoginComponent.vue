@@ -2,7 +2,7 @@
   <ValidationObserver v-slot="{ invalid }">
     <div class="container">
     <div class="alert alert-danger" v-if="fail">
-      <strong>Fail!</strong> Wrong Email or Password 
+      <strong>Fail!</strong> Please click on the verification link sent to your email or you have a wrong Email or Password!! 
     </div>          
         <div id="formregistration">
       <div class="row align-items-center">

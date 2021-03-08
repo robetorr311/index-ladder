@@ -79,7 +79,7 @@
                           </div>
                           </div>
                       </div>
-                      <div class="row justify-content-center" v-if="PhoneVerified.success==='Success'">
+                      <div class="row justify-content-center">
                           <div class="col" v-if="IsTwoStepEnaled.success==='Fail'">
                             <div class="text-center">
                             <button type="button" @click.stop.prevent="EnableTwoStep" v-show="showedit" class="btn btn-secondary rounded-pill mt-5" name=""><i class="fas fa-shield-alt"></i> Enable 2 Step Verify</button><span class="categorieslink">{{ CodeSentMessage }} </span>
