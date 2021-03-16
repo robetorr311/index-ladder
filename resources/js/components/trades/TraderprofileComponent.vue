@@ -31,7 +31,6 @@
                 <h6 class="product-name">
                   {{ product.name }}
                 </h6>
-                <h6 class="product-name">$ {{ product.amount }}</h6>
                 <h6 class="product-name">{{ product.status_name }}</h6>
               </div>
               <div class="card-footer"><getqualifyf-component :user-value="traderValue" :trade-value="product.tradde_id"></getqualifyf-component></div>

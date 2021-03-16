@@ -8,7 +8,7 @@
         /**/
         body {
             font-family: 'futura';
-            margin: 3cm 2cm 2cm;
+            margin: 1cm 1cm 1cm 1cm ;
             font-weight: normal;
             font-style: normal;
         }
@@ -51,6 +51,7 @@
            font-weight: normal;
            padding-top: 250px;
            font-style: normal;
+           margin: 5px 25px 5px 5px ; 
         }
         .pdf-subtitle{
            font-family: 'futura';
@@ -58,14 +59,16 @@
            color: #404346;
            text-align: right;
            font-style: normal;
+           margin: 5px 25px 5px 5px ; 
         }
         .pdf-declaration{
-           padding-top: 250px;
+           padding-top: 550px;
            font-family: 'futura';
            color: #3876aa;
            font-weight: normal;
            text-align: right;
            font-style: notmal;
+           margin: 5px 25px 5px 5px ; 
         }
         .pdf-titledefault{
            font-family: 'futura';
@@ -73,6 +76,7 @@
            color: #404346;
            font-style: normal;
            text-align: right;
+           margin: 5px 25px 5px 5px ; 
         }          
         .pdf-default{
           padding-top: 0px;
@@ -85,7 +89,8 @@
            word-spacing: 8px; 
            text-align: justify;
            width: 100%; 
-           display: block; 
+           display: block;
+           margin: 5px 25px 5px 5px ; 
         }
         .pdf-blacked{
            font-family: 'futura';
@@ -130,7 +135,7 @@
             text-align: left;
             font-weight: normal;
             font-style: normal;
-            padding-top: 100px;
+            /*padding-top: 100px;*/
         }
         .contents-table{
            font-family: 'futura';
@@ -173,7 +178,8 @@
             text-align: left;
             font-weight: normal;
             font-style: normal;
-            padding-top: 50px;
+            margin: 5px 25px 5px 5px ;
+            
         }
         .bluebackround-contents{
             font-family: 'futura';
@@ -182,19 +188,53 @@
             text-align: left;
             font-weight: normal;
             font-style: normal;
+            margin: 5px 25px 5px 5px ;
         }
         .d {
           list-style-type: decimal;
           font-weight: normal;
           font-style: normal;
-          color: #404346;          
-        }               
+          color: #404346;
+          margin: 5px 25px 5px 5px ;
+        }
+        .pdf-newpage{
+          top: 199px;
+          position: absolute;
+            padding-top: 0px;
+            border: 1px solid #404346;
+            width: 1130px;
+            height: 1300px;
+        }
+        .gray-title{
+            font-family: 'futura';
+            background-color: #dbdbdb;
+            color: #404346;
+            text-align: left;
+            font-weight: normal;
+            font-style: normal;
+            /*padding-top: 100px;*/
+        }
+        .x-checkbox{
+            position: relative;
+            color: #404346;
+            border: 1px solid #404346;
+            width: 20px;
+            height: 20px;
+        }
+        .checkbox-inner{
+          display: inline-block;
+          position: absolute;
+          border: none;
+          top: -11px;
+          left: 2px;
+        }          
     </style>
 </head>
 <body>
   <header>
+    <img src="images/toppdf.png" class="top-pdf" >
   </header>
-    <p class="top-image"><img src="images/toppdf.png" class="top-pdf" ></p>
+    <div class="pdf-newpage">
     <h1 class="pdf-title">TRADE/BARTER <br>AGREEMENT</h1>
     <h2 class="pdf-subtitle">Sample Agreement</h2>
     <h4 class="pdf-declaration"> Declaration</h4>
@@ -202,7 +242,9 @@
     <h5 class="pdf-titledefault align-right">Index Ladder services</h5>
     <h5 class="pdf-titledefault align-right">Participating Parties Names:</h5>
     <h5 class="pdf-titledefault align-right">{{ $user_name }}</h5>
+    </div>
     <p class="page-break"></p>
+    <div class="pdf-newpage">
     <p class="icontents">I. CONTENTS</p>
     <table class="contents-table">
       <tr class="contents-rowtable"><td class="contents-rowcol" width="300px">I. PARTICIPATING PARTIES</td><td class="contents-rowcol col-middle"></td><td class="contents-rowcol col-page">3</td></tr>
@@ -258,8 +300,10 @@
     <table class="contents-table">
       <tr class="contents-rowtable"><td class="contents-rowcol" width="300px">X. ACCEPTANCE</td><td class="contents-rowcol col-middle"></td><td class="contents-rowcol col-page">8</td></tr>
     </table>
+    </div>
     <p class="page-break"></p>
-    <h2 class="single-title">TRADE/BARTER AGREEMENT</h1>
+    <div class="pdf-newpage">
+    <h2 class="single-title">TRADE/BARTER AGREEMENT</h2>
     <p class="bluebackround-contents">I. PARTICIPATING PARTIES</p>
     <p class="pdf-default">The Offeree (Host User) and the Offeror (Target User), defined below, and sometimes referred collectively to in this document as “Parties” and individually as “Party”, intend to enter this legally binding TRADE/BARTER AGREEMENT, hereafter sometimes referred to as “Agreement”, on this {{ $day }}, {{ $month }} of {{ $yyyy }}, sometimes referred to in this document as “Effective Date.” The party consisting of   <span class="pdf-blacked">{{ $user_name }}</span>   [Offeree] (Host User), with principal place of business, with representative or officer <span class="pdf-blacked">{{ $user_address }}</span>, with phone number   <span class="pdf-blacked">{{ $user_phone }}</span>  , and email address or other contact information:  <span class="pdf-blacked">{{ $user_email }}</span></p>
     <p class="pdf-default">Shall be known within this Agreement as “Offeree” (Host User) , and is the party receiving initially offered items in exchange for the offer of items “Offered in exchange.”</p>
@@ -267,8 +311,33 @@
     <p class="pdf-default">Shall be known within this Agreement as “Offeror” (Target User), and is the party offering items “Initially Offered” beneficial to the other Party and receiving items “Offered in Exchange”.</p>
     <p class="bluebackround-contents">II. TERMS AND CONDITIONS </p>
     <p class="pdf-default">The Contract Offered starting on this “Offer Date” of the {{ $day }} <sup>th/rd</sup> of {{ $month }} of {{ $yyyy }}, and continue its availability of acceptance until the “Expiration Date” of the {{ $expday }}  <sup>th/rd</sup>  of {{ $expmonth }} of {{ $expyyyy }}, and come into effect on the “Effective Date,” stated as the time this contract is signed by the Offeree, in the section titled “Acceptance”. </p>
-    <p class="pdf-default"><ol class="d"><li>Both parties agreed upon the fair market value of the product(s)/service(s) being offered to determine the associated cost.</li><li>In the absence of the fair market value of the product(s)/service(s), the participating parties mutually agreed upon the value, while acknowledge to have unambiguous understanding of the nature of exchange of agreement.</li><li>Both parties understand and agree full disclosure of exchange material, disclosure of any and all defects, defects, lack of accuracy, quantity, compromised functionality, degradation or depreciation, acceptance of all products, services and/or currency used for monetary trade by all entities that are part of the exchange.</li>
-    </ol></p>    
+    <ol class="d"><p class="pdf-default"><li>Both parties agreed upon the fair market value of the product(s)/service(s) being offered to determine the associated cost.</li><li>In the absence of the fair market value of the product(s)/service(s), the participating parties mutually agreed upon the value, while acknowledge to have unambiguous understanding of the nature of exchange of agreement.</li><li>Both parties understand and agree full disclosure of exchange material, disclosure of any and all defects, defects, lack of accuracy, quantity, compromised functionality, degradation or depreciation, acceptance of all products, services and/or currency used for monetary trade by all entities that are part of the exchange.</li>
+    </p>
+    </ol>
+    </div>
+    <p class="page-break"></p>
+    <div class="pdf-newpage"><ol start="4" class="d">
+    <li>To ensure that the total exchange of goods is equitable and fair. As - party decides to provide additional
+goods / services or monetary compensation, any discrepancy in trade values is settled.</li>
+    <li>Neither party shall have any hold, claim, or due over the other once this contract has been completed.
+Both parties shall indemnify and hold harmless the other for (including, but not limited to) voiding the
+warranty, loss, theft, injury, and death caused by the bartered item(s).</li>  
+    </ol>
+    <p class="gray-title">A. INITIALLY OFFERED</p>
+    <div class="x-checkbox">
+      <div class="checkbox-inner">X</div>
+    </div><p class="pdf-default">Products</p>
+    <div class="x-checkbox ">
+    </div><p class="pdf-default">Services</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Products + Services</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Cash / Money</p>
+    <p class="gray-title">B. OFFER IN EXCHANGE</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Products</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Services</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Products + Services</p>
+    <div class="x-checkbox"></div><p class="pdf-default">Cash / Money</p>
+
+    </div>    
 <footer>
     <h1><p class="page-number"></p></h1>
 </footer>

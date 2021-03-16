@@ -20,7 +20,6 @@
                       <h6 class="product-name">
                       <a :href="Urlproduct + item.id">{{ item.name }}</a>
                       </h6>
-                      <h6 class="product-name">$ {{ item.amount }}</h6>
                 <p class="card-text" v-if="item.description.length>82">{{ item.description.substring(0, 82) }} ... <a :href="Urlproduct + item.id">See More</a></p>
                 <p class="card-text" v-else>{{ item.description }}</p>
                     </div>

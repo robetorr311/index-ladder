@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">SMS 6 Digits Code </div>
+                    <div class="card-header">Check you email to get 6 Digits Code </div>
                     <div class="card-body">
                       <form @submit.prevent="onSubmit">
                       <div class="row justify-content-center">

@@ -15,7 +15,6 @@
                       </div>                      
                       <div class="row" v-if="product.amount">
                         <div class="col">
-                          <p class="text-left">Valued in: $ {{ product.amount }}</p>
                         </div>
                       </div>
                       </h6>
