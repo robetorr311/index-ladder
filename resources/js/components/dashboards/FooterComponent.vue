@@ -1,4 +1,5 @@
 <template>
+  <ValidationObserver v-slot="{ invalid }">
   <footer class="py-5 bg-black">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -23,28 +24,34 @@
                 <div class="row">
                   <div class="col-md-10">
                     <h3><span class="footertitle">Contact form</span></h3>
-                      <form>
+                      <form @submit.prevent="onSubmit">
                       <div class="row">
                           <div class="col-md-10">
+                            <ValidationProvider name="emailcontact" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                               </div>
-                              <input type="text" class="form-control" name="email" placeholder="Email">
+                              <input type="text" class="form-control" v-model="emailcontact" name="emailcontact" placeholder="Email">
                             </div>
+                            <p><span class="has-error">{{ errors[0] }}</span></p>
+                            </ValidationProvider>
                           </div>
                       </div>
                       <div class="row">
                         <div class="col-md-10">
+                            <ValidationProvider name="contentcontact" rules="required" v-slot="{ errors }">
                             <div class="input-group" >
                               <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
                           </div>
-                              <textarea class="form-control" name="content" placeholder="content"></textarea>  
+                              <textarea class="form-control" v-model="contentcontact" name="contentcontact" placeholder="content"></textarea>  
                             </div>
+                            <p><span class="has-error">{{ errors[0] }}</span></p>
+                            </ValidationProvider>
                         </div>                        
                       </div>
-                      <button type="submit" class="btn btn-secondary rounded-pill mt-5">Send</button>
+                      <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" @click="SendMessage">Send</button>
                       </form>
                     </div>
                   </div>
@@ -68,13 +75,39 @@
     </div>
     <!-- /.container -->
   </footer>	
+  </ValidationObserver>
 </template>
 
 
 <script>
+import { ValidationObserver } from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
+import { extend } from 'vee-validate';
+import { confirmed, required, email } from 'vee-validate/dist/rules';
+import * as rules from 'vee-validate/dist/rules';
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule]);
+});
+
+// with typescript
+for (let [rule, validation] of Object.entries(rules)) {
+  extend(rule, {
+    ...validation
+  });
+}
+extend('required', {
+  ...required,
+  message: 'This field is required'
+});
     export default {
+      components: {
+        ValidationObserver,
+        ValidationProvider
+      },      
   data() {
     return {
+      emailcontact: '',
+      contentcontact:'',
       urlHow:  '',
       urlNews:  '',
       urlPrivacy:  '',
@@ -86,6 +119,23 @@
       urlTwitter: 'https://www.twitter.com',
       urlFacebook: 'https://www.facebook.com',
       urlInstagram: 'https://www.instagram.com' }
+    },
+    methods: {
+        SendMessage() {
+            var value = localStorage['URLroot'];
+            axios.post( value + '/contacts/send',
+                  {
+                     email: this.emailcontact,
+                     contact: this.contentcontact
+                  }
+            ).then(function (response) {
+                location.reload();
+            })
+            .catch((error) => {
+              console.log('FAILURE!!');
+              this.$showValidationErrors(error.response.data);
+            });            
+        },
     },
     mounted() {
           var value = localStorage['URLroot'];

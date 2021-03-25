@@ -1,36 +1,29 @@
 <template>
 	    <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-2">
-              <div class="row">
-                <div class="col">
-                  <userinfo-component></userinfo-component>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <qualify-component></qualify-component>
-                </div>
-              </div>              
+          <div v-if="ShowAdmintables" class="row">
+            <div class="col-lg-9">
+              <admin-component></admin-component>
             </div>
-            <div class="col">
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
               <div v-if="CenterContent===0">
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">                
                       <tradetable-component></tradetable-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                       <tradeseed-component ></tradeseed-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                       <tradesall-component></tradesall-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <slidefav-component></slidefav-component>
                   </div>
@@ -38,29 +31,29 @@
                     <inprogress-component></inprogress-component>
                   </div>            
                 </div> 
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <products-component></products-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <skills-component></skills-component>
                   </div>
                 </div>              
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <services-component></services-component>
                   </div>
                 </div> 
               </div>
               <div v-else-if="CenterContent===1">
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">                
                     <profile-component></profile-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <slidefav-component></slidefav-component>
                   </div>
@@ -68,61 +61,61 @@
                     <inprogress-component></inprogress-component>
                   </div>            
                 </div> 
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <products-component></products-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <skills-component></skills-component>
                   </div>
                 </div>              
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <services-component></services-component>
                   </div>
                 </div>
               </div>
               <div v-else-if="CenterContent===2">
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <publishtrade-component></publishtrade-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                       <tradeseed-component ></tradeseed-component>
                   </div>
                 </div>                
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <tradesall-component></tradesall-component>
                   </div>
                 </div>
               </div>
               <div v-else-if="CenterContent===3">
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <trade-component :product-value="ProductID"></trade-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">                
                     <tradeproduct-component :product-value="ProductID"></tradeproduct-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                       <tradeseed-component ></tradeseed-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                       <tradesall-component></tradesall-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <slidefav-component></slidefav-component>
                   </div>
@@ -130,17 +123,17 @@
                     <inprogress-component></inprogress-component>
                   </div>            
                 </div> 
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <products-component></products-component>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <skills-component></skills-component>
                   </div>
                 </div>              
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col">
                     <services-component></services-component>
                   </div>
@@ -168,22 +161,22 @@
                 <tradesall-component></tradesall-component>                
               </div>
               <div v-else>
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">                
                 <tradetable-component></tradetable-component>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
                 <tradeseed-component ></tradeseed-component>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
                 <tradesall-component></tradesall-component>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
               <slidefav-component></slidefav-component>
             </div>
@@ -191,36 +184,44 @@
               <inprogress-component></inprogress-component>
             </div>            
           </div> 
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
               <products-component></products-component>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
               <skills-component></skills-component>
             </div>
           </div>              
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col">
               <services-component></services-component>
             </div>
           </div>                  
               </div>             
             </div>
-            <div class="col-lg-2">
-              <div class="row">
-                <div class="col">
-                  <getusers-component></getusers-component>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <partner-component></partner-component>
-                </div>
-              </div>              
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <getusers-component></getusers-component>
             </div>
-          </div>      
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <partner-component></partner-component>
+            </div>
+          </div>              
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <userinfo-component></userinfo-component>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <qualify-component></qualify-component>
+            </div>
+          </div>
     </div>
 </template>
 <script>
@@ -258,12 +259,13 @@
         InprogressComponent,
         CancelledComponent,
         CompletedComponent,
-        ShowalltradesComponent
+        ShowalltradesComponent,
       },
       data() {
         return {
           CenterContent: 0,
           ProductID:'',
+          ShowAdmintables: false,
         }
       },
     props: [ 
@@ -271,7 +273,11 @@
       'TradeValues'
     ],
     methods: {
-      ShowCenterContent(){
+      ShowCenterContent(response){
+        let userid=parseInt(response.id);
+        if(userid==1){
+          this.ShowAdmintables=true;
+        }
         let route=this.RoutesValues;
         let dashboard= localStorage['URLroot'] + '/dashboard';
         let profile= localStorage['URLroot'] + '/profile';
@@ -348,7 +354,8 @@
       }
     },    
     mounted() {
-      this.ShowCenterContent();
+      axios.get(localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.ShowCenterContent(response.data)));
+      //this.ShowCenterContent();
       console.log(this.RoutesValues + " dashboard component");
     }
   }

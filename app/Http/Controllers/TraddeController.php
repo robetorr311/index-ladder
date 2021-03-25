@@ -148,7 +148,11 @@ class TraddeController extends Controller
     public function accept(Request $request){
       $iduser = Auth::id();
       $token=csrf_token();
+      $time=time();
       $proposal_id=$request->proposal_id;
+      $time_service= $request->time_service;
+      $starting_at= $request->starting_at;
+      $end_at= $request->end_at;    
       $starting_at=Carbon::now();
       $proposal = DB::table('proposals')->where('id','=',$proposal_id)->first();
       $trade = DB::table('traddes')->where('id','=',$proposal->tradde_id)->first();
@@ -159,7 +163,25 @@ class TraddeController extends Controller
       $proposals = DB::table('proposals')->where('tradde_id','=',$trade->id)->whereNotIn('id',[$proposal_id])->update(['status' => 'rejected']);
       $prop = DB::table('proposals')->where('id','=',$proposal_id)->update(['status' => 'accepted']);
       DB::table('notifications')->insert(['user_id' => $proposal->user_id, 'type_id' => 8,'product_id' => $trade->product_id]); 
-      DB::table('notifications')->insert(['user_id' => $trade->host_user_id, 'type_id' => 9,'product_id' => $trade->product_id]); 
+      DB::table('notifications')->insert(['user_id' => $trade->host_user_id, 'type_id' => 9,'product_id' => $trade->product_id]);
+      $user_host= DB::table('users')->where('id','=',$trade->host_user_id)->first();
+      $user_target= DB::table('users')->where('id','=',$proposal->user_id)->first();
+      $trd = DB::table('traddes')->where('id','=',$proposal->tradde_id)->first();
+      DB::table('agreements')->insert(['tradde_id' => $trd->id, 'offer' => $trd->product_id, 'exchange' => $trd->exchange_id, 'user_id' => $iduser, 'time_exchange' => $time_service, 'time_offer' => $time, 'starting_at' => $starting_at, 'end_at' => $end_at, 'created_at' => Carbon::now()]); 
+      $pdf_path = public_path('pdf/');
+      $pdf_file =$pdf_path . 'trade.pdf';
+      $data= array('username' => $user_host->name,
+                   'email' => $user_host->email,
+                   'pdf_file' => $pdf_file);
+      Mail::send('mails.trade',$data,function($message) use ($data){
+        $message->to($data['email'],$data['username'])->subject('Your trade has been started')->attach($data['pdf_file']);
+      });
+      $data2= array('username' => $user_target->name,
+                   'email' => $user_target->email,
+                   'pdf_file' => $pdf_file);
+      Mail::send('mails.trade',$data2,function($message) use ($data2){
+        $message->to($data2['email'],$data2['username'])->subject('Your trade has been started')->attach($data2['pdf_file']);
+      });
       return response()->json(['success'=>'Success']);
     }
     public function cancel(Request $request){
@@ -641,38 +663,84 @@ class TraddeController extends Controller
                      'type_products.name as type_product')->whereIn('products.category_id',$trd)->get();
       return response()->json($product_category);
     }
-    public function downloadPDF()
+    public function downloadPDF($tradde_id)
     {
+      
       $iduser = Auth::id();
       $usr= User::where('id', $iduser)->first();
-      $time=time();
+      $agreement=DB::table('agreements')->where('tradde_id','=',$tradde_id)->first();
+      $offer=DB::table('products')->where('id','=',$agreement->offer)->first();
+      $exchange=DB::table('products')->where('id','=',$agreement->exchange)->first();
+      $user_offer=DB::table('users')->where('id','=',$offer->user_id)->first();
+      $user_exchange=DB::table('users')->where('id','=',$exchange->user_id)->first();
+      $time_services=DB::table('time_services')->where('id','=',$agreement->time_exchange)->first();
+      $starting_at=explode('-', $agreement->starting_at);
+      $end_at=explode('-', $agreement->end_at);
+      $time=$agreement->time_offer;
       $day = strftime("%d",$time);
       $month =strftime("%m",$time);
       $yyyy= strftime("%Y",$time);
-      $expday = strftime("%d",$time);
-      $expmonth =strftime("%m",$time);
-      $expyyyy= strftime("%Y",$time);
-      $registration=DB::table('registrations')->where('user_id','=',$iduser)->first();
+      $starting_at_day = $starting_at[2];
+      $starting_at_month = $starting_at[1];
+      $starting_at_yyyy= $starting_at[0];
+      $end_at_day = $end_at[2];
+      $end_at_month = $end_at[1];
+      $end_at_yyyy= $end_at[0];
+      $user_offer_registration=DB::table('registrations')->where('user_id','=',$offer->user_id)->first();
+      $user_exchange_registration=DB::table('registrations')->where('user_id','=',$exchange->user_id)->first();
       $data = [
         'titulo' => 'Styde.net',
         'path' => public_path('fonts/0fac23294cabd9471f8ca7816bf12eae.ttf'),
         'ufm' => storage_path('app/public/fonts/0fac23294cabd9471f8ca7816bf12eae.ufm'),
+        'starting_at_day' => $starting_at_day,
+        'starting_at_month' => $starting_at_month,
+        'starting_at_yyyy' => $starting_at_yyyy,
         'day' => $day,
         'month' => $month,
         'yyyy' => $yyyy,
-        'expday' => $expday,
-        'expmonth' => $expmonth,
-        'expyyyy' => $expyyyy,        
-        'user_name' => $usr->name,
-        'user_email' => $usr->email,
-        'user_phone' => $usr->phone,
-        'user_address' => $registration->address,
-        'partner_name' => $usr->name,
-        'partner_email' => $usr->email,
-        'partner_phone' => $usr->phone,
-        'partner_address' => $registration->address        
+        'end_at_day' => $end_at_day,
+        'end_at_month' => $end_at_month,
+        'end_at_yyyy' => $end_at_yyyy,        
+        'user_offer_name' => $user_offer->name,
+        'user_offer_email' => $user_offer->email,
+        'user_offer_phone' => $user_offer->phone,
+        'user_offer_address' => $user_offer_registration->address,
+        'offer_type' => $offer->type_id,
+        'exchange_type' => $exchange->type_id,
+        'offer' => $offer->name,
+        'exchange' => $exchange->name,        
+        'user_exchange_name' => $user_exchange->name,
+        'user_exchange_email' => $user_exchange->email,
+        'user_exchange_phone' => $user_exchange->phone,
+        'user_exchange_address' => $user_exchange_registration->address,
+        'time_services' => $time_services->name,
       ];
       return \PDF::loadView('pdf.barteragreement', $data)->setOptions(['dpi' => 150, 'defaultFont' => 'futura', 'chroot' => public_path()])
         ->setPaper('a4', 'portrait')->download('barteragreement.pdf');
     }
+    public function GetFullTrades(){
+          $product = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url',
+                     'categories.name as category',
+                     'status_trades.name as status_name')->get();
+        return response()->json($product);
+    }
+    public function GetTimeServices(){
+          $product = DB::table('time_services')->get();
+        return response()->json($product);
+    }         
 }

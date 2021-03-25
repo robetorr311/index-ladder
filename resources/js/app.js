@@ -103,6 +103,7 @@ Vue.component('pratingskills-component', require('./components/trades/Pratingski
 Vue.component('pratingservices-component', require('./components/trades/PratingservicesComponent.vue').default);
 Vue.component('profilepartner-component', require('./components/profile/ProfilepartnerComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('admin-component', require('./components/dashboards/AdminComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

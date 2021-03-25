@@ -77,6 +77,19 @@
                       <p class="card-text">{{ proposal_username }} </p>
                       <p class="card-text">{{ proposal_phone }} </p>
                       <p class="card-text">{{ proposal_email }} </p>
+                      <div class="row">
+                        <div class="col">
+                          <p class="text-left"> Time of Service: <select v-model="time_service" class="form-control" name="time_service">
+                          <option value="" >Choose Time</option>
+                          <option v-for="option in TimeExchange" v-bind:value="option.id">
+                             {{ option.name }}
+                          </option>
+                            </select>
+                          </p>
+                          <p class="text-left"> Starting At: <datepicker v-model="starting_at" :format="customstartingFormatter"></datepicker></p>
+                          <p class="text-left"> End At: <datepicker v-model="end_at" :format="customendFormatter"></datepicker></p>
+                        </div>
+                      </div></h4>                      
                     </div>
                   </div>
                 </div>
@@ -89,7 +102,11 @@
         </div>
 </template>
 <script>
+import Datepicker from 'vuejs-datepicker';
     export default {
+        components: {
+          Datepicker,
+        },      
         data() {
             return {
               message: '',
@@ -105,6 +122,10 @@
               proposal_username:'',
               proposal_phone: '',
               ProposalValue:'',
+              TimeExchange:[],
+              time_service:'',
+              starting_at:'',
+              end_at:'',
             };
         },
         props: [
@@ -131,18 +152,45 @@
             axios.post( localStorage['URLroot'] + '/trade/accept' ,
             {
               csrfToken: myToken.csrfToken,
-              proposal_id: this.ProposalValue
+              proposal_id: this.ProposalValue,
+              time_service: this.time_service,
+              starting_at: this.starting_at,
+              end_at: this.end_at              
             }
             ).then(response => (this.MyMessages = response.data));
             $('#ShowMessages').modal('hide');
             $('#ShowProposal').modal('hide');
-            //this.showSuccess();
+            this.showSuccess();
           },
           showSuccess(){
               setTimeout(() => {
                 location.reload();
               },2000);        
-          },          
+          },
+        customstartingFormatter(date) {
+         let mnt=date.getMonth() + 1;
+         let yr=date.getFullYear();
+         let dy=date.getDate();
+         let hr=date.getHours();
+         let mn=date.getMinutes();
+         let sc=date.getSeconds();
+         let ms=date.getMilliseconds();
+         let output= yr + '-' + mnt + '-' + dy;
+         this.starting_at=yr + '-' + mnt + '-' + dy;
+         return output;
+        }, 
+        customendFormatter(date) {
+         let mnt=date.getMonth() + 1;
+         let yr=date.getFullYear();
+         let dy=date.getDate();
+         let hr=date.getHours();
+         let mn=date.getMinutes();
+         let sc=date.getSeconds();
+         let ms=date.getMilliseconds();
+         let output= yr + '-' + mnt + '-' + dy;
+         this.end_at=yr + '-' + mnt + '-' + dy;
+         return output;
+        },                  
           startInterval() {
             setInterval(() => {
                axios.get( localStorage['URLroot'] + '/GetPProposals/' + this.ProductValue).then(response => (this.GetProposals = response.data));
@@ -150,6 +198,7 @@
           },          
         },
         mounted() {
+            axios.get( localStorage['URLroot'] + '/GetTimeServices').then(response => (this.TimeExchange = response.data));
             axios.get( localStorage['URLroot'] + '/GetPProposals/' + this.ProductValue).then(response => (this.GetProposals = response.data));
             this.startInterval();
         }         

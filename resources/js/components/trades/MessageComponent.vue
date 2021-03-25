@@ -2,11 +2,7 @@
   <div class="card">
   <div class="card-header"><h5 class="card-title"><i class="fas fa-comments"></i> Messages / Questions about Trade</h5> </div>
   <div class="card-body">
-    <div class="row justify-content-center" v-if="MyMessages">
-      <div class="col">
-      </div>
-    </div>
-    <div class="row justify-content-center" v-else>
+    <div class="row justify-content-center" >
       <div class="col">        
         <ValidationProvider name="message" rules="max:249" v-slot="{ errors }">
           <div class="input-group" >

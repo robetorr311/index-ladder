@@ -8,6 +8,10 @@
                 <strong>Fail!! This Email Already Exist!!! </strong>
               </span>
               <span  v-else></span>
+              <span  v-if="failed" class="alert alert-danger">
+                <strong>Fail!! There is an issue sending verification email. Please contact to Index Ladder Help Desk. </strong>
+              </span>
+              <span  v-else></span>              
             </div>
         </div>           
         <div class="row justify-content-center">
@@ -125,7 +129,8 @@ export default {
       email: '',
       show : false,
       CheckEmailExist:'',
-      valuesEmail: '' }
+      valuesEmail: '',
+      failed: false }
     },
     methods: {
         VerifyIfExist(){
@@ -150,8 +155,8 @@ export default {
                      email: this.email
                   }
               ).then(function (response) {
-                localStorage.setItem( 'message', 'success|Thank you. In order to complete the registration, please click on the verification link sent to '+ em +'|1' );
-                location.href = response.data.redirect;              
+                  localStorage.setItem( 'message', 'success|Thank you. In order to complete the registration, please click on the verification link sent to '+ em +'|1' );
+                  location.href = localStorage['URLroot'];  
               })
               .catch((error) => {
                 console.log('FAILURE!!');

@@ -92,15 +92,6 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-          'username' => 'required|string|max:50',
-          'email' => 'required|string|email|max:30'
-        ]);
-        if ($validator->fails()) {
-            $validator->errors()->add('field', 'Something is wrong with this field!');
-            return redirect('registration');
-        }
-        else {
           $regis = Registration::create([
                     'password' => Hash::make($request->password),
                     'email' => $request->email,
@@ -120,13 +111,31 @@ class RegistrationController extends Controller
           $data= array('firstname' => $request->username,
                        'email' => $request->email, 
                        'token' => $request->csrfToken, 
-                       'link'=> route('verify',[ 'token' => $request->csrfToken, 'email' => $request->email ]));          
-          Mail::send('mails.mail',$data,function($message) use ($data){
-            $message->to($data['email'],$data['firstname'])->subject('Confirm your email and get started');
-          });          
-          return ['redirect' => route('home')];
-        }
+                       'link'=> route('verify',[ 'token' => $request->csrfToken, 'email' => $request->email ])); 
+            Mail::send('mails.mail',$data,function($message) use ($data){
+              $message->to($data['email'],$data['firstname'])->subject('Confirm your email and get started');
+            });
+            return ['redirect' => route('home')];
     }
+    public function SendContact(Request $request){
+      $email=$request->email;
+      $contact=$request->contact;
+      DB::table('contacts')->insert(['email' => $email, 'message' => $contact]);
+      $success='Success';
+      return response()->json(['success' => $success]);
+    }
+    public function GetAllContacts(){
+      $contacts = DB::table('contacts')->get();
+      return response()->json($contacts);
+    }    
+    public function GetRegistrations(){
+      $registrations = DB::table('registrations')->get();
+      return response()->json($registrations);
+    }
+    public function GetAllUsers(){
+      $users = DB::table('users')->get();
+      return response()->json($users);
+    }    
     public function CheckEmailExist($email){
       $success="";
       $usr=User::where('email', $email)->first();

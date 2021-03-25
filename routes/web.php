@@ -34,6 +34,9 @@ Route::get('/setpassword/{email}', [App\Http\Controllers\RegistrationController:
 Route::get('/twosteplogin/{email}', [App\Http\Controllers\RegistrationController::class,'twosteplogin'])->name('twosteplogin');
 Route::get('/setnumber', [App\Http\Controllers\RegistrationController::class,'setnumber'])->name('setnumber');
 Route::get('/verify_phone', [App\Http\Controllers\RegistrationController::class,'verify_phone'])->name('verify_phone');
+Route::get('/GetRegistrations', [App\Http\Controllers\RegistrationController::class, 'GetRegistrations'])->name('GetRegistrations');
+Route::get('/GetAllUsers', [App\Http\Controllers\RegistrationController::class, 'GetAllUsers'])->name('GetAllUsers');
+Route::get('/GetAllContacts', [App\Http\Controllers\RegistrationController::class, 'GetAllContacts'])->name('GetAllContacts');
 //Profile
 Route::post('/profile/verifySMS/SixDigits', [App\Http\Controllers\ProfileController::class, 'SixDigits'])->name('SixDigits');
 Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::class, 'EnableTwoStep'])->name('EnableTwoStep');
@@ -119,7 +122,9 @@ Route::get('/GetQualifyTrade/{user_id}/{trade_id}', [App\Http\Controllers\Tradde
 Route::get('/MyComments', [App\Http\Controllers\TraddeController::class, 'MyComments'])->name('MyComments');
 Route::get('/CountInProgress', [App\Http\Controllers\TraddeController::class, 'CountInProgress'])->name('CountInProgress');
 Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::class, 'viewproduct'])->name('trades.viewproduct');
-Route::get('/downloadPDF',[App\Http\Controllers\TraddeController::class, 'downloadPDF'])->name('trades.downloadPDF');
+Route::get('/downloadPDF/{tradde_id}',[App\Http\Controllers\TraddeController::class, 'downloadPDF'])->name('trades.downloadPDF');
+Route::get('/GetFullTrades',[App\Http\Controllers\TraddeController::class, 'GetFullTrades'])->name('GetFullTrades');
+Route::get('/GetTimeServices',[App\Http\Controllers\TraddeController::class, 'GetTimeServices'])->name('GetTimeServices');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');
@@ -170,6 +175,7 @@ Route::get('/GetEditPictures/{id}/{type}', [App\Http\Controllers\ProductImageCon
 Route::get('/IsUploaded/{type}', [App\Http\Controllers\ProductImageController::class, 'IsUploaded'])->name('IsUploaded');
 Route::get('/GetImages', [App\Http\Controllers\ProductImageController::class, 'GetImages'])->name('GetImages');
 //Dashboard
+Route::post('/contacts/send', [App\Http\Controllers\RegistrationController::class, 'SendContact'])-> name('SendContact');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 //Stripe
 Route::post('/stripe/getpayment/{trade_id}', [App\Http\Controllers\StripeController::class, 'Getpayment'])-> name('stripe.Getpayment');
