@@ -14,7 +14,6 @@ class FeaturesProductImagesTable extends Migration
     public function up()
     {
         Schema::table('product_images', function (Blueprint $table) {
-            $table->string('token');
             $table->bigInteger('product_id')->nullable()->change();
         });
     }

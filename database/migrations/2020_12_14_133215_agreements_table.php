@@ -22,6 +22,7 @@ class AgreementsTable extends Migration
             $table->bigInteger('time_exchange');
             $table->bigInteger('time_offer');
             $table->date('starting_at');
+            $table->date('end_at');
             $table->timestamps();
         });
     }

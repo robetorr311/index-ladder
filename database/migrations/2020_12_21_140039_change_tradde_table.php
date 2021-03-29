@@ -15,6 +15,7 @@ class ChangeTraddeTable extends Migration
     {
        Schema::table('traddes', function (Blueprint $table) {
          $table->bigInteger('exchange_id')->nullable();
+         $table->bigInteger('ex_category_id')->nullable();
        });
     }
 

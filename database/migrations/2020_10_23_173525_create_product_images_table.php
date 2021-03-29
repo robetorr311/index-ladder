@@ -21,6 +21,9 @@ class CreateProductImagesTable extends Migration
             $table->string('size');
             $table->bigInteger('product_id');
             $table->bigInteger('user_id');
+            $table->bigInteger('trade_type')->nullable();
+            $table->bigInteger('tradde_id')->nullable();
+            $table->string('token')->nullable();                        
             $table->timestamps();
         });
     }

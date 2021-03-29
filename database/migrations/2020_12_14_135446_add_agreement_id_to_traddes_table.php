@@ -14,7 +14,7 @@ class AddAgreementIdToTraddesTable extends Migration
     public function up()
     {
         Schema::table('traddes', function (Blueprint $table) {
-          $table->bigInteger('agreement_id');
+          $table->bigInteger('agreement_id')->nullable();
         });
     }
 

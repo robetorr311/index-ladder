@@ -14,7 +14,6 @@ class ChangeProductImagesTable extends Migration
     public function up()
     {
        Schema::table('product_images', function (Blueprint $table) {
-         $table->bigInteger('trade_type');
          $table->dropColumn('type');
          $table->dropColumn('size');
        });

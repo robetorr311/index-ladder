@@ -20,6 +20,7 @@ class ChangeProductsTable extends Migration
          $table->double('amount', 8, 2)->nullable();
          $table->date('starting_at')->nullable();
          $table->bigInteger('category_id')->nullable()->change();
+         
        });
     }
 

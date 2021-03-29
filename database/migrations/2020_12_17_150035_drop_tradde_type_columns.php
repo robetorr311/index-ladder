@@ -16,9 +16,6 @@ class DropTraddeTypeColumns extends Migration
        Schema::table('products', function (Blueprint $table) {
          $table->dropColumn('trade_type');
        });
-       Schema::table('product_images', function (Blueprint $table) {
-         $table->dropColumn('trade_type');
-       });       
     }
 
     /**
