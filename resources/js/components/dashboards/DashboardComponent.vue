@@ -6,74 +6,18 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-12">
               <div v-if="CenterContent===0">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center padding_dashboard">
                   <div class="col">                
-                      <tradetable-component></tradetable-component>
+                      <profiledashboard-component></profiledashboard-component>
                   </div>
                 </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                      <tradeseed-component ></tradeseed-component>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                      <tradesall-component></tradesall-component>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <slidefav-component></slidefav-component>
-                  </div>
-                  <div class="col">
-                    <inprogress-component></inprogress-component>
-                  </div>            
-                </div> 
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <products-component></products-component>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <skills-component></skills-component>
-                  </div>
-                </div>              
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <services-component></services-component>
-                  </div>
-                </div> 
               </div>
               <div v-else-if="CenterContent===1">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center padding_dashboard">
                   <div class="col">                
-                    <profile-component></profile-component>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <slidefav-component></slidefav-component>
-                  </div>
-                  <div class="col">
-                    <inprogress-component></inprogress-component>
-                  </div>            
-                </div> 
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <products-component></products-component>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <skills-component></skills-component>
-                  </div>
-                </div>              
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <services-component></services-component>
+                    <profiledashboard-component></profiledashboard-component>
                   </div>
                 </div>
               </div>
@@ -160,6 +104,14 @@
                 <tradeseed-component ></tradeseed-component>
                 <tradesall-component></tradesall-component>                
               </div>
+              <div v-else-if="CenterContent===10">
+                <notifications-component ></notifications-component>
+              </div>              
+              <div v-else-if="CenterContent===11">
+                    <getusers-component></getusers-component>
+                    <partner-component></partner-component>
+                    <favusers-component></favusers-component>
+              </div>              
               <div v-else>
           <div class="row justify-content-center">
             <div class="col">                
@@ -200,26 +152,6 @@
             </div>
           </div>                  
               </div>             
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-lg-9">
-              <getusers-component></getusers-component>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-lg-9">
-              <partner-component></partner-component>
-            </div>
-          </div>              
-          <div class="row justify-content-center">
-            <div class="col-lg-9">
-              <userinfo-component></userinfo-component>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-lg-9">
-              <qualify-component></qualify-component>
             </div>
           </div>
     </div>
@@ -282,6 +214,8 @@
         let dashboard= localStorage['URLroot'] + '/dashboard';
         let profile= localStorage['URLroot'] + '/profile';
         let addnew= localStorage['URLroot'] + '/product/addnew';
+        let notifications=localStorage['URLroot'] + '/notifications';
+        let users=localStorage['URLroot'] + '/users';        
         let product= route.search("/product/view/");     
         let edit = route.search("/product/edit");
         let trader=route.search("/user/show/");
@@ -347,6 +281,12 @@
           case favorites:
             this.CenterContent=9;
             break;
+          case notifications:
+            this.CenterContent=10;
+            break;            
+          case users:
+            this.CenterContent=11;
+            break;            
           default:
             this.CenterContent=0;
             break;

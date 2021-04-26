@@ -42,7 +42,7 @@
                       <div class="row justify-content-center">
                           <div class="col-md-10">
                             <div class="text-center">
-                            <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
+                            <button type="submit" :disabled="invalid" class="btn btn-secondary" name="">Submit</button>
                           </div>
                           </div>
                       </div>

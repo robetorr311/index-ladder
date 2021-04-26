@@ -51,7 +51,7 @@
                             </ValidationProvider>
                         </div>                        
                       </div>
-                      <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" @click="SendMessage">Send</button>
+                      <button type="submit" :disabled="invalid" class="btn btn-secondary" @click="SendMessage">Send</button>
                       </form>
                     </div>
                   </div>
@@ -59,11 +59,9 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
-            <div class="social-links">
               <a :href="urlTwitter" class="twitter"><i class="fab fa-twitter"></i></span></a>
               <a :href="urlFacebook" class="facebook"><i class="fab fa-facebook"></i></a>
               <a :href="urlInstagram" class="instagram"><i class="fab fa-instagram"></i></a>
-            </div>
             </div>
         </div>        
         <div class="row justify-content-center">

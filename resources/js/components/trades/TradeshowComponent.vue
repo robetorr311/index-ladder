@@ -18,6 +18,7 @@
           <div class="card-body">
             <p class="card-text">{{ category }} </p>
             <p class="card-text">{{ description }} </p>
+            <a type="button" :href="UrlEdit + product_id" target="blank" class="btn btn-secondary" v-if="stt"><i class="fas fa-pencil-alt"></i> Edit Values</a>
           </div>
         </div>
         <div v-if="showAllProposals">
@@ -68,7 +69,7 @@
             <p class="text-left" v-else>
               <i class="far fa-heart cursor" v-if="like" @click="likeItem"></i>
               <i class="fas fa-heart" v-else></i>
-            </p>                    
+            </p>
           </div>
           <div v-if="showSendPropose">
             <newproposal-component :product-value="ProductValue" ></newproposal-component>
@@ -231,6 +232,8 @@ export default {
           showPaybutton:false,
           showConfirm: false,
           qrcode: '',
+          UrlEdit: localStorage['URLroot'] + '/product/edit/',
+          stt: false,
       }
     },
     props: [
@@ -414,6 +417,7 @@ export default {
             if(this.host_user_id==this.current_user_id){
               switch(st){
                 case 1:
+                  this.stt=true;
                   this.show_like= false;
                   this.showSendPropose=false;
                   this.showAllProposals=true;

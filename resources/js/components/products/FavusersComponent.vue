@@ -4,13 +4,9 @@
     <div class="card-body">
       <div class="row">
         <div class="col" v-for="users in GetValues">
-            <div class="card">
-              <a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a>
-              <div class="card-body text-center">
-                <h6 class="product-name">
-                  {{ users.username }}
-                </h6>
-              </div>
+            <div class="box">
+              <div class="icon"><a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a></div>
+              <h4 class="title"><a :href="UrlUser + users.id">{{ users.username }}</a></h4>
             </div>
         </div>
       </div>

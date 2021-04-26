@@ -121,12 +121,19 @@ class CategoryController extends Controller
     }
     public function GetUsersCategory(){
       $arraycat=[];
-      $users=[];      
+      $users=[];
       $iduser = Auth::id();
+      $seeds = DB::table('seeds')
+                ->select('category_id')
+                ->where('user_id','=',$iduser)->get();
+      if(!empty($seeds)){
+        foreach ($seeds as $seedskey) {
+          $arraycat[]=$seedskey->category_id;
+        }
+      }
       $categories = DB::table('traddes')     
                 ->select('category_id')
                 ->where('traddes.host_user_id','=',$iduser)
-                ->orWhere('traddes.target_user_id','=',$iduser)
                 ->groupByRaw('traddes.category_id')
                 ->get();
       if(!empty($categories)){
@@ -136,8 +143,7 @@ class CategoryController extends Controller
       }
       $Excategories = DB::table('traddes')     
                 ->select('ex_category_id')
-                ->where('traddes.host_user_id','=',$iduser)
-                ->orWhere('traddes.target_user_id','=',$iduser)
+                ->where('traddes.target_user_id','=',$iduser)
                 ->groupByRaw('traddes.ex_category_id')
                 ->get();
         if(!empty($Excategories)){
@@ -145,19 +151,26 @@ class CategoryController extends Controller
             $arraycat[]=$catekey->ex_category_id;
           }
         }
-        $host_users = DB::table('traddes')->whereIn('category_id',$arraycat)->whereNotIn('host_user_id',[$iduser])->select('traddes.host_user_id as id')->get();
-        if(!empty($host_users)){
-          foreach ($host_users as $key) {
-            $users[]=$key->id;
-          }
-        }          
+      /*$host_users = DB::table('traddes')->whereIn('category_id',$arraycat)->whereNotIn('host_user_id',[$iduser])->select('traddes.host_user_id as id')->get();
+      /*if(!empty($host_users)){
+        foreach ($host_users as $key) {
+          $users[]=$key->id;
+        }
+      }         
         $target_users = DB::table('traddes')->whereIn('ex_category_id',$arraycat)->whereNotIn('target_user_id',[$iduser])->select('traddes.target_user_id as id')->get();
         if(!empty($target_users)){
           foreach ($target_users as $key) {
             $users[]=$key->id;
           }
-      }        
+      }*/ 
+      $seed_users= DB::table('seeds')
+                ->select('user_id')
+                ->where('category_id','=',$arraycat)->get();
+      foreach ($seed_users as $seed_user) {
+        $users[]=$seed_user->user_id;
+      }
       $all_users = DB::table('users')->join('ident_images', 'ident_images.user_id', '=', 'users.id')->select('users.id as id','users.name as name','ident_images.image_url as image_url')->where('ident_images.ident_type','=',4)->whereIn('users.id',$users)->groupBy('users.id','users.name','ident_images.image_url')->get();
+      //return response()->json($all_users);
       return response()->json($all_users);
     }
     public function matchusers(){

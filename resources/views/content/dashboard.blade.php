@@ -7,8 +7,4 @@
       <section>
         <dashboard-component routes-values="{{ url()->current() }}" trade-values= "{{ $TradeValues }}" ></dashboard-component>
       </section>
-      <section>
-        <slide-component></slide-component> 
-      </section>    
-      <what-component></what-component>
 @endsection

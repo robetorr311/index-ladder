@@ -1,16 +1,31 @@
+.bg-dark {
+    background-color: #080808 !important;
+}
 header.masthead {
   position: relative;
   overflow: hidden;
   padding-top: 25px ;
   padding-bottom: 3rem;
-  background-image: linear-gradient(to right, #003ed8 , #462469);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
-  background-size: cover;
+  height: 280px;
+  background-color:  $header !important;
+}
+header.masthead_white{
+  position: relative;
+  overflow: hidden;
+  padding-top: 25px ;
+  padding-bottom: 3rem;
+  height: 280px;
+  background-color:  $white !important;
+}
+.text-darkgray{
+  color: #595657 !important;
 }
 .masthead-padding{
-  padding-top: 40px !important;
+  padding-top: 140px !important;
+}
+.masthead-content_bgwhite{
+  background-color:  $white !important;
+  color: #595657 !important;
 }
 header.masthead2 {
   position: relative;
@@ -39,7 +54,29 @@ header.masthead2 {
     width: 100% !important;
     max-width: 100% !important;
   }
+header.masthead {
+  position: relative;
+  overflow: hidden;
+  padding-top: 25px ;
+  padding-bottom: 3rem;
+  height: 480px;
+  background-color:  $header !important;
+} 
+.padding_middle {
+    background-color: #34454d !important;
+    height: 350px;
 }
+.iframe_employed{
+  overflow:hidden; 
+  width:470px; 
+  height:425px;
+}
+.iframe_video{
+  width:470px; 
+  height:325px;  
+} 
+}
+
 @media only screen and (max-width: 810px) {
 .chart-container {
   position: relative;
@@ -98,7 +135,7 @@ header.masthead2 {
     width: 100%;
   }
   .masthead-padding{
-    padding-top: 40px !important;
+    padding-top: 140px !important;
   }
 
 }

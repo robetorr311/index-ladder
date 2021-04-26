@@ -73,7 +73,7 @@
                       <div class="row justify-content-center">
                           <div class="col-md-12">
                             <div class="text-center">
-                            <button type="submit" :disabled="invalid" class="btn btn-secondary rounded-pill mt-5" name="">Submit</button>
+                            <button id="subm" type="submit" :disabled="invalid" class="btn btn-secondary" name="">Submit</button>
                           </div>
                          </div>
                       </div>
@@ -130,8 +130,9 @@ export default {
       show : false,
       CheckEmailExist:'',
       valuesEmail: '',
-      failed: false }
-    },
+      failed: false,
+      }
+    },   
     methods: {
         VerifyIfExist(){
           var em=this.email;

@@ -1,8 +1,4 @@
 <template>
-    <div class="card">
-      <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> Last Services Published</h5></div>
-      <div class="card-body">
-      <div id="topservices">
       <div class="row">
           <div class="col" v-for="service in GetServ">
             <div class="box">
@@ -13,11 +9,6 @@
             </div>
           </div>        
       </div>
-      </div>
-    </div>
-    <div class="card-footer">
-    </div>       
-  </div>
 </template>
 
 <script>

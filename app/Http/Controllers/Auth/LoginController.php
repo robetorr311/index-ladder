@@ -44,23 +44,52 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $usr= User::where('email', $request->email)->first();
-        if (Hash::check($request->password, $usr->password)) {
-            if(empty($usr->email_verified_at)){
-               return ['redirect' => route('login-user')];
+        if(empty($usr->email)){
+          $usr= User::where('name', $request->email)->first();
+          if(empty($usr->email)){
+            return ['redirect' => route('login-user')];
+          }
+          else{
+            $usr= User::where('name', $request->email)->first();
+            if (Hash::check($request->password, $usr->password)) {
+              if(empty($usr->email_verified_at)){
+                return ['redirect' => route('login-user')];
+              }
+              else{
+                if (!$usr->twostep_enabled) {
+                  Auth::login($usr);
+                  return ['redirect' => route('dashboard')];                
+                }
+                else {
+                  return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
+                }    
+              }
             }
             else{
-              if (!$usr->twostep_enabled) {
-                Auth::login($usr);
-                return ['redirect' => route('dashboard')];                
-              }
-              else {
-                return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
-              }    
+              return ['redirect' => route('login-user')];
             }
+          }                     
         }
         else{
-          return ['redirect' => route('login-user')];
+            if (Hash::check($request->password, $usr->password)) {
+              if(empty($usr->email_verified_at)){
+                return ['redirect' => route('login-user')];
+              }
+              else{
+                if (!$usr->twostep_enabled) {
+                  Auth::login($usr);
+                  return ['redirect' => route('dashboard')];                
+                }
+                else {
+                  return ['redirect' =>route('twosteplogin', ['email' => $request->email])];
+                }    
+              }
+            }
+            else{
+              return ['redirect' => route('login-user')];
+            }          
         }
+
         /*if (Auth::check()) {
           return ['redirect' => route('welcome')];
         }

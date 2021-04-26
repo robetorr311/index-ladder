@@ -1,17 +1,57 @@
 @mixin heading-font {
-  font-family: 'FuturaPTW02-Book';
+  font-family: 'roboto-bold';
   font-weight: 800 !important;
 }
 
 @mixin body-font {
-  font-family: 'FuturaPTW02-Book';
+  font-family: 'roboto-regular';
   color: darken($third, 20%) !important;
 }
-@font-face {font-family: "FuturaPTW02-Book";
-    src: url("../font/0fac23294cabd9471f8ca7816bf12eae.eot"); /* IE9*/
-    src: url("../font/0fac23294cabd9471f8ca7816bf12eae.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("../font/0fac23294cabd9471f8ca7816bf12eae.woff2") format("woff2"), /* chrome firefox */
-    url("../font/0fac23294cabd9471f8ca7816bf12eae.woff") format("woff"), /* chrome firefox */
-    url("../font/0fac23294cabd9471f8ca7816bf12eae.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
-    url("../font/0fac23294cabd9471f8ca7816bf12eae.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+@font-face {font-family: "roboto-bold";
+    src: url("../fonts/roboto-bold.eot"); /* IE9*/
+    src: url("../fonts/roboto-bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-bold.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-bold.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-bold.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-bold.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "roboto-bold-italic";
+    src: url("../fonts/roboto-bold-italic.eot"); /* IE9*/
+    src: url("../fonts/roboto-bold-italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-bold-italic.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-bold-italic.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-bold-italic.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-bold-italic.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "roboto-italic";
+    src: url("../fonts/roboto-italic.eot"); /* IE9*/
+    src: url("../fonts/roboto-italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-italic.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-italic.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-italic.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-italic.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "roboto-light";
+    src: url("../fonts/roboto-light.eot"); /* IE9*/
+    src: url("../fonts/roboto-light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-light.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-light.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-light.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-light.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "roboto-light-italic";
+    src: url("../fonts/roboto-light-italic.eot"); /* IE9*/
+    src: url("../fonts/roboto-light-italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-light-italic.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-light-italic.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-light-italic.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-light-italic.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "roboto-regular";
+    src: url("../fonts/roboto-regular.eot"); /* IE9*/
+    src: url("../fonts/roboto-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-regular.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-regular.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-regular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-regular.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
 }

@@ -80,7 +80,7 @@
               </div>
               <div class="card-footer">   
                 <div class="text-center">
-                  <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="SaveItem" :disabled="invalid">Save Item</button>
+                  <button type="button" class="btn btn-secondary" @click="SaveItem" :disabled="invalid">Save Item</button>
                 </div>
               </div>
           </div>

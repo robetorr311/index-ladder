@@ -313,4 +313,73 @@ class RegistrationController extends Controller
     public function verify_phone(){
       return view('profile.verify_number');
     }
+    public function topfourServ(){
+            $se = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'products.user_id as user_id',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url')
+            ->where('products.type_id','=',1329)->where('traddes.status','=',1)
+            ->orderBy('products.id','asc')
+            ->limit(4)->get();
+            return response()->json($se);
+    }
+    public function topfourSki(){
+            $se = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'products.user_id as user_id',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url')
+            ->where('products.type_id','=',1330)->where('traddes.status','=',1)
+            ->orderBy('products.id','asc')
+            ->limit(4)->get();
+            return response()->json($se);
+    }
+    public function topfourPro(){
+            $se = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'products.user_id as user_id',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url')
+            ->where('products.type_id','=',1331)->where('traddes.status','=',1)
+            ->orderBy('products.id','asc')
+            ->limit(4)->get();
+            return response()->json($se);
+    }    
 }

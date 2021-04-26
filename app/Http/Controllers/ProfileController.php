@@ -220,4 +220,18 @@ class ProfileController extends Controller
       $regis= Registration::where('user_id', $id)->first();
       return response()->json($regis);
     }
+    public function GetNotifications(){
+      $iduser = Auth::id();
+      $notification = DB::table('notifications')->join('type_notifications', 'notifications.type_id', '=', 'type_notifications.id')
+      ->select('notifications.*', 'type_notifications.*')->where('user_id','=',$iduser)->get();
+      return response()->json($notification);      
+    } 
+    public function notifications(){
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }
+    public function users(){
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }    
 }

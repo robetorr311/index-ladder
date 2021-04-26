@@ -37,6 +37,10 @@ Route::get('/verify_phone', [App\Http\Controllers\RegistrationController::class,
 Route::get('/GetRegistrations', [App\Http\Controllers\RegistrationController::class, 'GetRegistrations'])->name('GetRegistrations');
 Route::get('/GetAllUsers', [App\Http\Controllers\RegistrationController::class, 'GetAllUsers'])->name('GetAllUsers');
 Route::get('/GetAllContacts', [App\Http\Controllers\RegistrationController::class, 'GetAllContacts'])->name('GetAllContacts');
+Route::get('/topfourServ', [App\Http\Controllers\RegistrationController::class, 'topfourServ'])->name('topfourServ');
+Route::get('/topfourSki', [App\Http\Controllers\RegistrationController::class, 'topfourSki'])->name('topfourSki');
+Route::get('/topfourPro', [App\Http\Controllers\RegistrationController::class, 'topfourPro'])->name('topfourPro');
+
 //Profile
 Route::post('/profile/verifySMS/SixDigits', [App\Http\Controllers\ProfileController::class, 'SixDigits'])->name('SixDigits');
 Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::class, 'EnableTwoStep'])->name('EnableTwoStep');
@@ -53,6 +57,9 @@ Route::get('/profile/GetUserAddress', [App\Http\Controllers\ProfileController::c
 Route::get('/profile/UrlIdent/{type}', [App\Http\Controllers\ProfileController::class, 'UrlIdent'])->name('UrlIdent');
 Route::get('/profile/registrationValues', [App\Http\Controllers\ProfileController::class, 'registrationValues'])->name('registrationValues');
 Route::get('/user/show/{id}', [App\Http\Controllers\ProfileController::class, 'UserShow'])->name('UserShow');
+Route::get('/profile/GetNotifications', [App\Http\Controllers\ProfileController::class, 'GetNotifications'])->name('profile.GetNotifications');
+Route::get('/notifications', [App\Http\Controllers\ProfileController::class, 'notifications'])->name('notifications');
+Route::get('/users', [App\Http\Controllers\ProfileController::class, 'users'])->name('profiles.users');
 //Products
 Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
 Route::post('/product/update', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
@@ -69,9 +76,6 @@ Route::get('/product/findbycategory/{search}', [App\Http\Controllers\ProductCont
 Route::get('/product/findbyname/{search}', [App\Http\Controllers\ProductController::class, 'FindByName'])->name('FindByName');
 Route::get('/product/findbyc/{search}', [App\Http\Controllers\ProductController::class, 'FindByC'])->name('FindByC');
 Route::get('/product/findbyn/{search}', [App\Http\Controllers\ProductController::class, 'FindByN'])->name('FindByN');
-Route::get('/topfourServ', [App\Http\Controllers\ProductController::class, 'topfourServ'])->name('topfourServ');
-Route::get('/topfourSki', [App\Http\Controllers\ProductController::class, 'topfourSki'])->name('topfourSki');
-Route::get('/topfourPro', [App\Http\Controllers\ProductController::class, 'topfourPro'])->name('topfourPro');
 Route::get('/favorites', [App\Http\Controllers\ProductController::class, 'favorites'])->name('favorites');
 Route::get('/sales', [App\Http\Controllers\ProductController::class, 'sales'])->name('sales');
 Route::get('/GetSales', [App\Http\Controllers\ProductController::class, 'GetSales'])->name('GetSales');

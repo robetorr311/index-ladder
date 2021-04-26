@@ -20,7 +20,7 @@ h6 {
 }
 
 .bg-black {
-  background-color: darken($third, 20%) !important;
+  background-color: $header !important;
 }
 .col{
   padding-bottom: 10px !important;
@@ -29,6 +29,10 @@ h6 {
   text-decoration: none;
   color: $white !important;
 }
+.link_title_card{
+  text-decoration: none;
+  color: #3b9ce6 !important;
+}
 .rounded-pill {
   border-radius: 5rem;
 }
@@ -36,58 +40,67 @@ h6 {
   padding-top: 50px;
 }
 .card{
-  border: 0.5px solid lighten($third, 50%) !important;
+  border: 0.5px solid lighten($header, 50%) !important;
 }
 .card-item{
-  background-color: #accae8 !important;
+  background-color: $white !important;
 }
 .card-header{
-  background-color: lighten($third, 40%) !important;
-  color: darken($third, 20%) !important;
+  background-color: lighten($header, 40%) !important;
+  color: darken($header, 20%) !important;
 }
 .category-choices{
-  color: darken($third, 20%) !important;
-  font-family: FuturaPTW02-Book;
+  color: darken($header, 20%) !important;
+  font-family: roboto-light;
   &:active,
   &:focus,
   &:hover {
-    color: $third !important;
+    color: $header !important;
   }   
 }
 .card-text{
-  color: $third !important;
-  font-family: FuturaPTW02-Book;
+  color: $header !important;
+  font-family: roboto-light;
 }
 .card-stars{
   color: #098823 !important;
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
 }
 .card-stars-m{
   color: $secondary !important;
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
 }
 .card-comments{
-  background-color: lighten($third, 60%) !important;
-  font-family: FuturaPTW02-Book;
-  color: $third !important;
+  background-color: lighten($header, 60%) !important;
+  font-family: roboto-light;
+  color: $header !important;
 }
 .card-fcomments{
-  background-color: lighten($third, 40%) !important;
-  font-family: FuturaPTW02-Book;
-  color: $third !important;
+  background-color: lighten($header, 40%) !important;
+  font-family: roboto-light;
+  color: $header !important;
 }
 .card-title{
-  color: $third !important;
-  font-family: FuturaPTW02-Book; 
+  color: $header !important;
+  font-family: roboto-bold; 
 }
 .product-name {
   font-weight: 700;
-  color: $third !important;
-  font-family: FuturaPTW02-Book;   
+  color: $header !important;
+  font-family: roboto-bold;   
 }
 .color-title{
-  color: $third !important;
-  font-family: FuturaPTW02-Book; 
+  color: $header !important;
+  font-family: roboto-bold; 
+}
+.iframe_video{
+  width:540px; 
+  height:360px;  
+}
+.iframe_employed{
+  overflow:hidden; 
+  width:570px; 
+  height:525px;
 }
 .has-error{
   color: #cc0000 !important;
@@ -95,41 +108,29 @@ h6 {
 .twitter{
   font-size: 18px;
   display: inline-block;
-  background-color: lighten($third, 40%) !important;
-  color: darken($third, 20%) !important;
+  color: white !important;
   line-height: 1;
   padding: 8px 0;
-  border-radius: 50%;
-  text-align: center;
   width: 36px;
   height: 36px;
-  transition: 0.3s;
 }
 .facebook{
   font-size: 18px;
   display: inline-block;
-  background-color: lighten($third, 40%) !important;
-  color: darken($third, 20%) !important;
+  color: $white !important;
   line-height: 1;
   padding: 8px 0;
-  border-radius: 50%;
-  text-align: center;
   width: 36px;
   height: 36px;
-  transition: 0.3s;
 }
 .instagram{
   font-size: 18px;
   display: inline-block;
-  background-color: lighten($third, 40%) !important;
-  color: darken($third, 20%) !important;
+  color: $white !important;
   line-height: 1;
   padding: 8px 0;
-  border-radius: 50%;
-  text-align: center;
   width: 36px;
   height: 36px;
-  transition: 0.3s;
 }
 .footerlinks{
   text-decoration: none;
@@ -216,11 +217,11 @@ h6 {
   }  
 }
 .light_background{
-  background-color: lighten($third, 50%) !important;
+  background-color: lighten($header, 50%) !important;
 }
 .noborder{
-  border:none !important;
-  background-color: darken($third, 10%) !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: $white !important;
 }
 .paddtop{
   padding-top: 1rem !important;
@@ -233,19 +234,44 @@ h6 {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
-  color: $third !important;
-  font-family: FuturaPTW02-Book;  
+  color: $header !important;
+  font-family: roboto-bold;  
 }
 .title_landing_i{
   font-style: italic;  
 }
-.border-landing{
-  border: solid 1px #1b4274 !important;
-  border-radius: 5%;
+.landing_title_3{
+    font-size: 1.4rem;
+    font-family: roboto-bold;
+    font-weight: 200 !important;
+    color: #495057 !important;  
+}
+.landing_title_4{
+    font-size: 1.2rem;
+    font-family: roboto-light;
+    font-weight: 200 !important;
+    color: #495057 !important;  
+}
+.landing_title_6{
+    font-size: 1rem;
+    font-family: roboto-light;
+    font-weight: 200 !important;
+    color: #495057 !important;  
+}
+.landing_controls{
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;  
+}
+.border-landing {
+    border: none;
 }
 .border_landing_trade{
   border: solid 1px #1b4274 !important;
   height: 300px;
+}
+.user_name_login{
+  padding-top: 10%;  
 }
 .border_landing_money{
   border: solid 1px #1b4274 !important;
@@ -260,8 +286,44 @@ h6 {
 .login{
   height: 450px;
 }
+.padding_middle{
+  background-color:  $header !important;
+  height: 250px;
+}
+.the_market{
+  background-color:  $header !important;
+  height: 150px;
+}
+.economic{
+  padding-top:50px;
+}
+.urban{
+  padding-top:50px;
+}
+.padding_middle_inner{
+  padding-top:50px;
+}
+.employed{
+  padding-top:50px;
+  background-color: #f2f2f2 !important
+}
+.commodities{
+  background-color: #f2f2f2 !important
+}
+.padding_middle_1{
+    font-size: 1.4rem;
+    font-family: roboto-bold;
+    font-weight: 200 !important;
+    color: $white !important;  
+}
+.padding_middle_2{
+    font-size: 1.3rem;
+    font-family: roboto-light;
+    font-weight: 200 !important;
+    color: $white !important;  
+}
 .sign_up_header{
-  background-image: linear-gradient(to right, #003ed8 , #462469);
+  background-image: $header !important;
   font-size: 1.3rem;
   font-weight: 700;
   color: $white !important;  
@@ -273,11 +335,11 @@ h6 {
 }
 .have-notificatons{
   color: #098823 !important;
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
 }
 .have-inprogress{
   color: #098823 !important;
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
   font-size: 1rem; 
   font-weight: 700; 
 }
@@ -285,17 +347,17 @@ h6 {
   font-size:2rem !important;
 }
 .product{
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
   background-color: lighten($fourth, 40%) !important;
-  color: $third !important;
+  color: $header !important;
 }
 .service{
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
   background-color: lighten($primary, 40%) !important;
-  color: $third !important;
+  color: $header !important;
 }
 .skills{
-  font-family: FuturaPTW02-Book;
+  font-family: roboto-light;
   background-color: lighten($secondary, 40%) !important;
   color: $white !important;
 }
@@ -312,8 +374,8 @@ h6 {
   width: 60vw;
 }
 #getusers{
-  color: $third !important;
-  /*background: $third;*/
+  color: $header !important;
+  /*background: $header;*/
   padding-top:20px;
 }
 #getusers .box {
@@ -339,7 +401,7 @@ h6 {
   text-align: center;
   width: 72px;
   height: 72px;
-  background: $third;
+  background: $header;
 }
 
 #getusers .icon a {
@@ -353,15 +415,15 @@ h6 {
 
 #getusers .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #getusers .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #getusers .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #getusers .title {
@@ -383,8 +445,8 @@ h6 {
   line-height: 24px;
 }
 #getpartners{
-  color: $third !important;
-  /*background: $third;*/
+  color: $header !important;
+  /*background: $header;*/
   padding-top:20px;
 }
 #getpartners .box {
@@ -410,7 +472,7 @@ h6 {
   text-align: center;
   width: 72px;
   height: 72px;
-  background: $third;
+  background: $header;
 }
 
 #getpartners .icon a {
@@ -424,15 +486,15 @@ h6 {
 
 #getpartners .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #getpartners .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #getpartners .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #getpartners .title {
@@ -455,7 +517,7 @@ h6 {
 }
 
 #topproducts{
-  color: $third !important;
+  color: $header !important;
   padding-top:70px;
 }
 #topproducts .box {
@@ -464,7 +526,7 @@ h6 {
   text-align: center;
   border: 1px solid #e6e6e6;
   position: relative;
-  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+  background-image: linear-gradient(to bottom, darken($header, 40%) , lighten($header, 40%));
 }
 
 #topproducts .icon {
@@ -481,7 +543,7 @@ h6 {
   text-align: center;
   width: 172px;
   height: 172px;
-  background: $third;
+  background: $header;
 }
 
 #topproducts .icon a {
@@ -495,15 +557,15 @@ h6 {
 
 #topproducts .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #topproducts .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topproducts .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topproducts .title {
@@ -527,7 +589,7 @@ h6 {
   line-height: 24px;
 }
 #topskills{
-  color: $third !important;
+  color: $header !important;
   padding-top:70px;
 }
 #topskills .box {
@@ -536,7 +598,7 @@ h6 {
   text-align: center;
   border: 1px solid #e6e6e6;
   position: relative;
-  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+  background-image: linear-gradient(to bottom, darken($header, 40%) , lighten($header, 40%));
 }
 
 #topskills .icon {
@@ -553,7 +615,7 @@ h6 {
   text-align: center;
   width: 172px;
   height: 172px;
-  background: $third;
+  background: $header;
 }
 
 #topskills .icon a {
@@ -567,15 +629,15 @@ h6 {
 
 #topskills .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #topskills .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topskills .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topskills .title {
@@ -599,7 +661,7 @@ h6 {
   line-height: 24px;
 }
 #topservices{
-  color: $third !important;
+  color: $header !important;
   padding-top:70px;
 }
 #topservices .box {
@@ -608,7 +670,7 @@ h6 {
   text-align: center;
   border: 1px solid #e6e6e6;
   position: relative;
-  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+  background-image: linear-gradient(to bottom, darken($header, 40%) , lighten($header, 40%));
 }
 
 #topservices .icon {
@@ -625,7 +687,7 @@ h6 {
   text-align: center;
   width: 172px;
   height: 172px;
-  background: $third;
+  background: $header;
 }
 
 #topservices .icon a {
@@ -639,15 +701,15 @@ h6 {
 
 #topservices .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #topservices .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topservices .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #topservices .title {
@@ -671,7 +733,7 @@ h6 {
   line-height: 24px;
 }
 #tradeseed{
-  color: $third !important;
+  color: $header !important;
   padding-top:70px;
 }
 #tradeseed .box {
@@ -680,7 +742,7 @@ h6 {
   text-align: center;
   border: 1px solid #e6e6e6;
   position: relative;
-  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+  background-image: linear-gradient(to bottom, darken($header, 40%) , lighten($header, 40%));
 }
 
 #tradeseed .icon {
@@ -697,7 +759,7 @@ h6 {
   text-align: center;
   width: 172px;
   height: 172px;
-  background: $third;
+  background: $header;
 }
 
 #tradeseed .icon a {
@@ -711,15 +773,15 @@ h6 {
 
 #tradeseed .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #tradeseed .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #tradeseed .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #tradeseed .title {
@@ -743,7 +805,7 @@ h6 {
   line-height: 24px;
 }
 #alltrades{
-  color: $third !important;
+  color: $header !important;
   padding-top:70px;
 }
 #alltrades .box {
@@ -752,7 +814,7 @@ h6 {
   text-align: center;
   border: 1px solid #e6e6e6;
   position: relative;
-  background-image: linear-gradient(to bottom, darken($third, 40%) , lighten($third, 40%));
+  background-image: linear-gradient(to bottom, darken($header, 40%) , lighten($header, 40%));
 }
 
 #alltrades .icon {
@@ -769,7 +831,7 @@ h6 {
   text-align: center;
   width: 172px;
   height: 172px;
-  background: $third;
+  background: $header;
 }
 
 #alltrades .icon a {
@@ -783,15 +845,15 @@ h6 {
 
 #alltrades .box:hover .icon {
   background: #fff;
-  border: 2px solid $third;
+  border: 2px solid $header;
 }
 
 #alltrades .box:hover .icon i {
-  color: $third !important;
+  color: $header !important;
 }
 
 #alltrades .box:hover .icon a {
-  color: $third !important;
+  color: $header !important;
 }
 
 #alltrades .title {
@@ -813,4 +875,25 @@ h6 {
   padding-top:10px;
   font-size: 14px;
   line-height: 24px;
+}
+.bg-gradient-primary {
+    background-color: #dddfeb !important;
+    background-image: linear-gradient(180deg, #34454d 10%, #212529 100%) !important;
+    background-size: cover !important;
+}
+.welcome_back{
+  background: #deeafb !important;
+}
+.welcome_back_text{
+  font-family: roboto-bold; 
+  color: #3985e5 !important;
+  font-size: 11px;
+  line-height: 11px;  
+}
+#wrapper{
+  border : 1px solid  #595657 !important;
+}
+.padding_dashboard{
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }

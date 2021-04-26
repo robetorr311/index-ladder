@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('type_id');
             $table->bigInteger('product_id');
+            $table->boolean('view');
             $table->timestamps();
         });
     }

@@ -35,6 +35,7 @@ Vue.component('privacy-component', require('./components/dashboards/PrivacyCompo
 Vue.component('registration-component', require('./components/registration/RegistrationComponent.vue').default);
 Vue.component('login-component', require('./components/registration/LoginComponent.vue').default);
 Vue.component('profile-component', require('./components/profile/ProfileComponent.vue').default);
+Vue.component('profiledashboard-component', require('./components/profile/ProfiledashboardComponent.vue').default);
 Vue.component('smscode-component', require('./components/registration/SmsCodeComponent.vue').default);
 Vue.component('twostep-component', require('./components/registration/TwoStepComponent.vue').default);
 Vue.component('picture-component', require('./components/PictureComponent.vue').default);
@@ -102,8 +103,9 @@ Vue.component('pratingproducts-component', require('./components/trades/Pratingp
 Vue.component('pratingskills-component', require('./components/trades/PratingskillsComponent.vue').default);
 Vue.component('pratingservices-component', require('./components/trades/PratingservicesComponent.vue').default);
 Vue.component('profilepartner-component', require('./components/profile/ProfilepartnerComponent.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-component', require('./components/dashboards/AdminComponent.vue').default);
+Vue.component('notifications-component', require('./components/dashboards/NotificationsComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

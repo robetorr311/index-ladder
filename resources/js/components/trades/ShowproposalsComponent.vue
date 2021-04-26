@@ -36,7 +36,7 @@
                   <messages-component :product-value="ProductValue" :proposal-value="item.id"></messages-component>  
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="acceptTrade(item.id)">Accept Trade</button><button type="button" class="btn btn-secondary rounded-pill mt-5" data-dismiss="modal" >Close</button>
+                  <button type="button" class="btn btn-secondary" @click="acceptTrade(item.id)">Accept Trade</button><button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="acceptTrade(proposal_id)">Accept Trade</button><button type="button" class="btn btn-secondary rounded-pill mt-5" data-dismiss="modal" >Close</button>
+                  <button type="button" class="btn btn-secondary" @click="acceptTrade(proposal_id)">Accept Trade</button><button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                 </div>
               </div>
             </div>

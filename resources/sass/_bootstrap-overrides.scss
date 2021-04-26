@@ -1,31 +1,36 @@
 .bg-primary {
-  background-color: $primary !important;
+  background-color: $header !important;
 }
 
 .btn-primary {
-  background-color: $primary;
-  border-color: $primary;
+  background-color: $header;
+  border-color: $header;
   &:active,
   &:focus,
   &:hover {
-    background-color: darken($primary, 10%) !important;
-    border-color: darken($primary, 10%) !important;
+    background-color: darken($header, 10%) !important;
+    border-color: darken($header, 10%) !important;
   }
   &:focus {
-    box-shadow: 0 0 0 0.2rem fade-out($primary, 0.5);
+    box-shadow: 0 0 0 0.2rem fade-out($header, 0.5);
   }
 }
 
 .btn-secondary {
-  background-color: $secondary;
-  border-color: $secondary;
+  background-color: $header;
+  border-color: $header;
   &:active,
   &:focus,
   &:hover {
-    background-color: darken($secondary, 10%) !important;
-    border-color: darken($secondary, 10%) !important;
+    background-color: darken($header, 10%) !important;
+    border-color: darken($header, 10%) !important;
   }
   &:focus {
-    box-shadow: 0 0 0 0.2rem fade-out($secondary, 0.5);
+    box-shadow: 0 0 0 0.2rem fade-out($header, 0.5);
   }
+}
+.btn-secondary:disabled {
+    color: #fff;
+    background-color: lighten($header,30%) !important;
+    border-color: lighten($header,30%) !important;
 }

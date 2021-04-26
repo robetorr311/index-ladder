@@ -989,7 +989,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary rounded-pill mt-5" @click="SaveItem" data-dismiss="modal" :disabled="invalid">Save Item</button>
+            <button type="button" class="btn btn-secondary" @click="SaveItem" data-dismiss="modal" :disabled="invalid">Save Item</button>
           </div>
         </div>
       </div>
