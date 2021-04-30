@@ -1074,6 +1074,24 @@ h6 {
   background-color: #080808 !important;
 }
 
+.background_dropdown {
+  background-color: #000000 !important;
+}
+
+.item_dropdown {
+  color: #ffffff !important;
+}
+
+.item_dropdown:active,
+.item_dropdown:focus,
+.item_dropdown:hover {
+  color: #555b61 !important;
+}
+
+header.masthead_top_padding {
+  padding-top: 40px !important;
+}
+
 header.masthead {
   position: relative;
   overflow: hidden;
@@ -1113,7 +1131,8 @@ header.masthead2 {
 }
 
 .color_head2 {
-  color: #868e96 !important;
+  color: #fff !important;
+  padding-left: 10px;
 }
 
 .color_head2:active,
@@ -1195,7 +1214,8 @@ header.masthead2 {
   }
 
   .color_head2 {
-    color: #868e96 !important;
+    color: #fff !important;
+    padding-left: 10px;
   }
 
   .color_head2:active,

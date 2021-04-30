@@ -31,6 +31,21 @@ class ProfileController extends Controller
       $TradeValues="";
       return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
+    public function documents()
+    {
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }
+    public function choose()
+    {
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }
+    public function ratings()
+    {
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }
     public function update(Request $request)
     {
       $id = Auth::id();

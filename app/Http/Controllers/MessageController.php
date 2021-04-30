@@ -68,6 +68,16 @@ class MessageController extends Controller
       $messages = DB::table('messages')->where('tradde_id','=',$trade->id)->where('proposal_id','=',$proposal)->get();
       return response()->json($messages);        
     }
+    public function CountMyMessages(){
+      $iduser = Auth::id();
+      $messages =DB::table('messages')->where('user_id','=',$iduser)->where('views','=',0)->count();
+      return response()->json($messages);
+    }    
+    public function GetMyMessages(){
+      $iduser = Auth::id();
+      $messages = DB::table('messages')->where('user_id','=',$iduser)->where('views','=',0)->get();
+      return response()->json($messages);
+    }    
     public function GetNotifications(){
       $iduser = Auth::id();
       $notification = DB::table('notifications')->join('type_notifications', 'notifications.type_id', '=', 'type_notifications.id')

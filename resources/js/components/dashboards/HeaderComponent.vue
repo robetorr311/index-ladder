@@ -4,41 +4,34 @@
   <!-- <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top"> -->
     <nav v-if="Getuser.logg>0" class="navbar navbar-marketing navbar-expand-lg bg-dark navbar-dark fixed-top">
     <div class="container-fluid">
-      <img :src="URLImagelogo" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand text-logo" ><span class="color_head2"> INDEX LADDER</span></a>
+      <img :src="URLImagelogo" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand text-logo" ><span class="color_head2"> Index Ladder</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a :href="dashboardUrl" class="nav-link"><span class="color_head2"><i class="fas fa-tachometer-alt"></i> Dashboard </span></a>
-          </li>          
-          <li  class="nav-item dropdown" v-if="Notifications.length">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-               <span class="color_head2"><i class="fas fa-bell"></i><sup><span class="have-notificatons"><i class="fas fa-circle fa-sm"></i></span></sup> Notifications </span>
-            </a>
-            <div class="dropdown-menu">
-              <span v-for="note in Notifications">
-                <a class="dropdown-item" :href="Urlproduct + note.product_id "><i class="fas fa-bell"></i> {{ note.message }}</a>
-              </span>
-            </div>            
-          </li>
-          <li class="nav-item" v-else>
-            <a :href="usersUrl" class="nav-link"><span class="color_head2"><i class="fas fa-user-tie"></i> Traders </span></a>
+            <a :href="dashboardUrl" class="nav-link"><span class="color_head2"><i class="fas fa-home"></i> Home </span></a>
           </li>
           <li class="nav-item">
-            <a :href="newitemUrl" class="nav-link"><span class="color_head2"><i class="fas fa-handshake"></i> Publish a Trade </span></a>
+            <a :href="dashboardUrl" class="nav-link"><span class="color_head2"><i class="fas fa-store"></i> The Market </span></a>
+          </li>
+          <li class="nav-item">
+            <a :href="dashboardUrl" class="nav-link"><span class="color_head2"><i class="fas fa-ad"></i> My Ads </span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-               <span class="color_head2"><i class="fas fa-user-circle"></i> {{ Getuser.name }} </span>
+               <span class="color_head2"><i class="fas fa-user-circle"></i> User Profile </span>
             </a>
-            <div class="dropdown-menu">
-              <span v-if="HaveAvatar.URLAvatar==='none'"></span>
-              <span v-else class="dropdown-item"><img :src="HaveAvatar.URLAvatar" class="rounded-circle" width="50px" height="50px"></span>
-              <a :href="profileUrl" class="dropdown-item"><i class="fas fa-user-cog"></i> Your Profile </a>
-              <a :href="favoritesURL" class="dropdown-item"><i class="fas fa-heart"></i> Your Favorites</a>          
-              <a class="dropdown-item" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            <div class="dropdown-menu background_dropdown">
+              <a :href="dashboardUrl" class="dropdown-item item_dropdown"><i class="fas fa-user-cog"></i> User Profile Dashboard </a>
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="fas fa-handshake"></i> My Business Page</a> 
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="fas fa-heart"></i> My Wish List</a>
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="fas fa-user-graduate"></i> My Skills</a>
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="fas fa-wrench"></i> My Services</a>
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="fas fa-tag"></i> My Goods</a>
+              <a :href="favoritesURL" class="dropdown-item item_dropdown"><i class="far fa-handshake"></i> Previous Trades</a>              
+              <a class="dropdown-item item_dropdown" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </div>
           </li>
         </ul>         
@@ -47,7 +40,7 @@
     </nav>
     <nav v-else class="navbar navbar-marketing navbar-expand-lg bg-dark navbar-dark fixed-top">
     <div class="container-fluid">
-      <img :src="URLImagelogo" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand text-logo" > INDEX LADDER</a>
+      <img :src="URLImagelogo" class="topbar-logo"> <a :href="homeUrl" class="navbar-brand text-logo" ><span class="color_head2">Index Ladder</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -63,19 +56,7 @@
       </div>
     </div>
   </nav>
-  <header v-if="Getuser.logg>0" class="masthead_white text-center text-darkgray">
-    <div class="masthead-content_bgwhite">
-      <div class="container-fluid">
-        <h1 class="masthead-heading masthead-padding mb-0">User Profile Dashboard</h1>
-        <h2 class="masthead-subheading mb-0"></h2>
-      </div>
-    </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
-  </header>	
-  <header v-else class="masthead text-center text-white">
+  <header v-if="Getuser.logg===0" class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container-fluid">
         <h1 class="masthead-heading masthead-padding mb-0">Trade Semantics - Trade without Money</h1>
@@ -86,7 +67,8 @@
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
-  </header>   
+  </header>
+  <header v-else class="masthead_top_padding"></header>
   </div> 
 </template>
 
@@ -135,8 +117,6 @@
             this.dashboardUrl= localStorage['URLroot']+ '/dashboard';
             axios.get(localStorage['URLroot'] + '/images/haveavatar').then(response => (this.HaveAvatar = response.data));
             axios.get(localStorage['URLroot'] + '/GetNotifications').then(response => (this.Notifications = response.data));
-            //axios.get(localStorage['URLroot'] + '/GetInProgress').then(response => (this.CartTrades = response.data));
-            //axios.get(localStorage['URLroot'] + '/CountInProgress').then(response => (this.inprogress = response.data));
         }
     }
 </script>

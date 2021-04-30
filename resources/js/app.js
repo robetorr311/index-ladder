@@ -35,6 +35,7 @@ Vue.component('privacy-component', require('./components/dashboards/PrivacyCompo
 Vue.component('registration-component', require('./components/registration/RegistrationComponent.vue').default);
 Vue.component('login-component', require('./components/registration/LoginComponent.vue').default);
 Vue.component('profile-component', require('./components/profile/ProfileComponent.vue').default);
+Vue.component('documents-component', require('./components/profile/DocumentsComponent.vue').default);
 Vue.component('profiledashboard-component', require('./components/profile/ProfiledashboardComponent.vue').default);
 Vue.component('smscode-component', require('./components/registration/SmsCodeComponent.vue').default);
 Vue.component('twostep-component', require('./components/registration/TwoStepComponent.vue').default);

@@ -133,30 +133,6 @@
                     </form>
                     </div>
                   </div>
-                  <profileshare-component></profileshare-component>
-                  <div class="card">
-                  <div class="card-header"><h5 class="card-title"><i class="fas fa-user-cog"></i> Documents Section</h5></div>
-                    <div class="card-body">
-                      <form>
-                      <div class="row justify-content-center">
-                          <div class="col">
-                              <picture-component></picture-component>
-                          </div>
-                      </div>
-                      <div class="row justify-content-center">
-                        <div class="col">
-                              <card-component></card-component>
-                        </div>                        
-                      </div>                                           
-                      <div class="row justify-content-center">
-                          <div class="col">
-                              <license-component></license-component>
-                          </div>                                                
-                      </div>
-                    </form>
-                    </div>
-                </div>
-                <myrating-component></myrating-component>
     </ValidationObserver>   
 </template>
 <script>
@@ -165,11 +141,6 @@ import { ValidationProvider } from 'vee-validate';
 import { extend } from 'vee-validate';
 import { confirmed, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
-import ShareComponent from "./ShareComponent.vue";
-import MyratingComponent from "./MyratingComponent.vue";
-import PictureComponent from "../PictureComponent.vue";
-import CardComponent from "../CardComponent.vue";
-import LicenseComponent from "../LicenseComponent.vue";
 import AvatarComponent from "../AvatarComponent.vue";
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule]);
@@ -197,12 +168,8 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    ShareComponent,
-    PictureComponent,
-    CardComponent,
-    LicenseComponent,
     AvatarComponent,
-    MyratingComponent },
+  },
   data() {
     return {
       firstname: '',

@@ -45,6 +45,9 @@ Route::get('/topfourPro', [App\Http\Controllers\RegistrationController::class, '
 Route::post('/profile/verifySMS/SixDigits', [App\Http\Controllers\ProfileController::class, 'SixDigits'])->name('SixDigits');
 Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::class, 'EnableTwoStep'])->name('EnableTwoStep');
 Route::post('/profile/DeactivateTwoStep', [App\Http\Controllers\ProfileController::class, 'DeactivateTwoStep'])->name('DeactivateTwoStep');
+Route::get('/documents', [App\Http\Controllers\ProfileController::class, 'documents'])->name('profile.documents');
+Route::get('/choose', [App\Http\Controllers\ProfileController::class, 'choose'])->name('profile.choose');
+Route::get('/ratings', [App\Http\Controllers\ProfileController::class, 'ratings'])->name('profile.ratings');
 Route::post('/registration/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('registration.update');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/profile/SendVerifySMS', [App\Http\Controllers\ProfileController::class, 'SendVerifySMS'])->name('SendVerifySMS');
@@ -99,6 +102,8 @@ Route::post('/trade/confirm', [App\Http\Controllers\TraddeController::class, 'co
 Route::get('/GetNotifications', [App\Http\Controllers\MessageController::class, 'GetNotifications'])->name('GetNotifications');
 Route::post('/notifications/SetView', [App\Http\Controllers\MessageController::class, 'SetView'])->name('notifications.SetView');
 Route::get('/GetMessages/{product}/{proposal}', [App\Http\Controllers\MessageController::class, 'GetMessages'])->name('GetMessages');
+Route::get('/GetMyMessages', [App\Http\Controllers\MessageController::class, 'GetMyMessages'])->name('GetMyMessages');
+Route::get('/CountMyMessages', [App\Http\Controllers\MessageController::class, 'CountMyMessages'])->name('CountMyMessages');
 Route::get('/GetTrades', [App\Http\Controllers\TraddeController::class, 'GetTrades'])->name('GetTrades');
 Route::get('/GetTradesPublished', [App\Http\Controllers\TraddeController::class, 'GetTradesPublished'])->name('GetTradesPublished');
 Route::get('/GetBySeed', [App\Http\Controllers\TraddeController::class, 'GetBySeed'])->name('GetBySeed');
@@ -129,6 +134,7 @@ Route::get('/trade/view/{product_id}', [App\Http\Controllers\TraddeController::c
 Route::get('/downloadPDF/{tradde_id}',[App\Http\Controllers\TraddeController::class, 'downloadPDF'])->name('trades.downloadPDF');
 Route::get('/GetFullTrades',[App\Http\Controllers\TraddeController::class, 'GetFullTrades'])->name('GetFullTrades');
 Route::get('/GetTimeServices',[App\Http\Controllers\TraddeController::class, 'GetTimeServices'])->name('GetTimeServices');
+Route::get('/mytrades', [App\Http\Controllers\TraddeController::class, 'mytrades'])->name('trades.mytrades');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');

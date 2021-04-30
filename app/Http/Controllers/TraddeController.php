@@ -742,5 +742,10 @@ class TraddeController extends Controller
     public function GetTimeServices(){
           $product = DB::table('time_services')->get();
         return response()->json($product);
-    }         
+    }
+    public function mytrades()
+    {
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]); 
+    }
 }

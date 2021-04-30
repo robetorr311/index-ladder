@@ -24,7 +24,7 @@
               <p class="card-text" v-else>{{ product.description }}</p>
                   </div>              
               <div class="card-footer">
-                <a type="button" :href="UrlEdit + product.id" target="blank" class="btn btn-secondary" v-if="product.status_name==='Published/Pending'"><i class="fas fa-pencil-alt"></i> Edit Values</a>
+                <a type="button" :href="UrlEdit + product.id" class="btn btn-secondary" v-if="product.status_name==='Published/Pending'"><i class="fas fa-pencil-alt"></i> Edit Values</a>
               </div>              
             </div>
         </div>
