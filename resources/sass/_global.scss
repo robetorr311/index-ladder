@@ -1,7 +1,6 @@
 body {
   @include body-font;
 }
-
 h1,
 h2,
 h3,
@@ -10,7 +9,9 @@ h5,
 h6 {
   @include heading-font;
 }
-
+.key_facts{
+  padding-top: 50px;
+}
 .btn-xl {
   text-transform: uppercase;
   padding: 1.5rem 3rem;
@@ -20,7 +21,7 @@ h6 {
 }
 
 .bg-black {
-  background-color: $header !important;
+    background-color: #2e2e2e !important;
 }
 .col{
   padding-bottom: 10px !important;
@@ -99,8 +100,8 @@ h6 {
 }
 .iframe_employed{
   overflow:hidden; 
-  width:570px; 
-  height:525px;
+  width: 670px;
+  height: 525px;
 }
 .has-error{
   color: #cc0000 !important;
@@ -240,25 +241,34 @@ h6 {
 .title_landing_i{
   font-style: italic;  
 }
-.landing_title_3{
-    font-size: 1.4rem;
-    font-family: roboto-bold;
-    font-weight: 200 !important;
-    color: #495057 !important;  
-}
-.landing_title_4{
-    font-size: 1.2rem;
+.title_Picture4MB{
+    font-size: 1.5rem;
     font-family: roboto-light;
-    font-weight: 200 !important;
-    color: #495057 !important;  
+    font-weight: bold;
+    color: #212529 !important;  
 }
-.landing_title_6{
+.landing_title_3 {
+    font-size: 1.5rem;
+    font-family: 'abel-regular';
+    font-weight: bold;
+}
+.landing_title_4 {
     font-size: 1rem;
     font-family: roboto-light;
+    font-weight: bold;
+    color: #212529 !important;
+}
+.ul_landing_4{
+  list-style-type: square;
+}
+.landing_title_6 {
+    font-size: 0.8rem;
+    font-family: 'abel-regular';
     font-weight: 200 !important;
-    color: #495057 !important;  
+    color: #495057 !important;
 }
 .landing_controls{
+  background-color: #f2f2f2 !important;
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;  
@@ -284,18 +294,107 @@ h6 {
   padding-top: 5%;
 }
 .login{
-  height: 450px;
+  background-color: #f2f2f2 !important;
+  height: 550px;
 }
 .padding_middle{
-  background-color:  $header !important;
-  height: 250px;
+  background-color:  #2e2e2e !important;
+  height: 180px;
 }
-.the_market{
-  background-color:  $header !important;
-  height: 150px;
+.padding_middle_first{
+  background-color:  #2e2e2e !important;
+  height: 180px;  
+}
+.the_market {
+    background-color: #2e2e2e !important;
+    height: 150px;
 }
 .economic{
-  padding-top:50px;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+}
+.economic_title_1 {
+  font-size: 3.5rem;
+  font-family: "abel-regular";
+  font-weight: lighter !important;
+  color: #595657 !important;
+}
+.color_sidebar {
+  color: #666666 !important;
+  border-top-color: currentcolor;
+}
+.KijijiCanada2{
+  font-size: 1.5rem;
+  font-family: roboto-light;
+  font-weight: 100;
+  color: #212529 !important;
+}
+.employed_title{
+  font-size: 1.5rem;
+  font-family: roboto-light;
+  font-weight: 100;
+  color: #212529 !important;
+}
+.urban_iframe {
+    width: 700px;
+    height: 525px;
+    border: 0px none;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.employed_landing_title_4 {
+    font-size: 1.1rem;
+    font-family: roboto-light;
+    font-weight: 600;
+    color: #212529 !important;
+}
+.KijijiCanada2_bold{
+  font-size: 1.8rem;
+  font-family: roboto-light;
+  font-weight: bold;
+  color: #212529 !important;
+}
+.button_aqua{
+  border: none;
+  background-color: #2ca79b !important;
+  color: #ffffff !important;
+}
+.economic_video{
+  width:640px;
+  height:360px;
+}
+.purchasing_landing_title_3 {
+    font-size: 1.5rem;
+    font-family: roboto-light;
+    font-weight: 600;
+    color: #505050 !important;
+}
+.second_video_title {
+    font-size: 3rem;
+    font-family: 'abel-regular';
+    font-weight: 600;
+    color: #333 !important;
+}
+.market_padding_middle_1 {
+    font-size: 3.5rem;
+    font-family: "abel-regular";
+    font-weight: 100;
+    color: #fff !important;
+}
+.commodities_title_4 {
+    font-size: 1.5rem;
+    font-family: "abel-regular";
+    font-weight: 100;
+    color: #333 !important;
+}
+.commodities_item{
+  border: none !important;
+}
+.commodities_image{
+  max-width: 250px !important;
+}
+.Picture4MB{
+  max-width:740px;
 }
 .urban{
   padding-top:50px;
@@ -310,17 +409,17 @@ h6 {
 .commodities{
   background-color: #f2f2f2 !important
 }
-.padding_middle_1{
+.padding_middle_1 {
     font-size: 1.4rem;
-    font-family: roboto-bold;
-    font-weight: 200 !important;
-    color: $white !important;  
+    font-family: 'abel-regular';
+    font-weight: bold;
+    color: #fff !important;
 }
-.padding_middle_2{
-    font-size: 1.3rem;
+.padding_middle_2 {
+    font-size: 1rem;
     font-family: roboto-light;
-    font-weight: 200 !important;
-    color: $white !important;  
+    font-weight: 600;
+    color: #fff !important;
 }
 .sign_up_header{
   background-image: $header !important;
@@ -379,12 +478,12 @@ h6 {
   padding-top:20px;
 }
 #getusers .box {
-  padding: 10px;
-  margin-bottom: 50px;
-  text-align: center;
-  border: 1px solid #e6e6e6;
-  position: relative;
-  background-image: linear-gradient(to bottom, #003ed8 , #462469);
+    padding: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    background-image: linear-gradient(to bottom, #283238, #080808);
 }
 
 #getusers .icon {
@@ -892,6 +991,9 @@ h6 {
 }
 #wrapper{
   border : 1px solid  #595657 !important;
+}
+#loginsection{
+  background-color: #f2f2f2 !important;
 }
 .padding_dashboard{
   padding-top: 20px !important;

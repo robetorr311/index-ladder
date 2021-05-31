@@ -55,3 +55,18 @@
     url("../fonts/roboto-regular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
     url("../fonts/roboto-regular.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
 }
+@font-face {font-family: "roboto-regular";
+    src: url("../fonts/roboto-regular.eot"); /* IE9*/
+    src: url("../fonts/roboto-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/roboto-regular.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/roboto-regular.woff") format("woff"), /* chrome firefox */
+    url("../fonts/roboto-regular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/roboto-regular.svg#FuturaPTW02-Book") format("svg"); /* iOS 4.1- */
+}
+@font-face {font-family: "abel-regular";
+    src: url("../fonts/Abel-Regular.eot"); /* IE9*/
+    src: url("../fonts/Abel-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/Abel-Regular.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/Abel-Regular.woff") format("woff"), /* chrome firefox */
+    url("../fonts/Abel-Regular.ttf") format("truetype") /* chrome firefox opera Safari, Android, iOS 4.2+*/
+}

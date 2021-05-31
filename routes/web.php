@@ -40,7 +40,8 @@ Route::get('/GetAllContacts', [App\Http\Controllers\RegistrationController::clas
 Route::get('/topfourServ', [App\Http\Controllers\RegistrationController::class, 'topfourServ'])->name('topfourServ');
 Route::get('/topfourSki', [App\Http\Controllers\RegistrationController::class, 'topfourSki'])->name('topfourSki');
 Route::get('/topfourPro', [App\Http\Controllers\RegistrationController::class, 'topfourPro'])->name('topfourPro');
-
+Route::get('/commodities/view/', [App\Http\Controllers\RegistrationController::class, 'commodities'])->name('commodities');
+Route::get('/services/view/', [App\Http\Controllers\RegistrationController::class, 'services'])->name('services');
 //Profile
 Route::post('/profile/verifySMS/SixDigits', [App\Http\Controllers\ProfileController::class, 'SixDigits'])->name('SixDigits');
 Route::post('/profile/EnableTwoStep', [App\Http\Controllers\ProfileController::class, 'EnableTwoStep'])->name('EnableTwoStep');
@@ -113,6 +114,9 @@ Route::get('/GetTraderAvatar/{id}', [App\Http\Controllers\TraddeController::clas
 Route::get('/GetTraderTrades/{id}', [App\Http\Controllers\TraddeController::class, 'GetTraderTrades'])->name('GetTraderTrades');
 Route::get('/mytrades/all', [App\Http\Controllers\TraddeController::class, 'GetAllMyTrades'])->name('GetAllMyTrades');
 Route::get('/trades/all', [App\Http\Controllers\TraddeController::class, 'GetAllTrades'])->name('GetAllTrades');
+Route::get('/myservices', [App\Http\Controllers\TraddeController::class, 'myservices'])->name('trade.myservices');
+Route::get('/myskills', [App\Http\Controllers\TraddeController::class, 'myskills'])->name('trade.myskills');
+Route::get('/mygoods', [App\Http\Controllers\TraddeController::class, 'mygoods'])->name('trade.mygoods');
 Route::get('/trades/GetOffer', [App\Http\Controllers\TraddeController::class, 'GetOffer'])->name('trade.GetOffer');
 Route::get('/trades/GetTime', [App\Http\Controllers\TraddeController::class, 'GetTime'])->name('trade.GetTime');
 Route::get('/GetPartners', [App\Http\Controllers\TraddeController::class, 'GetPartners'])->name('GetPartners');
@@ -135,6 +139,10 @@ Route::get('/downloadPDF/{tradde_id}',[App\Http\Controllers\TraddeController::cl
 Route::get('/GetFullTrades',[App\Http\Controllers\TraddeController::class, 'GetFullTrades'])->name('GetFullTrades');
 Route::get('/GetTimeServices',[App\Http\Controllers\TraddeController::class, 'GetTimeServices'])->name('GetTimeServices');
 Route::get('/mytrades', [App\Http\Controllers\TraddeController::class, 'mytrades'])->name('trades.mytrades');
+Route::get('/completed', [App\Http\Controllers\TraddeController::class, 'completed'])->name('trades.completed');
+Route::get('/earnings', [App\Http\Controllers\TraddeController::class, 'earnings'])->name('earnings');
+Route::get('/pendingorders', [App\Http\Controllers\TraddeController::class, 'pendingorders'])->name('pendingorders');
+Route::get('/totaltrades', [App\Http\Controllers\TraddeController::class, 'totaltrades'])->name('totaltrades');
 //Categories
 Route::post('/categories/like', [App\Http\Controllers\CategoryController::class, 'like'])->name('categories.like');
 Route::post('/seedstore', [App\Http\Controllers\CategoryController::class, 'seedstore'])->name('categories.seedstore');
@@ -171,6 +179,11 @@ Route::get('/news', [App\Http\Controllers\RegistrationController::class, 'how'])
 Route::get('/faq', [App\Http\Controllers\RegistrationController::class, 'faq'])->name('faq');
 Route::get('/blog', [App\Http\Controllers\RegistrationController::class, 'how'])->name('blog');
 Route::get('/forums', [App\Http\Controllers\RegistrationController::class, 'how'])->name('forums');
+Route::get('/search', [App\Http\Controllers\RegistrationController::class, 'search'])->name('search');
+Route::get('/search/findbyn/{search}', [App\Http\Controllers\RegistrationController::class, 'FindByN'])->name('search.FindByN');
+Route::get('/search/findbyname/{search}', [App\Http\Controllers\RegistrationController::class, 'FindByName'])->name('search.FindByName');
+Route::get('/partnersusers', [App\Http\Controllers\RegistrationController::class, 'partnersusers'])->name('partnersusers');
+Route::get('/matchusers', [App\Http\Controllers\RegistrationController::class, 'matchusers'])->name('categories.matchusers');
 //Pictures
 Route::post('/upload/product', [App\Http\Controllers\ProductImageController::class, 'upload'])->name('upload');
 Route::post('/upload/picture', [App\Http\Controllers\IdentImageController::class, 'picture'])->name('picture');

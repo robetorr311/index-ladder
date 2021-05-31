@@ -3,7 +3,7 @@
   <div v-if="Getuser.logg>0" class="masthead_white text-center text-darkgray">
     <div class="masthead-content_bgwhite">
       <div class="container-fluid">
-        <h1 class="masthead-heading masthead-padding mb-0">User Profile Dashboard</h1>
+        <h1 class="masthead-heading masthead-padding mb-0"> {{ title }}</h1>
         <h2 class="masthead-subheading mb-0"></h2>
       </div>
     </div>
@@ -14,15 +14,15 @@
            <!-- Sidebar - -->
       <span class="sidebar-brand d-flex align-items-center justify-content-center">
           <div class="sidebar-brand-icon rotate-n-15">
-              <img :src="URLImagelogo" class="topbar-logo">
+              <!--<img :src="URLImagelogo" class="topbar-logo">-->
           </div>
-          <div class="sidebar-brand-text mx-3">Index Ladder Profile Dashboard</div>
+          <!--<<div class="sidebar-brand-text mx-3">Index Ladder Profile Dashboard</div>-->
       </span>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-          <a class="nav-link" :href="profileUrl">
+          <a class="nav-link" :href="dashboardUrl">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span></a>
       </li>
@@ -80,13 +80,29 @@
                 <a class="collapse-item" :href="tradesallURL"> Show all Trades</a>
               </div>
           </div>
-      </li>            
-      <!-- Sidebar Message -->
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+              aria-expanded="true" aria-controls="collapseUsers">
+              <i class="fas fa-user-friends fa-fw"></i>
+              <span>Users</span>
+          </a>
+          <div id="collapseUsers" class="collapse" aria-labelledby="headingUtilities"
+              data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom</h6>
+                <a class="collapse-item" :href="partnersUrl"> Partners</a>
+                <a class="collapse-item" :href="matchUrl"> Match Categories</a>
+              </div>
+          </div>
+      </li>                   
+      <!-- Sidebar Message 
       <div class="sidebar-card">
           <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
           <p class="text-center mb-2"> components, and more!</p>
           
-      </div>
+      </div>-->
   </ul>
   <!-- End of Sidebar -->
   <!-- Content Wrapper -->
@@ -100,18 +116,18 @@
                   <i class="fa fa-bars"></i>
               </button>
               <!-- Topbar Search -->
-              <form
+              <!--<form
                   class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                   <div class="input-group">
-                      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      <input type="text" v-model="findbyname" class="form-control bg-light border-0 small" placeholder="Search for..."
                           aria-label="Search" aria-describedby="basic-addon2">
                       <div class="input-group-append">
-                          <button class="btn btn-primary" type="button">
+                          <button class="btn btn-primary"  @click="FindByName" type="button">
                               <i class="fas fa-search fa-sm"></i>
                           </button>
                       </div>
                   </div>
-              </form>
+              </form>-->
               <!-- Topbar Navbar -->
               <ul class="navbar-nav ml-auto">
                   <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -208,12 +224,10 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
               <!-- Page Heading -->
-              <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-              </div>
               <!-- Content Row -->
         <div v-if="CenterContent===0">
           <profiledashboard-component></profiledashboard-component>
+          <tradeseed-component :trade-values="TradeValues"></tradeseed-component>
         </div>
         <div v-else-if="CenterContent===1">
           <profile-component></profile-component>
@@ -231,13 +245,13 @@
           <profiletrader-component :trader-value="TraderID"></profiletrader-component>
         </div>
         <div v-else-if="CenterContent===6">
-          <tradesall-component></tradesall-component>
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
         </div>
         <div v-else-if="CenterContent===7">
           <tradesall-component></tradesall-component>
         </div>
         <div v-else-if="CenterContent===8">
-          <tradesall-component></tradesall-component>
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
         </div>
         <div v-else-if="CenterContent===9">
           <favorites-component :trade-values="TradeValues"></favorites-component>
@@ -259,14 +273,33 @@
         </div>
         <div v-else-if="CenterContent===15">
           <tradetable-component></tradetable-component>
-        </div>              
+        </div>
+        <div v-else-if="CenterContent===16">
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
+        </div>
+        <div v-else-if="CenterContent===17">
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
+        </div>
+        <div v-else-if="CenterContent===18">
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
+        </div>
+        <div v-else-if="CenterContent===19">
+          <tradesall-component :trade-values="TradeValues"></tradesall-component>
+        </div>
+        <div v-else-if="CenterContent===20">
+          <partner-component></partner-component>
+        </div>
+        <div v-else-if="CenterContent===21">
+          <getusers-component></getusers-component>
+        </div>
         <div v-else>
           <profiledashboard-component></profiledashboard-component>
+          <tradeseed-component :trade-values="TradeValues"></tradeseed-component>         
         </div>
           </div>
           <!-- /.container-fluid -->
       </div>
-      <!-- End of Main Content -->
+      <!-- End of Main Content tradeseed-component-->
   </div>
 </div>
   </div> 
@@ -287,11 +320,13 @@
   import InprogressComponent from "../trades/InprogressComponent.vue";
   import CompletedComponent from "../trades/CompletedComponent.vue";
   import CancelledComponent from "../trades/CancelledComponent.vue";
-  import ShowalltradesComponent from "../trades/ShowalltradesComponent.vue";
+  import AlltradesComponent from "../trades/AlltradesComponent.vue";
+  import TradesseedComponent from "../trades/TradesseedComponent.vue";
   import ProfiledashboardComponent from "../profile/ProfiledashboardComponent.vue";  
   import ShareComponent from "../profile/ShareComponent.vue";
   import MyratingComponent from "../profile/MyratingComponent.vue";
-  import DocumentsComponent from "../profile/DocumentsComponent.vue";  
+  import DocumentsComponent from "../profile/DocumentsComponent.vue";
+  import PartnersComponent from "../products/PartnersComponent.vue";
   export default {
       components: {
         InfoComponent,
@@ -309,11 +344,13 @@
         InprogressComponent,
         CancelledComponent,
         CompletedComponent,
-        ShowalltradesComponent,
+        AlltradesComponent,
         ProfiledashboardComponent,
         ShareComponent,
         MyratingComponent,
         DocumentsComponent,
+        TradesseedComponent,
+        PartnersComponent,
       },
       data() {
         return {
@@ -324,7 +361,8 @@
           HaveAvatar: '',
           Notifications: '',
           MyMessages:'',
-          CountMyMess:'',          
+          CountMyMess:'',
+          title: 'User Profile Dashboard',          
           profileUrl : localStorage['URLroot'] + '/profile',
           GetUserValues:'',  
           URLImagelogo : localStorage['URLroot'] + '/images/LogoRound.svg',
@@ -334,7 +372,11 @@
           ratingsURL: localStorage['URLroot']+ '/ratings',
           dashboardUrl: localStorage['URLroot']+ '/dashboard',
           mytradesUrl: localStorage['URLroot']+ '/mytrades',
-          tradesallURL: localStorage['URLroot'] + '/trades/all',          
+          tradesallURL: localStorage['URLroot'] + '/trades/all',
+          partnersUrl: localStorage['URLroot'] + '/partnersusers',
+          matchUrl: localStorage['URLroot'] + '/matchusers',
+          usersallURL: localStorage['URLroot'] + '/allusers',
+          findbyname:'',           
         }
       },
       props: [ 
@@ -357,20 +399,27 @@
           let mytrades= localStorage['URLroot'] + '/mytrades';          
           let addnew= localStorage['URLroot'] + '/product/addnew';
           let notifications=localStorage['URLroot'] + '/notifications';
+          let completed = localStorage['URLroot'] + '/completed';
           let users=localStorage['URLroot'] + '/users';        
           let product= route.search("/product/view/");     
           let edit = route.search("/product/edit");
+          let myskills= route.search('/myskills');
+          let myservices= route.search('/myservices');
+          let mygoods= route.search('/mygoods');
           let trader=route.search("/user/show/");
           let alltra=route.search("/trades/all/");
           let findby=route.search("/product/findbycategory");
-          let findbyn=route.search("/product/findbyname");
+          let findbyn=route.search("/product/findbyname/");
           let routepro=localStorage['URLroot'] + '/product/view';
           let routeedit=localStorage['URLroot'] + '/product/edit';
           let routetrad=localStorage['URLroot'] + '/user/show';
           let routeallt=localStorage['URLroot'] + '/trades/all';
           let routefindbyc=localStorage['URLroot'] + '/product/findbycategory';
-          let routefindbyn=localStorage['URLroot'] + '/product/findbyname';
+          let routefindbyn=localStorage['URLroot'] + '/product/findbyn';
           let favorites=localStorage['URLroot'] + '/favorites';
+          let partners=localStorage['URLroot'] + '/partnersusers';
+          let match=localStorage['URLroot'] + '/matchusers';
+          let usersall=localStorage['URLroot'] + '/allusers';          
           if(product>0){
             let resp = route.split('/');
             routepro=routepro + '/' + resp[5];
@@ -394,58 +443,115 @@
           }
           if(findbyn>0){
             routefindbyn=route;
-          }                         
+          }
+          if(myskills>0){
+            myskills=route;
+          }
+          if(myservices>0){
+            myservices=route;
+          }
+          if(mygoods>0){
+            mygoods=route;
+          }                                    
           switch (route) {
             case profile:
+              this.title="User Profile Dashboard";
               this.CenterContent=1;
               break;
             case addnew:
+              this.title="My Business Page";
               this.CenterContent=2;
               break;
             case routepro:
+              this.title="My Business Page";
               this.CenterContent=3;
               break;
             case routeedit:
+              this.title="My Business Page";
               this.CenterContent=4;
               break;
             case routetrad:
+              this.title="My Business Page";
               this.CenterContent=5;
               break;
             case routeallt:
+              this.title="The Market";
               this.CenterContent=6;
               break;
             case routefindbyc:
+              this.title="The Market";
               this.CenterContent=7;
               break;
             case routefindbyn:
+              this.title="The Market";
               this.CenterContent=8;
               break;
             case favorites:
+              this.title="My Wish List";
               this.CenterContent=9;
               break;
             case notifications:
+              this.title="My Business Page";
               this.CenterContent=10;
               break;
             case users:
+              this.title="My Business Page";
               this.CenterContent=11;
               break;
             case documents:
+              this.title="User Profile Dashboard";
               this.CenterContent=12;
               break;
             case choose:
+              this.title="User Profile Dashboard";
               this.CenterContent=13;
               break;
             case ratings:
+              this.title="User Profile Dashboard";
               this.CenterContent=14;
               break;
             case mytrades:
+              this.title="My Ads";
               this.CenterContent=15;
               break;
+            case myservices:
+              this.title="My Services";
+              this.CenterContent=16;
+              break;
+            case myskills:
+              this.title="My Skills";
+              this.CenterContent=17;
+              break;
+            case mygoods:
+              this.title="My Goods";
+              this.CenterContent=18;
+              break;
+            case completed:
+              this.title="My Previous Trades";
+              this.CenterContent=19;
+              break;              
+            case partners:
+              this.title="User Profile Dashboard";
+              this.CenterContent=20;
+              break;              
+            case match:
+              this.title="User Profile Dashboard";
+              this.CenterContent=21;
+              break;              
             default:
+              this.title="User Profile Dashboard";
               this.CenterContent=0;
               break;
           }
-        }
+        },
+        /*FindByName(){
+          var ValueToFind=this.findbyname;
+          var Url=localStorage['URLroot'];
+          axios.get(Url + '/product/findbyn/' + ValueToFind)
+          .then(function(response) {
+            location.href = response.data.redirect;
+          });
+        },*/
       },    
       mounted() {
         axios.get(localStorage['URLroot'] + '/profile/GetUserInfo').then(response => (this.ShowCenterContent(response.data)));

@@ -144,11 +144,11 @@ class ProductController extends Controller
     public function viewproduct($id){
       $TradeValues="";
       $tradde = DB::table('traddes')->where('product_id','=',$id)->first();
-      $thisURL=url()->current();
-      $path='../public/qrcodes/'.$tradde->tradde_number.'.svg';
-      QrCode::size(100);
-      QrCode::color(54, 38, 89);
-      QrCode::color(54, 38, 89)->generate($thisURL, $path);
+      //$thisURL=url()->current();
+      //$path='../public/qrcodes/'.$tradde->tradde_number.'.svg';
+      //QrCode::size(100);
+      //QrCode::color(54, 38, 89);
+      //QrCode::color(54, 38, 89)->generate($thisURL, $path);
       return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
     public function getproduct($id){

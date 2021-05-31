@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
     <div class="card">
-      <div class="card-header"><p class="text-left"><h5 class="card-title"><i class="far fa-handshake"></i> Trade Number: {{ tradde_number }}</h5></p> <p class="text-right"><img :src="qrcode"></p></div>
+      <div class="card-header"><p class="text-left"><h5 class="card-title"><i class="far fa-handshake"></i> Trade Number: {{ tradde_number }}</h5></p></div>
       <div class="card-body">
         <div class="card">
           <div class="card-header"><h4 class="card-title"><i class="far fa-handshake"></i>                   

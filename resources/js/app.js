@@ -18,19 +18,21 @@ Vue.component('file-upload', VueUploadComponent);
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
- *
+ *Gallery
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-// const files = require.context('./', true, /\.vue$/i)
+// const files = require.context('./', true, /\.vue$/i) tradesall-component
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('footer-component', require('./components/dashboards/FooterComponent.vue').default);
 Vue.component('header-component', require('./components/dashboards/HeaderComponent.vue').default);
 Vue.component('message-component', require('./components/dashboards/MessageComponent.vue').default);
 Vue.component('slide-component', require('./components/SlideComponent.vue').default);
 Vue.component('products-component', require('./components/ProductsComponent.vue').default);
+Vue.component('commodities-component', require('./components/CommoditiesComponent.vue').default);
 Vue.component('skills-component', require('./components/SkilssComponent.vue').default);
 Vue.component('services-component', require('./components/ServicesComponent.vue').default);
 Vue.component('how-component', require('./components/dashboards/HowComponent.vue').default);
+Vue.component('helpme-component', require('./components/HelpComponent.vue').default);
 Vue.component('privacy-component', require('./components/dashboards/PrivacyComponent.vue').default);
 Vue.component('registration-component', require('./components/registration/RegistrationComponent.vue').default);
 Vue.component('login-component', require('./components/registration/LoginComponent.vue').default);
@@ -93,7 +95,7 @@ Vue.component('choosepro-component', require('./components/categories/Chooseprod
 Vue.component('chooseserv-component', require('./components/categories/ChooseservicesComponent.vue').default);
 Vue.component('chooseskill-component', require('./components/categories/ChooseskillsComponent.vue').default);
 Vue.component('profileshare-component', require('./components/profile/ShareComponent.vue').default);
-Vue.component('tradesall-component', require('./components/trades/ShowalltradesComponent.vue').default);
+Vue.component('tradesall-component', require('./components/trades/AlltradesComponent.vue').default);
 Vue.component('tradeseed-component', require('./components/trades/TradesseedComponent.vue').default);
 Vue.component('getqualifyf-component', require('./components/trades/GetqualifyfComponent.vue').default);
 Vue.component('ratingproducts-component', require('./components/categories/RatingproductsComponent.vue').default);
@@ -106,6 +108,8 @@ Vue.component('pratingservices-component', require('./components/trades/Pratings
 Vue.component('profilepartner-component', require('./components/profile/ProfilepartnerComponent.vue').default);
 Vue.component('admin-component', require('./components/dashboards/AdminComponent.vue').default);
 Vue.component('notifications-component', require('./components/dashboards/NotificationsComponent.vue').default);
+Vue.component('helptrades-component', require('./components/HelpTradesComponent.vue').default);
+Vue.component('helpsettings-component', require('./components/HelpsettingsComponent.vue').default);
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

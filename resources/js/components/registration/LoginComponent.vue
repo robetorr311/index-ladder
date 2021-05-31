@@ -1,12 +1,14 @@
 <template>
   <ValidationObserver v-slot="{ invalid }">
-    <div class="container-fluid">
+    <hr class="sidebar-divider">
+    <section id="loginsection">
+    <div class="container">
     <div class="alert alert-danger" v-if="fail">
       <strong>Fail!</strong> Please click on the verification link sent to your email or you have a wrong Email, Username or Password!! 
     </div>          
-        <div id="formregistration">
-      <div class="row align-items-center">
-        <div class="col-lg-4 order-lg-2">
+      <div id="formregistration">
+      <div class="row justify-content-md-center">
+        <div class="col-lg-6 order-lg-2">
           <div class="">
               <div class="card-deck">
                 <div class="card noborder login">
@@ -18,7 +20,8 @@
                         <div class="col">
                             <ValidationProvider name="username" rules="required" v-slot="{ errors }">
                               <input v-model="username" type="text" class="form-control landing_controls" name="username" placeholder="Email or Username">
-                              <br><p><span class="has-error">{{ errors[0] }}</span></p>                            </ValidationProvider>
+                              <br><p><span class="has-error">{{ errors[0] }}</span></p>                            
+                            </ValidationProvider>
                         </div>                  
                       </div>
                       <div class="row justify-content-center">
@@ -54,12 +57,12 @@
               </div>
           </div>
         </div>
-        <div class="col-lg-8 order-lg-1">
+        <div class="col-lg-6 order-lg-1">
           <div class="p-5 title-landing border-landing">
             <p><span class="landing_title_3">Lack of Money should not stop a person from trading</span></p>
             <p><span class="landing_title_4">Index Ladder platform making trade easier </span></p>
             <span class="landing_title_4">
-            <ul>
+            <ul class="ul_landing_4">
               <li>Market of reusable and used goods and services</li>
               <li>Find a better exchange for your good with Utility based valuation</li>
               <li>Reducing risk with direct access to commodities and services</li>
@@ -73,34 +76,36 @@
             </span>
             <span class="landing_title_6"><p>* Though value based trade exchange is encouraged, options for transactions in currency are available with third party online payment systems such as Stripe (Note: Usually money transactions have associated per transaction costs and we have no control over their cost structure)</p></span> 
           </div>
+              </div>
+            </div>
+           </div>
         </div>
-      </div>
-    </div>
-  </div>
-      <section class="padding_middle">
+      </section>
+      <section class="padding_middle_first">
       <div class="container"> 
-      <div class="row align-items-center padding_middle_inner">
-        <div class="col text-center">
+      <div class="row justify-content-md-center padding_middle_inner">
+        <div class="col">
           <span class="padding_middle_1">72% of U.S. ebay sellers</span><span class="padding_middle_2">
           surveyed say buying pre-owned products has become more common in recent years</span>
         </div>
-        <div class="col text-center">
+        <div class="col">
           <span class="padding_middle_1">68% of eBay U.K.</span><span class="padding_middle_2">sellers said they started selling pre-owned goods in 2020 to make extra cash</span>
         </div>
-        <div class="col text-center">
-          <span class="padding_middle_1">$5,660 USD</span><span class="padding_middle_2">estimated average value of pre-owned items sitting around sellers' houses in Canada</span>
+        <div class="col">
+          <span class="padding_middle_1">$5,660 USD </span><span class="padding_middle_2">estimated average value of pre-owned items sitting around sellers' houses in Canada</span>
         </div>
-        </div>                
+       </div>
+       <hr class="sidebar-divider color_sidebar">                 
       </div>
       </section>
       <section class="economic">
       <div class="container"> 
-      <div class="row align-items-center">
+      <div class="row justify-content-md-center">
         <div class="col text-center">
-         <iframe title="vimeo-player" src="https://player.vimeo.com/video/462830046" width="540" height="360" frameborder="0" allowfullscreen></iframe>
+         <iframe title="vimeo-player" src="https://player.vimeo.com/video/462830046" class="economic_video" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="col text-center">
-          <p class="text-center"><span class="landing_title_3">Economic Opportunity</span></p>
+        <div class="col-lg-4">
+          <p><span class="economic_title_1">Economic Opportunity</span></p>
           <p><span class="landing_title_4">According to Ebay, approximately 85% of people in the U.S. who have sold pre-owned goods on eBay discovered these items within their own home. In fact, the study shows that Americans have an average of 36 household items that can be resold, with $3,675 worth of value sitting in those goods.*</span>
           </p>
           <p class="text-right"><button type="button" class="btn btn-secondary" name="">Download</button></p>
@@ -111,42 +116,44 @@
       </section>
       <section class="padding_middle">
       <div class="container"> 
-      <div class="row align-items-center padding_middle_inner">
-        <div class="col text-center">
+      <div class="row justify-content-md-center padding_middle_inner">
+        <div class="col">
           <span class="padding_middle_1">81% of Gen Zers (aged 19 to 24)</span> <span class="padding_middle_2">say that buying pre-owned goofs has become more common in 2020</span>
         </div>
-        <div class="col text-center">
+        <div class="col">
           <span class="padding_middle_1">39% of German sellers surveyed</span> <span class="padding_middle_2">said they sell pre-owned items because of its positive environmental impact</span>
         </div>
-        <div class="col text-center">
+        <div class="col">
           <span class="padding_middle_1">720,000 metric ton of Carbon</span> <span class="padding_middle_2">emission were conserved through people selling their pre-owned electronics and apparel on eBay</span>
           </div>
-        </div>                
+        </div>
+        <hr class="sidebar-divider color_sidebar">                
       </div>
       </section>
       <section class="key_facts">
       <div class="container"> 
-      <div class="row align-items-center">
+      <div class="row justify-content-md-center">
         <div class="col text-center">
-          <p>Total value of all second-hand transactions in Canada in 2018 was <b>$27.3 billion</b> </p>
-          <img :src="URLkij2" width="463px" class="img-fluid">
+          <p class="KijijiCanada2">Total value of all second-hand transactions in Canada in 2018 was <span class="KijijiCanada2_bold">$27.3 billion</span> </p>
+          <a type="button" href="https://www.kijiji.ca/kijijicentral/app/uploads/2019/10/Kijiji-Index-Report-2019_EN_final_pages-2_compressed.pdf" class="btn btn-primary button_aqua"> Download the 2019 Index Report <i class="fas fa-download"></i></a>
+          <img :src="URLkij2" class="img-fluid URLkij2">
         </div>
         <div class="col text-center">
-          <img :src="URLkij1" width="463px" class="img-fluid">
+          <img :src="URLkij1" class="img-fluid URLkij1">
         </div>
         </div>                
       </div>
       </section>
       <section class="employed">
       <div class="container"> 
-      <div class="row align-items-center">
-        <div class="col text-center">
-          <p>Employed full time: Median usual weekly real earnings: Wage and salary workers: 16 years and over </p>
+      <div class="row justify-content-md-center">
+        <div class="col-lg-8 text-center">
+          <p class="employed_title">Employed full time: Median usual weekly real earnings: Wage and salary workers: 16 years and over </p>
           <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=Dagf&width=670&height=475" scrolling="no" frameborder="0" class="iframe_employed" allowTransparency="true" loading="lazy"></iframe>
         </div>
-        <div class="col">
-          <span class="landing_title_4">
-          <p><ul>
+        <div class="col-lg-4">
+          <span class="employed_landing_title_4">
+          <p><ul class="ul_landing_4">
             <li>Real wages (wages adjusted to factor in inflation or price variation over time) in United States, UK and in general shows increasing or positive trend. (not substantial)</li>
             <li>Factors such as technological, scientific and optimizing engineering models with much higher output, resulted in better and low coats for most commodities and services.</li>
             <li>Software simulation and data tools, resulting in  a flood of new and improved quality electronics at a faster rate is also resulting in e-waste explosion and has devastating effects on our planet.</li>
@@ -160,32 +167,32 @@
       </section>
       <section class="urban">
       <div class="container"> 
-      <div class="row align-items-center">
-        <div class="col">
-          <iframe src="https://ourworldindata.org/grapher/urbanization-vs-gdp?time=2015..latest" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" class="iframe_employed"></iframe>
+      <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+          <iframe src="https://ourworldindata.org/grapher/urbanization-vs-gdp?time=2015..latest" loading="lazy" class="urban_iframe"></iframe>
         </div>
         </div>                
       </div>
       </section> 
       <section class="purchasing">
       <div class="container"> 
-      <div class="row align-items-center">
+      <div class="row justify-content-md-center">
         <div class="col">
-          <p class="text-center"><span class="landing_title_3">$1 USD in 1851 had a buying power of $ 33.80 USD in 2019, 
+          <p class="text-center"><span class="purchasing_landing_title_3">$1 USD in 1851 had a buying power of $ 33.80 USD in 2019, 
 at a staggering rate of over 20% annual reduction in consumers purchasing power.</span></p>
-          <img :src="URLDollar" class="img-fluid">
+          <img :src="URLDollar" class="img-fluid  mx-auto d-block purchasing_image">
         </div>
         </div>                
       </div>
       </section>
       <section class="employed">
       <div class="container"> 
-      <div class="row align-items-center">
+      <div class="row justify-content-md-center">
         <div class="col text-center">
           <iframe class="iframe_video" src="https://www.youtube.com/embed/4ZcKwIyxoBA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="col">
-          <span class="landing_title_4">
+          <span class="second_video_title">
           <p class="text-center">Creating a Circular Economy for Electronics through the Management of e-waste.
           </p>
           </span>
@@ -195,65 +202,64 @@ at a staggering rate of over 20% annual reduction in consumers purchasing power.
       </section> 
       <section class="the_market">
       <div class="container"> 
-      <div class="row align-items-center padding_middle_inner">
+      <div class="row justify-content-md-center padding_middle_inner">
         <div class="col text-center">
-          <span class="padding_middle_1">The Market</span> 
+          <span class="market_padding_middle_1">The Market</span> 
         </div>                
       </div>
       </div>
       </section>      
       <section class="commodities">
       <div class="container"> 
-      <div class="row align-items-center padding_middle_inner">
-        <div class="col text-center">
-          <span class="landing_title_4">Commodities - All listed ads should be hyperlinked and should take viewer to the Ad's page</span> 
+      <div class="row justify-content-md-center padding_middle_inner">
+        <div class="col-lg-9 text-center">
+          <span class="commodities_title_4">Commodities - All listed ads should be hyperlinked and should take viewer to the Ad's page</span> 
         </div>                
       </div>
       </div>
       </section>
       <section class="purchasing">
       <div class="container"> 
-        <div class="row align-items-center padding_middle_inner">
-          <div class="col text-center">
-            <products-component></products-component>  
+        <div class="row justify-content-md-center padding_middle_inner">
+          <div class="col-lg-9 text-center">
+            <commodities-component></commodities-component>  
           </div>              
         </div>
       </div>
       </section>
       <section class="commodities">
       <div class="container">        
-      <div class="row align-items-center padding_middle_inner">
-        <div class="col text-center">
-          <span class="landing_title_4">Services - All listed ads should be hyperlinked and should take viewer to the Ad's page</span> 
+      <div class="row justify-content-md-center padding_middle_inner">
+        <div class="col-lg-9 text-center">
+          <span class="commodities_title_4">Services - All listed ads should be hyperlinked and should take viewer to the Ad's page</span>
         </div>                
       </div>
       </div>            
       </section>
       <section class="purchasing">
       <div class="container"> 
-        <div class="row align-items-center padding_middle_inner">
-          <div class="col text-center">
-            <services-component></services-component> 
-            <skills-component></skills-component>             
+        <div class="row justify-content-md-center padding_middle_inner">
+          <div class="col-lg-9 text-center">
+            <services-component></services-component>         
           </div>              
         </div>
       </div>        
       </section> 
       <section class="urban">
       <div class="container"> 
-      <div class="row align-items-center">
-        <div class="col">
-        <iframe src="https://ourworldindata.org/grapher/gross-national-income-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" width="670px" height="525px"></iframe>
+      <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+        <iframe src="https://ourworldindata.org/grapher/gross-national-income-per-capita" loading="lazy" class="urban_iframe"></iframe>
         </div>
       </div>
       </div>
       </section>
       <section class="urban">
       <div class="container"> 
-      <div class="row align-items-center">
-        <div class="col">
-          <p class="text-center">CPI or price of food commodities since 1900</p>
-          <img :src="Picture4MB" class="img-fluid">
+      <div class="row justify-content-md-center">
+        <div class="col-lg-10">
+          <p class="text-center title_Picture4MB">CPI or price of food commodities since 1900</p>
+          <img :src="Picture4MB" class="img-fluid mx-auto d-block Picture4MB">
         </div>
       </div>
       </div>
@@ -269,7 +275,7 @@ import { ValidationProvider } from 'vee-validate';
 import { extend } from 'vee-validate';
 import { confirmed, required, email } from 'vee-validate/dist/rules';
 import * as rules from 'vee-validate/dist/rules';
-import ProductsComponent from "../ProductsComponent.vue";
+import CommoditiesComponent from "../CommoditiesComponent.vue";
 import ServicesComponent from "../ServicesComponent.vue"; 
 import SkilssComponent from "../SkilssComponent.vue";
 Object.keys(rules).forEach(rule => {
@@ -298,7 +304,7 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    ProductsComponent,
+    CommoditiesComponent,
     ServicesComponent,
     SkilssComponent
   },

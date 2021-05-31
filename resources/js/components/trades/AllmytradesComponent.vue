@@ -5,16 +5,20 @@
     <div class="card-body">
       <div class="row">
         <div class="col" v-for="product in items.data">
-            <div class="card card-item">
-              <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
-              <div class="card-body">
-                <h6 class="product-name">
-                  {{ product.name }}
-                </h6>
-                <h6 class="product-name">$ {{ product.amount }}</h6>
-              </div>
-
+          <div class="p-5">
+            <div class="card commodities_item">
+            <img :src="product.image_url" class="img-fluid mx-auto d-block commodities_image">
+            <div class="card-body">
+              <h6 class="product-name">
+              {{ product.name }}
+              </h6>
+              <h6 class="product-name">
+              {{ product.amount }}
+              </h6>                      
+              <p class="card-text">{{ product.description }}</p>
             </div>
+            </div>
+          </div>
         </div>
       </div>      
     </div>

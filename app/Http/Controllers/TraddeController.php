@@ -275,45 +275,8 @@ class TraddeController extends Controller
     }
     public function GetTrades()
     {
-      $iduser = Auth::id();
-      $usr= User::where('id', $iduser)->first();
-      $trd=[];
-      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->where('status','<',3)->get();
-      if(!empty($host_trades)){
-        foreach ($host_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->where('status','<',3)->get();
-      if(!empty($target_trades)){
-        foreach ($target_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }      
-      $product = DB::table('products')
-        ->join('traddes', 'traddes.product_id', '=', 'products.id')
-        ->join('product_images', 'products.image_id', '=', 'product_images.id')
-        ->join('categories', 'products.category_id', '=', 'categories.id')
-        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
-        ->select('products.id as id',
-                 'products.category_id as category_id',
-                 'products.name as name',
-                 'products.description as description',
-                 'products.type_id as type_id',
-                 'traddes.id as tradde_id',
-                 'products.amount as amount',
-                 'traddes.tradde_number as tradde_number',
-                 'traddes.host_user_id as host_user_id',
-                 'traddes.target_user_id as target_user_id',
-                 'traddes.status as status',
-                 'status_trades.name as status_name',
-                 'product_images.image_url as image_url',
-                 'registrations.firstname as firstname',
-                 'registrations.lastname as lastname',
-                 'registrations.email as email',
-                 'registrations.phone as phone',
-                 'categories.name as category')->whereIn('traddes.id',$trd)->limit(15)->get();
+        $iduser = Auth::id();
+        $product=Tradde::ActivewithProductsandImages($iduser);         
         return response()->json($product);
     }
     public function GetAllMyTrades()
@@ -380,7 +343,7 @@ class TraddeController extends Controller
                      'traddes.status as status',
                      'product_images.image_url as image_url',
                      'categories.name as category',
-                     'status_trades.name as status_name')->paginate(6);
+                     'status_trades.name as status_name')->paginate(20);
         return view('content.dashboard',['TradeValues' => json_encode($product)]); 
     }
     public function GetTrader($id){
@@ -394,45 +357,7 @@ class TraddeController extends Controller
       return response()->json($image);        
     }
     public function GetTraderTrades($id){
-      $usr= User::where('id', $id)->first();
-      $trd=[];
-      $host_trades=DB::table('traddes')->where('host_user_id','=',$usr->id)->get();
-      if(!empty($host_trades)){
-        foreach ($host_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $target_trades=DB::table('traddes')->where('target_user_id','=',$usr->id)->get();
-      if(!empty($target_trades)){
-        foreach ($target_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }      
-      $product = DB::table('products')
-        ->join('traddes', 'traddes.product_id', '=', 'products.id')
-        ->join('product_images', 'products.image_id', '=', 'product_images.id')
-        ->join('categories', 'products.category_id', '=', 'categories.id')
-        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
-        ->select('products.id as id',
-                 'products.category_id as category_id',
-                 'products.name as name',
-                 'products.description as description',
-                 'products.type_id as type_id',
-                 'traddes.id as tradde_id',
-                 'products.amount as amount',
-                 'traddes.tradde_number as tradde_number',
-                 'traddes.host_user_id as host_user_id',
-                 'traddes.target_user_id as target_user_id',
-                 'traddes.status as status',
-                 'product_images.image_url as image_url',
-                 'registrations.firstname as firstname',
-                 'registrations.lastname as lastname',
-                 'registrations.email as email',
-                 'registrations.phone as phone',
-                 'categories.name as category',
-                 'status_trades.name as status_name')
-        ->whereIn('traddes.id',$trd)->get();
+        $product=Tradde::AllwithProductsandImages($id);         
         return response()->json($product);
     }
     public function GetOffer(){
@@ -445,38 +370,8 @@ class TraddeController extends Controller
     }
     public function GetInProgress(){
       $iduser = Auth::id();
-      $usr= User::where('id', $iduser)->first();
-      $trd=[];
-      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->where('status','=',2)->get();
-      if(!empty($host_trades)){
-        foreach ($host_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->where('status','=',2)->get();
-      if(!empty($target_trades)){
-        foreach ($target_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'categories.name as category')->whereIn('traddes.id',$trd)->get();
-          return response()->json($product);
+      $product=Tradde::InProgresswithProductsandImages($iduser);
+      return response()->json($product);
     }
     public function CountInProgress(){
       $iduser = Auth::id();
@@ -503,73 +398,13 @@ class TraddeController extends Controller
     }
     public function GetCancelled(){
       $iduser = Auth::id();
-      $usr= User::where('id', $iduser)->first();
-      $trd=[];
-      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->where('status','=',3)->get();
-      if(!empty($host_trades)){
-        foreach ($host_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->where('status','=',3)->get();
-      if(!empty($target_trades)){
-        foreach ($target_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'categories.name as category')->whereIn('traddes.id',$trd)->get();
-          return response()->json($product);
+      $product= Tradde::CancelledwithProductsandImages($iduser);
+      return response()->json($product);
     }
     public function GetCompleted(){
       $iduser = Auth::id();
-      $usr= User::where('id', $iduser)->first();
-      $trd=[];
-      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->where('status','=',4)->get();
-      if(!empty($host_trades)){
-        foreach ($host_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->where('status','=',4)->get();
-      if(!empty($target_trades)){
-        foreach ($target_trades as $key) {
-          $trd[]=$key->id;
-        }
-      }
-      $product = DB::table('products')
-            ->join('traddes', 'traddes.product_id', '=', 'products.id')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->select('products.id as id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.description as description',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'traddes.tradde_number as tradde_number',
-                     'traddes.host_user_id as host_user_id',
-                     'traddes.target_user_id as target_user_id',
-                     'traddes.status as status',
-                     'product_images.image_url as image_url',
-                     'categories.name as category')->whereIn('traddes.id',$trd)->get();
-          return response()->json($product);
+      $product = Tradde::CompletedwithProductsandImages($iduser);
+      return response()->json($product);
     }        
     public function GetConfirmed($tradde){
       $iduser = Auth::id();
@@ -613,26 +448,8 @@ class TraddeController extends Controller
       return response()->json($qualify);      
     }
     public function GetTradesPublished(){
-      $iduser = Auth::id();
-      $product_category = DB::table('products')
-            ->join('product_images', 'products.image_id', '=', 'product_images.id')
-            ->join('users', 'products.user_id', '=', 'users.id')
-            ->join('type_products','products.type_id','=','type_products.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('traddes', 'products.id','=','traddes.product_id' )
-            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
-            ->select('products.id as id',
-                     'products.user_id as user_id',
-                     'products.category_id as category_id',
-                     'products.name as name',
-                     'products.type_id as type_id',
-                     'products.amount as amount',
-                     'products.description as description',
-                     'product_images.image_url as image_url',
-                     'categories.name as category',
-                     'users.email as user_email',
-                     'type_products.name as type_product')->where('traddes.status','=',1)->get();
-      return response()->json($product_category);
+      $product= Tradde::PublishedwithProductsandImages($iduser);
+      return response()->json($product);
     }
     public function GetBySeed(){
       $iduser = Auth::id();
@@ -748,4 +565,367 @@ class TraddeController extends Controller
       $TradeValues="";
       return view('content.dashboard',['TradeValues' => $TradeValues]); 
     }
+    public function myservices()
+    {
+      $iduser = Auth::id();
+      $category_ids=[];
+      $ChooseCategoryValues=DB::table('categories')
+        ->join('choose_categories', 'categories.id', '=', 'choose_categories.category_id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('choose_categories.user_id','=',$iduser)->where('categories.type_id',"=",1)->get();
+      if(count($ChooseCategoryValues)>0){
+        foreach ($ChooseCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $LikeCategoryValues=DB::table('like_products')
+        ->join('products', 'products.id', '=', 'like_products.product_id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('like_products.user_id','=',$iduser)->where('categories.type_id',"=",1)->get();
+      if(count($LikeCategoryValues)>0){
+        foreach ($LikeCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $ProductCategoryValues = DB::table('products')
+        ->join('categories', 'categories.id', '=', 'products.category_id')
+        ->select('categories.id as category_id',
+                 'categories.name as name')
+        ->where('products.user_id','=',$iduser)
+        ->where('categories.type_id',"=",1)->get();
+      if(count($ProductCategoryValues)>0){
+        foreach ($ProductCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      if(count($category_ids)>0){
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.id',$category_ids)->paginate(15);        
+      }
+      else {
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.type_id',[1])->paginate(15);  
+      }
+      return view('content.dashboard',['TradeValues' => json_encode($product)]);
+    }
+    public function myskills()
+    {
+      $iduser = Auth::id();
+      $category_ids=[];
+      $ChooseCategoryValues=DB::table('categories')
+        ->join('choose_categories', 'categories.id', '=', 'choose_categories.category_id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('choose_categories.user_id','=',$iduser)->where('categories.type_id',"=",2)->get();
+      if(count($ChooseCategoryValues)>0){
+        foreach ($ChooseCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $LikeCategoryValues=DB::table('like_products')
+        ->join('products', 'products.id', '=', 'like_products.product_id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('like_products.user_id','=',$iduser)->where('categories.type_id',"=",2)->get();
+      if(count($LikeCategoryValues)>0){
+        foreach ($LikeCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $ProductCategoryValues = DB::table('products')
+        ->join('categories', 'categories.id', '=', 'products.category_id')
+        ->select('categories.id as category_id',
+                 'categories.name as name')
+        ->where('products.user_id','=',$iduser)
+        ->where('categories.type_id',"=",2)->get();
+      if(count($ProductCategoryValues)>0){
+        foreach ($ProductCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      if(count($category_ids)>0){
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.id',$category_ids)->paginate(15);        
+      }
+      else {
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.type_id',[2])->paginate(15);  
+      }
+      return view('content.dashboard',['TradeValues' => json_encode($product)]);
+    }
+    public function mygoods()
+    {
+      $iduser = Auth::id();
+      $category_ids=[];
+      $ChooseCategoryValues=DB::table('categories')
+        ->join('choose_categories', 'categories.id', '=', 'choose_categories.category_id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('choose_categories.user_id','=',$iduser)->where('categories.type_id',"=",3)->get();
+      if(count($ChooseCategoryValues)>0){
+        foreach ($ChooseCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $LikeCategoryValues=DB::table('like_products')
+        ->join('products', 'products.id', '=', 'like_products.product_id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->select('categories.id as category_id','categories.name as name')
+        ->where('like_products.user_id','=',$iduser)->where('categories.type_id',"=",3)->get();
+      if(count($LikeCategoryValues)>0){
+        foreach ($LikeCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      $ProductCategoryValues = DB::table('products')
+        ->join('categories', 'categories.id', '=', 'products.category_id')
+        ->select('categories.id as category_id',
+                 'categories.name as name')
+        ->where('products.user_id','=',$iduser)
+        ->where('categories.type_id',"=",3)->get();
+      if(count($ProductCategoryValues)>0){
+        foreach ($ProductCategoryValues as $key_cat) {
+          $category_ids[]= $key_cat->category_id;
+        }
+      }
+      if(count($category_ids)>0){
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.id',$category_ids)->paginate(15);        
+      }
+      else {
+        $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->whereIn('categories.type_id',[3])->paginate(15);  
+      }
+      return view('content.dashboard',['TradeValues' => json_encode($product)]);
+    }         
+    public function completed()
+    {
+      $iduser = Auth::id();
+      $product = DB::table('products')
+          ->join('traddes', 'traddes.product_id', '=', 'products.id')
+          ->join('product_images', 'products.image_id', '=', 'product_images.id')
+          ->join('categories', 'products.category_id', '=', 'categories.id')
+          ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+          ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+          ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+          ->where('products.user_id','=',$iduser)->where('traddes.status','>',3)->paginate(15);        
+      return view('content.dashboard',['TradeValues' => json_encode($product)]);
+    }
+    public function earnings(){
+      $iduser = Auth::id();
+      $proposal = DB::table('payments')->where('user_id','=',$iduser)->where('status','=','Payed')->sum('amount');
+      return response()->json($proposal);
+    }
+    public function pendingorders(){
+      $iduser = Auth::id();
+      $usr= User::where('id', $iduser)->first();
+      $trd=[];
+      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->where('status','<',3)->get();
+      if(!empty($host_trades)){
+        foreach ($host_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }
+      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->where('status','<',3)->get();
+      if(!empty($target_trades)){
+        foreach ($target_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }
+      $product = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')->whereIn('traddes.id',$trd)->count();
+          return response()->json($product);   
+    }
+    public function totaltrades(){
+      $iduser = Auth::id();
+      $usr= User::where('id', $iduser)->first();
+      $trd=[];
+      $host_trades=DB::table('traddes')->where('host_user_id','=',$iduser)->get();
+      if(!empty($host_trades)){
+        foreach ($host_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }
+      $target_trades=DB::table('traddes')->where('target_user_id','=',$iduser)->get();
+      if(!empty($target_trades)){
+        foreach ($target_trades as $key) {
+          $trd[]=$key->id;
+        }
+      }
+      $product = DB::table('products')
+        ->join('traddes', 'traddes.product_id', '=', 'products.id')
+        ->join('product_images', 'products.image_id', '=', 'product_images.id')
+        ->join('categories', 'products.category_id', '=', 'categories.id')
+        ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+        ->join('registrations','traddes.host_user_id','=','registrations.user_id')
+        ->select('products.id as id',
+                 'products.category_id as category_id',
+                 'products.name as name',
+                 'products.description as description',
+                 'products.type_id as type_id',
+                 'traddes.id as tradde_id',
+                 'products.amount as amount',
+                 'traddes.tradde_number as tradde_number',
+                 'traddes.host_user_id as host_user_id',
+                 'traddes.target_user_id as target_user_id',
+                 'status_trades.name as status',
+                 'product_images.image_url as image_url',
+                 'registrations.firstname as firstname',
+                 'registrations.lastname as lastname',
+                 'registrations.email as email',
+                 'registrations.phone as phone',
+                 'categories.name as category')
+        ->whereIn('traddes.id',$trd)->count();      
+      return response()->json($product);
+    }    
 }

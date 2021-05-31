@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'indexladder.com'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'notifications@indexladder.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'indexladder3@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Index Ladder Site'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'notifications@indexladder.com'),
+    'username' => env('MAIL_USERNAME', 'indexladder3'),
 
-    'password' => env('MAIL_PASSWORD','I*7ogCdi]caT'),
+    'password' => env('MAIL_PASSWORD','rt988311'),
 
     /*
     |--------------------------------------------------------------------------

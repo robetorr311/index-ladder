@@ -381,5 +381,116 @@ class RegistrationController extends Controller
             ->orderBy('products.id','asc')
             ->limit(4)->get();
             return response()->json($se);
-    }    
+    }
+    public function commodities(){
+            $se = DB::table('commodities')
+            ->join('commodities_images', 'commodities.image_id', '=', 'commodities_images.id')
+            ->select('commodities.id as id',
+                     'commodities.name as name',
+                     'commodities.description as description',
+                     'commodities.type_id as type_id',
+                     'commodities.amount as amount',
+                     'commodities_images.image_url as image_url')
+            ->where('commodities.type_id','=',3)->orderBy('commodities.id','asc')->get();
+            return response()->json($se);
+    }
+    public function services(){
+            $se = DB::table('commodities')
+            ->join('commodities_images', 'commodities.image_id', '=', 'commodities_images.id')
+            ->select('commodities.id as id',
+                     'commodities.name as name',
+                     'commodities.description as description',
+                     'commodities.type_id as type_id',
+                     'commodities.amount as amount',
+                     'commodities_images.image_url as image_url')
+            ->where('commodities.type_id','=',1)->orderBy('commodities.id','asc')->get();
+            return response()->json($se);
+    }
+    public function search(){
+            $product = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'products.user_id as user_id',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url')
+            ->where('traddes.status','=',1)
+            ->orderBy('products.id','asc')->first();      
+            if(empty($product->id)){
+              $product = DB::table('commodities')
+              ->join('commodities_images', 'commodities.image_id', '=', 'commodities_images.id')
+              ->select('commodities.id as id',
+                     'commodities.name as name',
+                     'commodities.description as description',
+                     'commodities.type_id as type_id',
+                     'commodities.amount as amount',
+                     'commodities_images.image_url as image_url')->orderBy('commodities.id','asc')->paginate(10);              
+            }
+            else{
+              $product = DB::table('products')
+              ->join('traddes', 'traddes.product_id', '=', 'products.id')
+              ->join('product_images', 'products.image_id', '=', 'product_images.id')
+              ->join('categories', 'products.category_id', '=', 'categories.id')
+              ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+              ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'products.amount as amount',
+                     'products.user_id as user_id',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url')
+              ->where('traddes.status','=',1)
+              ->orderBy('products.id','asc')->paginate(10);               
+            }
+            return view('content.gallery',['TradeValues' => json_encode($product)]);
+    }
+    public function FindByName($search){
+          $product = DB::table('products')
+            ->join('traddes', 'traddes.product_id', '=', 'products.id')
+            ->join('product_images', 'products.image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('status_trades', 'traddes.status', '=', 'status_trades.id')
+            ->select('products.id as id',
+                     'products.category_id as category_id',
+                     'products.name as name',
+                     'products.description as description',
+                     'products.type_id as type_id',
+                     'traddes.id as tradde_id',
+                     'products.amount as amount',
+                     'traddes.tradde_number as tradde_number',
+                     'traddes.host_user_id as host_user_id',
+                     'traddes.target_user_id as target_user_id',
+                     'traddes.status as status',
+                     'product_images.image_url as image_url',
+                     'categories.name as category')
+            ->where('products.name', 'like', '%'.$search.'%')
+            ->paginate(10);
+            return view('content.gallery',['TradeValues' => json_encode($product)]);
+    }
+    public function FindByN($search){
+        return ['redirect' => route('search.FindByName',['search' => $search])];
+    }
+    public function matchusers(){
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]);       
+    } 
+    public function partnersusers(){
+      $TradeValues="";
+      return view('content.dashboard',['TradeValues' => $TradeValues]);       
+    }        
 }

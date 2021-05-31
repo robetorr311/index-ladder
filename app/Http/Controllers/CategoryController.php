@@ -151,18 +151,6 @@ class CategoryController extends Controller
             $arraycat[]=$catekey->ex_category_id;
           }
         }
-      /*$host_users = DB::table('traddes')->whereIn('category_id',$arraycat)->whereNotIn('host_user_id',[$iduser])->select('traddes.host_user_id as id')->get();
-      /*if(!empty($host_users)){
-        foreach ($host_users as $key) {
-          $users[]=$key->id;
-        }
-      }         
-        $target_users = DB::table('traddes')->whereIn('ex_category_id',$arraycat)->whereNotIn('target_user_id',[$iduser])->select('traddes.target_user_id as id')->get();
-        if(!empty($target_users)){
-          foreach ($target_users as $key) {
-            $users[]=$key->id;
-          }
-      }*/ 
       $seed_users= DB::table('seeds')
                 ->select('user_id')
                 ->where('category_id','=',$arraycat)->get();

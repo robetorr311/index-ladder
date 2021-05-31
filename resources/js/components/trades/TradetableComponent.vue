@@ -3,29 +3,18 @@
     <div class="card-header"><h5 class="card-title"><i class="far fa-handshake"></i> My Trades</h5></div>
     <div class="card-body">
       <div class="row">
-        <div class="col" v-for="product in GetValues">
-            <div class="card card-item" >
-              <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block" height="255px"></a>
+        <div class="col-lg-4" v-for="product in GetValues">
+            <div class="card card-item commodities_item" >
+              <a :href="Urlproduct + product.id"><img :src="product.image_url" class="img-fluid mx-auto d-block"></a>
               <div class="card-body">
-                    <h6 class="product-name">
-                      <div class="row">
-                        <div class="col">
-                          <p class="text-left">{{ product.name }}</p>
-                        </div>
-                      </div>                      
-                      <div class="row" v-if="product.amount">
-                        <div class="col">
-                        </div>
-                      </div>
-                      </h6>
-                      <p class="card-text">Status: {{ product.status_name }}</p>
-                      <p class="card-text">Category: {{ product.category }}</p>
-                      <p class="card-text" v-if="product.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + product.id">See More</a></p>
-              <p class="card-text" v-else>{{ product.description }}</p>
-                  </div>              
-              <div class="card-footer">
-                <a type="button" :href="UrlEdit + product.id" class="btn btn-secondary" v-if="product.status_name==='Published/Pending'"><i class="fas fa-pencil-alt"></i> Edit Values</a>
+                <h6 class="text-center product-name">{{ product.name }}</h6>
+                <h6 class="text-center product-name">{{ product.amount }}</h6>
+                <h6 class="text-center product-name">Status: {{ product.status_name }}</h6>
+                <h6 class="text-center product-name">Category: {{ product.category }}</h6>
+                <h6 class="text-center product-name" v-if="product.description.length>82">{{ product.description.substring(0, 82) }} ... <a :href="Urlproduct + product.id">See More</a></h6>
+                <h6 class="text-center product-name" v-else>{{ product.description }}</h6>
               </div>              
+              <a type="button" :href="UrlEdit + product.id" class="btn btn-secondary" v-if="product.status_name==='Published/Pending'"><i class="fas fa-pencil-alt"></i> Edit Values</a>             
             </div>
         </div>
       </div>      

@@ -4,7 +4,7 @@
     <div class="card-body">
       <div id="getusers">
       <div class="row">
-          <div class="col"  v-for="users in GetValues">
+          <div class="col-lg-4"  v-for="users in GetValues">
             <div class="box">
               <div class="icon"><a :href="UrlUser + users.id"><img :src="users.image_url" class="img-fluid mx-auto d-block rounded-circle" width="50px"></a></div>
               <h4 class="title"><a :href="UrlUser + users.id">{{ users.name }}</a></h4>
