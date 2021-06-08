@@ -53,6 +53,7 @@
     color: darken($gray-600, 20%) !important;
   }  
 }
+
 header.masthead_top_padding{
   font-family: "abel-regular";
   padding-top: 10px !important;
@@ -71,13 +72,13 @@ header.masthead {
   height: 340px;
   background-color:  $header !important;
 }
-header.masthead_white{
-  position: relative;
-  overflow: hidden;
-  padding-top: 25px ;
-  padding-bottom: 3rem;
-  height: 340px;
-  background-color:  $header !important;
+header.masthead_white {
+    position: relative;
+    overflow: hidden;
+    padding-top: 25px;
+    padding-bottom: 3rem;
+    height: 140px;
+    background-color: #080808 !important;
 }
 .text-darkgray{
   color: #595657 !important;

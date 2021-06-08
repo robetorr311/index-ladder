@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div v-if="Getuser.logg>0" class="masthead_white text-center text-darkgray">
+  <!--<div v-if="Getuser.logg>0" class="masthead_white text-center text-darkgray">
     <div class="masthead-content_bgwhite">
       <div class="container-fluid">
         <h1 class="masthead-heading masthead-padding mb-0"> {{ title }}</h1>
@@ -8,7 +8,7 @@
       </div>
     </div>
     <hr class="sidebar-divider"> 
-  </div>
+  </div>-->
   <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
            <!-- Sidebar - -->

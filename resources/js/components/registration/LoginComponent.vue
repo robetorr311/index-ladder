@@ -118,7 +118,7 @@
       <div class="container"> 
       <div class="row justify-content-md-center padding_middle_inner">
         <div class="col">
-          <span class="padding_middle_1">81% of Gen Zers (aged 19 to 24)</span> <span class="padding_middle_2">say that buying pre-owned goofs has become more common in 2020</span>
+          <span class="padding_middle_1">81% of Gen Zers (aged 19 to 24)</span> <span class="padding_middle_2">say that buying pre-owned goods has become more common in 2020</span>
         </div>
         <div class="col">
           <span class="padding_middle_1">39% of German sellers surveyed</span> <span class="padding_middle_2">said they sell pre-owned items because of its positive environmental impact</span>

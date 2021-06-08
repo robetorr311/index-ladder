@@ -30,7 +30,7 @@
               <a :href="myskillsUrl" class="dropdown-item item_dropdown"><i class="fas fa-user-graduate"></i> My Skills</a>
               <a :href="myservicesUrl" class="dropdown-item item_dropdown"><i class="fas fa-wrench"></i> My Services</a>
               <a :href="mygoodsUrl" class="dropdown-item item_dropdown"><i class="fas fa-tag"></i> My Goods</a>
-              <a :href="completedURL" class="dropdown-item item_dropdown"><i class="far fa-handshake"></i> Previous Trades</a>              
+              <a :href="completedURL" class="dropdown-item item_dropdown"><i class="far fa-handshake"></i> Previous Trades</a>            
               <a class="dropdown-item item_dropdown" :href="logoutUrl"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </div>
           </li>
@@ -79,7 +79,13 @@
       </div>
     </div>
   </header>
-  <header v-else class="masthead_top_padding"></header>
+  <header v-else class="masthead_white text-center text-darkgray">
+    <div class="masthead-content_bgwhite">
+      <div class="container-fluid">
+        <h1 class="masthead-heading masthead-padding mb-0">{{ title }}</h1>
+      </div>
+    </div>
+  </header>  
   </div> 
 </template>
 
@@ -119,8 +125,12 @@
          completedURL: localStorage['URLroot']+ '/completed',
          searchURL: localStorage['URLroot']+ '/search',
          ValueToF: '',
+         title: '',
        }
-    },      
+    },
+      props: [ 
+        'RoutesValues',
+      ],          
       methods : {
         FindByName(){
           var ValueToFind=this.ValueToF;
@@ -144,7 +154,162 @@
         .then(function(response) {
             location.href = response.data.redirect;
         });     
-      },                
+      },
+        ShowCenterContent(){
+          let route=this.RoutesValues;
+          let dashboard= localStorage['URLroot'] + '/dashboard';
+          let profile= localStorage['URLroot'] + '/profile';
+          let documents= localStorage['URLroot'] + '/documents';
+          let choose= localStorage['URLroot'] + '/choose';
+          let ratings= localStorage['URLroot'] + '/ratings';
+          let mytrades= localStorage['URLroot'] + '/mytrades';          
+          let addnew= localStorage['URLroot'] + '/product/addnew';
+          let notifications=localStorage['URLroot'] + '/notifications';
+          let completed = localStorage['URLroot'] + '/completed';
+          let users=localStorage['URLroot'] + '/users';        
+          let product= route.search("/product/view/");     
+          let edit = route.search("/product/edit");
+          let myskills= route.search('/myskills');
+          let myservices= route.search('/myservices');
+          let mygoods= route.search('/mygoods');
+          let trader=route.search("/user/show/");
+          let alltra=route.search("/trades/all/");
+          let findby=route.search("/product/findbycategory");
+          let findbyn=route.search("/product/findbyname/");
+          let routepro=localStorage['URLroot'] + '/product/view';
+          let routeedit=localStorage['URLroot'] + '/product/edit';
+          let routetrad=localStorage['URLroot'] + '/user/show';
+          let routeallt=localStorage['URLroot'] + '/trades/all';
+          let routefindbyc=localStorage['URLroot'] + '/product/findbycategory';
+          let routefindbyn=localStorage['URLroot'] + '/product/findbyn';
+          let favorites=localStorage['URLroot'] + '/favorites';
+          let partners=localStorage['URLroot'] + '/partnersusers';
+          let match=localStorage['URLroot'] + '/matchusers';
+          let usersall=localStorage['URLroot'] + '/allusers';          
+          if(product>0){
+            let resp = route.split('/');
+            routepro=routepro + '/' + resp[5];
+            this.ProductID = resp[5];
+          }
+          if(edit>0){
+            let rese = route.split('/');
+            routeedit=routeedit + '/' + rese[5];
+            this.ProductID = rese[5];
+          }
+          if(trader>0){
+            let trad = route.split('/');
+            routetrad=routetrad + '/' + trad[5];
+            this.TraderID = trad[5];
+          }
+          if(alltra>0){
+            routeallt=route;
+          }
+          if(findby>0){
+            routefindbyc=route;
+          }
+          if(findbyn>0){
+            routefindbyn=route;
+          }
+          if(myskills>0){
+            myskills=route;
+          }
+          if(myservices>0){
+            myservices=route;
+          }
+          if(mygoods>0){
+            mygoods=route;
+          }                                    
+          switch (route) {
+            case profile:
+              this.title="User Profile Dashboard";
+              this.CenterContent=1;
+              break;
+            case addnew:
+              this.title="My Business Page";
+              this.CenterContent=2;
+              break;
+            case routepro:
+              this.title="My Business Page";
+              this.CenterContent=3;
+              break;
+            case routeedit:
+              this.title="My Business Page";
+              this.CenterContent=4;
+              break;
+            case routetrad:
+              this.title="My Business Page";
+              this.CenterContent=5;
+              break;
+            case routeallt:
+              this.title="The Market";
+              this.CenterContent=6;
+              break;
+            case routefindbyc:
+              this.title="The Market";
+              this.CenterContent=7;
+              break;
+            case routefindbyn:
+              this.title="The Market";
+              this.CenterContent=8;
+              break;
+            case favorites:
+              this.title="My Wish List";
+              this.CenterContent=9;
+              break;
+            case notifications:
+              this.title="My Business Page";
+              this.CenterContent=10;
+              break;
+            case users:
+              this.title="My Business Page";
+              this.CenterContent=11;
+              break;
+            case documents:
+              this.title="User Profile Dashboard";
+              this.CenterContent=12;
+              break;
+            case choose:
+              this.title="User Profile Dashboard";
+              this.CenterContent=13;
+              break;
+            case ratings:
+              this.title="User Profile Dashboard";
+              this.CenterContent=14;
+              break;
+            case mytrades:
+              this.title="My Ads";
+              this.CenterContent=15;
+              break;
+            case myservices:
+              this.title="My Services";
+              this.CenterContent=16;
+              break;
+            case myskills:
+              this.title="My Skills";
+              this.CenterContent=17;
+              break;
+            case mygoods:
+              this.title="My Goods";
+              this.CenterContent=18;
+              break;
+            case completed:
+              this.title="My Previous Trades";
+              this.CenterContent=19;
+              break;              
+            case partners:
+              this.title="User Profile Dashboard";
+              this.CenterContent=20;
+              break;              
+            case match:
+              this.title="User Profile Dashboard";
+              this.CenterContent=21;
+              break;              
+            default:
+              this.title="User Profile Dashboard";
+              this.CenterContent=0;
+              break;
+          }
+        },
       },
       mounted() {
           axios.get(localStorage['URLroot'] + '/getUserName').then(response => (this.Getlogged(response.data)));
@@ -158,6 +323,7 @@
           this.favoritesURL= localStorage['URLroot']+ '/favorites';
           this.salesURL= localStorage['URLroot']+ '/sales';
           this.dashboardUrl= localStorage['URLroot']+ '/dashboard';
+          this.ShowCenterContent();
       }
     }
 </script>

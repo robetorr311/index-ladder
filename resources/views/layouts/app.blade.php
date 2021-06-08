@@ -45,7 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  End Google Tag Manager (noscript) -->    
   <div id="app">
-    <header-component></header-component>
+    <header-component routes-values="{{ url()->current() }}"></header-component>
       <main class="py-4">
         @yield('content')
       </main>
