@@ -20,7 +20,7 @@ class StripeController extends Controller
     public function showConnect(Request $request)
     {
         $stripe_client_id = env('STRIPE_CLIENT_ID');
-        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_&scope=read_write&redirect_uri='.route('stripe.connect.post');
+        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca__&scope=read_write&redirect_uri='.route('stripe.connect.post');
         return redirect($url);
     }
     public function verifyConnect(Request $request)

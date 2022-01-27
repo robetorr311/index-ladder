@@ -13,7 +13,7 @@ return [
     |
     | Supported: "smtp", "sendmail", "mailgun", "mandrill", "ses",
     |            "sparkpost", "log", "array"
-    |
+    | change
     */
 
     'driver' => env('MAIL_DRIVER', 'smtp'),

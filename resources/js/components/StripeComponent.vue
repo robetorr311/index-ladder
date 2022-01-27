@@ -14,7 +14,7 @@
     export default {
         data(){
             return {
-                stripeAPIToken: 'pk_test',
+                stripeAPIToken: 'pk_test_',
     
                 stripe: '',
                 elements: '',
