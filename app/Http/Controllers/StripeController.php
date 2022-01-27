@@ -20,7 +20,7 @@ class StripeController extends Controller
     public function showConnect(Request $request)
     {
         $stripe_client_id = env('STRIPE_CLIENT_ID');
-        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_Iignvmkj4ALoFMgNMXhGtJM7AiUTA7YD&scope=read_write&redirect_uri='.route('stripe.connect.post');
+        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_&scope=read_write&redirect_uri='.route('stripe.connect.post');
         return redirect($url);
     }
     public function verifyConnect(Request $request)
@@ -29,7 +29,7 @@ class StripeController extends Controller
         $token_request_body = array(
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'client_secret' => 'sk_test_51I6rk8IwloEcEGxLYDWaJGO8e0TqXa031RofdKLtlakAIXpy3P7B8HoknKJy461anBiFdLFLnRCEaQFWRw9ZQbXu00qt7qai6h'
+            'client_secret' => 'sk_test_'
         );
         $tokenUri="https://connect.stripe.com/oauth/token";
         $request = curl_init($tokenUri);
@@ -63,7 +63,7 @@ class StripeController extends Controller
           $Stripe_IDPartner=$partner->stripe_id;
         }
         $amount=$product->amount;
-        Stripe::setApiKey('sk_test_51I6rk8IwloEcEGxLYDWaJGO8e0TqXa031RofdKLtlakAIXpy3P7B8HoknKJy461anBiFdLFLnRCEaQFWRw9ZQbXu00qt7qai6h');
+        Stripe::setApiKey('sk_test');
         $token=$data['id'];
         $created=$data['created'];
         $charge = Charge::create([
@@ -97,7 +97,7 @@ class StripeController extends Controller
         return response()->json($charge);
     }  
     public function GetUrlConnectStripe(){
-        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_Iignvmkj4ALoFMgNMXhGtJM7AiUTA7YD&scope=read_write&redirect_uri='.route('stripe.connect.post');
+        $url = 'https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_I&scope=read_write&redirect_uri='.route('stripe.connect.post');
         return response()->json($url);
     }
 }
