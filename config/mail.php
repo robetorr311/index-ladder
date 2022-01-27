@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'indexladder3'),
+    'username' => env('MAIL_USERNAME', 'MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD','rt988311'),
+    'password' => env('MAIL_PASSWORD','MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
